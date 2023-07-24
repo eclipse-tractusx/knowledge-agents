@@ -1,4 +1,4 @@
-////
+<!--
  * Copyright (C) 2022-2023 Catena-X Association and others. 
  * 
  * This program and the accompanying materials are made available under the
@@ -8,7 +8,7 @@
  * SPDX-FileType: DOCUMENTATION
  * SPDX-FileCopyrightText: 2022-2023 Catena-X Association
  * SPDX-License-Identifier: Apache-2.0
-////
+-->
 
 # Changelog
 
