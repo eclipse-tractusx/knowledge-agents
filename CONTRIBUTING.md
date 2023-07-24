@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: Apache-2.0
 -->
 
-# Contributing to Catena-X
+# Contributing to Tractus-X
 
 Thanks for your interest in this project.
 
