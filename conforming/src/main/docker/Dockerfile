@@ -1,0 +1,45 @@
+# Copyright (C) 2022-2023 Catena-X Association and others. 
+# 
+# This program and the accompanying materials are made available under the
+# terms of the Apache License 2.0 which is available at
+# http://www.apache.org/licenses/.
+# 
+# SPDX-FileType: SOURCE
+# SPDX-FileCopyrightText: 2022-2023 Catena-X Association
+# SPDX-License-Identifier: Apache-2.0
+
+FROM alpine:3.18.2
+ARG JAR
+ARG LIB
+
+ARG APP_USER=agent
+ARG APP_UID=10100
+ARG APP_GID=30000
+
+RUN apk update && \
+    apk add openjdk17-jre-headless=17.0.7_p7-r1 --no-cache && \
+    rm -rf /var/cache/apk/*
+
+RUN addgroup --gid "$APP_GID" --system "$APP_USER"
+
+RUN adduser \
+     --shell /sbin/nologin \
+     --disabled-password \
+     --gecos "" \
+     --ingroup "$APP_USER" \
+     --no-create-home \
+     --uid "$APP_UID" \
+     "$APP_USER"
+
+USER "$APP_USER"
+WORKDIR /app
+VOLUME /tmp
+
+COPY target/conforming-agent-*.jar /app/lib/
+
+# TODO implement wget or curl-based health check
+HEALTHCHECK NONE
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-cp","/app/lib/*", "org.eclipse.tractusx.agents.conforming.Bootstrap"]
