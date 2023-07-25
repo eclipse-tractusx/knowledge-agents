@@ -14,9 +14,6 @@
 
 All notable changes to this product will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 # Released
 
 ## [1.9.5] - 2023-07-31
@@ -28,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Adapted all Catena-X namespaces to https://w3id.org/catenax
-- Upgraded to the latest possible version of dependent libraries
+- Upgraded to best possible unvulnerable dependencies
 - Eclipse Tractus-X standards and migration
 
 ### Removed

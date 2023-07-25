@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: Apache-2.0
 -->
 
-# Tractus-X Knowledge Agents Reference Implementations (KA-RI)
+# Tractus-X Knowledge Agents Reference Implementations (KA)
 
 ![GitHub contributors](https://img.shields.io/github/contributors/eclipse-tractusx/knowledge-agents)
 ![GitHub Org's stars](https://img.shields.io/github/stars/catenax-ng)
@@ -18,7 +18,7 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/eclipse-tractusx/knowledge-agents/total)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=eclipse-tractusx_knowledge-agents&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=eclipse-tractusx_knowledge-agents)
 
-Tractus-X Knowledge Agents Reference Implementations (KA-RI) is a product of the [Catena-X Knowledge Agents Kit](https://catenax-ng.github.io/product-knowledge) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
+Tractus-X Knowledge Agents Reference Implementations (KA) is a product of the [Catena-X Knowledge Agents Kit](https://catenax-ng.github.io/product-knowledge) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
 
 * See the [copyright notice](COPYRIGHT.md)
 * See the [authors file](AUTHORS.md)
@@ -71,10 +71,10 @@ Deployment can be done
 * via [Docker images](https://github.com/orgs/eclipse-tractusx/packages?repo_name=knowledge-agents&ecosystem=docker) 
 * vial [Helm Charts](https://catenax-ng.github.io/product-knowledge/infrastructure/index.yaml)
 
-See the individual agent documentations
-* [Provisioning Agent](provisioning/README.md)
-* [Remoting Agent](remoting/README.md)
-* [Conforming Agent](conforming/README.md)
+* See the individual agent documentations
+  * [Provisioning Agent](provisioning/README.md)
+  * [Remoting Agent](remoting/README.md)
+  * [Conforming Agent](conforming/README.md)
 
 
 

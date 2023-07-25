@@ -1,0 +1,23 @@
+# Copyright (C) 2022-2023 Catena-X Association and others. 
+# 
+# This program and the accompanying materials are made available under the
+# terms of the Apache License 2.0 which is available at
+# http://www.apache.org/licenses/.
+# 
+# SPDX-FileType: SOURCE
+# SPDX-FileCopyrightText: 2022-2023 Catena-X Association
+# SPDX-License-Identifier: Apache-2.0
+---
+# Remoting Agent Chat Header
+# This is a YAML-formatted file.
+apiVersion: v2
+name: remoting-agent
+description: >-
+  Tractus-X Remoting Agent - Knowledge-Agents Compatible API Binding Layer
+home: https://github.com/catenax-ng/product-knowledge/infrastructure/charts/remoting-agent
+type: application
+appVersion: "1.9.5-SNAPSHOT"
+version: 1.9.5-SNAPSHOT
+icon: https://catenax-ng.github.io/product-knowledge/img/logo.svg
+maintainers: 
+  - name: 'Catena-X Knowledge Agents Team'

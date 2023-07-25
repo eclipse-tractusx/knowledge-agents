@@ -1,15 +1,3 @@
-<!--
- * Copyright (C) 2022-2023 Catena-X Association and others. 
- * 
- * This program and the accompanying materials are made available under the
- * terms of the Apache License 2.0 which is available at
- * http://www.apache.org/licenses/.
- * 
- * SPDX-FileType: DOCUMENTATION
- * SPDX-FileCopyrightText: 2022-2023 Catena-X Association
- * SPDX-License-Identifier: Apache-2.0
--->
-
 # Dependencies of Tractus-X Knowledge Agents Reference Implementations (KA-RI)
 
 We provide an [Eclipse Dash License File](DEPENDENCIES) for each release.
@@ -19,8 +7,7 @@ You may recreate an up-to-date DEPENDENCIES file by invoking
 ```shell
 ./mvnw org.eclipse.dash:license-tool-plugin:license-check -Ddash.summary=DEPENDENCIES
 ```
-
-We provide Software-Bill-Of-Material (SBOM) documents for each KA-RI module for each release:
+We provide Software-Bill-Of-Material (SBOM) documents for each KA module for each release:
 * [Conforming Agent](conforming/conforming-agent-1.9.5-SNAPSHOT-sbom.json)
 * [Provisioning Agent](provisioning/provisioning-agent-1.9.5-SNAPSHOT-sbom.json)
 * [Remoting Agent](remoting/remoting-agent-1.9.5-SNAPSHOT-sbom.json)
