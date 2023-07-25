@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: Apache-2.0
 -->
 
-# Dependencies of Tractus-X Knowledge Agents Reference Implementations (KA)
+# Dependencies of Tractus-X Knowledge Agents Reference Implementations (KA-RI)
 
 We provide an [Eclipse Dash License File](DEPENDENCIES) for each release.
 
@@ -19,7 +19,8 @@ You may recreate an up-to-date DEPENDENCIES file by invoking
 ```shell
 ./mvnw org.eclipse.dash:license-tool-plugin:license-check -Ddash.summary=DEPENDENCIES
 ```
-We provide Software-Bill-Of-Material (SBOM) documents for each KA module for each release:
+
+We provide Software-Bill-Of-Material (SBOM) documents for each KA-RI module for each release:
 * [Conforming Agent](conforming/conforming-agent-1.9.5-SNAPSHOT-sbom.json)
 * [Provisioning Agent](provisioning/provisioning-agent-1.9.5-SNAPSHOT-sbom.json)
 * [Remoting Agent](remoting/remoting-agent-1.9.5-SNAPSHOT-sbom.json)
@@ -35,7 +36,7 @@ Afterwards, you find the current documents under:
 * [Provisioning Agent](provisioning/target/provisioning-agent-1.9.5-SNAPSHOT-sbom.json)
 * [Remoting Agent](remoting/target/remoting-agent-1.9.5-SNAPSHOT-sbom.json)
 
-The KA build and runtime platform is relying on:
+The KA-RI build and runtime platform is relying on:
 * [Java Runtime Environment (JRE >=11 - license depends on chosen provider)](https://de.wikipedia.org/wiki/Java-Laufzeitumgebung)
 * [Java Development Kit (JDK >=11 - license depends on chosen provider)](https://de.wikipedia.org/wiki/Java_Development_Kit) 
 * [Apache Maven >=3.8 (Apache License 2.0)](https://maven.apache.org) 
