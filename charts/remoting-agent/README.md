@@ -1,13 +1,21 @@
 <!--
- * Copyright (C) 2022-2023 Catena-X Association and others. 
- * 
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
  * This program and the accompanying materials are made available under the
- * terms of the Apache License 2.0 which is available at
- * http://www.apache.org/licenses/.
- * 
- * SPDX-FileType: DOCUMENTATION
- * SPDX-FileCopyrightText: 2022-2023 Catena-X Association
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
  * SPDX-License-Identifier: Apache-2.0
+
 -->
 # remoting-agent
 
@@ -15,7 +23,7 @@
 
 Tractus-X Remoting Agent - Knowledge-Agents Compatible API Binding Layer
 
-**Homepage:** <https://github.com/catenax-ng/product-knowledge/infrastructure/charts/remoting-agent>
+**Homepage:** <https://github.com/eclipse-tractusx/knowledge-agents/main/charts/remoting-agent>
 
 ## TL;DR
 ```shell
@@ -27,7 +35,7 @@ $ helm install my-release catenax-ng-product-knowledge/remoting-agent --version 
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Catena-X Knowledge Agents Team |  |  |
+| Tractus-X Knowledge Agents Team |  |  |
 
 ## Values
 

@@ -45,7 +45,7 @@ more.
 
 The project maintains the following source code repositories
 
-* https://github.com/eclipse/tractusx
+* https://github.com/eclipse-tractusx
 * https://github.com/catena-x
 * https://github.com/catenax-ng
 

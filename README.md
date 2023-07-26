@@ -17,10 +17,10 @@
  * SPDX-License-Identifier: Apache-2.0
 -->
 
-# Tractus-X Knowledge Agents Reference Implementations (KA)
+# Tractus-X Knowledge Agents Reference Implementations (KA-RI)
 
 ![GitHub contributors](https://img.shields.io/github/contributors/eclipse-tractusx/knowledge-agents)
-![GitHub Org's stars](https://img.shields.io/github/stars/catenax-ng)
+![GitHub Org's stars](https://img.shields.io/github/stars/eclipse-tractusx)
 ![GitHub](https://img.shields.io/github/license/eclipse-tractusx/knowledge-agents)
 ![GitHub all releases](https://img.shields.io/github/downloads/eclipse-tractusx/knowledge-agents/total)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=eclipse-tractusx_knowledge-agents&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=eclipse-tractusx_knowledge-agents)

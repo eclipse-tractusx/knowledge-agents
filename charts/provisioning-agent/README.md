@@ -1,33 +1,42 @@
 <!--
- * Copyright (C) 2022-2023 Catena-X Association and others. 
- * 
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
  * This program and the accompanying materials are made available under the
- * terms of the Apache License 2.0 which is available at
- * http://www.apache.org/licenses/.
- * 
- * SPDX-FileType: DOCUMENTATION
- * SPDX-FileCopyrightText: 2022-2023 Catena-X Association
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
  * SPDX-License-Identifier: Apache-2.0
+
 -->
+
 # provisioning-agent
 
 ![Version: 1.9.5-SNAPSHOT](https://img.shields.io/badge/Version-1.9.5--SNAPSHOT-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.9.5-SNAPSHOT](https://img.shields.io/badge/AppVersion-1.9.5--SNAPSHOT-informational?style=flat-square)
 
 Tractus-X Provisioning Agent - Knowledge-Agents Compatible Data Binding Layer
 
-**Homepage:** <https://github.com/catenax-ng/product-knowledge/infrastructure/charts/provisioning-agent>
+**Homepage:** <https://github.com/eclipse-tractusx/knowledge-agents/main/charts/provisioning-agent>
 
 ## TL;DR
 ```shell
 $ helm repo add catenax-ng-product-knowledge https://catenax-ng.github.io/product-knowledge/infrastructure
-$ helm install my-release catenax-ng-product-knowledge/provisioning-agent --version 1.9.5-SNAPSHOT
+$ helm install my-release catenax-ng-product-knowledge/remoting-agent --version 1.9.5-SNAPSHOT
 ```
 
 ## Maintainers
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Catena-X Knowledge Agents Team |  |  |
+| Tractus-X Knowledge Agents Team |  |  |
 
 ## Values
 
