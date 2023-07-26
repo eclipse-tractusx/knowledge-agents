@@ -1,12 +1,19 @@
 <!--
- * Copyright (C) 2022-2023 Catena-X Association and others. 
- * 
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
  * This program and the accompanying materials are made available under the
- * terms of the Apache License 2.0 which is available at
- * http://www.apache.org/licenses/.
- * 
- * SPDX-FileType: DOCUMENTATION
- * SPDX-FileCopyrightText: 2022-2023 Catena-X Association
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
  * SPDX-License-Identifier: Apache-2.0
 -->
 
@@ -18,14 +25,15 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/eclipse-tractusx/knowledge-agents/total)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=eclipse-tractusx_knowledge-agents&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=eclipse-tractusx_knowledge-agents)
 
-Tractus-X Knowledge Agents Reference Implementations (KA) is a product of the [Catena-X Knowledge Agents Kit](https://catenax-ng.github.io/product-knowledge) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
+Tractus-X Knowledge Agents Reference Implementations (KA-RI) is a product of the [Catena-X Knowledge Agents Kit (about to move to: Tractus-X Knowledge Agents Kit)](https://catenax-ng.github.io/product-knowledge) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
 
-* See the [copyright notice](COPYRIGHT.md)
 * See the [authors file](AUTHORS.md)
-* See the [license file](LICENSE.md)
+* See the [changelog](CHANGELOG.md)
+* See the [license file](LICENSE)
 * See the [code of conduct](CODE_OF_CONDUCT.md)
 * See the [contribution guidelines](CONTRIBUTING.md)
-* See the [dependencies](DEPENDENCIES.md)
+* See the [notice](NOTICE.md)
+* See the [security hints](SECURITY.md)
 
 ## About the Project
 
@@ -46,7 +54,7 @@ We provide several of agent implementations in this product.
 - [Conforming Agent (KA-CONF)](conforming) An agent implementation which may play any role (Matchmaking Agent, Binding Agent, EDC Transfer) in order to test the conformity of all other parts of the architecture/standard.
 
 Included in this repository are ready-made [Helm charts](charts). 
-They can be installed from the [Catena-X Knowledge Agents Kit Helm Repository](https://docs.catenax-ng.github.io/product-knowledge/infrastructure).
+They can be installed from the [Catena-X Knowledge Agents Kit Helm Repository (about to move to: Tractus-X Knowledge Agents Kit Helm Repository)](https://catenax-ng.github.io/product-knowledge/infrastructure).
 
 ## Getting Started
 
@@ -69,7 +77,7 @@ To publish the binary artifacts (environment variables GITHUB_ACTOR and GITHUB_T
 Deployment can be done
 * via [JAR libraries](https://github.com/orgs/eclipse-tractusx/packages?repo_name=knowledge-agents&ecosystem=maven) copied into your Java runtime
 * via [Docker images](https://github.com/orgs/eclipse-tractusx/packages?repo_name=knowledge-agents&ecosystem=docker) 
-* vial [Helm Charts](https://catenax-ng.github.io/product-knowledge/infrastructure/index.yaml)
+* vial [Helm Charts](https://catenax-ng.github.io/product-knowledge/infrastructure/)
 
 * See the individual agent documentations
   * [Provisioning Agent](provisioning/README.md)
