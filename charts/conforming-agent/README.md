@@ -28,8 +28,8 @@ Tractus-X Conforming Agent - Knowledge-Agents Testing Module
 
 ## TL;DR
 ```shell
-$ helm repo add catenax-ng-product-knowledge https://catenax-ng.github.io/product-knowledge/infrastructure
-$ helm install my-release catenax-ng-product-knowledge/remoting-agent --version 1.9.5-SNAPSHOT
+$ helm repo add eclipse-tractusx https://eclipse-tractusx.github.io/charts/dev
+$ helm install my-release eclipse-tractusx/conforming-agent --version 1.9.5-SNAPSHOT
 ```
 
 ## Maintainers
@@ -58,7 +58,7 @@ $ helm install my-release catenax-ng-product-knowledge/remoting-agent --version 
 | envSecretName | string | `nil` | [Kubernetes Secret Resource](https://kubernetes.io/docs/concepts/configuration/secret/) name to load environment variables from |
 | fullnameOverride | string | `""` | Overrides the releases full name |
 | image.pullPolicy | string | `"IfNotPresent"` | [Kubernetes image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) to use |
-| image.repository | string | `"ghcr.io/eclipse-tractusx/knowledge-agents/conforming-agent"` | Which derivate of the remoting agent to use |
+| image.repository | string | `"tractusx/conforming-agent"` | Which derivate of the remoting agent to use |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | imagePullSecret.dockerconfigjson | string | `""` | Image pull secret to create to [obtain the container image from private registries](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry) Note: This value needs to adhere to the [(base64 encoded) .dockerconfigjson format](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials). Furthermore, if 'imagePullSecret.dockerconfigjson' is defined, it takes precedence over 'imagePullSecrets'. |
 | imagePullSecrets | list | `[]` | Existing image pull secret to use to [obtain the container image from private registries](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry) |

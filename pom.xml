@@ -58,7 +58,7 @@
         <netty.version>4.1.94.Final</netty.version>
         <jetty.version>9.4.51.v20230217</jetty.version>
         <!-- REPO -->
-        <repo>ghcr.io/eclipse-tractusx/knowledge-agents/</repo>
+        <repo>tractusx/knowledge-agents/</repo>
         <platform>linux/amd64</platform>
     </properties>    
     <modules>

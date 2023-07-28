@@ -53,7 +53,7 @@ Ontop operates on four standards: three W3C standards and one ANSI standard. It 
 The [Ontop CLI](https://ontop-vkg.org/tutorial/endpoint/endpoint-cli.html) is a Java/Spring application which must
 be extended with an appropriate JDBC driver and that can host only one endpoint per port. We have hence extended the original docker entrypoint scripting [resources](resources/entrypoint.sh) such that multiple endpoints and ports can be hosted in a single container. The following environment properties which were originally single-valued can now be set to arrays (where the last entry behaves as the original process to which the container liveness checks are tied to):
 * ONTOP_PORT - a list of port numbers to bind the services in the container to
-* ONTOP_ONTOLOGY_FILE - a list of local RDF resources (XML or TTL format) which describe the used (domain/use case) ontology. see the [Catena-X Ontology Repository](http://github.com/catenax-ng/product-ontology). For better performance, it is not recommended to include the complete Catena-X Ontology (ontology.ttl) but rather include one of the [Catena-X Use Case Ontology Folder](http://github.com/catenax-ng/product-ontology/tree/main/usecase)
+* ONTOP_ONTOLOGY_FILE - a list of local RDF resources (XML or TTL format) which describe the used (domain/use case) ontology. see the [Catena-X Ontology](https://w3id.org/catenax/ontology). For better performance, it is not recommended to include the complete Catena-X Ontology, but rather include one from the [Catena-X Use Case Folder](https://w3id.org/catenax/ontology/)
 * ONTOP_MAPPING_FILE - a list of mapping files connecting RDF triples with SQL commands/columns either using OBDA or R2RML format
 * ONTOP_PROPERTIES_FILE - a list of properties with settings which influence the runtime (e.g. jdbc connection strings and reconfigurations of Ontops internal factories)
 * ONTOLOGY_PORTAL_FILE - only needed if web uis for testing the endpoints including some sample queries should be exposed to
@@ -124,7 +124,7 @@ mvn install -Pwith-docker-image
 or invoke the following docker command after a successful package run
 
 ```console
-docker build -t ghcr.io/eclipse-tractusx/knowledge-agents/provisioning-agent:1.9.5-SNAPSHOT -f src/main/docker/Dockerfile .
+docker build -t tractusx/provisioning-agent:1.9.5-SNAPSHOT -f src/main/docker/Dockerfile .
 ```
 
 The image contains
@@ -144,7 +144,7 @@ docker run -p 8080:8080 \
   -v $(pwd)/resources/university-role1.obda:/input/mapping.obda \
   -v $(pwd)/resources/university-role1.properties:/input/settings.properties \
   -v $(pwd)/resources/university.sql:/tmp/university.sql \
-  ghcr.io/eclipse-tractusx/knowledge-agents/provisioning-agent:1.9.5-SNAPSHOT
+  tractusx/provisioning-agent:1.9.5-SNAPSHOT
 ````
 
 Afterwards, you should be able to access the [local SparQL endpoint](http://localhost:8080/) via
@@ -192,7 +192,7 @@ docker run -p 8080:8080 -p 8082:8082 \
   -e ONTOP_MAPPING_FILE="/input/role1.obda /input/role2.obda" \
   -e ONTOP_PROPERTIES_FILE="/input/role1.properties /input/role2.properties" \
   -e ONTOP_DEV_MODE="false false" \
-  ghcr.io/eclipse-tractusx/knowledge-agents/provisioning-agent:1.9.5-SNAPSHOT
+  tractusx/provisioning-agent:1.9.5-SNAPSHOT
 ````
 
 Accessing entities spanning two schemas using the first role/endpoint delivers a greater count
@@ -274,7 +274,7 @@ It can be added to your umbrella chart.yaml by the following snippet
 ```console
 dependencies:
   - name: provisioning-agent
-    repository: https://catenax-ng.github.io/product-knowledge/infrastructure
+    repository: https://eclipse-tractusx.github.io/charts/dev
     version: 1.9.5-SNAPSHOT
     alias: my-provider-agent
 ```

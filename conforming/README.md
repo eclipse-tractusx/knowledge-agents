@@ -75,7 +75,7 @@ mvn install -Pwith-docker-image
 or invoke the following docker command after a successful package run
 
 ```console
-docker build -t ghcr.io/eclipse-tractusx/knowledge-agents/conforming-agent:1.9.5-SNAPSHOT -f src/main/docker/Dockerfile .
+docker build -t tractusx/conforming-agent:1.9.5-SNAPSHOT -f src/main/docker/Dockerfile .
 ```
 
 This will create a docker image based on a minimal java environment for running the Glassfish-based standalone jar.
@@ -84,7 +84,7 @@ To run the docker image, you could invoke this command
 
 ```console
 docker run -p 8080:8080 \
-  ghcr.io/eclipse-tractusx/knowledge-agents/conforming-agent:1.9.5-SNAPSHOT
+  tractusx/conforming-agent:1.9.5-SNAPSHOT
 ````
 
 Afterwards, you should be able to access the [local SparQL endpoint](http://localhost:8080/) via
@@ -119,7 +119,7 @@ It can be added to your umbrella chart.yaml by the following snippet
 ```console
 dependencies:
   - name: conforming-agent
-    repository: https://catenax-ng.github.io/product-knowledge/infrastructure
+    repository: https://eclipse-tractusx.github.io/charts/dev
     version: 1.9.5-SNAPSHOT
     alias: my-conforming-agent
 ```

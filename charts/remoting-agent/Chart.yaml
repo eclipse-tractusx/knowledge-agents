@@ -25,6 +25,5 @@ home: https://github.com/eclipse-tractusx/knowledge-agents/main/charts/remoting-
 type: application
 appVersion: "1.9.5-SNAPSHOT"
 version: 1.9.5-SNAPSHOT
-icon: https://catenax-ng.github.io/product-knowledge/img/agents_kit.svg
 maintainers: 
   - name: 'Tractus-X Knowledge Agents Team'

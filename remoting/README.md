@@ -156,7 +156,7 @@ mvn install -Pwith-docker-image
 or invoke the following docker command after a successful package run
 
 ```console
-docker build -t ghcr.io/eclipse-tractusx/knowledge-agents/remoting-agent:1.9.5-SNAPSHOT -f src/main/docker/Dockerfile .
+docker build -t tractusx/remoting-agent:1.9.5-SNAPSHOT -f src/main/docker/Dockerfile .
 ```
 
 This will create a docker image including an extended rdf4j-server as well as an interactive rdf4j-workbench.
@@ -166,7 +166,7 @@ To run the docker image, you could invoke this command
 ```console
 docker run -p 8081:8081 \
   -v $(pwd)/src/test:/var/rdf4j/config \
-  ghcr.io/eclipse-tractusx/knowledge-agents/remoting-agent:1.9.5-SNAPSHOT
+  tractusx/remoting-agent:1.9.5-SNAPSHOT
 ````
 
 Afterwards, you should be able to access the [local SparQL endpoint](http://localhost:8081/) via
@@ -201,7 +201,7 @@ It can be added to your umbrella chart.yaml by the following snippet
 ```console
 dependencies:
   - name: remoting-agent
-    repository: https://catenax-ng.github.io/product-knowledge/infrastructure
+    repository: https://eclipse-tractusx.github.io/charts/dev
     version: 1.9.5-SNAPSHOT
     alias: my-remoting-agent
 ```
