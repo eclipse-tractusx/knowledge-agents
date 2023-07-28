@@ -20,19 +20,21 @@
 # Tractus-X Knowledge Agents Reference Implementations (KA-RI)
 
 ![GitHub contributors](https://img.shields.io/github/contributors/eclipse-tractusx/knowledge-agents)
-![GitHub Org's stars](https://img.shields.io/github/stars/catenax-ng)
+![GitHub Org's stars](https://img.shields.io/github/stars/eclipse-tractusx)
 ![GitHub](https://img.shields.io/github/license/eclipse-tractusx/knowledge-agents)
 ![GitHub all releases](https://img.shields.io/github/downloads/eclipse-tractusx/knowledge-agents/total)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=eclipse-tractusx_knowledge-agents&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=eclipse-tractusx_knowledge-agents)
 
-Tractus-X Knowledge Agents Reference Implementations (KA-RI) is a product of the [Catena-X Knowledge Agents Kit (about to move to: Tractus-X Knowledge Agents Kit)](https://catenax-ng.github.io/product-knowledge) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
+Tractus-X Knowledge Agents Reference Implementations (KA-RI) is a product of the [Catena-X Knowledge Agents Kit (about to move to: Tractus-X Knowledge Agents Kit)](https://bit.ly/tractusx-agents) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
 
-* See the [authors file](AUTHORS.md)
-* See the [changelog](CHANGELOG.md)
-* See the [license file](LICENSE)
-* See the [code of conduct](CODE_OF_CONDUCT.md)
-* See the [contribution guidelines](CONTRIBUTING.md)
-* See the [notice](NOTICE.md)
+* See the [Authors](AUTHORS.md)
+* See the [Changelog](CHANGELOG.md)
+* See the [Code of Conduct](CODE_OF_CONDUCT.md)
+* See the [Contribution Guidelines](CONTRIBUTING.md)
+* See the [License](LICENSE)
+* See the [Notice on 3rd Party Software](NOTICE.md)
+* See this [Readme](README.md)
+* See the [Security Notice](Security.md)
 
 ## About the Project
 
@@ -53,7 +55,8 @@ We provide several of agent implementations in this product.
 - [Conforming Agent (KA-CONF)](conforming) An agent implementation which may play any role (Matchmaking Agent, Binding Agent, EDC Transfer) in order to test the conformity of all other parts of the architecture/standard.
 
 Included in this repository are ready-made [Helm charts](charts). 
-They can be installed from the [Catena-X Knowledge Agents Kit Helm Repository (about to move to: Tractus-X Knowledge Agents Kit Helm Repository)](https://catenax-ng.github.io/product-knowledge/infrastructure).
+
+They can be installed from the [Tractus-X Helm Repository (Stable Versions)](https://eclipse-tractusx.github.io/charts/stable) or [Tractus-X Helm Repository (Dev Versions)](https://eclipse-tractusx.github.io/charts/dev).
 
 ## Getting Started
 
@@ -76,9 +79,9 @@ To publish the binary artifacts (environment variables GITHUB_ACTOR and GITHUB_T
 Deployment can be done
 * via [JAR libraries](https://github.com/orgs/eclipse-tractusx/packages?repo_name=knowledge-agents&ecosystem=maven) copied into your Java runtime
 * via [Docker images](https://github.com/orgs/eclipse-tractusx/packages?repo_name=knowledge-agents&ecosystem=docker) 
-* vial [Helm Charts](https://catenax-ng.github.io/product-knowledge/infrastructure/)
+* via [Helm Charts (Stable Versions)](https://eclipse-tractusx.github.io/charts/stable) or [Helm Charts (Dev Versions)](https://eclipse-tractusx.github.io/charts/stable)
 
-See the individual agent documentations
+See the individual agent documentations for more detailed deployment information
 * [Provisioning Agent](provisioning/README.md)
 * [Remoting Agent](remoting/README.md)
 * [Conforming Agent](conforming/README.md)

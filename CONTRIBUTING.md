@@ -17,8 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
 -->
 
-
-# Contributing to Tractus-X
+# Contributing to Eclipse Tractus-X
 
 Thanks for your interest in this project.
 
@@ -43,11 +42,9 @@ more.
 
 * https://projects.eclipse.org/projects/automotive.tractusx/developer
 
-The project maintains the following source code repositories
+The project maintains the source code repositories in the following GitHub organization:
 
-* https://github.com/eclipse/tractusx
-* https://github.com/catena-x
-* https://github.com/catenax-ng
+* https://github.com/eclipse-tractusx/
 
 ## Eclipse Development Process
 
