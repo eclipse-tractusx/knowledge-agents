@@ -144,7 +144,7 @@ agent:
       auth: {}
       # -- The path mapping the "default" api is going to be exposed by
       path: ""
-      # -- The path mapping the "default" api is going to be exposed by
+      # -- An optional regex path match (whose match groups could be used in an nginx-annotation of the ingress)
       regex: /(.*)
 
 service:
@@ -153,14 +153,17 @@ service:
 
 ## Ingress declaration to expose the network service.
 ingresses:
-  ## Public / Internet facing Ingress
-  - enabled: true
+  ## Agent-Plane Facing Ingress
+  - enabled: false
     # -- The hostname to be used to precisely map incoming traffic onto the underlying network service
     hostname: "remoting-agent.local"
     # -- Additional ingress annotations to add
     annotations: 
-      nginx.ingress.kubernetes.io/rewrite-target: /$1
-      nginx.ingress.kubernetes.io/use-regex: "true"
+      # Example if you want more complex routings in interplay with the endpoints regex property 
+      # nginx.ingress.kubernetes.io/rewrite-target: /$1
+      # nginx.ingress.kubernetes.io/use-regex: "true"
+    # -- Optional prefix that will be prepended to the paths of the endpoints
+    prefix: ""
     # -- Agent endpoints exposed by this ingress resource
     endpoints:
       - default

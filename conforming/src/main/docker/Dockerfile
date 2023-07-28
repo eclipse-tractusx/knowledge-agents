@@ -15,17 +15,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM alpine:3.18.2
+FROM eclipse-temurin:17-jre-alpine
 ARG JAR
 ARG LIB
 
 ARG APP_USER=agent
 ARG APP_UID=10100
 ARG APP_GID=30000
-
-RUN apk update && \
-    apk add openjdk17-jre-headless=17.0.7_p7-r1 --no-cache && \
-    rm -rf /var/cache/apk/*
 
 RUN addgroup --gid "$APP_GID" --system "$APP_USER"
 

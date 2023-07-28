@@ -25,8 +25,8 @@ name="Example Queries"
 
 name="Diagnosis Skill"
 query="""
-PREFIX cx: <https://github.com/catenax-ng/product-knowledge/ontology/cx.ttl#>
-PREFIX cx-diag: <https://github.com/catenax-ng/product-knowledge/ontology/diagnosis.ttl#>
+PREFIX cx: <https://w3id.org/catenax/ontology#>
+PREFIX cx-diag: <https://w3id.org/catenax/ontology/diagnosis#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?reason ?code ?description ?version ?partend ?partcat ?partclass WHERE {

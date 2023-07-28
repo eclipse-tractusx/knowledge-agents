@@ -58,7 +58,7 @@ public class ConformingAgent extends AgentApi {
             "                },\n" +
             "                \"predicate\": {\n" +
             "                    \"type\": \"uri\",\n" +
-            "                    \"value\": \"https://github.com/catenax-ng/product-knowledge/ontology/cx.ttl#hasPartType\"\n" +
+            "                    \"value\": \"https://w3id.org/catenax/ontology#hasPartType\"\n" +
             "                },\n" +
             "                \"object\": {\n" +
             "                    \"type\": \"literal\",\n" +
@@ -93,7 +93,7 @@ public class ConformingAgent extends AgentApi {
             "                },\n" +
             "                \"predicate\": {\n" +
             "                    \"type\": \"uri\",\n" +
-            "                    \"value\": \"https://github.com/catenax-ng/product-knowledge/ontology/cx.ttl#hasPartType\"\n" +
+            "                    \"value\": \"hhttps://w3id.org/catenax/ontology#hasPartType\"\n" +
             "                },\n" +
             "                \"object\": {\n" +
             "                    \"type\": \"literal\",\n" +
@@ -127,7 +127,7 @@ public class ConformingAgent extends AgentApi {
             "                <uri>urn:cx:AnonymousSerializedPart#GB4711</uri>\n" +
             "            </binding>\n" +
             "            <binding name=\"predicate\">\n" +
-            "                <uri>https://github.com/catenax-ng/product-knowledge/ontology/cx.ttl#hasPartType</uri>\n" +
+            "                <uri>https://w3id.org/catenax/ontology#hasPartType</uri>\n" +
             "            </binding>\n" +
             "            <binding name=\"object\">\n" +
             "                <literal xml:lang=\"en\" datatype=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#langString\">engine control module</literal>\n" +
@@ -153,7 +153,7 @@ public class ConformingAgent extends AgentApi {
             "                <uri>urn:cx:AnonymousSerializedPart#GB4711</uri>\n" +
             "            </binding>\n" +
             "            <binding name=\"predicate\">\n" +
-            "                <uri>https://github.com/catenax-ng/product-knowledge/ontology/cx.ttl#hasPartType</uri>\n" +
+            "                <uri>https://w3id.org/catenax/ontology#hasPartType</uri>\n" +
             "            </binding>\n" +
             "            <binding name=\"object\">\n" +
             "                <literal xml:lang=\"en\" datatype=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#langString\">engine control module</literal>\n" +

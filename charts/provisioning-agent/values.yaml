@@ -140,13 +140,17 @@ ontologies:
 
 ## Endpoints exposed by the provisioning agent
 bindings:
-  # -- Diagnostic trouble code endpoint/binding
+  # -- Diagnostic trouble codesample endpoint/binding, for disabling, simply put dtc: {} in your values.yaml
   dtc: 
+    # -- Exposed Service Port for the binding
     port: 8080
+    # -- Potential Ingress Path
     path: (/|$)(.*)
+    # -- Settings for the binding including JDBC backend connections and meta-data directives, you should use secret references when putting passwords here
     settings: 
       jdbc.url: "jdbc:h2:file:/opt/ontop/database/db;INIT=RUNSCRIPT FROM '/opt/ontop/data/dtc.sql'"
       jdbc.driver: "org.h2.Driver"
+      ontop.cardinalityMode: "LOOSE"
     ontology: cx-ontology.xml
     mapping: |-
       [PrefixDeclaration]
@@ -191,14 +195,17 @@ service:
 
 ## Ingress declaration to expose the network service.
 ingresses:
-  ## Public / Internet facing Ingress
-  - enabled: true
+  ## Agent-Plane Facing Ingress
+  - enabled: false
     # -- The hostname to be used to precisely map incoming traffic onto the underlying network service
     hostname: "provisioning-agent.local"
     # -- Additional ingress annotations to add
     annotations: 
-      nginx.ingress.kubernetes.io/rewrite-target: /$2
-      nginx.ingress.kubernetes.io/use-regex: "true"
+      # Example if you want more complex routings in interplay with the endpoints regex property 
+      # nginx.ingress.kubernetes.io/rewrite-target: /$2
+      # nginx.ingress.kubernetes.io/use-regex: "true"
+    # -- Optional prefix that will be prepended to the paths of the endpoints
+    prefix: ""
     # -- Agent endpoints exposed by this ingress resource
     endpoints:
       - dtc

@@ -71,7 +71,7 @@ public class Application {
         Repository rep = new SailRepository(new RemotingSail(rsc));
         try (RepositoryConnection conn = rep.getConnection()) {
             TupleQuery query=(TupleQuery) conn.prepareQuery(QueryLanguage.SPARQL,
-            "PREFIX cx: <https://github.com/catenax-ng/product-knowledge/ontology/cx.ttl#> "+
+            "PREFIX cx: <https://w3id.org/catenax/ontology#> "+
             "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "+
             "PREFIX prognosis: <https://www.w3id.org/catenax/ontology/prognosis#> "+
             "SELECT ?output "+

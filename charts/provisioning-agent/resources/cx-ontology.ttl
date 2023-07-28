@@ -15,7 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-@prefix cx: <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/cx_ontology.ttl#> .
+@prefix cx: <https://w3id.org/catenax/ontology#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -65,7 +65,7 @@ cx:VehicleBrand_RollsRoyce a cx:VehicleBrand ;
         "Rolls-Royce"@en .
 
 cx:VehicleEquipment a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:example "Avantgarde"@en,
         "M-Paket"@en ;
@@ -292,23 +292,23 @@ cx:VehicleManufacturer_Yamaha a cx:VehicleManufacturer ;
         "Yamaha"@en .
 
 cx:VehicleOptionalEquipment a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:prefLabel "Sonderausstattung"@de,
         "Vehicle Optional Equipment"@en .
 
 cx:VehiclePricingInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:prefLabel "Vehicle Pricing Information"@en .
 
 cx:VehicleTireInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:prefLabel "Vehicle Tire Information"@en .
 
 cx:Owner a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:owns ;
             owl:someValuesFrom cx:Vehicle ],
@@ -317,7 +317,7 @@ cx:Owner a owl:Class ;
         "Owner"@en .
 
 cx:Part a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/part_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/part> ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Bauteil_> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:isPartOf ;
@@ -356,7 +356,7 @@ cx:Part a owl:Class ;
         "Part"@en .
 
 cx:AssemblyGroup a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/part_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/part> ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Baugruppe> ;
     rdfs:subClassOf cx:Part ;
     skos:definition "A part that is composed of other parts."@en ;
@@ -368,7 +368,7 @@ cx:AssemblyGroup rdfs:subClassOf [ a owl:Restriction ;
     owl:someValuesFrom cx:LoadSpectrum ] .
 
 cx:VehicleCommunicationInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:hasModem ;
             owl:someValuesFrom xsd:boolean ],
@@ -376,7 +376,7 @@ cx:VehicleCommunicationInformation a owl:Class ;
     skos:prefLabel "Vehicle Communication Information"@en .
 
 cx:VehicleSafetyInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:numberOfAirbags ;
             owl:someValuesFrom xsd:integer ],
@@ -391,7 +391,7 @@ cx:VehicleSafetyInformation a owl:Class ;
 
 cx:adblueTankCapacity a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:subPropertyOf cx:numeric ;
     skos:example "8"@en ;
@@ -400,13 +400,13 @@ cx:adblueTankCapacity a owl:DatatypeProperty ;
 
 cx:assistanceSystem a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleSuspensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Assistance System"@en .
 
 cx:batteryCapacity a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBatteryInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:note "in kWhs"@en ;
@@ -414,7 +414,7 @@ cx:batteryCapacity a owl:DatatypeProperty ;
 
 cx:batteryType a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBatteryInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:type ;
     skos:example "Li-Ion"@en ;
@@ -422,7 +422,7 @@ cx:batteryType a owl:DatatypeProperty ;
 
 cx:batteryWeight a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBatteryInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "250"@en ;
@@ -431,7 +431,7 @@ cx:batteryWeight a owl:DatatypeProperty ;
 
 cx:bore a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:subPropertyOf cx:numeric ;
     skos:note "in mm"@en ;
@@ -439,14 +439,14 @@ cx:bore a owl:DatatypeProperty ;
 
 cx:camshaftValvetrainConfiguration a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:example "DOHC"@en ;
     skos:prefLabel "Camshaft Valvetrain Configuration"@en .
 
 cx:cargoVolume a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCargoInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:cargoVolume ;
     rdfs:subPropertyOf cx:numeric ;
@@ -458,7 +458,7 @@ cx:cargoVolume a owl:DatatypeProperty ;
 
 cx:chargingTime a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBatteryInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:subPropertyOf cx:numeric ;
     skos:note "in hours"@en ;
@@ -466,7 +466,7 @@ cx:chargingTime a owl:DatatypeProperty ;
 
 cx:co2Emissions a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:emissionsCO2 ;
     rdfs:subPropertyOf cx:integer ;
@@ -477,7 +477,7 @@ cx:co2Emissions a owl:DatatypeProperty ;
 
 cx:co2EmissionsWltp a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:emissionsCO2 ;
     rdfs:subPropertyOf cx:integer ;
@@ -488,7 +488,7 @@ cx:co2EmissionsWltp a owl:DatatypeProperty ;
 
 cx:deliveryPrice a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:prefLabel "Lieferpreis"@de,
@@ -496,14 +496,14 @@ cx:deliveryPrice a owl:DatatypeProperty ;
 
 cx:electricConsumption a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBatteryInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:subPropertyOf cx:numeric ;
     skos:prefLabel "Electric Consumption"@en .
 
 cx:electricPower a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBatteryInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:altLabel "Nennleistung"@de ;
@@ -512,7 +512,7 @@ cx:electricPower a owl:DatatypeProperty ;
 
 cx:electricRange a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePerformanceInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:note "in kilometers"@en ;
@@ -521,7 +521,7 @@ cx:electricRange a owl:DatatypeProperty ;
 
 cx:electricRangeWltp a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePerformanceInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:note "in kilometers"@en ;
@@ -530,7 +530,7 @@ cx:electricRangeWltp a owl:DatatypeProperty ;
 
 cx:engineCompressionRatio a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Compression_ratio> ;
     rdfs:subPropertyOf cx:numeric ;
@@ -540,7 +540,7 @@ cx:engineCompressionRatio a owl:DatatypeProperty ;
 
 cx:engineMaxPower a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:enginePower ;
     rdfs:subPropertyOf cx:numeric ;
@@ -553,7 +553,7 @@ cx:engineMaxPower a owl:DatatypeProperty ;
 
 cx:engineSeries a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:example "b38"@en ;
     skos:prefLabel "Motorbaureihe"@de,
@@ -561,7 +561,7 @@ cx:engineSeries a owl:DatatypeProperty ;
 
 cx:engineTypeCode a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:code ;
     skos:prefLabel "Motortypschlüssel"@de,
@@ -569,7 +569,7 @@ cx:engineTypeCode a owl:DatatypeProperty ;
 
 cx:engineVersion a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:altLabel "Technische Überarbeitung"@de ;
     skos:prefLabel "Motorversion"@de,
@@ -577,7 +577,7 @@ cx:engineVersion a owl:DatatypeProperty ;
 
 cx:expectedLifetime a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleLifetimeInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "12"@en ;
@@ -587,7 +587,7 @@ cx:expectedLifetime a owl:DatatypeProperty ;
 
 cx:expectedLifetimeMileage a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleLifetimeInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "150000"@en ;
@@ -597,7 +597,7 @@ cx:expectedLifetimeMileage a owl:DatatypeProperty ;
 
 cx:frontSpringType a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleSuspensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:type ;
     skos:example "coil"@en ;
@@ -605,7 +605,7 @@ cx:frontSpringType a owl:DatatypeProperty ;
 
 cx:frontSuspension a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleSuspensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Independent_suspension> ;
     skos:example "independent"@en ;
@@ -614,7 +614,7 @@ cx:frontSuspension a owl:DatatypeProperty ;
 
 cx:fuelEfficiency a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:fuelEfficiency ;
     rdfs:subPropertyOf cx:numeric ;
@@ -623,7 +623,7 @@ cx:fuelEfficiency a owl:DatatypeProperty ;
 
 cx:fuelTankCapacity a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:fuelCapacity ;
     rdfs:subPropertyOf cx:numeric ;
@@ -635,52 +635,52 @@ cx:fuelTankCapacity a owl:DatatypeProperty ;
 
 cx:hasAutomaticHeadLights a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleLightingInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:boolean ;
     rdfs:subPropertyOf cx:boolean ;
     skos:prefLabel "Has Automatic Head Lights"@en .
 
 cx:hasBodyStyle a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:BodyStyle ;
     skos:prefLabel "has body style"@en .
 
 cx:hasEuroCarSegment a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:EuroCarSegment ;
     skos:prefLabel "has euro car segment"@en .
 
 cx:hasFogLights a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleLightingInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;‚
     rdfs:range xsd:boolean ;
     rdfs:subPropertyOf cx:boolean ;
     skos:prefLabel "Has Fog Lights"@en .
 
 cx:hasLoadSpectrumChannel a owl:ObjectProperty ;
     rdfs:domain cx:LoadSpectrum ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range cx:LoadSpectrumChannel ;
     skos:prefLabel "has load spectrum channel"@en .
 
 cx:hasLoadSpectrumValues a owl:ObjectProperty ;
     rdfs:domain cx:LoadSpectrum ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range cx:LoadSpectrumValues ;
     skos:prefLabel "has load spectrum values"@en .
 
 cx:hasModem a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCommunicationInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:boolean ;
     rdfs:subPropertyOf cx:boolean ;
     skos:prefLabel "Has Modem"@en .
 
 cx:hasNavigation a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInfotainmentInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:boolean ;
     rdfs:subPropertyOf cx:boolean ;
     skos:example "yes"@en ;
@@ -688,7 +688,7 @@ cx:hasNavigation a owl:DatatypeProperty ;
 
 cx:hasRadio a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInfotainmentInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:boolean ;
     rdfs:subPropertyOf cx:boolean ;
     skos:example "yes"@en ;
@@ -696,68 +696,68 @@ cx:hasRadio a owl:DatatypeProperty ;
 
 cx:hasTransmissionType a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:TransmissionType ;
     skos:prefLabel "has transmission type"@en .
 
 cx:hasVehicleBrand a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:VehicleBrand ;
     skos:prefLabel "has vehicle brand"@en .
 
 cx:hasVehicleCargo a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:VehicleCargoInformation ;
     skos:prefLabel "has vehicle cargo"@en .
 
 cx:hasVehicleDimensions a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:VehicleDimensionInformation ;
     skos:prefLabel "has vehicle dimensions"@en .
 
 cx:hasVehicleManufacturer a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:VehicleManufacturer ;
     skos:prefLabel "has vehicle manufacturer"@en .
 
 cx:hasVehicleModel a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:VehicleModel ;
     skos:prefLabel "has vehicle model"@en .
 
 cx:hasWorldManufacturerIdentifier a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:WorldManufacturerIdentifier ;
     skos:prefLabel "has world manufacturer identifier"@en .
 
 cx:isMadeBy a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:VehicleManufacturer ;
     skos:prefLabel "is made by"@en .
 
 cx:isSoldAt a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:VehicleDealer ;
     skos:prefLabel "is sold at"@en .
 
 cx:isVariantOf a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:VehicleModel ;
     rdfs:seeAlso schema:isVariantOf ;
     skos:prefLabel "is variant of"@en .
 
 cx:loadSpectrumChannelLowerLimit a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumChannel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:float ;
     rdfs:subPropertyOf cx:numeric ;
     skos:example "-40"@en ;
@@ -765,7 +765,7 @@ cx:loadSpectrumChannelLowerLimit a owl:DatatypeProperty ;
 
 cx:loadSpectrumChannelNumberOfBins a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumChannel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "52"@en ;
@@ -773,14 +773,14 @@ cx:loadSpectrumChannelNumberOfBins a owl:DatatypeProperty ;
 
 cx:loadSpectrumChannelType a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumChannel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:type ;
     skos:prefLabel "Load Spectrum Channel Type"@en .
 
 cx:loadSpectrumChannelUpperLimit a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumChannel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:float ;
     rdfs:subPropertyOf cx:numeric ;
     skos:example "220"@en ;
@@ -788,13 +788,13 @@ cx:loadSpectrumChannelUpperLimit a owl:DatatypeProperty ;
 
 cx:loadSpectrumCountingMethod a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumValues ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Load Spectrum Counting Method"@en .
 
 cx:loadSpectrumEndDatetime a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrum ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:dateTime ;
     rdfs:subPropertyOf cx:date ;
     skos:definition "end of the measurement of load spectrum"@en ;
@@ -803,7 +803,7 @@ cx:loadSpectrumEndDatetime a owl:DatatypeProperty ;
 
 cx:loadSpectrumId a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrum ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:identifier ;
     skos:prefLabel "Lastkollektiv Id"@de,
@@ -811,7 +811,7 @@ cx:loadSpectrumId a owl:DatatypeProperty ;
 
 cx:loadSpectrumName a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrum ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:name ;
     skos:example "torque vs rotational speed in the 4th/6th/reverse gear"@en ;
@@ -820,7 +820,7 @@ cx:loadSpectrumName a owl:DatatypeProperty ;
 
 cx:loadSpectrumStartDatetime a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrum ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:dateTime ;
     rdfs:subPropertyOf cx:date ;
     skos:definition "start of the measurement of load spectrum"@en ;
@@ -829,7 +829,7 @@ cx:loadSpectrumStartDatetime a owl:DatatypeProperty ;
 
 cx:maxAxleLoad a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCargoInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Axle_load> ;
     rdfs:subPropertyOf cx:numeric ;
@@ -839,7 +839,7 @@ cx:maxAxleLoad a owl:DatatypeProperty ;
 
 cx:maxPayload a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCargoInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:payload ;
     rdfs:subPropertyOf cx:numeric ;
@@ -850,7 +850,7 @@ cx:maxPayload a owl:DatatypeProperty ;
 
 cx:maxTowingCapacity a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCargoInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Anh%C3%A4ngelast> ;
     rdfs:subPropertyOf cx:numeric ;
@@ -861,20 +861,20 @@ cx:maxTowingCapacity a owl:DatatypeProperty ;
 
 cx:numberOfValves a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:prefLabel "Number Of Valves"@en .
 
 cx:owns a owl:ObjectProperty ;
     rdfs:domain cx:Owner ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:Vehicle ;
     skos:prefLabel "owns"@en .
 
 cx:passengerVolume a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCargoInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:subPropertyOf cx:numeric ;
     skos:note "in liters"@en ;
@@ -882,14 +882,14 @@ cx:passengerVolume a owl:DatatypeProperty ;
 
 cx:previousVehicleModel a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Vorgängermodell"@de,
         "Previous Vehicle Model"@en .
 
 cx:purchasePrice a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:prefLabel "Kaufpreis"@de,
@@ -897,7 +897,7 @@ cx:purchasePrice a owl:DatatypeProperty ;
 
 cx:rearSpringType a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleSuspensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:type ;
     skos:example "coil"@en ;
@@ -905,7 +905,7 @@ cx:rearSpringType a owl:DatatypeProperty ;
 
 cx:rearSuspension a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleSuspensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Independent_suspension> ;
     skos:example "independent"@en ;
@@ -914,14 +914,14 @@ cx:rearSuspension a owl:DatatypeProperty ;
 
 cx:rim a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleSuspensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Rim_> ;
     skos:prefLabel "Rim"@en .
 
 cx:roadNoise a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePerformanceInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Fahrger%C3%A4usch> ;
     rdfs:subPropertyOf cx:integer ;
@@ -932,14 +932,14 @@ cx:roadNoise a owl:DatatypeProperty ;
 
 cx:sameAs a owl:ObjectProperty ;
     rdfs:domain cx:WorldManufacturerIdentifier ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range cx:BusinessPartner ;
     skos:prefLabel "same as"@en .
 
 
 cx:vehicleAssemblyCountry a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:countryOfAssembly ;
     skos:definition "The place where the product was assembled."@en ;
@@ -948,14 +948,14 @@ cx:vehicleAssemblyCountry a owl:DatatypeProperty ;
 
 cx:vehicleAssemblyPlant a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Montagewerk"@de,
         "Vehicle Assembly Plant"@en .
 
 cx:vehicleBreaking a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePerformanceInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Brake> ;
     rdfs:subPropertyOf cx:integer ;
@@ -967,7 +967,7 @@ cx:vehicleBreaking a owl:DatatypeProperty ;
 
 cx:vehicleConfiguration a owl:DatatypeProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:vehicleConfiguration ;
     skos:definition "A short text indicating the configuration of the vehicle, e.g. '5dr hatchback ST 2.5 MT 225 hp' or 'limited edition'."@en ;
@@ -975,7 +975,7 @@ cx:vehicleConfiguration a owl:DatatypeProperty ;
 
 cx:vehicleCurbWeight a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_weight#Curb_weight> ;
     rdfs:subPropertyOf cx:numeric ;
@@ -989,7 +989,7 @@ cx:vehicleCurbWeight a owl:DatatypeProperty ;
 
 cx:vehicleCurrentAge a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCurrentState ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:definition "The current age of the vehicle in years."@en ;
@@ -1000,14 +1000,14 @@ cx:vehicleCurrentAge a owl:DatatypeProperty ;
 
 cx:vehicleCurrentLocation a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCurrentState ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Fahrzeugstandort"@de,
         "Vehicle Current Location"@en .
 
 cx:vehicleCurrentMileage a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCurrentState ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:mileageFromOdometer ;
     rdfs:subPropertyOf cx:integer ;
@@ -1019,21 +1019,21 @@ cx:vehicleCurrentMileage a owl:DatatypeProperty ;
 
 cx:vehicleCurrentStateDateTime a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCurrentState ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:dateTime ;
     rdfs:subPropertyOf cx:date ;
     skos:prefLabel "Vehicle Current State Date Time"@en .
 
 cx:vehicleDeliveryCountry a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Auslieferland"@de,
         "Vehicle Delivery Country"@en .
 
 cx:vehicleDeliveryDate a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:date ;
     rdfs:subPropertyOf cx:date ;
     skos:prefLabel "Auslieferdatum"@de,
@@ -1041,14 +1041,14 @@ cx:vehicleDeliveryDate a owl:DatatypeProperty ;
 
 cx:vehicleDescription a owl:DatatypeProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:description ;
     skos:prefLabel "Vehicle Description"@en .
 
 cx:vehicleDragCoefficient a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBodyInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Automobile_drag_coefficient> ;
     rdfs:subPropertyOf cx:numeric ;
@@ -1059,7 +1059,7 @@ cx:vehicleDragCoefficient a owl:DatatypeProperty ;
 
 cx:vehicleDryWeight a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_weight#Dry_weight> ;
     rdfs:subPropertyOf cx:numeric ;
@@ -1068,7 +1068,7 @@ cx:vehicleDryWeight a owl:DatatypeProperty ;
 
 cx:vehicleExteriorColor a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBodyInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:color ;
     skos:definition "The color of the product."@en ;
@@ -1076,7 +1076,7 @@ cx:vehicleExteriorColor a owl:DatatypeProperty ;
 
 cx:vehicleGroundClearance a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:subPropertyOf cx:numeric ;
     skos:altLabel "Bodenfreiheit"@de ;
@@ -1086,7 +1086,7 @@ cx:vehicleGroundClearance a owl:DatatypeProperty ;
 
 cx:vehicleHeight a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:height ;
     rdfs:subPropertyOf cx:numeric ;
@@ -1095,7 +1095,7 @@ cx:vehicleHeight a owl:DatatypeProperty ;
 
 cx:vehicleInteriorColor a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInteriorInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:vehicleInteriorColor ;
     skos:definition "The color or color combination of the interior of the vehicle."@en ;
@@ -1103,7 +1103,7 @@ cx:vehicleInteriorColor a owl:DatatypeProperty ;
 
 cx:vehicleLength a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:depth ;
     rdfs:subPropertyOf cx:numeric ;
@@ -1112,7 +1112,7 @@ cx:vehicleLength a owl:DatatypeProperty ;
 
 cx:vehicleMaxSpeed a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePerformanceInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:speed ;
     rdfs:subPropertyOf cx:integer ;
@@ -1125,14 +1125,14 @@ cx:vehicleMaxSpeed a owl:DatatypeProperty ;
 
 cx:vehicleModelArchitecture a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Fahrzeugarchitektur"@de,
         "Vehicle Model Architecture"@en .
 
 cx:vehicleModelEndOfProduction a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:date ;
     rdfs:subPropertyOf cx:date ;
     skos:example "present"@en ;
@@ -1141,7 +1141,7 @@ cx:vehicleModelEndOfProduction a owl:DatatypeProperty ;
 
 cx:vehicleModelStartOfProduction a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:date ;
     rdfs:seeAlso schema:vehicleModelDate ;
     rdfs:subPropertyOf cx:date ;
@@ -1151,7 +1151,7 @@ cx:vehicleModelStartOfProduction a owl:DatatypeProperty ;
 
 cx:vehicleOperatingHours a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCurrentState ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:note "in hours"@en ;
@@ -1160,7 +1160,7 @@ cx:vehicleOperatingHours a owl:DatatypeProperty ;
 
 cx:vehicleOrderDate a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:date ;
     rdfs:subPropertyOf cx:date ;
     skos:definition "The date the vehicle was ordered by the owner."@en ;
@@ -1169,7 +1169,7 @@ cx:vehicleOrderDate a owl:DatatypeProperty ;
 
 cx:vehicleProductionDate a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:date ;
     rdfs:seeAlso schema:productionDate ;
     rdfs:subPropertyOf cx:date ;
@@ -1179,7 +1179,7 @@ cx:vehicleProductionDate a owl:DatatypeProperty ;
 
 cx:vehicleProductionYear a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:prefLabel "Baujahr"@de,
@@ -1187,7 +1187,7 @@ cx:vehicleProductionYear a owl:DatatypeProperty ;
 
 cx:vehiclePurchaseDate a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:date ;
     rdfs:seeAlso schema:purchaseDate ;
     rdfs:subPropertyOf cx:date ;
@@ -1197,7 +1197,7 @@ cx:vehiclePurchaseDate a owl:DatatypeProperty ;
 
 cx:vehicleRange a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePerformanceInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Property:P2073> ;
     rdfs:subPropertyOf cx:integer ;
@@ -1208,7 +1208,7 @@ cx:vehicleRange a owl:DatatypeProperty ;
 
 cx:vehicleRangeWltp a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePerformanceInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "650"@en ;
@@ -1217,13 +1217,13 @@ cx:vehicleRangeWltp a owl:DatatypeProperty ;
 
 cx:vehicleRegistrationAuthority a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleRegistrationInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Vehicle Registration Authority"@en .
 
 cx:vehicleRegistrationDate a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleRegistrationInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:date ;
     rdfs:seeAlso schema:dateVehicleFirstRegistered ;
     rdfs:subPropertyOf cx:date ;
@@ -1232,13 +1232,13 @@ cx:vehicleRegistrationDate a owl:DatatypeProperty ;
 
 cx:vehicleRegistrationLocation a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleRegistrationInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:prefLabel "Vehicle Registration Location"@en .
 
 cx:vehicleRegistrationOwner a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleRegistrationInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_title> ;
     skos:definition "Full name of owner."@en ;
@@ -1246,7 +1246,7 @@ cx:vehicleRegistrationOwner a owl:DatatypeProperty ;
 
 cx:vehicleSpecialUsage a owl:DatatypeProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:vehicleSpecialUsage ;
     skos:definition "Indicates whether the vehicle has been used for special purposes, like commercial rental, driving school, or as a taxi. The legislation in many countries requires this information to be revealed when offering a car for sale."@en ;
@@ -1254,7 +1254,7 @@ cx:vehicleSpecialUsage a owl:DatatypeProperty ;
 
 cx:vehicleTurningRadius a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Turning_radius> ;
     rdfs:subPropertyOf cx:numeric ;
@@ -1264,7 +1264,7 @@ cx:vehicleTurningRadius a owl:DatatypeProperty ;
 
 cx:vehicleWidth a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:width ;
     rdfs:subPropertyOf cx:numeric ;
@@ -1273,7 +1273,7 @@ cx:vehicleWidth a owl:DatatypeProperty ;
 
 cx:warrantyMaxDuration a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleWarrantyInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "48"@en ;
@@ -1282,7 +1282,7 @@ cx:warrantyMaxDuration a owl:DatatypeProperty ;
 
 cx:warrantyMaxMileage a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleWarrantyInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "50000"@en ;
@@ -1291,7 +1291,7 @@ cx:warrantyMaxMileage a owl:DatatypeProperty ;
 
 cx:weightTotal a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCargoInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso schema:weightTotal ;
     rdfs:subPropertyOf cx:numeric ;
@@ -1301,32 +1301,32 @@ cx:weightTotal a owl:DatatypeProperty ;
 
 cx:worldManufacturerCountry a owl:DatatypeProperty ;
     rdfs:domain cx:WorldManufacturerIdentifier ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:definition "The first 2 digits of the VIN."@en ;
     skos:example "Germany"@en ;
     skos:prefLabel "World Manufacturer Country"@en .
 
 cx:EngineAlignment a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:prefLabel "Engine Alignment"@en .
 
 cx:Fleet a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:subClassOf cx:ImmaterialThing ;
     skos:prefLabel "Flotte"@de,
         "Fleet"@en .
 
 cx:SteeringWheelPosition a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Left-_and_right-hand_traffic> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:prefLabel "Lenkerausführung"@de,
         "Steering Wheel Position"@en .
 
 cx:VehicleChassisInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:numberOfDriveAxles ;
             owl:someValuesFrom xsd:integer ],
@@ -1343,7 +1343,7 @@ cx:VehicleChassisInformation a owl:Class ;
     skos:prefLabel "Vehicle Chassis Information"@en .
 
 cx:VehicleInfotainmentInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:hasNavigation ;
             owl:someValuesFrom xsd:boolean ],
@@ -1354,7 +1354,7 @@ cx:VehicleInfotainmentInformation a owl:Class ;
     skos:prefLabel "Vehicle Infotainment Information"@en .
 
 cx:VehicleLifetimeInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:expectedLifetimeMileage ;
             owl:someValuesFrom xsd:integer ],
@@ -1365,7 +1365,7 @@ cx:VehicleLifetimeInformation a owl:Class ;
     skos:prefLabel "Vehicle Lifetime Information"@en .
 
 cx:VehicleLightingInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:hasAutomaticHeadLights ;
             owl:someValuesFrom xsd:boolean ],
@@ -1376,7 +1376,7 @@ cx:VehicleLightingInformation a owl:Class ;
     skos:prefLabel "Vehicle Lighting Information"@en .
 
 cx:VehicleWarrantyInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:warrantyMaxMileage ;
             owl:someValuesFrom xsd:integer ],
@@ -1388,7 +1388,7 @@ cx:VehicleWarrantyInformation a owl:Class ;
 
 cx:airConditioningType a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInteriorInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Air_conditioning> ;
     rdfs:subPropertyOf cx:type ;
@@ -1398,7 +1398,7 @@ cx:airConditioningType a owl:DatatypeProperty ;
 
 cx:clutchType a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePowertrainInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Clutch> ;
     rdfs:subPropertyOf cx:type ;
@@ -1409,13 +1409,13 @@ cx:clutchType a owl:DatatypeProperty ;
 
 cx:drivesOn a owl:ObjectProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:Road ;
     skos:prefLabel "drives on"@en .
 
 cx:engineAlignment a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:example "longitudinal"@en,
         "transverse"@en ;
@@ -1424,7 +1424,7 @@ cx:engineAlignment a owl:DatatypeProperty ;
 
 cx:engineAspiration a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Turbolader> ;
     skos:example "natural"@en,
@@ -1434,7 +1434,7 @@ cx:engineAspiration a owl:DatatypeProperty ;
 
 cx:engineDisplacement a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Engine_displacement>,
         schema:engineDisplacement ;
@@ -1447,7 +1447,7 @@ cx:engineDisplacement a owl:DatatypeProperty ;
 
 cx:engineFuelInjection a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Fuel_injection> ;
     skos:example "direct"@en,
@@ -1457,7 +1457,7 @@ cx:engineFuelInjection a owl:DatatypeProperty ;
 
 cx:engineMaxTorque a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Torque>,
         schema:torque ;
@@ -1470,7 +1470,7 @@ cx:engineMaxTorque a owl:DatatypeProperty ;
 
 cx:engineName a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:vehicleEngine ;
     rdfs:subPropertyOf cx:name ;
@@ -1481,7 +1481,7 @@ cx:engineName a owl:DatatypeProperty ;
 
 cx:frontBrakeDiscDiameter a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:subPropertyOf cx:numeric ;
     skos:note "in mm"@en ;
@@ -1489,7 +1489,7 @@ cx:frontBrakeDiscDiameter a owl:DatatypeProperty ;
 
 cx:fuelType a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:fuelType ;
     rdfs:subPropertyOf cx:type ;
@@ -1502,14 +1502,14 @@ cx:fuelType a owl:DatatypeProperty ;
 cx:isTransportedBy a owl:ObjectProperty ;
     rdfs:domain cx:Cargo,
         cx:Passenger ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:TransportVehicle,
         cx:Vehicle ;
     skos:prefLabel "is transported by"@en .
 
 cx:loadSpectrumCountingUnit a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumValues ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     skos:example "frequency"@en,
         "seconds"@en ;
@@ -1517,7 +1517,7 @@ cx:loadSpectrumCountingUnit a owl:DatatypeProperty ;
 
 cx:loadSpectrumDescription a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrum ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:description ;
     skos:definition "details about the load spectrum: who, what, where, when, how?"@en ;
@@ -1528,7 +1528,7 @@ cx:loadSpectrumDescription a owl:DatatypeProperty ;
 
 cx:loadSpectrumType a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrum ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range json:Object ;
     rdfs:subPropertyOf cx:type ;
     skos:example "count"@en,
@@ -1538,7 +1538,7 @@ cx:loadSpectrumType a owl:DatatypeProperty ;
 
 cx:manufacturerKeyNumber a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleRegistrationInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Herstellerschl%C3%BCsselnummer> ;
     rdfs:subPropertyOf cx:number ;
@@ -1551,7 +1551,7 @@ cx:manufacturerKeyNumber a owl:DatatypeProperty ;
 
 cx:numberOfAxles a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleChassisInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:numberOfAxles ;
     rdfs:subPropertyOf cx:integer ;
@@ -1563,7 +1563,7 @@ cx:numberOfAxles a owl:DatatypeProperty ;
 
 cx:numberOfDoors a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBodyInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:numberOfDoors ;
     rdfs:subPropertyOf cx:integer ;
@@ -1575,7 +1575,7 @@ cx:numberOfDoors a owl:DatatypeProperty ;
 
 cx:numberOfDriveAxles a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleChassisInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "1"@en,
@@ -1585,7 +1585,7 @@ cx:numberOfDriveAxles a owl:DatatypeProperty ;
 
 cx:numberOfSeatRows a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInteriorInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "2"@en,
@@ -1595,7 +1595,7 @@ cx:numberOfSeatRows a owl:DatatypeProperty ;
 
 cx:powertrainLayout a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePowertrainInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Powertrain_layout> ;
     skos:definition "is defined by the location of the engine and drive wheels"@en ;
@@ -1605,7 +1605,7 @@ cx:powertrainLayout a owl:DatatypeProperty ;
 
 cx:steeringType a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePowertrainInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Steering> ;
     rdfs:subPropertyOf cx:type ;
@@ -1615,7 +1615,7 @@ cx:steeringType a owl:DatatypeProperty ;
 
 cx:steeringWheelPosition a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePowertrainInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:steeringPosition ;
     skos:definition "The position of the steering wheel or similar device ."@en ;
@@ -1625,7 +1625,7 @@ cx:steeringWheelPosition a owl:DatatypeProperty ;
 
 cx:tongueWeight a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCargoInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Anh%C3%A4ngelast>,
         schema:tongueWeight ;
@@ -1637,7 +1637,7 @@ cx:tongueWeight a owl:DatatypeProperty ;
 
 cx:vehicleAcceleration a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePerformanceInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/0_to_60_mph>,
         schema:accelerationTime ;
@@ -1650,7 +1650,7 @@ cx:vehicleAcceleration a owl:DatatypeProperty ;
 
 cx:vehicleTransmission a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePowertrainInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:vehicleTransmission ;
     skos:definition "The type of component used for transmitting the power from a rotating power source to the wheels or other relevant component ."@en ;
@@ -1660,7 +1660,7 @@ cx:vehicleTransmission a owl:DatatypeProperty ;
 
 cx:vehicleTypeCodeNumber a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleRegistrationInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Typschl%C3%BCsselnummer> ;
     rdfs:subPropertyOf cx:number ;
@@ -1672,7 +1672,7 @@ cx:vehicleTypeCodeNumber a owl:DatatypeProperty ;
 
 cx:vehicleWeight a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_weight>,
         schema:weight ;
@@ -1684,7 +1684,7 @@ cx:vehicleWeight a owl:DatatypeProperty ;
 
 cx:vehicleWheelbase a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleDimensionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Wheelbase>,
         schema:wheelbase ;
@@ -1697,7 +1697,7 @@ cx:vehicleWheelbase a owl:DatatypeProperty ;
 
 cx:worldManufacturerId a owl:DatatypeProperty ;
     rdfs:domain cx:WorldManufacturerIdentifier ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:identifier ;
     skos:altLabel "WMI"@en,
@@ -1707,7 +1707,7 @@ cx:worldManufacturerId a owl:DatatypeProperty ;
 
 cx:worldManufacturerRegion a owl:DatatypeProperty ;
     rdfs:domain cx:WorldManufacturerIdentifier ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:definition "The first digit of the VIN."@en ;
     skos:example "Europe"@en,
@@ -1715,7 +1715,7 @@ cx:worldManufacturerRegion a owl:DatatypeProperty ;
     skos:prefLabel "World Manufacturer Region"@en .
 
 cx:Car a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Car> ;
     rdfs:subClassOf cx:PassengerVehicle ;
     skos:altLabel "Automobil"@de,
@@ -1729,7 +1729,7 @@ cx:Car a owl:Class ;
         "Car"@en .
 
 cx:Driver a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:drives ;
             owl:someValuesFrom cx:Vehicle ],
@@ -1738,19 +1738,19 @@ cx:Driver a owl:Class ;
         "Driver"@en .
 
 cx:EngineAspiration a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:prefLabel "Engine Aspiration"@en .
 
 cx:EnginePosition a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:altLabel "location of the engine"@en ;
     skos:prefLabel "Motoranordnung"@de,
         "Engine Position"@en .
 
 cx:Road a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Mode_of_transport>,
         <https://en.wikipedia.org/wiki/Road> ;
     rdfs:subClassOf cx:Place ;
@@ -1759,7 +1759,7 @@ cx:Road a owl:Class ;
 
 cx:bodyStyle a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBodyInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:bodyType ;
     skos:altLabel "Kategorie"@de,
@@ -1772,7 +1772,7 @@ cx:bodyStyle a owl:DatatypeProperty ;
 
 cx:emissionClass a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_emission_standard> ;
     rdfs:subPropertyOf cx:type ;
@@ -1786,7 +1786,7 @@ cx:emissionClass a owl:DatatypeProperty ;
 
 cx:engineGeneration a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:example "1"@en,
         "2"@en,
@@ -1796,7 +1796,7 @@ cx:engineGeneration a owl:DatatypeProperty ;
 
 cx:enginePerformanceClass a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:type ;
     skos:example "high"@en,
@@ -1807,7 +1807,7 @@ cx:enginePerformanceClass a owl:DatatypeProperty ;
 
 cx:enginePosition a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:altLabel "Motoranordnung"@de ;
     skos:example "front"@en,
@@ -1818,7 +1818,7 @@ cx:enginePosition a owl:DatatypeProperty ;
 
 cx:euroCarSegment a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleBodyInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Euro_Car_Segment> ;
     skos:example "A"@en,
@@ -1830,14 +1830,14 @@ cx:isOwnedBy a owl:ObjectProperty ;
     rdfs:domain cx:CommercialVehicle,
         cx:CompanyVehicle,
         cx:PrivateVehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:Organisation,
         cx:Person ;
     skos:prefLabel "is owned by"@en .
 
 cx:loadSpectrumChannelIndex a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumValues ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range json:Object ;
     skos:example "2"@en,
         "3]"@en,
@@ -1846,7 +1846,7 @@ cx:loadSpectrumChannelIndex a owl:DatatypeProperty ;
 
 cx:loadSpectrumChannelName a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumChannel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:name ;
     skos:example "rotational speed"@en,
@@ -1856,7 +1856,7 @@ cx:loadSpectrumChannelName a owl:DatatypeProperty ;
 
 cx:loadSpectrumChannelUnit a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumChannel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     skos:example "1/min"@en,
         "Nm"@en,
@@ -1865,7 +1865,7 @@ cx:loadSpectrumChannelUnit a owl:DatatypeProperty ;
 
 cx:loadSpectrumChannelValues a owl:DatatypeProperty ;
     rdfs:domain cx:LoadSpectrumValues ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range json:Object ;
     skos:example "3"@en,
         "4]"@en,
@@ -1874,7 +1874,7 @@ cx:loadSpectrumChannelValues a owl:DatatypeProperty ;
 
 cx:numberOfAirbags a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleSafetyInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:numberOfAirbags ;
     rdfs:subPropertyOf cx:integer ;
@@ -1887,7 +1887,7 @@ cx:numberOfAirbags a owl:DatatypeProperty ;
 
 cx:numberOfForwardGears a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePowertrainInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:numberOfForwardGears ;
     rdfs:subPropertyOf cx:integer ;
@@ -1901,7 +1901,7 @@ cx:numberOfForwardGears a owl:DatatypeProperty ;
 
 cx:numberOfStandingPlaces a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInteriorInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Stehplatz> ;
     rdfs:subPropertyOf cx:integer ;
@@ -1914,7 +1914,7 @@ cx:numberOfStandingPlaces a owl:DatatypeProperty ;
 
 cx:vehicleCountryOption a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:altLabel "national-market version"@en ;
     skos:example "CN"@en,
@@ -1925,7 +1925,7 @@ cx:vehicleCountryOption a owl:DatatypeProperty ;
 
 cx:vehicleInteriorType a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInteriorInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:vehicleInteriorType ;
     rdfs:subPropertyOf cx:type ;
@@ -1937,7 +1937,7 @@ cx:vehicleInteriorType a owl:DatatypeProperty ;
 
 cx:vehicleModelGeneration a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:example "1"@en,
@@ -1948,7 +1948,7 @@ cx:vehicleModelGeneration a owl:DatatypeProperty ;
 
 cx:vehicleTypeCode a owl:DatatypeProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:code ;
     skos:altLabel "Fahrzeugtyp"@de,
@@ -1961,7 +1961,7 @@ cx:vehicleTypeCode a owl:DatatypeProperty ;
 
 cx:worldManufacturerName a owl:DatatypeProperty ;
     rdfs:domain cx:WorldManufacturerIdentifier ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf cx:name ;
     skos:example "Audi"@en,
@@ -1970,7 +1970,7 @@ cx:worldManufacturerName a owl:DatatypeProperty ;
     skos:prefLabel "World Manufacturer Name"@en .
 
 cx:Cargo a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Cargo> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:isTransportedBy ;
@@ -1985,7 +1985,7 @@ cx:Cargo a owl:Class ;
         "Cargo"@en .
 
 cx:InternalCombustionEngineVehicle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:hasPart ;
             owl:someValuesFrom cx:Engine ],
@@ -1995,7 +1995,7 @@ cx:InternalCombustionEngineVehicle a owl:Class ;
     skos:prefLabel "Internal Combustion Engine Vehicle"@en .
 
 cx:Passenger a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:isTransportedBy ;
             owl:someValuesFrom cx:Vehicle ],
@@ -2007,7 +2007,7 @@ cx:Passenger a owl:Class ;
         "Passenger"@en .
 
 cx:SemiTrailerTruck a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Semi-trailer_truck> ;
     rdfs:subClassOf cx:CommercialVehicle,
         cx:HeavyTransportVehicle ;
@@ -2025,7 +2025,7 @@ cx:SemiTrailerTruck a owl:Class ;
         "Semi-Trailer Truck"@en .
 
 cx:Van a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Van> ;
     rdfs:subClassOf cx:CommercialVehicle,
         cx:LightTransportVehicle ;
@@ -2041,7 +2041,7 @@ cx:Van a owl:Class ;
 
 cx:engineFamily a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:example "Inline 4"@en,
         "V12"@en,
@@ -2052,7 +2052,7 @@ cx:engineFamily a owl:DatatypeProperty ;
 
 cx:engineManufacturer a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:example "Audi"@en,
         "BMW"@en,
@@ -2063,7 +2063,7 @@ cx:engineManufacturer a owl:DatatypeProperty ;
 
 cx:fuelConsumptionCity a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Fuel_economy_in_automobiles>,
         schema:fuelConsumption ;
@@ -2076,7 +2076,7 @@ cx:fuelConsumptionCity a owl:DatatypeProperty ;
 
 cx:fuelConsumptionCombined a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Fuel_economy_in_automobiles>,
         schema:fuelConsumption ;
@@ -2090,7 +2090,7 @@ cx:fuelConsumptionCombined a owl:DatatypeProperty ;
 
 cx:fuelConsumptionHighway a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Fuel_economy_in_automobiles>,
         schema:fuelConsumption ;
@@ -2103,13 +2103,13 @@ cx:fuelConsumptionHighway a owl:DatatypeProperty ;
 
 cx:hasLoadSpectrum a owl:ObjectProperty ;
     rdfs:domain cx:AssemblyGroup;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range cx:LoadSpectrum ;
     skos:prefLabel "has load spectrum"@en .
 
 cx:numberOfPassengers a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInteriorInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:altLabel "passenger capacity"@en ;
@@ -2125,19 +2125,19 @@ cx:transports a owl:ObjectProperty ;
     rdfs:domain cx:PassengerVehicle,
         cx:TransportVehicle,
         cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:Cargo,
         cx:Passenger ;
     skos:prefLabel "transports"@en .
 
 cx:BatteryType a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:ImmaterialThing ;
     skos:definition "by cathode material"@en ;
     skos:prefLabel "Battery Type"@en .
 
 cx:MultiPurposeVehicle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Minivan> ;
     rdfs:subClassOf cx:CommercialVehicle,
         cx:PassengerVehicle ;
@@ -2158,7 +2158,7 @@ cx:MultiPurposeVehicle a owl:Class ;
         "Minivan"@en .
 
 cx:NumberOfDoors a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:altLabel "Türenanzahl"@de,
         "Türenzahl"@de ;
@@ -2167,12 +2167,12 @@ cx:NumberOfDoors a owl:Class ;
         "Number Of Doors"@en .
 
 cx:TransmissionType a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:prefLabel "Transmission Type"@en .
 
 cx:TransportVehicle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Cargo> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:transports ;
@@ -2191,7 +2191,7 @@ cx:TransportVehicle a owl:Class ;
         "Transport Vehicle"@en .
 
 cx:VehicleBodyInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:euroCarSegment ;
             owl:someValuesFrom xsd:string ],
@@ -2229,7 +2229,7 @@ cx:drives a owl:ObjectProperty ;
     rdfs:domain cx:BusDriver,
         cx:Driver,
         cx:TruckDriver ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:Bus,
         cx:Coach,
         cx:Truck,
@@ -2242,7 +2242,7 @@ cx:hasPart a owl:ObjectProperty ;
         cx:ElectricVehicle,
         cx:InternalCombustionEngineVehicle,
         cx:PetrolVehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range cx:DieselEngine,
         cx:ElectricMotor,
         cx:Engine,
@@ -2251,7 +2251,7 @@ cx:hasPart a owl:ObjectProperty ;
     skos:prefLabel "has part"@en .
 
 cx:LoadSpectrumValues a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:loadSpectrumCountingUnit ;
             owl:someValuesFrom xsd:string ],
@@ -2271,7 +2271,7 @@ cx:LoadSpectrumValues a owl:Class ;
         "Load Spectrum Values"@en .
 
 cx:VehicleBatteryInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:batteryCapacity ;
             owl:someValuesFrom xsd:integer ],
@@ -2294,7 +2294,7 @@ cx:VehicleBatteryInformation a owl:Class ;
     skos:prefLabel "Vehicle Battery Information"@en .
 
 cx:VehicleCurrentState a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf 
         [ a owl:Restriction ;
             owl:onProperty cx:vehicleCurrentMileage ;
@@ -2315,7 +2315,7 @@ cx:VehicleCurrentState a owl:Class ;
     skos:prefLabel "Vehicle Current State"@en .
 
 cx:VehicleDealer a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:sells ;
             owl:someValuesFrom cx:Vehicle ],
@@ -2326,7 +2326,7 @@ cx:VehicleDealer a owl:Class ;
 
 cx:numberOfCylinders a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:subPropertyOf cx:integer ;
     skos:altLabel "Zylinderanzahl"@de ;
@@ -2341,7 +2341,7 @@ cx:numberOfCylinders a owl:DatatypeProperty ;
 
 cx:vehicleBrand a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:brand ;
     skos:altLabel "make"@en,
@@ -2353,14 +2353,14 @@ cx:vehicleBrand a owl:DatatypeProperty ;
         "Make"@en .
 
 cx:DriveWheelType a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Drive_wheel> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:prefLabel "Antriebsart"@de,
         "Drive Wheel Type"@en .
 
 cx:ElectricVehicle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:hasPart ;
             owl:someValuesFrom cx:HighVoltageBattery ],
@@ -2371,7 +2371,7 @@ cx:ElectricVehicle a owl:Class ;
     skos:prefLabel "Electric Vehicle"@en .
 
 cx:VehicleInteriorInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:numberOfSeats ;
             owl:someValuesFrom xsd:integer ],
@@ -2445,7 +2445,7 @@ cx:VehicleInteriorInformation a owl:Class ;
     skos:prefLabel "Vehicle Interior Information"@en .
 
 cx:VehiclePowertrainInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:driveWheelType ;
             owl:someValuesFrom xsd:string ],
@@ -2525,7 +2525,7 @@ cx:VehiclePowertrainInformation a owl:Class ;
     skos:prefLabel "Vehicle Powertrain Information"@en .
 
 cx:VehicleRegistrationInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Motor_vehicle_registration>,
         <https://en.wikipedia.org/wiki/Vehicle_register>,
         <https://en.wikipedia.org/wiki/Vehicle_registration_certificate> ;
@@ -2594,7 +2594,7 @@ cx:VehicleRegistrationInformation a owl:Class ;
     skos:prefLabel "Vehicle Registration Information"@en .
 
 cx:VehicleSuspensionInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:frontSpringType ;
             owl:someValuesFrom xsd:string ],
@@ -2620,7 +2620,7 @@ cx:VehicleSuspensionInformation a owl:Class ;
     skos:prefLabel "Vehicle Suspension Information"@en .
 
 cx:WorldManufacturerIdentifier a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:worldManufacturerName ;
             owl:someValuesFrom xsd:string ],
@@ -2653,21 +2653,21 @@ cx:WorldManufacturerIdentifier a owl:Class ;
     skos:prefLabel "World Manufacturer Identifier"@en .
 
 cx:UsTruckClass a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Truck_classification> ;
     rdfs:subClassOf cx:Classification ;
     skos:definition "commercial truck classification is determined based on the vehicle's gross vehicle weight rating"@en ;
     skos:prefLabel "Us Truck Class"@en .
 
 cx:VehicleBrand a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:Brand,
         cx:VehicleInformation ;
     skos:prefLabel "Vehicle Brand"@en .
 
 cx:engineForm a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleEngineInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Engine_configuration> ;
     skos:altLabel "Bauform"@de,
@@ -2681,7 +2681,7 @@ cx:engineForm a owl:DatatypeProperty ;
 
 cx:grossVehicleMass a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleCargoInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:double ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_weight#Gross_vehicle_weight_rating> ;
     rdfs:subPropertyOf cx:numeric ;
@@ -2698,7 +2698,7 @@ cx:grossVehicleMass a owl:DatatypeProperty ;
 
 cx:listPrice a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleProductionInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Unverbindliche_Preisempfehlung> ;
     rdfs:subPropertyOf cx:integer ;
@@ -2713,7 +2713,7 @@ cx:listPrice a owl:DatatypeProperty ;
 
 cx:numberOfSeats a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleInteriorInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:integer ;
     rdfs:seeAlso schema:seatingCapacity,
         schema:vehicleSeatingCapacity ;
@@ -2728,7 +2728,7 @@ cx:numberOfSeats a owl:DatatypeProperty ;
         "Number Of Seats"@en .
 
 cx:FuelType a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Kraftstoffcode>,
         <https://en.wikipedia.org/wiki/Fuel> ;
     rdfs:subClassOf cx:ImmaterialThing ;
@@ -2737,7 +2737,7 @@ cx:FuelType a owl:Class ;
 
 cx:LoadSpectrumChannel a owl:Class ;
     rdfs:domain cx:LoadSpectrumChannel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:range xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:loadSpectrumChannelUpperLimit ;
@@ -2776,7 +2776,7 @@ cx:LoadSpectrumChannel a owl:Class ;
         "Load Spectrum Channel"@en .
 
 cx:PassengerVehicle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:transports ;
             owl:someValuesFrom cx:Passenger ],
@@ -2789,7 +2789,7 @@ cx:PassengerVehicle a owl:Class ;
         "Passenger Vehicle"@en .
 
 cx:VehiclePerformanceInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:vehicleMaxSpeed ;
             owl:someValuesFrom xsd:integer ],
@@ -2824,14 +2824,14 @@ cx:VehiclePerformanceInformation a owl:Class ;
     skos:prefLabel "Vehicle Performance Information"@en .
 
 cx:EuDrivingLicenceClass a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Führerschein_>,
         <https://en.wikipedia.org/wiki/European_driving_licence> ;
     rdfs:subClassOf cx:Classification ;
     skos:prefLabel "Eu Driving Licence Class"@en .
 
 cx:BodyStyle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Car_body_style> ;
     rdfs:subClassOf cx:VehicleInformation ;
     skos:altLabel "Karosserie"@de,
@@ -2843,14 +2843,14 @@ cx:BodyStyle a owl:Class ;
     skos:prefLabel "Body Style"@en .
 
 cx:EuVehicleClass a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/EG-Fahrzeugklasse>,
         <https://en.wikipedia.org/wiki/Vehicle_category#EU_classification> ;
     rdfs:subClassOf cx:Classification ;
     skos:prefLabel "Eu Vehicle Class"@en .
 
 cx:EuroCarSegment a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Euro_Car_Segment>,
         <https://en.wikipedia.org/wiki/Vehicle_size_class> ;
     rdfs:subClassOf cx:Classification ;
@@ -2859,7 +2859,7 @@ cx:EuroCarSegment a owl:Class ;
         "Euro Car Segment"@en .
 
 cx:VehicleFuelInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:fuelConsumptionCity ;
             owl:someValuesFrom xsd:double ],
@@ -2967,7 +2967,7 @@ cx:VehicleFuelInformation a owl:Class ;
     skos:prefLabel "Vehicle Fuel Information"@en .
 
 cx:VehicleCargoInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:grossVehicleMass ;
             owl:someValuesFrom xsd:double ],
@@ -3026,7 +3026,7 @@ cx:VehicleCargoInformation a owl:Class ;
     skos:prefLabel "Vehicle Cargo Information"@en .
 
 cx:VehicleDimensionInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:vehicleWheelbase ;
             owl:someValuesFrom xsd:double ],
@@ -3070,7 +3070,7 @@ cx:VehicleDimensionInformation a owl:Class ;
     skos:prefLabel "Dimensions"@en .
 
 cx:VehicleProductionInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:vehicleOrderDate ;
             owl:someValuesFrom xsd:date ],
@@ -3139,7 +3139,7 @@ cx:VehicleProductionInformation a owl:Class ;
 
 cx:driveWheelType a owl:DatatypeProperty ;
     rdfs:domain cx:VehiclePowertrainInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Drive_wheel>,
         schema:driveWheelConfiguration ;
@@ -3154,7 +3154,7 @@ cx:driveWheelType a owl:DatatypeProperty ;
 
 cx:euEnergyLabel a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleFuelInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/European_Union_energy_label#Cars> ;
     skos:altLabel "Energieeffizienzklasse"@de,
@@ -3169,7 +3169,7 @@ cx:euEnergyLabel a owl:DatatypeProperty ;
 
 cx:vehicleIdentificationNumber a owl:DatatypeProperty ;
     rdfs:domain cx:Vehicle ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_identification_number>,
         schema:vehicleIdentificationNumber ;
@@ -3186,7 +3186,7 @@ cx:vehicleIdentificationNumber a owl:DatatypeProperty ;
 
 cx:vehicleModel a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Car_model>,
         schema:ProductModel,
@@ -3201,7 +3201,7 @@ cx:vehicleModel a owl:DatatypeProperty ;
 
 cx:vehicleRegistrationPlate a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleRegistrationInformation ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_registration_plate> ;
     skos:altLabel "Kfz-Kennzeichen"@de,
@@ -3215,7 +3215,7 @@ cx:vehicleRegistrationPlate a owl:DatatypeProperty ;
         "License plate"@en .
 
 cx:LoadSpectrum a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/load_spectrum_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/load_spectrum> ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Lastkollektiv>,
         <https://en.wikipedia.org/wiki/Mechanical_load> ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -3255,7 +3255,7 @@ cx:LoadSpectrum a owl:Class ;
         "Load Spectrum"@en .
 
 cx:Truck a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Truck> ;
     rdfs:subClassOf cx:CommercialVehicle,
         cx:HeavyTransportVehicle ;
@@ -3267,7 +3267,7 @@ cx:Truck a owl:Class ;
         "Truck"@en .
 
 cx:CommercialVehicle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Commercial_vehicle> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:isOwnedBy ;
@@ -3283,7 +3283,7 @@ cx:CommercialVehicle a owl:Class ;
         "Commercial Vehicle"@en .
 
 cx:VehicleModel a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:vehicleModelVariant ;
             owl:someValuesFrom xsd:string ],
@@ -4006,7 +4006,7 @@ cx:VehicleModel a owl:Class ;
     skos:prefLabel "Vehicle Model"@en .
 
 cx:SpecialVehicle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:subClassOf cx:Vehicle ;
     skos:altLabel "special-purpose vehicle"@en ;
     skos:example "disabled vehicle"@en ;
@@ -4015,7 +4015,7 @@ cx:SpecialVehicle a owl:Class ;
         "Special Vehicle"@en .
 
 cx:AcrissCategory a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Mietwagenklassifizierung>,
         <https://en.wikipedia.org/wiki/Association_of_Car_Rental_Industry_Systems_Standards>,
         schema:acrissCode ;
@@ -4025,7 +4025,7 @@ cx:AcrissCategory a owl:Class ;
     skos:prefLabel "Acriss Category"@en .
 
 cx:VehicleEngineInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty cx:engineGeneration ;
             owl:someValuesFrom xsd:string ],
@@ -4188,7 +4188,7 @@ cx:VehicleEngineInformation a owl:Class ;
 
 cx:vehicleModelVariant a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Car_model>,
         <https://en.wikipedia.org/wiki/Trim_level_> ;
@@ -4205,7 +4205,7 @@ cx:vehicleModelVariant a owl:DatatypeProperty ;
         "Model Variant"@en .
 
 cx:Vehicle a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Motor_vehicle> ;
     rdfs:subClassOf cx:Part ;
     skos:altLabel "KFZ"@de,
@@ -4226,12 +4226,12 @@ cx:Vehicle a owl:Class ;
 
 cx:isPartOf a owl:ObjectProperty ;
     rdfs:domain cx:AssemblyGroup ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/part_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/part> ;
     rdfs:range cx:Vehicle ;
     skos:prefLabel "is part of"@en .
 
 cx:VehicleInformation a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:subClassOf cx:Information ;
     skos:altLabel "Fahrzeugspezifikationen"@de,
         "vehicle configuration"@en,
@@ -4243,8 +4243,8 @@ cx:VehicleInformation a owl:Class ;
         "Vehicle Information"@en .
 
 cx:VehicleManufacturer a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl>,
-        <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information>,
+        <https://w3id.org/catenax/ontology/vehicle> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Vehicle_identification_number#World_manufacturer_identifier> ;
     rdfs:subClassOf cx:Manufacturer,
         cx:VehicleInformation ;
@@ -4260,7 +4260,7 @@ cx:VehicleManufacturer a owl:Class ;
 
 cx:vehicleDevelopmentSeries a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     skos:altLabel "Baureihe"@de,
         "Derivat"@de,
@@ -4283,7 +4283,7 @@ cx:vehicleDevelopmentSeries a owl:DatatypeProperty ;
 
 cx:vehicleModelSeries a owl:DatatypeProperty ;
     rdfs:domain cx:VehicleModel ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/vehicle_information_ontology.ttl> ;
+    rdfs:isDefinedBy <https://w3id.org/catenax/ontology/vehicle_information> ;
     rdfs:range xsd:string ;
     rdfs:seeAlso schema:ProductGroup ;
     skos:altLabel "Baureihe"@de,
