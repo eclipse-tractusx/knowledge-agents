@@ -157,8 +157,8 @@ ingresses:
   - enabled: false
     # -- The hostname to be used to precisely map incoming traffic onto the underlying network service
     hostname: "remoting-agent.local"
-    # -- Additional ingress annotations to add
-    annotations: 
+    # -- Additional ingress annotations to add, for example when implementing more complex routings you may set { nginx.ingress.kubernetes.io/rewrite-target: /$1, nginx.ingress.kubernetes.io/use-regex: "true" }
+    annotations:
       # Example if you want more complex routings in interplay with the endpoints regex property 
       # nginx.ingress.kubernetes.io/rewrite-target: /$1
       # nginx.ingress.kubernetes.io/use-regex: "true"

@@ -45,7 +45,7 @@ $ helm install my-release eclipse-tractusx/remoting-agent --version 1.9.5-SNAPSH
 | agent.endpoints.default.auth | object | `{}` | An auth object for default security |
 | agent.endpoints.default.path | string | `""` | The path mapping the "default" api is going to be exposed by |
 | agent.endpoints.default.port | string | `"8081"` | The network port, which the "default" api is going to be exposed by the container, pod and service |
-| agent.endpoints.default.regex | string | `"/(.*)"` | The path mapping the "default" api is going to be exposed by |
+| agent.endpoints.default.regex | string | `"/(.*)"` | An optional regex path match (whose match groups could be used in an nginx-annotation of the ingress) |
 | automountServiceAccountToken | bool | `false` | Whether to [automount kubernetes API credentials](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server) into the pod |
 | autoscaling.enabled | bool | `false` | Enables [horizontal pod autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) |
 | autoscaling.maxReplicas | int | `100` | Maximum replicas if resource consumption exceeds resource threshholds |
@@ -61,13 +61,14 @@ $ helm install my-release eclipse-tractusx/remoting-agent --version 1.9.5-SNAPSH
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | imagePullSecret.dockerconfigjson | string | `""` | Image pull secret to create to [obtain the container image from private registries](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry) Note: This value needs to adhere to the [(base64 encoded) .dockerconfigjson format](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials). Furthermore, if 'imagePullSecret.dockerconfigjson' is defined, it takes precedence over 'imagePullSecrets'. |
 | imagePullSecrets | list | `[]` | Existing image pull secret to use to [obtain the container image from private registries](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry) |
-| ingresses[0].annotations | object | `{"nginx.ingress.kubernetes.io/rewrite-target":"/$1","nginx.ingress.kubernetes.io/use-regex":"true"}` | Additional ingress annotations to add |
+| ingresses[0].annotations | string | `nil` | Additional ingress annotations to add, for example when implementing more complex routings you may set { nginx.ingress.kubernetes.io/rewrite-target: /$1, nginx.ingress.kubernetes.io/use-regex: "true" } |
 | ingresses[0].certManager.clusterIssuer | string | `""` | If preset enables certificate generation via cert-manager cluster-wide issuer |
 | ingresses[0].certManager.issuer | string | `""` | If preset enables certificate generation via cert-manager namespace scoped issuer |
 | ingresses[0].className | string | `""` | Defines the [ingress class](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)  to use |
-| ingresses[0].enabled | bool | `true` |  |
+| ingresses[0].enabled | bool | `false` |  |
 | ingresses[0].endpoints | list | `["default"]` | Agent endpoints exposed by this ingress resource |
 | ingresses[0].hostname | string | `"remoting-agent.local"` | The hostname to be used to precisely map incoming traffic onto the underlying network service |
+| ingresses[0].prefix | string | `""` | Optional prefix that will be prepended to the paths of the endpoints |
 | ingresses[0].tls | object | `{"enabled":false,"secretName":""}` | TLS [tls class](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) applied to the ingress resource |
 | ingresses[0].tls.enabled | bool | `false` | Enables TLS on the ingress resource |
 | ingresses[0].tls.secretName | string | `""` | If present overwrites the default secret name |
