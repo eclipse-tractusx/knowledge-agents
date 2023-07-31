@@ -40,6 +40,8 @@ on:
     branches:
       - '*'
   workflow_dispatch:
+    branches:
+      - 'releases/**'
 
 env:
   IMAGE_NAMESPACE: "tractusx"
@@ -109,7 +111,7 @@ jobs:
 
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Conforming Agent
-        id: meta
+        id: meta-conf
         uses: docker/metadata-action@v4
         with:
           images: |
@@ -130,12 +132,12 @@ jobs:
           file: conforming-agent/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-conf.outputs.tags }}
+          labels: ${{ steps.meta-conf.outputs.labels }}
 
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Provisioning Agent
-        id: meta
+        id: meta-prov
         uses: docker/metadata-action@v4
         with:
           images: |
@@ -156,12 +158,12 @@ jobs:
           file: provisioning-agent/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-prov.outputs.tags }}
+          labels: ${{ steps.meta-prov.outputs.labels }}
 
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Remoting Agent
-        id: meta
+        id: meta-remote
         uses: docker/metadata-action@v4
         with:
           images: |
@@ -182,8 +184,8 @@ jobs:
           file: remoting-agent/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-remote.outputs.tags }}
+          labels: ${{ steps.meta-remote.outputs.labels }}
 
       # Report unit test output to github job
       - if: success() || failure()
