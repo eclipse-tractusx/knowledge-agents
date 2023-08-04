@@ -48,7 +48,7 @@ maven/mavencentral/io.swagger.core.v3/swagger-core/2.2.12, Apache-2.0, approved,
 maven/mavencentral/io.swagger.core.v3/swagger-integration/2.2.12, Apache-2.0, approved, clearlydefined
 maven/mavencentral/io.swagger.core.v3/swagger-jaxrs2/2.2.12, Apache-2.0, approved, #9814
 maven/mavencentral/io.swagger.core.v3/swagger-models/2.2.12, Apache-2.0, approved, clearlydefined
-maven/mavencentral/it.unibz.inf.ontop/ontop-model/5.0.2, Apache-2.0 AND OGC-1.0, restricted, #9817
+maven/mavencentral/it.unibz.inf.ontop/ontop-model/5.0.2, Apache-2.0, approved, #9817
 maven/mavencentral/it.unibz.inf.ontop/ontop-obda-core/5.0.2, Apache-2.0, approved, #9812
 maven/mavencentral/it.unibz.inf.ontop/ontop-rdb/5.0.2, Apache-2.0, approved, #9813
 maven/mavencentral/jakarta.activation/jakarta.activation-api/1.2.2, EPL-2.0 OR BSD-3-Clause OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jaf
@@ -189,7 +189,7 @@ maven/mavencentral/org.glassfish.jersey.core/jersey-common/2.40, EPL-2.0 OR GPL-
 maven/mavencentral/org.glassfish.jersey.core/jersey-server/2.40, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jersey
 maven/mavencentral/org.glassfish.jersey.inject/jersey-hk2/2.40, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jersey
 maven/mavencentral/org.glassfish.jersey.media/jersey-media-multipart/2.40, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jersey
-maven/mavencentral/org.javabits.jgrapht/jgrapht-core/0.9.3, None, restricted, #9816
+maven/mavencentral/org.javabits.jgrapht/jgrapht-core/0.9.3, EPL-2.0 OR LGPL-2.1-or-later, approved, #9816
 maven/mavencentral/org.javassist/javassist/3.29.2-GA, Apache-2.0 AND LGPL-2.1-or-later AND MPL-1.1, approved, #6023
 maven/mavencentral/org.jvnet.mimepull/mimepull/1.9.15, CDDL-1.1 OR GPL-2.0-only WITH Classpath-exception-2.0, approved, CQ21484
 maven/mavencentral/org.locationtech.jts/jts-core/1.18.1, EPL-2.0, approved, locationtech.jts
