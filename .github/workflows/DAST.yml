@@ -22,3 +22,4 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           docker_name: 'owasp/zap2docker-stable'
           target: 'https://managed-identity-wallets.dev.demo.catena-x.net/'
+
