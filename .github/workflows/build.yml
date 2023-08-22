@@ -128,8 +128,8 @@ jobs:
       - name: Conforming Agent Container Build and push
         uses: docker/build-push-action@v3
         with:
-          context: conforming-agent/.
-          file: conforming-agent/src/main/docker/Dockerfile
+          context: conforming/.
+          file: conforming/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
           tags: ${{ steps.meta-conf.outputs.tags }}
@@ -154,8 +154,8 @@ jobs:
       - name: Provisioning Agent Container Build and push
         uses: docker/build-push-action@v3
         with:
-          context: provisioning-agent/.
-          file: provisioning-agent/src/main/docker/Dockerfile
+          context: provisioning/.
+          file: provisioning/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
           tags: ${{ steps.meta-prov.outputs.tags }}
@@ -180,8 +180,8 @@ jobs:
       - name: Remoting Agent Container Build and push
         uses: docker/build-push-action@v3
         with:
-          context: remoting-agent/.
-          file: remoting-agent/src/main/docker/Dockerfile
+          context: remoting/.
+          file: remoting/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
           tags: ${{ steps.meta-remote.outputs.tags }}
