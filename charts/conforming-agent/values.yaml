@@ -1,3 +1,4 @@
+---
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -14,7 +15,7 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
----
+#
 # Conforming Agent Deployment Values
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -24,22 +25,30 @@
 replicaCount: 1
 
 image:
-  # -- Which derivate of the remoting agent to use
+  # -- target regirtry
+  registry: docker.io
+  # -- Which derivate of agent to use
   repository: tractusx/conforming-agent
-  # -- [Kubernetes image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) to use
-  pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion
   tag: ""
-
-imagePullSecret:
-  # -- Image pull secret to create to [obtain the container image from private registries](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry)
-  # Note: This value needs to adhere to the [(base64 encoded) .dockerconfigjson format](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials).
-  # Furthermore, if 'imagePullSecret.dockerconfigjson' is defined, it takes precedence over 'imagePullSecrets'.
-  dockerconfigjson: ""
-
-# -- Existing image pull secret to use to [obtain the container image from private registries](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry)
-imagePullSecrets: []
-
+  # -- Overrides the image digest 
+  digest: ""
+  ## Specify an imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: IfNotPresent
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ## Example:
+  ## pullSecrets:
+  ##   - myRegistryKeySecretName
+  ##
+  pullSecrets: [ ]
+  ## Set to true if you would like to see extra information on logs
+  ##
+  
 # -- Overrides the charts name
 nameOverride: ""
 
@@ -62,6 +71,9 @@ automountServiceAccountToken: false
 
 # -- [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) added to deployed [pods](https://kubernetes.io/docs/concepts/workloads/pods/)
 podAnnotations: {}
+# Uncomment this and remove parenthesis if you want to enable apparmor
+# container.apparmor.security.beta.kubernetes.io/conforming-agent: runtime/default
+        
 
 # The [pod security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) defines privilege and access control settings for a Pod within the deployment
 podSecurityContext:
@@ -102,8 +114,6 @@ livenessProbe:
   failureThreshold: 3
   # -- Number of seconds each period lasts.  
   periodSeconds: 60
-  # -- number of successful tries which reenables liveness
-  successThreshold: 1
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
 
@@ -114,8 +124,6 @@ readinessProbe:
   failureThreshold: 3
   # -- Number of seconds each period lasts.  
   periodSeconds: 300
-  # -- number of successful tries which reenables liveness
-  successThreshold: 1
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
 
@@ -128,8 +136,6 @@ startupProbe:
   initialDelaySeconds: 60
   # -- Number of seconds each period lasts.  
   periodSeconds: 30
-  # -- number of successful tries which reenables liveness
-  successThreshold: 1
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
 
@@ -189,7 +195,7 @@ resources:
     cpu: 200m
     memory: 256Mi
   limits:
-    cpu: 200m
+    cpu: 400m
     memory: 256Mi  
 
 autoscaling:

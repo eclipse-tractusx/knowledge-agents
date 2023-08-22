@@ -1,3 +1,4 @@
+---
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -14,7 +15,6 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,7 +32,6 @@ spec:
   template:
     metadata:
       annotations:
-        container.apparmor.security.beta.kubernetes.io/{{ .Chart.Name }}: runtime/default
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         checksum/env-config: {{ include (print $.Template.BasePath "/configmap-env.yaml") . | sha256sum }}
         {{- with .Values.podAnnotations }}
@@ -41,14 +40,9 @@ spec:
       labels:
         {{- include "agent.selectorLabels" . | nindent 8 }}
     spec:
-      {{- if .Values.imagePullSecret.dockerconfigjson }}
-      imagePullSecrets:
-        - name: {{ include "agent.fullname" . }}-imagepullsecret
-      {{- else }}
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.image.pullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
       {{- end }}
       serviceAccountName: {{ include "agent.serviceAccountName" . }}
       automountServiceAccountToken: {{ if .Values.automountServiceAccountToken }}true{{ else }}false{{ end }}
@@ -73,7 +67,6 @@ spec:
               port: {{ (keys .Values.bindings | last) }}
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            successTreshold: {{ .Values.livenessProbe.successTreshold }}
             timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
@@ -83,7 +76,6 @@ spec:
               port: {{ (keys .Values.bindings | last) }}
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-            successTreshold: {{ .Values.readinessProbe.successTreshold }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           {{- end }}
           {{- if .Values.startupProbe.enabled }}
@@ -93,7 +85,6 @@ spec:
               port: {{ (keys .Values.bindings | last) }}
             failureThreshold: {{ .Values.startupProbe.failureThreshold }}
             periodSeconds: {{ .Values.startupProbe.periodSeconds }}
-            successTreshold: {{ .Values.startupProbe.successTreshold }}
             timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
             initialDelaySeconds: {{ .Values.startupProbe.initialDelaySeconds }}
           {{- end }}

@@ -1,3 +1,12 @@
+{{- $fullName := include "agent.fullname" . }}
+{{- $labels := include "agent.labels" . | nindent 4 }}
+{{- $gitVersion := .Capabilities.KubeVersion.GitVersion }}
+{{- $endpoints := .Values.agent.endpoints }}
+{{- $namespace := .Release.Namespace }}
+{{- range .Values.ingresses }}
+{{- if and .enabled .endpoints }}
+{{- $ingressName := printf "%s-%s" $fullName .hostname }}
+---
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -14,15 +23,6 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-{{- $fullName := include "agent.fullname" . }}
-{{- $labels := include "agent.labels" . | nindent 4 }}
-{{- $gitVersion := .Capabilities.KubeVersion.GitVersion }}
-{{- $endpoints := .Values.agent.endpoints }}
-{{- $namespace := .Release.Namespace }}
-{{- range .Values.ingresses }}
-{{- if and .enabled .endpoints }}
-{{- $ingressName := printf "%s-%s" $fullName .hostname }}
----
 {{- if semverCompare ">=1.19-0" $gitVersion }}
 apiVersion: networking.k8s.io/v1
 {{- else if semverCompare ">=1.14-0" $gitVersion }}

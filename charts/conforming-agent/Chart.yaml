@@ -1,3 +1,4 @@
+---
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -14,14 +15,18 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
----
+#
 # Conforming Agent Chart Header
 # This is a YAML-formatted file.
 apiVersion: v2
 name: conforming-agent
-description: >-
-  Tractus-X Conforming Agent - Knowledge-Agents Testing Module
-home: https://github.com/eclipse-tractusx/knowledge-agents/main/charts/conforming-agent
+description: |
+  A Helm chart for the Tractus-X Conforming Agent which is a container to assess the conformity of all other parts of the Agent-Enabled Dataspace.
+  
+  This chart has no prerequisites.
+home: https://github.com/eclipse-tractusx/knowledge-agents/
+sources:
+  - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/conforming
 type: application
 appVersion: "1.9.5-SNAPSHOT"
 version: 1.9.5-SNAPSHOT
