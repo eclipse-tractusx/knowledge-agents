@@ -110,7 +110,7 @@ jobs:
           helm install conforming tractusx-dev/conforming-agent --version ${{ github.event.inputs.upgrade_from }} --set=image.registry=kind-registry:5000/
           helm dependency update charts/conforming-agent
           helm upgrade conforming charts/conforming-agent
-        if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != 'x.x.x'
+        if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != '' && github.event.inputs.upgrade_from != 'x.x.x'
 
       # Upgrade the released chart version with the locally available chart
       # default value for event_name != workflow_dispatch
@@ -120,7 +120,7 @@ jobs:
           helm install provisioning tractusx-dev/provisioning-agent --version ${{ github.event.inputs.upgrade_from }} --set=image.registry=kind-registry:5000/
           helm dependency update charts/provisioning-agent
           helm upgrade provisioning charts/provisioning-agent
-        if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != 'x.x.x'
+        if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != '' && github.event.inputs.upgrade_from != 'x.x.x'
 
       # Upgrade the released chart version with the locally available chart
       # default value for event_name != workflow_dispatch
@@ -130,4 +130,4 @@ jobs:
           helm install remoting tractusx-dev/provisioning-agent --version ${{ github.event.inputs.upgrade_from }} --set=image.registry=kind-registry:5000/
           helm dependency update charts/remoting-agent
           helm upgrade remoting charts/remoting-agent
-        if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != 'x.x.x'
+        if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != '' && github.event.inputs.upgrade_from != 'x.x.x'
