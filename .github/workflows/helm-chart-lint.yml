@@ -61,7 +61,12 @@ jobs:
         with:
           version: v3.10.3
 
-      # Setup python as a prerequisite for chart linting
+      - uses: ./.github/actions/setup-java
+
+      - name: Build Java/Docker via Maven
+        run: |
+          ./mvnw -s settings.xml package -Pwith-docker-image -DskipTests
+
       - uses: actions/setup-python@v4
         with:
           python-version: 3.9
