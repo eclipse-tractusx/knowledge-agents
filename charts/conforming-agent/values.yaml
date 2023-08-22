@@ -31,7 +31,7 @@ image:
   repository: tractusx/conforming-agent
   # -- Overrides the image tag whose default is the chart appVersion
   tag: ""
-  # -- Overrides the image digest 
+  # -- Overrides the image digest
   digest: ""
   ## Specify an imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -45,10 +45,10 @@ image:
   ## pullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  pullSecrets: [ ]
+  pullSecrets: []
   ## Set to true if you would like to see extra information on logs
   ##
-  
+
 # -- Overrides the charts name
 nameOverride: ""
 
@@ -73,7 +73,6 @@ automountServiceAccountToken: false
 podAnnotations: {}
 # Uncomment this and remove parenthesis if you want to enable apparmor
 # container.apparmor.security.beta.kubernetes.io/conforming-agent: runtime/default
-        
 
 # The [pod security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) defines privilege and access control settings for a Pod within the deployment
 podSecurityContext:
@@ -94,7 +93,7 @@ securityContext:
     drop:
       - ALL
     # -- Specifies which capabilities to add to issue specialized syscalls
-    add: 
+    add:
       - NET_BIND_SERVICE
   # -- Whether the root filesystem is mounted in read-only mode
   readOnlyRootFilesystem: true
@@ -112,7 +111,7 @@ livenessProbe:
   enabled: true
   # -- Minimum consecutive failures for the probe to be considered failed after having succeeded
   failureThreshold: 3
-  # -- Number of seconds each period lasts.  
+  # -- Number of seconds each period lasts.
   periodSeconds: 60
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
@@ -122,7 +121,7 @@ readinessProbe:
   enabled: true
   # -- Minimum consecutive failures for the probe to be considered failed after having succeeded
   failureThreshold: 3
-  # -- Number of seconds each period lasts.  
+  # -- Number of seconds each period lasts.
   periodSeconds: 300
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
@@ -134,7 +133,7 @@ startupProbe:
   failureThreshold: 18
   # -- Number of seconds after the container has started before liveness probes are initiated.
   initialDelaySeconds: 60
-  # -- Number of seconds each period lasts.  
+  # -- Number of seconds each period lasts.
   periodSeconds: 30
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
@@ -165,7 +164,7 @@ ingresses:
     hostname: "conforming-agent.local"
     # -- Additional ingress annotations to add, for example when implementing more complex routings you may set { nginx.ingress.kubernetes.io/rewrite-target: /$1, nginx.ingress.kubernetes.io/use-regex: "true" }
     annotations:
-      # Example if you want more complex routings in interplay with the endpoints regex property 
+      # Example if you want more complex routings in interplay with the endpoints regex property
       # nginx.ingress.kubernetes.io/rewrite-target: /$1
       # nginx.ingress.kubernetes.io/use-regex: "true"
     # -- Optional prefix that will be prepended to the paths of the endpoints
@@ -189,14 +188,14 @@ ingresses:
       clusterIssuer: ""
 
 # -- [Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) applied to the deployed pod
-# We recommend 20% of a cpu and 256MB per endpoint 
+# We recommend 20% of a cpu and 256MB per endpoint
 resources:
   requests:
     cpu: 200m
     memory: 256Mi
   limits:
     cpu: 400m
-    memory: 256Mi  
+    memory: 256Mi
 
 autoscaling:
   # -- Enables [horizontal pod autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)

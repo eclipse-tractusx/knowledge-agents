@@ -20,13 +20,15 @@
 # This is a YAML-formatted file.
 apiVersion: v2
 name: provisioning-agent
-description: >-
-  Tractus-X Provisioning Agent - Knowledge-Agents Compatible Data Binding Layer
+description: |
+  A Helm chart for the Tractus-X Provisioning Agent which is a container to Bridge Agent-Enabled Connector and Relational Data Sources.
+
+  This chart has no prerequisites.
 home: https://github.com/eclipse-tractusx/knowledge-agents/
 sources:
   - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
 type: application
 appVersion: "1.9.5-SNAPSHOT"
 version: 1.9.6-SNAPSHOT
-maintainers: 
+maintainers:
   - name: 'Tractus-X Knowledge Agents Team'

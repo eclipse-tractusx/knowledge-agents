@@ -31,7 +31,7 @@ image:
   repository: tractusx/provisioning-agent
   # -- Overrides the image tag whose default is the chart appVersion
   tag: ""
-  # -- Overrides the image digest 
+  # -- Overrides the image digest
   digest: ""
   ## Specify an imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -45,7 +45,7 @@ image:
   ## pullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  pullSecrets: [ ]
+  pullSecrets: []
   ## Set to true if you would like to see extra information on logs
   ##
 
@@ -93,7 +93,7 @@ securityContext:
     drop:
       - ALL
     # -- Specifies which capabilities to add to issue specialized syscalls
-    add: 
+    add:
       - NET_BIND_SERVICE
   # -- Whether the root filesystem is mounted in read-only mode
   readOnlyRootFilesystem: true
@@ -111,7 +111,7 @@ livenessProbe:
   enabled: true
   # -- Minimum consecutive failures for the probe to be considered failed after having succeeded
   failureThreshold: 3
-  # -- Number of seconds each period lasts.  
+  # -- Number of seconds each period lasts.
   periodSeconds: 60
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
@@ -121,7 +121,7 @@ readinessProbe:
   enabled: true
   # -- Minimum consecutive failures for the probe to be considered failed after having succeeded
   failureThreshold: 3
-  # -- Number of seconds each period lasts.  
+  # -- Number of seconds each period lasts.
   periodSeconds: 300
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
@@ -133,7 +133,7 @@ startupProbe:
   failureThreshold: 18
   # -- Number of seconds after the container has started before liveness probes are initiated.
   initialDelaySeconds: 60
-  # -- Number of seconds each period lasts.  
+  # -- Number of seconds each period lasts.
   periodSeconds: 30
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
@@ -146,13 +146,13 @@ ontologies:
 ## Endpoints exposed by the provisioning agent
 bindings:
   # -- Diagnostic trouble codesample endpoint/binding, for disabling, simply put dtc: {} in your values.yaml
-  dtc: 
+  dtc:
     # -- Exposed Service Port for the binding
     port: 8080
     # -- Potential Ingress Path
     path: (/|$)(.*)
     # -- Settings for the binding including JDBC backend connections and meta-data directives, you should use secret references when putting passwords here
-    settings: 
+    settings:
       jdbc.url: "jdbc:h2:file:/opt/ontop/database/db;INIT=RUNSCRIPT FROM '/opt/ontop/data/dtc.sql'"
       jdbc.driver: "org.h2.Driver"
       ontop.cardinalityMode: "LOOSE"
@@ -167,18 +167,18 @@ bindings:
       xsd:		http://www.w3.org/2001/XMLSchema#
       obda:		https://w3id.org/obda/vocabulary#
       rdfs:		http://www.w3.org/2000/01/rdf-schema#
-      
+
       [MappingDeclaration] @collection [[
       mappingId	dtc-meta
-      target		cx:BusinessPartner/{bpnl} rdf:type cx:BusinessPartner ; cx:BPNL {bpnl}^^xsd:string . 
+      target		cx:BusinessPartner/{bpnl} rdf:type cx:BusinessPartner ; cx:BPNL {bpnl}^^xsd:string .
       source		SELECT distinct "bpnl" FROM "dtc"."meta"
 
       mappingId	dtc-content
-      target		cx-diag:DTC/{id} rdf:type cx-diag:DTC ; cx-diag:Code {code}^^xsd:string ; cx-diag:Description {description}^^xsd:string ; cx-diag:PossibleCauses {possible_causes}^^xsd:string ; cx-diag:Version {lock_version}^^xsd:long . 
+      target		cx-diag:DTC/{id} rdf:type cx-diag:DTC ; cx-diag:Code {code}^^xsd:string ; cx-diag:Description {description}^^xsd:string ; cx-diag:PossibleCauses {possible_causes}^^xsd:string ; cx-diag:Version {lock_version}^^xsd:long .
       source		SELECT * FROM "dtc"."content"
 
       mappingId	dtc-meta-content
-      target		cx-diag:DTC/{id} cx:provisionedBy cx:BusinessPartner/{bpnl}. 
+      target		cx-diag:DTC/{id} cx:provisionedBy cx:BusinessPartner/{bpnl} .
       source		SELECT "bpnl","id" FROM "dtc"."content"
 
       mappingId	dtc-part
@@ -186,11 +186,11 @@ bindings:
       source		SELECT * FROM "dtc"."part"
 
       mappingId	dtc-part-content
-      target		cx-diag:DTC/{dtc_id} cx-diag:affects cx-diag:DiagnosedPart/{part_entityGuid}. 
+      target		cx-diag:DTC/{dtc_id} cx-diag:affects cx-diag:DiagnosedPart/{part_entityGuid} .
       source		SELECT "part_entityGuid","dtc_id" FROM "dtc"."content_part"
 
       mappingId	dtc-meta-part
-      target		cx-diag:DiagnosedPart/{entityGuid} cx:provisionedBy cx:BusinessPartner/{bpnl}. 
+      target		cx-diag:DiagnosedPart/{entityGuid} cx:provisionedBy cx:BusinessPartner/{bpnl} .
       source		SELECT "bpnl","entityGuid" FROM "dtc"."part"
       ]]
 
@@ -206,7 +206,7 @@ ingresses:
     hostname: "provisioning-agent.local"
     # -- Additional ingress annotations to add, for example when implementing more complex routings you may set { nginx.ingress.kubernetes.io/rewrite-target: /$2, nginx.ingress.kubernetes.io/use-regex: "true" }
     annotations:
-      # Example if you want more complex routings in interplay with the endpoints regex property 
+      # Example if you want more complex routings in interplay with the endpoints regex property
       # nginx.ingress.kubernetes.io/rewrite-target: /$2
       # nginx.ingress.kubernetes.io/use-regex: "true"
     # -- Optional prefix that will be prepended to the paths of the endpoints

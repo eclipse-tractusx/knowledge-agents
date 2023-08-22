@@ -22,7 +22,7 @@ apiVersion: v2
 name: conforming-agent
 description: |
   A Helm chart for the Tractus-X Conforming Agent which is a container to assess the conformity of all other parts of the Agent-Enabled Dataspace.
-  
+
   This chart has no prerequisites.
 home: https://github.com/eclipse-tractusx/knowledge-agents/
 sources:
@@ -30,5 +30,5 @@ sources:
 type: application
 appVersion: "1.9.5-SNAPSHOT"
 version: 1.9.6-SNAPSHOT
-maintainers: 
+maintainers:
   - name: 'Tractus-X Knowledge Agents Team'

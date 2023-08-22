@@ -20,13 +20,15 @@
 # This is a YAML-formatted file.
 apiVersion: v2
 name: remoting-agent
-description: >-
-  Tractus-X Remoting Agent - Knowledge-Agents Compatible API Binding Layer
+description: |
+  A Helm chart for the Tractus-X Remoting Agent which is a container to Bridge Agent-Enabled Connector and REST APIs.
+
+  This chart has no prerequisites.
 home: https://github.com/eclipse-tractusx/knowledge-agents/
 sources:
   - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/remoting
 type: application
 appVersion: "1.9.5-SNAPSHOT"
 version: 1.9.6-SNAPSHOT
-maintainers: 
+maintainers:
   - name: 'Tractus-X Knowledge Agents Team'
