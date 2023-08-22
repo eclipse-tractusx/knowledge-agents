@@ -26,7 +26,7 @@ replicaCount: 1
 
 image:
   # -- target regirtry
-  registry: docker.io
+  registry: docker.io/
   # -- Which derivate of agent to use
   repository: tractusx/remoting-agent
   # -- Overrides the image tag whose default is the chart appVersion
