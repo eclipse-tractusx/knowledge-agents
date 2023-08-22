@@ -27,6 +27,6 @@ sources:
   - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
 type: application
 appVersion: "1.9.5-SNAPSHOT"
-version: 1.9.5-SNAPSHOT
+version: 1.9.6-SNAPSHOT
 maintainers: 
   - name: 'Tractus-X Knowledge Agents Team'
