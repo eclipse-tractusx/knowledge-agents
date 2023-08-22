@@ -63,10 +63,6 @@ jobs:
 
       - uses: ./.github/actions/setup-java
 
-      - name: Build Java/Docker via Maven
-        run: |
-          ./mvnw -s settings.xml package -Pwith-docker-image -DskipTests
-
       - uses: actions/setup-python@v4
         with:
           python-version: 3.9
@@ -93,6 +89,11 @@ jobs:
           version: v0.19.0
           # default value for event_name != workflow_dispatch
           node_image: ${{ github.event.inputs.node_image || 'kindest/node:v1.24.6' }}
+        if: github.event_name != 'pull_request' || env.CHART_CHANGED == 'true'
+
+      - name: Build Java/Docker via Maven
+        run: |
+          ./mvnw -s settings.xml deploy -Drepo=kind-registry:5000/tractusx/ -Dmaven.deploy.skip -DskipTests -Pwith-docker-image 
         if: github.event_name != 'pull_request' || env.CHART_CHANGED == 'true'
 
       # install the chart to the kind cluster and run helm test
