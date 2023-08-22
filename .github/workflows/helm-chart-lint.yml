@@ -99,7 +99,7 @@ jobs:
       # install the chart to the kind cluster and run helm test
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
-        run: ct install --charts charts/conforming-agent,charts/provisioning-agent,charts/remoting-agent --config charts/config/chart-testing-config.yaml
+        run: ct install --charts charts/conforming-agent,charts/provisioning-agent,charts/remoting-agent --config charts/config/chart-testing-config.yaml --helm-extra-set-args="--set=image.registry=kind-registry:5000/"
         if: github.event_name != 'pull_request' || env.CHART_CHANGED == 'true'
 
       # Upgrade the released chart version with the locally available chart
@@ -107,7 +107,7 @@ jobs:
       - name: Run helm upgrade on conforming agent
         run: |
           helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-          helm install conforming tractusx-dev/conforming-agent --version ${{ github.event.inputs.upgrade_from || 'x.x.x' }}
+          helm install conforming tractusx-dev/conforming-agent --version ${{ github.event.inputs.upgrade_from }} --set=image.registry=kind-registry:5000/
           helm dependency update charts/conforming-agent
           helm upgrade conforming charts/conforming-agent
         if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != 'x.x.x'
@@ -117,7 +117,7 @@ jobs:
       - name: Run helm upgrade on provisioning agent 
         run: |
           helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-          helm install provisioning tractusx-dev/provisioning-agent --version ${{ github.event.inputs.upgrade_from || 'x.x.x' }}
+          helm install provisioning tractusx-dev/provisioning-agent --version ${{ github.event.inputs.upgrade_from }} --set=image.registry=kind-registry:5000/
           helm dependency update charts/provisioning-agent
           helm upgrade provisioning charts/provisioning-agent
         if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != 'x.x.x'
@@ -127,7 +127,7 @@ jobs:
       - name: Run helm upgrade on remoting agent
         run: |
           helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-          helm install remoting tractusx-dev/provisioning-agent --version ${{ github.event.inputs.upgrade_from || 'x.x.x' }}
+          helm install remoting tractusx-dev/provisioning-agent --version ${{ github.event.inputs.upgrade_from }} --set=image.registry=kind-registry:5000/
           helm dependency update charts/remoting-agent
           helm upgrade remoting charts/remoting-agent
         if: (github.event_name != 'pull_request' || env.CHART_CHANGED == 'true') && github.event.inputs.upgrade_from != 'x.x.x'
