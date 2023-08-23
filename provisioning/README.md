@@ -275,9 +275,12 @@ Project home: https://projects.eclipse.org/projects/automotive.tractusx
 Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/provisioning/src/main/docker/Dockerfile
 Project license: Apache License, Version 2.0
 
-Used base image
+**Used base image**
 
-[ontop/ontop:5.0.2](https://hub.docker.com/r/ontop/ontop/tags?page=1&name=5.0.2)
+- [ontop/ontop:5.0.2](https://github.com/ontop/ontop/tree/version5/client/docker)
+- Official Ontop DockerHub page: https://hub.docker.com/u/ontop
+- Ontop Project: https://ontop-vkg.org
+- Additional information about the Ontop image: https://hub.docker.com/r/ontop/ontop
 
 As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 

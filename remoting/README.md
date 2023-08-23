@@ -202,9 +202,12 @@ Project home: https://projects.eclipse.org/projects/automotive.tractusx
 Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/remoting/src/main/docker/Dockerfile
 Project license: Apache License, Version 2.0
 
-Used base image
+**Used base image**
 
-[tomcat:9-jre11-temurin](https://hub.docker.com/_/tomcat/tags?page=1&name=9-jre11-temurin)
+- [tomcat:9-jre11-temurin](https://github.com/docker-library/tomcat/tree/master/9.0/jre11/temurin-jammy)
+- Official Tomcat Dockerhub page: https://hub.docker.com/_/tomcat
+- Apache Tomcat Project: https://tomcat.apache.org/
+- Additional information about the Tomcat image: https://github.com/docker-library/repo-info/tree/master/repos/tomcat
 
 As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 
