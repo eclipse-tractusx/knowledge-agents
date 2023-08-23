@@ -18,172 +18,126 @@
 #  SPDX-License-Identifier: Apache-2.0
 #
 
----
 name: "Build"
 
 on:
+  # Runs automatically on main and release branches
   push:
     branches:
       - main
-      - releases
-    tags:
-      - 'v*.*.*'
-      - 'v*.*.*-*'
-  release:
-    types:
-      - published
+      - 'releases/**'
+  # Runs automatically on all code-related PRs to main and release branches
   pull_request:
+    branches:
+      - main
+      - 'releases/**'
     paths-ignore:
       - 'charts/**'
       - 'docs/**'
       - '**/*.md'
+  # Can be scheduled on all branches and version tags
+  workflow_dispatch:
+    tags:
+      - 'v*.*.*'
+      - 'v*.*.*-*'
     branches:
       - '*'
-  workflow_dispatch:
-    branches:
-      - 'releases/**'
 
+# the docker registry and namespace
 env:
   IMAGE_NAMESPACE: "tractusx"
 
+# If build is triggered several times, e.g., through subsequent pushes
+# into the same PR, cancel the previous runs, see below
 concurrency:
   # cancel only running jobs on pull requests
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+# Actual build/deploy logic
 jobs:
-  pre_job:
-    # continue-on-error: true # Uncomment once integration is finished
-    runs-on: ubuntu-latest
-    # Map a step output to a job output
-    outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
-    steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v5
-        with:
-          # All of these options are optional, so you can remove them if you are happy with the defaults
-          concurrent_skipping: 'same_content'
-          skip_after_successful_duplicate: 'true'
-          do_not_skip: '["push", "pull_request", "workflow_dispatch", "schedule"]'
-
-  build_java:
-    name: Build Java
+  # Build maven stuff
+  build_maven:
+    name: Build/Deploy Maven Artifacts
     runs-on: ubuntu-latest
     permissions: write-all
-    needs: pre_job
-    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     strategy:
       fail-fast: false
-
     steps:
+      # Get the Code
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           submodules: recursive
 
-      # We need to manually instruct maven
+      # Setup build environment
       - uses: ./.github/actions/setup-java
 
+      # Enabled deployment access (if either running on main or a version tag on eclipse-tractusx) 
       - name: Login to GitHub Container Registry
-        if: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents') && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
         uses: docker/login-action@v2
         with:
           # Use existing DockerHub credentials present as secrets
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
+      # Run Maven Deploy (if either running on main or a version tag on eclipse-tractusx) 
       - name: Deploy Java via Maven
-        if: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
         run: |
           ./mvnw -s settings.xml deploy
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Run Maven Install (otherwise)
       - name: Build Java via Maven
-        if: ${{ ( github.repository != 'catenax-ng/product-agents' && github.repository != 'eclipse-tractusx/knowledge-agents') || (github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ github.repository != 'eclipse-tractusx/knowledge-agents' || (github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/v')) }}
         run: |
           ./mvnw -s settings.xml install
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Actual build/deploy logic
+  build_docker:
+    name: Build/Deploy Docker Artifacts
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: [ build_maven ]
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [ { dir: provisioning, name: provisioning-agent },
+                   { dir: remoting, name: remoting-agent },
+                   { dir: conforming, name: conforming-agent } ]
+    steps:
+
       # Create SemVer or ref tags dependent of trigger event
-      - name: Docker Meta Conforming Agent
+      - name: Docker Meta
         id: meta-conf
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.IMAGE_NAMESPACE }}/conforming-agent
+            ${{ env.IMAGE_NAMESPACE }}/${{ matrix.variant.name }}
           # Automatically prepare image tags; See action docs for more examples. 
           # semver patter will generate tags like these for example :1 :1.2 :1.2.3
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
+            type=sha,event=branch
+            type=sha,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
 
-      - name: Conforming Agent Container Build and push
+      # build in any case, but push only main and version tag settings
+      - name: Container Build and Push
         uses: docker/build-push-action@v3
         with:
-          context: conforming/.
-          file: conforming/src/main/docker/Dockerfile
+          context: ${{ matrix.variant.dir }}/.
+          file: ${{ matrix.variant.dir }}/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
-          push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
+          push: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
           tags: ${{ steps.meta-conf.outputs.tags }}
           labels: ${{ steps.meta-conf.outputs.labels }}
-
-      # Create SemVer or ref tags dependent of trigger event
-      - name: Docker Meta Provisioning Agent
-        id: meta-prov
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            ${{ env.IMAGE_NAMESPACE }}/provisioning-agent
-          # Automatically prepare image tags; See action docs for more examples. 
-          # semver patter will generate tags like these for example :1 :1.2 :1.2.3
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}
-            type=semver,pattern={{major}}.{{minor}}
-
-      - name: Provisioning Agent Container Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: provisioning/.
-          file: provisioning/src/main/docker/Dockerfile
-          # Build image for verification purposes on every trigger event. Only push if event is not a PR
-          push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
-          tags: ${{ steps.meta-prov.outputs.tags }}
-          labels: ${{ steps.meta-prov.outputs.labels }}
-
-      # Create SemVer or ref tags dependent of trigger event
-      - name: Docker Meta Remoting Agent
-        id: meta-remote
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            ${{ env.IMAGE_NAMESPACE }}/remoting-agent
-          # Automatically prepare image tags; See action docs for more examples. 
-          # semver patter will generate tags like these for example :1 :1.2 :1.2.3
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}
-            type=semver,pattern={{major}}.{{minor}}
-
-      - name: Remoting Agent Container Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: remoting/.
-          file: remoting/src/main/docker/Dockerfile
-          # Build image for verification purposes on every trigger event. Only push if event is not a PR
-          push: ${{ (github.repository == 'catenax-ng/product-agents' || github.repository == 'eclipse-tractusx/knowledge-agents')  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
-          tags: ${{ steps.meta-remote.outputs.tags }}
-          labels: ${{ steps.meta-remote.outputs.labels }}
         
