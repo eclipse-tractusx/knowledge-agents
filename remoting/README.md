@@ -192,6 +192,27 @@ This must be provided by hiding them in an appropriate service network layer.
 |---	                        |---	      |---	                                                                   |---                                   | ---  |
 | JAVA_TOOL_OPTIONS           |           | -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8090   | JMV (Debugging option)               | X    | 
 
+### Notice for Docker Image
+
+DockerHub: https://hub.docker.com/r/tractusx/remoting-agent
+
+Eclipse Tractus-X product(s) installed within the image:
+GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/remoting
+Project home: https://projects.eclipse.org/projects/automotive.tractusx
+Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/remoting/src/main/docker/Dockerfile
+Project license: Apache License, Version 2.0
+
+**Used base image**
+
+- [tomcat:9-jre11-temurin](https://github.com/docker-library/tomcat/tree/master/9.0/jre11/temurin-jammy)
+- Official Tomcat Dockerhub page: https://hub.docker.com/_/tomcat
+- Apache Tomcat Project: https://tomcat.apache.org/
+- Additional information about the Tomcat image: https://github.com/docker-library/repo-info/tree/master/repos/tomcat
+
+As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
+
 ### Helm Chart
 
 A helm chart for deploying the remoting agent can be found under [this folder](../charts/remoting-agent).

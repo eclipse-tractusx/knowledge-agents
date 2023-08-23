@@ -20,6 +20,14 @@
 
 # Helm Charts
 
+## Charts
+
+This folder contains ready-made charts for the following optional features/reference implementations
+
+- [Conforming Agent](conforming-agent) 
+- [Provisioning Agent](provisioning-agent) 
+- [Remoting Agent](remoting-agent)
+
 ## Chart Linting
 
 Chart linting is performed using [helm's CT tool](https://github.com/helm/chart-testing).

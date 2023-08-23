@@ -265,6 +265,27 @@ WHERE {
 }
 ```
 
+### Notice for Docker Image
+
+DockerHub: https://hub.docker.com/r/tractusx/provisioning-agent
+
+Eclipse Tractus-X product(s) installed within the image:
+GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
+Project home: https://projects.eclipse.org/projects/automotive.tractusx
+Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/provisioning/src/main/docker/Dockerfile
+Project license: Apache License, Version 2.0
+
+**Used base image**
+
+- [ontop/ontop:5.0.2](https://github.com/ontop/ontop/tree/version5/client/docker)
+- Official Ontop DockerHub page: https://hub.docker.com/u/ontop
+- Ontop Project: https://ontop-vkg.org
+- Additional information about the Ontop image: https://hub.docker.com/r/ontop/ontop
+
+As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
+
 ### Helm
 
 A helm chart for deploying the remoting agent can be found under [this folder](../charts/provisioning-agent).

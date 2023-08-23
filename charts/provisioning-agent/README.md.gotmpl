@@ -31,7 +31,7 @@
 ## TL;DR
 ```shell
 $ helm repo add eclipse-tractusx https://eclipse-tractusx.github.io/charts/dev
-$ helm install my-release eclipse-tractusx/provisioning-agent --version 1.9.5-SNAPSHOT
+$ helm install my-release eclipse-tractusx/provisioning-agent --version {{ .Version }}
 ```
 
 {{ template "chart.maintainersSection" . }}

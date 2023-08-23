@@ -78,7 +78,7 @@ To publish the binary artifacts (environment variables GITHUB_ACTOR and GITHUB_T
 
 Deployment can be done
 * via [JAR libraries](https://github.com/orgs/eclipse-tractusx/packages?repo_name=knowledge-agents&ecosystem=maven) copied into your Java runtime
-* via [Docker images](https://github.com/orgs/eclipse-tractusx/packages?repo_name=knowledge-agents&ecosystem=docker) 
+* via [Docker images](https://hub.docker.com/r/tractusx) 
 * via [Helm Charts (Stable Versions)](https://eclipse-tractusx.github.io/charts/stable) or [Helm Charts (Dev Versions)](https://eclipse-tractusx.github.io/charts/stable)
 
 See the individual agent documentations for more detailed deployment information
@@ -86,5 +86,9 @@ See the individual agent documentations for more detailed deployment information
 * [Remoting Agent](remoting/README.md)
 * [Conforming Agent](conforming/README.md)
 
+### Notice for Docker Images
 
+* [Notice for Conforming Agent](conforming/README.md#notice-for-docker-images)
+* [Notice for Provisioning Agent](provisioning/README.md#notice-for-docker-images)
+* [Notice for Remoting Agent](remoting/README.md#notice-for-docker-images)
 

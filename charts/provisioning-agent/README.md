@@ -20,16 +20,16 @@
 
 # provisioning-agent
 
-![Version: 1.9.5-SNAPSHOT](https://img.shields.io/badge/Version-1.9.5--SNAPSHOT-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.9.5-SNAPSHOT](https://img.shields.io/badge/AppVersion-1.9.5--SNAPSHOT-informational?style=flat-square)
+![Version: 1.9.6-SNAPSHOT](https://img.shields.io/badge/Version-1.9.6--SNAPSHOT-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.9.5-SNAPSHOT](https://img.shields.io/badge/AppVersion-1.9.5--SNAPSHOT-informational?style=flat-square)
 
 Tractus-X Provisioning Agent - Knowledge-Agents Compatible Data Binding Layer
 
-**Homepage:** <https://github.com/eclipse-tractusx/knowledge-agents/main/charts/provisioning-agent>
+**Homepage:** <https://github.com/eclipse-tractusx/knowledge-agents/>
 
 ## TL;DR
 ```shell
 $ helm repo add eclipse-tractusx https://eclipse-tractusx.github.io/charts/dev
-$ helm install my-release eclipse-tractusx/provisioning-agent --version 1.9.5-SNAPSHOT
+$ helm install my-release eclipse-tractusx/provisioning-agent --version 1.9.6-SNAPSHOT
 ```
 
 ## Maintainers
@@ -37,6 +37,10 @@ $ helm install my-release eclipse-tractusx/provisioning-agent --version 1.9.5-SN
 | Name | Email | Url |
 | ---- | ------ | --- |
 | Tractus-X Knowledge Agents Team |  |  |
+
+## Source Code
+
+* <https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning>
 
 ## Values
 
@@ -57,11 +61,12 @@ $ helm install my-release eclipse-tractusx/provisioning-agent --version 1.9.5-SN
 | env | object | `{}` | Container environment variables e.g. for configuring [JAVA_TOOL_OPTIONS](https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/envvars002.html) Ex.:   JAVA_TOOL_OPTIONS: >     -Dhttp.proxyHost=proxy -Dhttp.proxyPort=80 -Dhttp.nonProxyHosts="localhost|127.*|[::1]" -Dhttps.proxyHost=proxy -Dhttps.proxyPort=443 |
 | envSecretName | string | `nil` | [Kubernetes Secret Resource](https://kubernetes.io/docs/concepts/configuration/secret/) name to load environment variables from |
 | fullnameOverride | string | `""` | Overrides the releases full name |
-| image.pullPolicy | string | `"IfNotPresent"` | [Kubernetes image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) to use |
-| image.repository | string | `"tractusx/provisioning-agent"` | Which derivate of the provisioning agent to use |
+| image.digest | string | `""` | Overrides the image digest  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.pullSecrets | list | `[]` |  |
+| image.registry | string | `"docker.io"` | target regirtry |
+| image.repository | string | `"tractusx/provisioning-agent"` | Which derivate of agent to use |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
-| imagePullSecret.dockerconfigjson | string | `""` | Image pull secret to create to [obtain the container image from private registries](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry) Note: This value needs to adhere to the [(base64 encoded) .dockerconfigjson format](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials). Furthermore, if 'imagePullSecret.dockerconfigjson' is defined, it takes precedence over 'imagePullSecrets'. |
-| imagePullSecrets | list | `[]` | Existing image pull secret to use to [obtain the container image from private registries](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry) |
 | ingresses[0].annotations | string | `nil` | Additional ingress annotations to add, for example when implementing more complex routings you may set { nginx.ingress.kubernetes.io/rewrite-target: /$2, nginx.ingress.kubernetes.io/use-regex: "true" } |
 | ingresses[0].certManager.clusterIssuer | string | `""` | If preset enables certificate generation via cert-manager cluster-wide issuer |
 | ingresses[0].certManager.issuer | string | `""` | If preset enables certificate generation via cert-manager namespace scoped issuer |
@@ -76,7 +81,6 @@ $ helm install my-release eclipse-tractusx/provisioning-agent --version 1.9.5-SN
 | livenessProbe.enabled | bool | `true` | Whether to enable kubernetes [liveness-probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) |
 | livenessProbe.failureThreshold | int | `3` | Minimum consecutive failures for the probe to be considered failed after having succeeded |
 | livenessProbe.periodSeconds | int | `60` | Number of seconds each period lasts.   |
-| livenessProbe.successThreshold | int | `1` | number of successful tries which reenables liveness |
 | livenessProbe.timeoutSeconds | int | `5` | number of seconds until a timeout is assumed |
 | nameOverride | string | `""` | Overrides the charts name |
 | nodeSelector | object | `{}` | [Node-Selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) to constrain the Pod to nodes with specific labels. |
@@ -89,10 +93,9 @@ $ helm install my-release eclipse-tractusx/provisioning-agent --version 1.9.5-SN
 | readinessProbe.enabled | bool | `true` | Whether to enable kubernetes readiness-probes |
 | readinessProbe.failureThreshold | int | `3` | Minimum consecutive failures for the probe to be considered failed after having succeeded |
 | readinessProbe.periodSeconds | int | `300` | Number of seconds each period lasts.   |
-| readinessProbe.successThreshold | int | `1` | number of successful tries which reenables liveness |
 | readinessProbe.timeoutSeconds | int | `5` | number of seconds until a timeout is assumed |
 | replicaCount | int | `1` | Specifies how many replicas of a deployed pod shall be created during the deployment Note: If horizontal pod autoscaling is enabled this setting has no effect |
-| resources | object | `{"limits":{"cpu":"500m","memory":"512Mi"},"requests":{"cpu":"500m","memory":"512Mi"}}` | [Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) applied to the deployed pod We recommend using 50% of CPU and 0.5Gi of memory per exported endpoint |
+| resources | object | `{"limits":{"cpu":"900m","memory":"512Mi"},"requests":{"cpu":"500m","memory":"512Mi"}}` | [Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) applied to the deployed pod We recommend using 50% of CPU and 0.5Gi of memory per exported endpoint |
 | securityContext.allowPrivilegeEscalation | bool | `false` | Controls [Privilege Escalation](https://kubernetes.io/docs/concepts/security/pod-security-policy/#privilege-escalation) enabling setuid binaries changing the effective user ID |
 | securityContext.capabilities.add | list | `["NET_BIND_SERVICE"]` | Specifies which capabilities to add to issue specialized syscalls |
 | securityContext.capabilities.drop | list | `["ALL"]` | Specifies which capabilities to drop to reduce syscall attack surface |
@@ -108,7 +111,6 @@ $ helm install my-release eclipse-tractusx/provisioning-agent --version 1.9.5-SN
 | startupProbe.failureThreshold | int | `18` | Minimum consecutive failures for the probe to be considered failed after having succeeded |
 | startupProbe.initialDelaySeconds | int | `60` | Number of seconds after the container has started before liveness probes are initiated. |
 | startupProbe.periodSeconds | int | `30` | Number of seconds each period lasts.   |
-| startupProbe.successThreshold | int | `1` | number of successful tries which reenables liveness |
 | startupProbe.timeoutSeconds | int | `5` | number of seconds until a timeout is assumed |
 | tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) are applied to Pods to schedule onto nodes with matching taints. |
 
