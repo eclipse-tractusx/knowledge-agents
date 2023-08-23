@@ -57,8 +57,8 @@ concurrency:
 # Actual build/deploy logic
 jobs:
   # Build maven stuff
-  build_maven:
-    name: Build/Deploy Maven Artifacts
+  build:
+    name: Build/Deploy Maven & Docker Artifacts
     runs-on: ubuntu-latest
     permissions: write-all
     strategy:
@@ -100,27 +100,13 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # Actual build/deploy logic
-  build_docker:
-    name: Build/Deploy Docker Artifacts
-    runs-on: ubuntu-latest
-    permissions: write-all
-    needs: [ build_maven ]
-    strategy:
-      fail-fast: false
-      matrix:
-        variant: [ { dir: provisioning, name: provisioning-agent },
-                   { dir: remoting, name: remoting-agent },
-                   { dir: conforming, name: conforming-agent } ]
-    steps:
-
       # Create SemVer or ref tags dependent of trigger event
-      - name: Docker Meta
+      - name: Docker Meta Conforming
         id: meta-conf
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.IMAGE_NAMESPACE }}/${{ matrix.variant.name }}
+            ${{ env.IMAGE_NAMESPACE }}/conforming-agent
           # Automatically prepare image tags; See action docs for more examples. 
           # semver patter will generate tags like these for example :1 :1.2 :1.2.3
           tags: |
@@ -131,13 +117,67 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
 
       # build in any case, but push only main and version tag settings
-      - name: Container Build and Push
+      - name: Conforming Container Build and Push
         uses: docker/build-push-action@v3
         with:
-          context: ${{ matrix.variant.dir }}/.
-          file: ${{ matrix.variant.dir }}/src/main/docker/Dockerfile
+          context: conforming/.
+          file: conforming/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
           tags: ${{ steps.meta-conf.outputs.tags }}
           labels: ${{ steps.meta-conf.outputs.labels }}
+
+      # Create SemVer or ref tags dependent of trigger event
+      - name: Docker Meta Remoting
+        id: meta-remote
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ env.IMAGE_NAMESPACE }}/remoting-agent
+          # Automatically prepare image tags; See action docs for more examples. 
+          # semver patter will generate tags like these for example :1 :1.2 :1.2.3
+          tags: |
+            type=sha,event=branch
+            type=sha,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}}
+
+      # build in any case, but push only main and version tag settings
+      - name: Remoting Container Build and Push
+        uses: docker/build-push-action@v3
+        with:
+          context: remoting/.
+          file: remoting/src/main/docker/Dockerfile
+          # Build image for verification purposes on every trigger event. Only push if event is not a PR
+          push: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
+          tags: ${{ steps.meta-remote.outputs.tags }}
+          labels: ${{ steps.meta-remote.outputs.labels }}
+
+      # Create SemVer or ref tags dependent of trigger event
+      - name: Docker Meta Provisioning
+        id: meta-prov
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ env.IMAGE_NAMESPACE }}/provisioning-agent
+          # Automatically prepare image tags; See action docs for more examples. 
+          # semver patter will generate tags like these for example :1 :1.2 :1.2.3
+          tags: |
+            type=sha,event=branch
+            type=sha,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}}
+
+      # build in any case, but push only main and version tag settings
+      - name: Provisioning Container Build and Push
+        uses: docker/build-push-action@v3
+        with:
+          context: provisioning/.
+          file: provisioning/src/main/docker/Dockerfile
+          # Build image for verification purposes on every trigger event. Only push if event is not a PR
+          push: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
+          tags: ${{ steps.meta-prov.outputs.tags }}
+          labels: ${{ steps.meta-prov.outputs.labels }}
         
