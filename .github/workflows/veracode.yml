@@ -78,12 +78,12 @@ jobs:
       - name: Veracode Upload And Scan
         uses: veracode/veracode-uploadandscan-action@v1.0
         if: |
-          needs.secret-presence.outputs.VERACODE_API_ID && needs.secret-presence.outputs.VERACODE_API_KEY
+          needs.secret-presence.outputs.ORG_VERACODE_API_ID && needs.secret-presence.outputs.ORG_VERACODE_API_KEY
         continue-on-error: true
         with:
           appname: knowledge-agents/${{ matrix.variant.name }}
           createprofile: true
           version: ${{ matrix.variant.name }}-${{ github.sha }}
           filepath: ${{ matrix.variant.dir }}/target/${{ matrix.variant.name }}.tar.gz
-          vid: ${{ secrets.VERACODE_API_ID }}
-          vkey: ${{ secrets.VERACODE_API_KEY }}
+          vid: ${{ secrets.ORG_VERACODE_API_ID }}
+          vkey: ${{ secrets.ORG_VERACODE_API_KEY }}
