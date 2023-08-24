@@ -127,6 +127,16 @@ jobs:
           tags: ${{ steps.meta-conf.outputs.tags }}
           labels: ${{ steps.meta-conf.outputs.labels }}
 
+      # Important step to push image description to DockerHub - since this is version independent, we always take it from main
+      - name: Update Docker Hub description for Conforming Agent
+        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && github.ref == 'refs/heads/main' }}
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          readme-filepath: conforming/README.md 
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: ${{ env.IMAGE_NAMESPACE }}/conforming-agent
+
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Remoting
         id: meta-remote
@@ -154,6 +164,16 @@ jobs:
           tags: ${{ steps.meta-remote.outputs.tags }}
           labels: ${{ steps.meta-remote.outputs.labels }}
 
+      # Important step to push image description to DockerHub - since this is version independent, we always take it from main
+      - name: Update Docker Hub description for Remoting Agent
+        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && github.ref == 'refs/heads/main' }}
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          readme-filepath: remoting/README.md 
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: ${{ env.IMAGE_NAMESPACE }}/remoting-agent
+
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Provisioning
         id: meta-prov
@@ -180,4 +200,14 @@ jobs:
           push: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
           tags: ${{ steps.meta-prov.outputs.tags }}
           labels: ${{ steps.meta-prov.outputs.labels }}
+
+      # Important step to push image description to DockerHub - since this is version independent, we always take it from main
+      - name: Update Docker Hub description for Provisioning Agent
+        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && github.ref == 'refs/heads/main' }}
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          readme-filepath: provisioning/README.md 
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: ${{ env.IMAGE_NAMESPACE }}/provisioning-agent
         
