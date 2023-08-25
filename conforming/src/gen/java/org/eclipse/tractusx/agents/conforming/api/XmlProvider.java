@@ -69,7 +69,9 @@ public class XmlProvider implements MessageBodyReader, MessageBodyWriter {
     @Override
     public void writeTo(Object o, Class aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
         try {
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            TransformerFactory factory = TransformerFactory.newInstance();
+            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            Transformer transformer = factory.newTransformer();
             transformer.transform(new DOMSource((Document) o),new StreamResult(outputStream));
         } catch (TransformerException e) {
             throw new IOException("Cannot render xml body",e);
