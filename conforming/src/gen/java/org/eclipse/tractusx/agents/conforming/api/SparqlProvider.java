@@ -42,8 +42,9 @@ public class SparqlProvider implements MessageBodyReader, MessageBodyWriter {
 
     @Override
     public Object readFrom(Class aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, InputStream inputStream) throws IOException, WebApplicationException {
-        return new BufferedReader(new InputStreamReader(inputStream))
-                .lines().collect(Collectors.joining("\n"));
+        try (BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream))) {
+            return reader.lines().collect(Collectors.joining("\n"));
+        }
     }
 
     @Override
