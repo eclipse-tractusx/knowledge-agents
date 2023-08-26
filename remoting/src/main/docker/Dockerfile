@@ -27,6 +27,8 @@ COPY target/lib/netty-*.jar /opt/lib/
 COPY target/lib/jetty-*.jar /opt/lib/
 COPY target/lib/spring-*.jar /opt/lib/
 COPY target/lib/httpmime-*.jar /opt/lib/
+COPY target/lib/commons-logging-*.jar /opt/lib/
+COPY target/lib/snappy-java-*.jar /opt/lib/
 
 COPY resources/web/logging.properties /opt/conf/
 COPY resources/web/server.xml /opt/conf/
@@ -84,8 +86,6 @@ RUN	mkdir -p /var/rdf4j/server/conf && \
     rm /usr/local/tomcat/conf/server.xml && \
     rm /usr/local/tomcat/conf/tomcat-users.xml && \
     rm /usr/local/tomcat/conf/web.xml && \
-    wget -q "https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" -O /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/commons-logging-1.2.jar && \
-    wget -q "https://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.10.2/snappy-java-1.1.10.2.jar" -O /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/snappy-java-1.1.10.2.jar && \
     chown -R tomcat:tomcat /var/rdf4j /usr/local/tomcat && \
 	chmod 775 /usr/local/tomcat /usr/local/tomcat/bin /usr/local/tomcat/bin/catalina.sh /var/rdf4j/server 
 
