@@ -234,7 +234,7 @@ public class Invocation {
      */
     public static Object traversePath(Object source, String... path) throws SailException {
         if (logger.isTraceEnabled()) {
-            logger.trace(String.format("Accessing a path of length %d under %s", path.length, source));
+            logger.trace(String.format("Accessing a path of length %d under %d", path.length, System.identityHashCode(source)));
         }
         for (String elem : path) {
             if (elem != null && elem.length() > 0) {
@@ -282,8 +282,9 @@ public class Invocation {
                 }
             }
         } else if(source instanceof Element) {
-            TransformerFactory transFactory = TransformerFactory.newInstance();
             try {
+                TransformerFactory transFactory = TransformerFactory.newInstance();
+                transFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
                 Transformer transformer = transFactory.newTransformer();
                 StringWriter buffer = new StringWriter();
                 transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");

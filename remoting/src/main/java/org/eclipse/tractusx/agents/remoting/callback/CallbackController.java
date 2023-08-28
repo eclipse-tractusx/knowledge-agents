@@ -43,8 +43,6 @@ public class CallbackController implements org.springframework.web.servlet.mvc.C
 
     public static ObjectMapper objectMapper=new ObjectMapper();
 
-    public static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
     public static final Map<CallbackToken, AtomicReference<Object>> pending=new HashMap<>();
 
     /**
@@ -104,6 +102,8 @@ public class CallbackController implements org.springframework.web.servlet.mvc.C
             if(request.getContentType().contains("json")) {
                 callback=objectMapper.readTree(request.getInputStream());
             } else if(request.getContentType().contains("xml")) {
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 callback=builder.parse(request.getInputStream()).getDocumentElement();
             } else {
