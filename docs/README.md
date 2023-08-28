@@ -52,3 +52,12 @@ The [Remoting Agent (KA-RMT)](../remoting) which binds typical REST services to 
 
 The [Conforming Agent (KA-CONF)](conforming) is not a real binding agent, but it 
 can play the role of any other Agent in the Knowledge Agent architecture (Matchmaking Agent, Binding Agent, EDC Transfer) by testing the conformity of surrounding components (and the various KA-SPARQL profiles). The conforming agent contains no real business data (only reference sample data) and needs no connection to any backend service.
+
+## NOTICE
+
+This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+- SPDX-License-Identifier: Apache-2.0
+- SPDX-FileCopyrightText: 2022,2023 T-Systems International GmbH
+- SPDX-FileCopyrightText: 2022,2023 Contributors to the Eclipse Foundation
+- Source URL: https://github.com/eclipse-tractusx/knowledge-agents
