@@ -70,8 +70,8 @@ public class XmlProvider implements MessageBodyReader, MessageBodyWriter {
     public void writeTo(Object o, Class aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
         try {
             TransformerFactory factory = TransformerFactory.newInstance();
-            factory.setAttribute(“http://javax.xml.XMLConstants/property/accessExternalDTD”,””);
-            factory.setAttribute("http://javax.xml.XMLConstants/property/accessExternalStylesheet",””);            
+            factory.setAttribute("http://javax.xml.XMLConstants/property/accessExternalDTD","");
+            factory.setAttribute("http://javax.xml.XMLConstants/property/accessExternalStylesheet","");
             Transformer transformer = factory.newTransformer();
             transformer.transform(new DOMSource((Document) o),new StreamResult(outputStream));
         } catch (TransformerException e) {
