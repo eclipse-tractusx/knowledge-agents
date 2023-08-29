@@ -284,7 +284,8 @@ public class Invocation {
         } else if(source instanceof Element) {
             try {
                 TransformerFactory transFactory = TransformerFactory.newInstance();
-                transFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+                transFactory.setAttribute(“http://javax.xml.XMLConstants/property/accessExternalDTD”,””);
+                transFactory.setAttribute("http://javax.xml.XMLConstants/property/accessExternalStylesheet",””);         
                 Transformer transformer = transFactory.newTransformer();
                 StringWriter buffer = new StringWriter();
                 transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");

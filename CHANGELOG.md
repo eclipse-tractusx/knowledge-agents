@@ -24,9 +24,7 @@ All notable changes to this product will be documented in this file.
 
 # Released
 
-# Unreleased
-
-## [1.9.5-SNAPSHOT] - 
+## [1.9.5] - 
 
 ### Added
 
@@ -39,6 +37,8 @@ All notable changes to this product will be documented in this file.
 - Eclipse Tractus-X standards and migration
 
 ### Removed
+
+# Unreleased
 
 ## [0.8.6] - 2023-05-19
 
