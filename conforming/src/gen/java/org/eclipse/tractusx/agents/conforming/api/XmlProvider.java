@@ -41,6 +41,10 @@ import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+/**
+ * This class provides a MessageBodyReader and MessageBodyWriter for XML content type.
+ * It prevents access to external DTDs and stylesheets while reading and writing XML.
+ */
 @Provider
 public class XmlProvider implements MessageBodyReader, MessageBodyWriter {
 
