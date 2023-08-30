@@ -63,7 +63,7 @@
         <!-- REPO -->
         <repo>tractusx/</repo>
         <platform>linux/amd64</platform>
-    </properties>    
+    </properties>
     <modules>
         <module>provisioning</module>
         <module>remoting</module>
@@ -93,6 +93,24 @@
         <pluginManagement>
 
             <plugins>
+                <plugin>
+                    <groupId>org.eclipse.dash</groupId>
+                    <artifactId>license-tool-plugin</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                    <configuration>
+                        <projectId>automotive.tractusx</projectId>
+                        <summary>DEPENDENCIES</summary>
+                        <includeScope>test</includeScope>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>license-check</id>
+                            <goals>
+                                <goal>license-check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
