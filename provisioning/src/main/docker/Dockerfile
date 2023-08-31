@@ -48,6 +48,7 @@ COPY resources/entrypoint.sh /opt/ontop/.
 # run with docker --build-arg jdbcDrivers=path_to_my_driver to establish a different driver
 ARG jdbcDrivers="https://repo1.maven.org/maven2/com/h2database/h2/2.2.220/h2-2.2.220.jar https://download.dremio.com/jdbc-driver/dremio-jdbc-driver-LATEST.jar https://repo1.maven.org/maven2/org/apache/calcite/avatica/avatica/1.22.0/avatica-1.22.0.jar"
 
+# unfortunately, ontop does not use explicit group ids and user ids (which are needed by tractusx chart security contraints), so we need to relax executable rights
 RUN rm /opt/ontop/lib/guava-*.jar && \
     rm /opt/ontop/lib/tomcat-embed-*.jar && \
     rm /opt/ontop/lib/spring-*.jar && \
@@ -55,7 +56,7 @@ RUN rm /opt/ontop/lib/guava-*.jar && \
     for jdbcDriver in "$jdbcDrivers"; do wget --no-check-certificate -q -P /opt/ontop/jdbc ${jdbcDriver} ; done && \
     mkdir -p /opt/ontop/input && \
     mkdir -p /opt/ontop/database && \
-    chmod 700 /opt/ontop/entrypoint.sh && \
+    chmod 755 /opt/ontop/entrypoint.sh && \
     chown -R ontop:ontop /opt/ontop
 
 COPY --from=build /opt/ontop/lib/*.jar /opt/ontop/lib/
