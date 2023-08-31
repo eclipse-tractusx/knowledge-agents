@@ -27,7 +27,7 @@
     <parent>
         <groupId>org.eclipse.tractusx</groupId>
         <artifactId>agents</artifactId>
-        <version>1.9.5-SNAPSHOT</version>
+        <version>1.9.8</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -170,10 +170,10 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.cyclonedx</groupId>
                 <artifactId>cyclonedx-maven-plugin</artifactId>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 
