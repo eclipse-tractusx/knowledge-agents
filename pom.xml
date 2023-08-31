@@ -60,6 +60,7 @@
         <jetty.version>9.4.51.v20230217</jetty.version>
         <org.yaml.snakeyaml.version>2.0</org.yaml.snakeyaml.version>
         <snappy.version>1.1.10.2</snappy.version>
+        <postgres.version>42.6.0</postgres.version>
         <!-- REPO -->
         <repo>tractusx/</repo>
         <platform>linux/amd64</platform>
@@ -249,6 +250,16 @@
             <url>https://repo1.maven.org/maven2</url>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+	    <pluginRepository>
+		<id>dash-licenses-snapshots</id>
+		<url>https://repo.eclipse.org/content/repositories/dash-licenses-snapshots/</url>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+	    </pluginRepository>
+    </pluginRepositories>
 
     <distributionManagement>
         <repository>
