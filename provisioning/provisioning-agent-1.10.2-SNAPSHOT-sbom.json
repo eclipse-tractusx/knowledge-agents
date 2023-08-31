@@ -1,0 +1,2671 @@
+{
+  "bomFormat" : "CycloneDX",
+  "specVersion" : "1.4",
+  "serialNumber" : "urn:uuid:ecc3a424-89b6-488c-90e4-6e08940ecee9",
+  "version" : 1,
+  "metadata" : {
+    "timestamp" : "2023-08-31T16:03:10Z",
+    "tools" : [
+      {
+        "vendor" : "OWASP Foundation",
+        "name" : "CycloneDX Maven plugin",
+        "version" : "2.7.9",
+        "hashes" : [
+          {
+            "alg" : "MD5",
+            "content" : "8e595cdb67f17e4b41e046456970591d"
+          },
+          {
+            "alg" : "SHA-1",
+            "content" : "69e8ca804520d09ce4657e7235bae84d01cbffa6"
+          },
+          {
+            "alg" : "SHA-256",
+            "content" : "aa09074fe5aa403c008cd4fc7ef8ce41cd244489337f16b3e91a3914158a4db8"
+          },
+          {
+            "alg" : "SHA-512",
+            "content" : "1488a8112da8e675813d7585f57c5efb178aed32901118186ee12d0e4ae3d19c53774c7f860bf70d17d70f050119b69443a2637cf641675b4b5d9cdcdd69b89b"
+          },
+          {
+            "alg" : "SHA-384",
+            "content" : "b097295dfbf10887abc6eec58d4d0822cde5a73d1f5c1cf183a57bf569016ad5ced9d34efae3e574d82bb62837540c6c"
+          },
+          {
+            "alg" : "SHA3-384",
+            "content" : "289f9520bd73a2031276248a6ef8f0891c691062c2d1ea86a2bc9ea8db2c52377d92a53be9957179e71aee3deda26a8c"
+          },
+          {
+            "alg" : "SHA3-256",
+            "content" : "32b50a7efe5d491a4039c0017eca3cf49d98b55fc66d06b3dd06209487323474"
+          },
+          {
+            "alg" : "SHA3-512",
+            "content" : "1daf813da53e5d5cda4d0302ff3a5e388aa45d96ebe6dcbe240f35d33f14b1e6390f6bbe7f21f3ed8cf96ebd9f5516a08b18487b7339715109c81cebfc1563df"
+          }
+        ]
+      }
+    ],
+    "component" : {
+      "publisher" : "Catena-X Automotive Network",
+      "group" : "org.eclipse.tractusx.agents",
+      "name" : "provisioning-agent",
+      "version" : "1.10.2-SNAPSHOT",
+      "description" : "This container/application binds existing data sources (SQL, Parquet, CSV, JSON) to a SparQL inference engine.",
+      "licenses" : [ ],
+      "purl" : "pkg:maven/org.eclipse.tractusx.agents/provisioning-agent@1.10.2-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://catena-x.net/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://maven.pkg.github.com/eclipse-tractusx/knowledge-agents"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.tractusx.agents/provisioning-agent@1.10.2-SNAPSHOT?type=jar"
+    },
+    "properties" : [
+      {
+        "name" : "maven.goal",
+        "value" : "makeBom"
+      },
+      {
+        "name" : "maven.scopes",
+        "value" : "compile,provided,runtime,system"
+      }
+    ]
+  },
+  "components" : [
+    {
+      "publisher" : "Free University of Bozen-Bolzano",
+      "group" : "it.unibz.inf.ontop",
+      "name" : "ontop-rdb",
+      "version" : "5.0.2",
+      "description" : "Ontop is a Virtual Knowledge Graph system",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f69c125355ebb89df13b1c92b40e353b"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "dbbf5a6ce6e7c16a93b1a0b4c413061525c776b2"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "c9aad7bef4ac4f029c8054149b630f96322f575173a90a6e7f5d6edfb9505243"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "c69baf39b2fc0f840883fd97abd41bb79c4e420e7ce68ce024d8af5d636301ac2e8cc1143c446717b838be2ecc7cda78cc9b5665a5c38dcbaa370b6156190894"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "38f5da8575b2e1c7b77ec61e2d9b17479ecc0ae996263f55729db8ab138b5545175c0d3ed0feff73f328db66887d8023"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "38be18d00846b73528f44fbba7bff4cfbe6edbda1693dbccefabf5cec5d2f55385b3a40929e3113d4a68ec5b88b539bd"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "63edbb45dcadb980fb1643c538206442a5f090a94862bc6f36af6969918d586b"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "8aadf639c32f4cb31b803644e80ece575fd8b7577e3dd95c3f9c75f66b18ae92a1fad83745a00ffecdcfd57964a8ba8b80d118277c73bd8c2e4d20e57fca9448"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/it.unibz.inf.ontop/ontop-rdb@5.0.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ontop-vkg.org/ontop-db/ontop-rdb/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/it.unibz.inf.ontop/ontop-rdb@5.0.2?type=jar"
+    },
+    {
+      "publisher" : "Free University of Bozen-Bolzano",
+      "group" : "it.unibz.inf.ontop",
+      "name" : "ontop-model",
+      "version" : "5.0.2",
+      "description" : "Ontop is a Virtual Knowledge Graph system",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f2ee119af480553d6ac775ee357f36ac"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "9065fc94a390e37129fcaca10e3c9ef8df676356"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "03547ca342e42d216ad198897e5b2429fe908ed38497c614d08fee75efbeb603"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "4c400957627368e78b90a6154845832cbd650317be0bf220bf011b4cea0eedc043f3a6dca9c553685e98d46f780456882b66f564236c10b9cb2d83048f77a04e"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "379263f053dd48338ef498b62972d650c8a43323cf6d88dd6f7ea7577050944e603b39e92891307b48cdb6367074e23b"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "f983311dbaca7813e1a2b720817638e2f2a6da41a8dc88826a71c986279fbee97ec8b41c35aaadf7ed0f98e26e72e7dd"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "0ea2222197a04979914bc96c2bb572ea2f6e17cd029ea7e285946f9de660670a"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "0653aa5dd818f9b3fbf38f888dc1e6fc85c44f79549a0b2437822366f6f972f8ee3dfbfe1b38e687b523da7828a38852704ab7c2c31456b37e587f1c7525eb28"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/it.unibz.inf.ontop/ontop-model@5.0.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ontop-vkg.org/ontop-core/ontop-model/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/it.unibz.inf.ontop/ontop-model@5.0.2?type=jar"
+    },
+    {
+      "publisher" : "The Apache Software Foundation",
+      "group" : "org.apache.commons",
+      "name" : "commons-rdf-simple",
+      "version" : "0.5.0",
+      "description" : "Simple (if not naive) implementation of Commons RDF API",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "bb3fa5dd3750cdadbbb3c52fdfacee3d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "c6b5038624d860129e273538d18dd52c5adcfd70"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ac5b2c015fc78953fd3e3a88116eb2d87f01206217287396cd60020cc9f63e6a"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "a7aa267e867c716446b416a0283e4ad7177f801d667f248f9a4446ca9aa0132c2f0fd6a967decdc1dda24414001f2d1e7a0b98090d75b48665f4cc80518d259c"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "46d5cdb8da24f9b19c179c3563bfc8da6d045c7d28fdbd1d245c3a6103ebe0d05f0fe70c8f033e2463e3923495cdc30f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "cfcfca8508aef3113191d1d7b3d5292c9e55363ad6347b55ae522297bd72517d277e9ad04b411a4062eb923d71b8ddee"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "03ce9a3ac4429f905b17bf4291b2ee4e32e72561badccc71998d6518fcf24c10"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "2f1b2ecabfa1a322cc4e04516396563c9d5fe821ff2280387669d9427ec7c5f705578cba36c46a5d6adfbe8614003c270faa559cbab3d759d65c92d2fdf30985"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.apache.commons/commons-rdf-simple@0.5.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://commons.apache.org/proper/commons-rdf/commons-rdf-simple/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://builds.apache.org/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://commons.apache.org/proper/commons-rdf/commons-rdf-simple/download.html"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://issues.apache.org/jira/browse/COMMONSRDF"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "http://mail-archives.apache.org/mod_mbox/commons-user/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://git-wip-us.apache.org/repos/asf/commons-rdf.git/commons-rdf-simple"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.apache.commons/commons-rdf-simple@0.5.0?type=jar"
+    },
+    {
+      "group" : "io.mikael",
+      "name" : "urlbuilder",
+      "version" : "2.0.9",
+      "description" : "Create and modify URLs and URL parameters easily, with a builder class.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "02d020dff3349f47a030ff0e93e67f86"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "5146c56189b76469cc3344a77c221144254d4f87"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "97fa3d9e3f85b1e33a704244a5908af79f14817fcd52c4cb70fed888d8d494f7"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "3a9733e733d094b05792f4e94b1562206ae0341462b3a7fe774badc499ed7720380c7343ca10650cef2d63aaaf62e2b0536cf5986c9516eb6f94c8c4a4e6536a"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "94f1f00163c7f67f94ad56ffaa68e4b9d20eea90a71659b70f81025dfec2c89c5e6ee3dbdd2c74a11789c91b487e65e8"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "640f4d576ca9606dd5452936d26acb11299c83dfd3b3346386524df2a174c6a9e2091f1adbffcc1a00701e672d9afa5a"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "092ed7386fcb41e28a9f3bde99ecb3faf2d3064fb4805933227d48b63cc552e8"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "0a8b6126dda3e5328de52aa528a5cca693dc136bdbbfa45c0ae6f001678ea27292b8223c7d57fbd622c166e11f356b926d3abffd752c7c5600751aba7d90aae0"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/io.mikael/urlbuilder@2.0.9?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://mikael.io/urlbuilder/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://api.bintray.com/maven/mikaelhg/public/urlbuilder/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/mikaelhg/urlbuilder"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/io.mikael/urlbuilder@2.0.9?type=jar"
+    },
+    {
+      "group" : "org.locationtech.proj4j",
+      "name" : "proj4j",
+      "version" : "1.1.1",
+      "description" : "Java port of the Proj.4 library for coordinate reprojection",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "1b7f7cb3745cc46ead65874b06f7375d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "a56d3151af9d5f5e909c456f89998ccdb48811a7"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "08c766874ef555b96c5e680d2dc91f7a7ac0b2a4d98bb97e097dfadf7bb8228a"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "b55d867cbd16a57da8cb782c216ad8aaa20547e2d454fb7ac4fd04a41d3b137e58412c3663ea9cac9c44f4518fba67551192b2ccbf398b1e4bfb46be895f1f11"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "cca5f9468cc8eeeb24da06846804a9d55495638fb76e7adce8f06240ac725f2940a0d6cecbd5022dc7cf51f8c72b625d"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "eb21a1f226ed42c3f58f3023fccd7ba516e4a4c29be05cae1c80ce1b5ddb8bb788baaaeb370466b393d3936fc0486b0e"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "0619a55179f09ceaf932197409cad764d9d7b138123212402763ccb60036f9d0"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b7db56cfc5d6bd96eac8e392dc9819c470acc52443082fa6941e3b80e4a34f25203e106ddc4c94c7c3990ebf9b00a2f744363de7f8fd3d68ce8712135977465b"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.locationtech.proj4j/proj4j@1.1.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/locationtech/proj4j"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/locationtech/proj4j.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.locationtech.proj4j/proj4j@1.1.1?type=jar"
+    },
+    {
+      "publisher" : "The Apache Software Foundation",
+      "group" : "commons-codec",
+      "name" : "commons-codec",
+      "version" : "1.14",
+      "description" : "The Apache Commons Codec package contains simple encoder and decoders for various formats such as Base64 and Hexadecimal. In addition to these widely used encoders and decoders, the codec package also maintains a collection of phonetic encoding utilities.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "e9158e0983096d3df09236f7b53125aa"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "3cb1181b2141a7e752f5bdc998b7ef1849f726cf"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "a128e4f93fabe5381ded64cf2873019e06030b718eb43ceeae0b0e5d17ad33e9"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e8ed9e19b8c836c8bc45469ef1f69792a1a072b9753ee6bbdc7229b6b6b6af8163a7d428f23240093610a96afbc7ff2ae1f08452413b93b78719c9da33470f9c"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "3572d8e8594747696d4278d13b6357611c2740fce39d5a0212ba5e2d3ae90b6c7e73acf8b6d60c88ae27bd68b6e03b65"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "01c13bcc2966bc8bca5ea8622c23674f8e68b150a30afed8911caa6818cd486d401ef6b6f2b6281b3f87af3786e33c91"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "6d60aa770571bbc23a1e632b3ac6ea65148f368607108732f98f142a68267e09"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b803be531bbea66cfb4454fe0f3d4cd9689ae40c96b6e875c1234c26b4ed0692c8f3c23075d699b0ca0ebed828602a004e269926fc092a96565c150aa624511f"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/commons-codec/commons-codec@1.14?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://commons.apache.org/proper/commons-codec/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://builds.apache.org/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://repository.apache.org/service/local/staging/deploy/maven2"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://issues.apache.org/jira/browse/CODEC"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://mail-archives.apache.org/mod_mbox/commons-user/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/apache/commons-codec"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/commons-codec/commons-codec@1.14?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-model",
+      "version" : "4.1.3",
+      "description" : "RDF model implementations.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "1967006c9bfa2145426a36f151b2f377"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "fcdf00c0c201fc5dc26c75e2ccc97a2b7eaf25d5"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "5dbe84247f0c83d887826bffdbc1a587ec018f4a9c3a2397b3b64d0579a60870"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "ccbb0f4eafc50473146258e80a9fab35ee602616e8815c785a267a359eb9d5686d6876d49194b8bc26b0e06134e78b051250318d80fa626c3c651a39354f201c"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "1e578320b20553337a1c225b2ce171de21e850c197ae0d1424ed49b88eeb695d8042ddd72fe5c394f013fc16a77973af"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "b3c390d9cab6b3878cbc665e9a69a8f46d50a0fdb867d2d272dc868687de159f0b0e078c90fbb5a848fcb0766ca932e9"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "bc5aac8483d28b426d6f185747295e0d772c52ddd5c3ebe8ec717698987c42fd"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "d3dc9f0b3e66f28cbe00e7e4ea7981d03abad99a182be66c63fa08c3a794908783627a24615631e41d02c2f5352d2e56697fe0a94c50b77170a9065451e4d664"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-model/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-model"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-model-api",
+      "version" : "4.1.3",
+      "description" : "RDF model interfaces.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "abd730c53aea28d6336e5bbe91957fb0"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "813f4e6ebff8e1908f8f69b56e163594414fb7eb"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "2e24dbfc3ad3af0d9878f03ab94d38272f777dd599651cb8797a3e7843716562"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "3ecce4d468a36b8b5145a463fa473c95f12bfc73b364efec3433cfd6bf49ab168dfc21bc01819bfbb8042254e57b61ebf4d04c5ed0c5176ab75e3fbc28570d60"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "361a37257bde1ad55d19816e29d75423b216be4a97cff24e9772f0e7125e99cc02e0173c5b2efd3424447852e94c76e3"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "80124b632b1e869963e627524118bebfeb82550c2251bcbbe289559f963ff247a3a6e6003877872277e282a72ed5ab41"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d81ed7909f2a51e803ddf3cb1f2ff8e59fe24222b68d6edb39d5cf39b237d9b5"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "c074e2ec6b7c5ada77f888295a1970af3fa2c2413c3b2852c8d9449bc43406db9a994bf5c8c777c609549a75da13a76f0ef0681190463814856defeec84b4ee9"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-model-api/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-model-api"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-common-annotation",
+      "version" : "4.1.3",
+      "description" : "RDF4J common annotation classes",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "058e66601ae28aa5641eb5e2f4819d61"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "0ca482fb4fe362cae0e009602d35ba166ecf89f7"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "1959986810d9d91140349807fda16e3bbbd580253781fcaea93df9b49c21ad63"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "3b0052b9245360527154dab95aac2a9353730e33ed8ea5559a4c369c88e2ef7e492c08c39cf83217c2b40ae55fbb7ecadd33077e161a3e43b67824abbf01ecdc"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "2cb9cb2e3e280eba4556af10821987c17b6ff2c74f9b9be7d5d126692c4220c43fab5f35a373ec1768c06c176e6cb0e0"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "aac31cddc2cf747d23517de905cd5a60e8c2d674773f633b4428085687de7bba61039301071024fad669254b3e33416a"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d076ce27851b6ada547031f7920263a2301b4533f8444fc968563475e93bf8ce"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "f99a132296ea153f0b31209c0e6c73047b412cabb587d4dc3661a90dabbba66931be38031bedd6d342ca437e44eb525b3c63f5a1bc6530d4dfc00d716078be4c"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-annotation@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-common/rdf4j-common-annotation/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-common/rdf4j-common-annotation"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-annotation@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-model-vocabulary",
+      "version" : "4.1.3",
+      "description" : "Well-Known RDF vocabularies.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "70187165c4abe9adbb80ab7ad8d90bd9"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "e9bc0f2abe2c3998b97a7d355e4af74ead87c850"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "46cd001b1bdb3892e776181b3d830791e3e7f269bdf1d886442d8194291d7b3e"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "771ec5572e2e42cde38ff0f853fca72817f85f8aa99a4e7f772ea363dd065d553f31be38b6f11db221a14c55150fb2797d40c77f23f8ba8d670c96ccf11acf5b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "70a5ee76acaffb545731d6acf4df2c9694377008a9e35609c9f7fb2fea7decaba5ea9624f91b6830fec47e9984db56b9"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "13b666a068f5d1d23d28002a2ce7c599123e08e90dcf2c9895cc5af0ea111f2ff9970cab5d3dcdb75738313047bbe3e8"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "50f3156c2ad3c4070ba3b7025ffccd9d9d8a0084ec02160b3548571495701953"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b25b7cecf1ec826663665583af99fe37cc49593b9fcc8cbf53a66a84bc9d55b6ddf7697b7773f42767ae0ac3e9310343adbbbd663c92a7a4fe51b78488d9071f"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model-vocabulary@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-model-vocabulary/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-model-vocabulary"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model-vocabulary@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-common-exception",
+      "version" : "4.1.3",
+      "description" : "RDF4J common exception classes",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "9f1e9a344640ad29661e07c5a80a93c1"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "38a8de384043f9737be56484d8312de94b4445bc"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "613706f02404014be44e72fc228ad5eba92fed64f489956a83971c2d6a35f070"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "fe77729120cab7602ba36376785bc5f0ad0d3cd8e82ed8638a58645af2f37096f14132e0e735e1de824c86722030168b6e86a50bd4995272ede48f4258c696f3"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "ec720f2f0f2160665059712d492b2d250575db1794e666f7c16f236b5c8c426b4afeed4bc87ae8efdbe32c4a633f0394"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "f2511216219ff67bd0e05433d4f6129060929e4e0cb2d2ba7cba0b7bf93268696ddb58d3438a1746ced12390ba4ca34c"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d1a45fb7b6cffc216dabdf720891038eb3d720383f6b887afcc703466dd2e836"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "f1cbb84845bc1c74ebb6e738a1ac3cfc229458feb428022c37eed8de01eb7845893eb12094083598dc71c2fe85538bffcc14fcb891663d0a122ae628e7decb24"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-exception@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-common/rdf4j-common-exception/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-common/rdf4j-common-exception"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-exception@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-common-text",
+      "version" : "4.1.3",
+      "description" : "RDF4J common text classes",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "d02f5e6423a40ff946aad459899bfae7"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "3f7eb0a91f39d7836598b7c8584ace7d6db8ab55"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "a3bb880e387f41835b98b185a85a6e712bea0d6e38957794300049c4a8205b82"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "1a03b6794248de72ec7d4aaa6b98bbf6f8afc866497a50905e32f6f36557dd7edc713950dd932f698622e51b4d3b05609d00602947dfbfbdb7564dcff3537e66"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "273bb996327aa4dfc01684ad9126cb01411150d88cd50f898262fc5c61538951a60938e8561665a877b75aa18256c980"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "03bacf2df8dc8442471a2a40ed265b986a38638e9093f0ee8cb23c1b60ee18f0798d3d633bd093f3ef73ca92656de9b6"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "26b3d054aee0250e6c4466ae011a40c4342cb4f74ee0e007db4370167af3f8cf"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e852b08179b99a1103847edf1835d91bbf3e2e4584c2e541be3c4f3443b6a9e8038b16bc23db3e0014e419e9afdce2e32569e240e0226fd226a39507a01e9981"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-text@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-common/rdf4j-common-text/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-common/rdf4j-common-text"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-text@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-common-io",
+      "version" : "4.1.3",
+      "description" : "RDF4J common IO classes",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "c54b3c983448b1596bdbfd8f58f8b69e"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "ac536f7d48427b907246932e807baa5ee05eeb89"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "4b6d721ac71f674b0fb8455865922d98e402fee288e6d72e4ead6e3b7945b62a"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "22e0fc54c11576ba73f46d56024d240ad16755cce079f63839b1909d7b48e08255fe756e2207740353aed82394b6d5a114d1466488b007b92aa62603854a7673"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "22323108d613a57846e16fe3834c0bf3c6ae6ef47a59c4db449edef6283c60039831b3c0d3c32e4a96bf92f918802610"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "cbd44eb729d69aa931597f428737d1ffa833808d01046f3bef999b7fd95c94c9754966d9e91db5f636ef12e3713577f7"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "db1013c8404135c60ff16bc63f40d110f47e7729da2db86b2d12134cee932918"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "a0f9d4fa7b942a8f2b1d0d9a595986873d9e26ec2da2fa6627aab5916a958a0a1081717cb8fa6442f1dc4036521433238524eeb4d16df4930d3f1f04b4120111"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-io@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-common/rdf4j-common-io/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-common/rdf4j-common-io"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-io@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-common-util",
+      "version" : "4.1.3",
+      "description" : "RDF4J common utility classes",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "489e76c3e77280ef8f167baf03d0ea4c"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "8c02b00e9b8a9d7967d0b4fd688f263e24f0afa0"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ef614ecd97209f46422a861cb1ae18dbf079b2f04d942ff11d1244845f805f50"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "36cd5790d44b73004a675a8433a423f9d51e338e8e47116497beee1d1aa84c2352cddec4a736c499a89987d09a92f3381d3de90cf0feecb372c773045f954f87"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "6681820b7bda35925aa2af7c4eae1a448eb9c018e0b14d0b09b52fd6f4f408a1754b7ef09c44313a5fc9e29f1f187bc2"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "3de82eceb4a60c971fbc01dffa881835151545fa6609139548c15a1bc7fbfd68c7222776f4f5b65c82af01625831574e"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "c88cc08845c88584df3892152ef17d70bcc05e7987d9dc3f1a36b30695887b99"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "4b1e7a4a9ba8cc59e976f0f9af7990a4bc125a2b4d7f136cd4f8bfb127623aa5a5a6a14f2a1bc1814d9a8c8ccee37d4a93a04bff89c91209ea7fa087b3105a18"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-util@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-common/rdf4j-common-util/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-common/rdf4j-common-util"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-util@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Eclipse Foundation",
+      "group" : "org.eclipse.rdf4j",
+      "name" : "rdf4j-common-iterator",
+      "version" : "4.1.3",
+      "description" : "RDF4J common iterators",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "768709f21be22ce1a91a20e2f1686c52"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "5dec2b52c1de3cc7a4a2ba2be159da0164a000c7"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "dc37f6d2fda5229589ab3cc1528badacd25e8f56de397f185b91276ad3c1c836"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "2da41fec5c0ee2750913257b9e3b6a5a06a50b2a72a1406b5c618d46d6df6c88b59730aff3299aca2eb4dec36b7de066b65be74b1c62824c0ce5a203339997d6"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "1e0c41e03522fc2b0d857a362117574648977f3fcffb548ead5b5e95333b75e879971da52d10c0b24c7816b800cf5974"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "c635b0604e29e0181ff64d6b90dc13f242146145b7b75de9fbb7939f4a9c8cc3a4e99aaf415e955c7861fe3b07935e1d"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d94d4555f60d6749b4822f44c70d7719eff8e0962b090689e733884f23d7a8e1"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "f47c6a596e018d52ae117d964b3b6948950077b31ba6c68289c221c34e9a1b87ff8ff4938d6feff478b9d2ca86515c04d931222c006fd125317916730942f790"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-iterator@4.1.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://rdf4j.org/rdf4j-core/rdf4j-common/rdf4j-common-iterator/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/rdf4j/rdf4j-core/rdf4j-common/rdf4j-common-iterator"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-iterator@4.1.3?type=jar"
+    },
+    {
+      "publisher" : "Free University of Bozen-Bolzano",
+      "group" : "it.unibz.inf.ontop",
+      "name" : "ontop-obda-core",
+      "version" : "5.0.2",
+      "description" : "Ontop is a Virtual Knowledge Graph system",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "39459d9bd7366780b6138c8caecad0d9"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "2239ec954cd0bd2480e8db9d57cfe1df80bf36c9"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "302c9937942e294a2eb996a966c3c5df63464535c1c6381c3d20063e4f171156"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "22c79ea7e2858bfdaf65b76a7e283e19e4d01e364e8e4a1eb324f5b4e56077b11d9ef13c7d034f9618eda065fd9b95be71b5cb04425504040604fa45882427a9"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "223b0c6ae031f955c918076156717abf1ddb05538025073c854c9e0ed276111995d5c14f8948ffd61a492f8ba2a8d09a"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "386eb7a1f39d3ec8b367a2bb9cf9d24d554aba0a3ff6c3cf650530f3fd162d5ce423cc598924959ae333fb7f799ed4de"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "88964f395184e8c0c522b8e0edec821ab52c245c66da05332637c5d00d255895"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "fb50749d7712237993de8c2f4c314b5aca8b8083e1aca41c048970dac8e4b42e727953e97f16f6d31856adc536613d9ac573f1084185a42ecbd3c79f95e642bd"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/it.unibz.inf.ontop/ontop-obda-core@5.0.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ontop-vkg.org/ontop-core/ontop-obda-core/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/it.unibz.inf.ontop/ontop-obda-core@5.0.2?type=jar"
+    },
+    {
+      "group" : "org.javabits.jgrapht",
+      "name" : "jgrapht-core",
+      "version" : "0.9.3",
+      "description" : "A Java class library for graph-theory data structures and algorithms.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "b718ccc5a85733c57fe801a566ed69cf"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "869c59c0b27766269e56a77e35e412b35f47d522"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "37da3039252a87c6c305c326557e287ed293d3d37614d5448713db8a27f4851d"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "fe8a3e0407f074b9f9a65fe8ecacc56ecbdb12c82ffecd4530e47a6cbd73336f35af5ba8be68dbc58f9c9d22c6b265dccbfb2a13c32e87015ab68f0189038827"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "c38dfcf5cdd7795ab26d79563055f875aba731894305b60c79c8def6fe8ff4eaa5c6bd3c8064a8e184b57799b23062d9"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "bc3fb30f1981e6cfd41d2346e00db37c7ddafe426f3a2b17a2878878c72fe05c8de63b415a41ee5372d1f770cbaf7496"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "8b4cd8685f40733fd546133ba2b0ed67a8daf57f3944585b66a2bed81e7e0a94"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "4d202f6e7fdecdbea5811503a2f80fae4e7b11b6c479793f2e9e281fdacf855a25d791c8ceb0be19126429e51498654b2376ad9d0f015a4a6a0b89324d766656"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "LGPL-2.1-only"
+          }
+        },
+        {
+          "license" : {
+            "id" : "EPL-1.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.javabits.jgrapht/jgrapht-core@0.9.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.jgrapht.org/jgrapht-core"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "http://sourceforge.net/tracker/?group_id=86459"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "http://lists.sourceforge.net/lists/listinfo/jgrapht-users"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/jgrapht/jgrapht.git/jgrapht-core"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.javabits.jgrapht/jgrapht-core@0.9.3?type=jar"
+    },
+    {
+      "publisher" : "QOS.ch",
+      "group" : "org.slf4j",
+      "name" : "slf4j-api",
+      "version" : "1.7.36",
+      "description" : "The slf4j API",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "872da51f5de7f3923da4de871d57fd85"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "6c62681a2f655b49963a5983b8b0950a6120ae14"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "d3ef575e3e4979678dc01bf1dcce51021493b4d11fb7f1be8ad982877c16a1c0"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "f9b033fc019a44f98b16048da7e2b59edd4a6a527ba60e358f65ab88e0afae03a9340f1b3e8a543d49fa542290f499c5594259affa1ff3e6e7bf3b428d4c610b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "2b14ad035877087157e379d3277dcdcd79e58d6bdb147c47d29e377d75ce53ad42cafbf22f5fb7827c7e946ff4876b9a"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "3bc3110dafb8d5be16a39f3b2671a466463cd99eb39610c0e4719a7bf2d928f2ea213c734887c6926a07c4cca7769e4b"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "ba2608179fcf46e2291a90b9cbb4aa30d718e481f59c350cc21c73b88d826881"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "14c4edcd19702ef607d78826839d8a6d3a39157df54b89a801d3d3cbbe1307131a77671b041c761122730fb1387888c5ec2e46bdd80e1cb07f8f144676441824"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/licenses/MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.slf4j.org"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/qos-ch/slf4j/slf4j-api"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar"
+    },
+    {
+      "publisher" : "The Apache Software Foundation",
+      "group" : "org.apache.commons",
+      "name" : "commons-rdf-api",
+      "version" : "0.5.0",
+      "description" : "Commons Java API for RDF 1.1",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "83a3b5cac9583e027f9330bad716f872"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "df2d4451dee5b311cb4f51ced214dfaab5838291"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "360fd9197008502cbc3fd09afe2ad45d8c8c905e21f42e7cd5b2aa1c39742b5e"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "b608eec4f4d8a386045f927dccb70c8f475e1aa0d32975c8c4b77ebc8e42ea4d55554620e44d49f966dbf88504b6fb685b779615f10d36ee2168c108563fb649"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "4f8b0825becb068de5139ac06eaf98c13ddc974c915556c492ed82e4641c29a0e93913bb5e3a7e67eb77372c9901a73b"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "7cf1638c81dfca4c352afe5e00a393b9940c5a16631476cf7729d1f30acbaa3b0e44bc0b4454f6ff6d6fa407cf5d52da"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "1dc8b6e328739f5c665f926010ccb71145b0577bccddea97cc0c3753a9f8e0e5"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "14fe84f7dda9e37e0682396a554e3014f90a8de398e5d1ec95b2bb946ef3dcedbf55b659167b1e65f9b3d25dcf6dbec3dac81b5f8fa02e8c233f192ca007636f"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.apache.commons/commons-rdf-api@0.5.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://commons.apache.org/proper/commons-rdf/commons-rdf-api/"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://builds.apache.org/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://commons.apache.org/proper/commons-rdf/commons-rdf-api/download.html"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://issues.apache.org/jira/browse/COMMONSRDF"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "http://mail-archives.apache.org/mod_mbox/commons-user/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://git-wip-us.apache.org/repos/asf/commons-rdf.git/commons-rdf-api"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.apache.commons/commons-rdf-api@0.5.0?type=jar"
+    },
+    {
+      "group" : "javax.inject",
+      "name" : "javax.inject",
+      "version" : "1",
+      "description" : "The javax.inject API",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "289075e48b909e9e74e6c915b3631d2e"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "6975da39a7040257bd51d21a231b76c915872d38"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e126b7ccf3e42fd1984a0beef1004a7269a337c202e59e04e8e2af714280d2f2d8d2ba5e6f59481b8dcd34aaf35c966a688d0b48ec7e96f102c274dc0d3b381e"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "ac04c9f03ccbe35a25deb8b50280a0ca01dbe6aff0dd795d55af6112bfe3cd5817eb82f32fb18378d86cd64b07597190"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "fca090ecb1edeacb9fe865dc515cd1d109b323cd742d4a9733ff199a96ee96e0db4f924079520b9c189ef750f255475d"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "5b0054e39e522de0e0ffc4034d12f72270291fb24d94d5ffc9c4d69c25035fc6"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "fb290f5a70b1efc1dff12f40a0b2d7b94019f66da42e78010c0b8e61f222c4f267b67e356a9e9c346eb801e5515e36243888f280c5cb95c2dd69016a30cadeb9"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/javax.inject/javax.inject@1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://code.google.com/p/atinject/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://code.google.com/p/atinject/source/checkout"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/javax.inject/javax.inject@1?type=jar"
+    },
+    {
+      "publisher" : "Google, Inc.",
+      "group" : "com.google.inject",
+      "name" : "guice",
+      "version" : "5.0.1",
+      "description" : "Guice is a lightweight dependency injection framework for Java 6 and above",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "60f6ba2a7fc44fcfe9119bc76314e7d6"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "0dae7556b441cada2b4f0a2314eb68e1ff423429"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "3bae18be3e0f0940375d1ebdd2f3b84d87ae16026ae663b2f5d4667fe5b04036"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "56438a62d61238f440dab5bc8fd7debd98047d462941052cb72e23ee92a6d420bbb6935d03e6a14cf815b9d996cdd5d6a8701612e8d05bce697cbd136be99471"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "57beaf52bc728807802ca31b791339a27d63ec3aa8614f38c0954a7bfd6c63b680bcc888982c6134d10ee862a63c1f6d"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "0aab2514d7b0c21d9cc302cde00bb7698930adde90538183c8870ef6447c9ca3cdd9cfe58d98ece6fbf9b30085b4bd39"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "9dbe1e276f7a78725cd34b42df056e7f5c2848549e288bb7d3f3a3ec69414a41"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "a1ea464a724054b75a0a8917eeb3436381b56827eb81665c19f4e7679a388a4481b40f851a9c1648a3930800f2efb8d44810463251502c7a37b8d9af6095d3fd"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.inject/guice@5.0.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/google/guice/guice"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://travis-ci.org/google/guice"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/google/guice/issues/"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "http://groups.google.com/group/google-guice/topics"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/guice/guice"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.inject/guice@5.0.1?type=jar"
+    },
+    {
+      "group" : "aopalliance",
+      "name" : "aopalliance",
+      "version" : "1.0",
+      "description" : "AOP Alliance",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "04177054e180d09e3998808efa0401c7"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "0235ba8b489512805ac13a8f9ea77a1ca5ebe3e8"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "0addec670fedcd3f113c5c8091d783280d23f75e3acb841b61a9cdb079376a08"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "3f44a932d8c00cfeee2eb057bcd7c301a2d029063e0a916e1e20b3aec4877d19d67a2fd8aaf58fa2d5a00133d1602128a7f50912ffb6cabc7b0fdc7fbda3f8a1"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "4dddf44338b5aff9580da2532b81c0ac3e1d09e1f28c6db871a55cad442b705dd7791eb07f9d4577d49d0be3673ba783"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "2bd64cbaf769c6e4e85e34f7a6119d89e16fbf55af3fc5d6cbd52eb214c367dec1ac7b9062ee0fb35a2e0acfc7c477e1"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d4a726b2bf8aa58197021a7d8fca674b4b2790d4c48de43a92f728866a91c2f0"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "830bc3f8328be76897990e9b9fc42eef02623115e456af96ad09b20900ad615519c8c8de60155ac04fb332eaa9510110d52edd13911af76271c71d91cbd789cc"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "Public Domain"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/aopalliance/aopalliance@1.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://aopalliance.sourceforge.net"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/aopalliance/aopalliance@1.0?type=jar"
+    },
+    {
+      "publisher" : "Google, Inc.",
+      "group" : "com.google.inject.extensions",
+      "name" : "guice-assistedinject",
+      "version" : "5.0.1",
+      "description" : "Guice is a lightweight dependency injection framework for Java 6 and above",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "7a1c06b3b07048d2bb5ded4863cfcd71"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "62e02f2aceb7d90ba354584dacc018c1e94ff01c"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "aa2c6504d7e89debad51f5001113a972eceebdbb4637e72c0e26284be5574966"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "5d8c9c4983739c69295f12ad73ad36e8528786fa2ca0198ae86c41230eea5123cb6b61b8a44dfe4b9a42d728fba2b682a1908b9a2acdbc40f64605c5d24a8519"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "89931d72c3d3f3cd3d653761e32c2a2492c8a76fc202f7f711ea907e8eee0990e7d7fbbb1c926b9ec334479822083f40"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "8225637723f621dfd662654078a852f4586da1bb92eaabfaf59613a1de4af7deebd5cd8c0149134ce665156fc856c166"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "654234a8d57af24c9a1dd4fe20c525e0be69421590ca9633289db303f5432e64"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "f20265c452e59efcdbb158e28a2505e180bb699d461f63532fc452211acef7f690a267ea9793e289dfe21b7ae909448d25398450727f34d2d43d8b289d356937"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.inject.extensions/guice-assistedinject@5.0.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/google/guice/extensions-parent/guice-assistedinject"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://travis-ci.org/google/guice"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/google/guice/issues/"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "http://groups.google.com/group/google-guice/topics"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/guice/extensions-parent/guice-assistedinject"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.inject.extensions/guice-assistedinject@5.0.1?type=jar"
+    },
+    {
+      "group" : "com.google.code.findbugs",
+      "name" : "jsr305",
+      "version" : "3.0.2",
+      "description" : "JSR305 Annotations for Findbugs",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "dd83accb899363c32b07d7a1b2e4ce40"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "25ea2e8b0c338a877313bd4672d3fe056ea78f0d"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "bb09db62919a50fa5b55906013be6ca4fc7acb2e87455fac5eaf9ede2e41ce8bbafc0e5a385a561264ea4cd71bbbd3ef5a45e02d63277a201d06a0ae1636f804"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "ca0b169d3eb2d0922dc031133a021f861a043bb3e405a88728215fd6ff00fa52fdc7347842dcc2031472e3726164bdc4"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "9903fd7505218999f8262efedb3d935d64bcef84aae781064ab5e1b24755466b269517cada562fa140cd1d417ede57a1"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "223fda9a89a461afaae73b177a2dc20ed4a90f2f8757f5c65f3241b0510f00ff"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3996b5af57a5d5c6a0cd62b11773360fb051dd86a2ba968476806a2a5d32049b82d69a24a3c694e8fe4d735be6a28e41000cc500cc2a9fb577e058045855d2d6"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://findbugs.sourceforge.net/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://code.google.com/p/jsr-305/"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar"
+    },
+    {
+      "publisher" : "FasterXML",
+      "group" : "com.fasterxml.jackson.datatype",
+      "name" : "jackson-datatype-guava",
+      "version" : "2.13.2",
+      "description" : "Add-on datatype-support module for Jackson (https://github.com/FasterXML/jackson) that handles Guava (http://code.google.com/p/guava-libraries/) types (currently mostly just collection ones)",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "64637a3726fb30888f0728955e30e0d4"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "788faab9dbf665d380034433b4275fae98926747"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "0b28e99f9a53c2cf9b8838ef8989f4bfcfe64cd5c9b7d377ce1b279c90754a17"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "6726ac11a3847df14c1d99d7e48fa08b5f72b25ef42a5420c64925ad72663532e8b3a9edd0186fa145491ef1a5f2ebdffc0fcf521361ee2128e5a682abc4d644"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "f1b2765387f4b4edcbe1623a1a913ff18aeac9b1dd79dda417ae176482f34b3fa516ea2cd11aa8d95e7fd41c73e9b741"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "5db928a9894d56265854c83668a9340261b3866ef225dd5cb55afeb50dc531feabc4f63d8d1e7d7e76f42fd6d56eb60b"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "e9ef72ccb97700c483f4c9814b7c034dbd6099ddc2412628c79f09004e312d4e"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "439216e40e3158cc6b89381dfcf9b7cff606732cd9f10244f2b11cd612e30ebfa57a2000db655f8eb08f80060d10c0cb5be701524a093cc41ab85c90034a9000"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-guava@2.13.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/FasterXML/jackson-datatypes-collections"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/FasterXML/jackson-datatype-guava/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://github.com/FasterXML/jackson-datatypes-collections/jackson-datatype-guava"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-guava@2.13.2?type=jar"
+    },
+    {
+      "publisher" : "JSQLParser",
+      "group" : "com.github.jsqlparser",
+      "name" : "jsqlparser",
+      "version" : "4.4",
+      "description" : "JSqlParser parses an SQL statement and translate it into a hierarchy of Java classes. The generated hierarchy can be navigated using the Visitor Pattern.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "4375f8a380d822a5e9294869a290e480"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "138c0bf010848892f9a6eb8b6e10b560169d6a33"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "101e22917b22a339787fc85447ea057ea57b572e2a777a4628b6562354da117d"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "065e53e60512aa903d93cb3fe391c0a89cecb31896e9936211ea29a8f2651ac9a173d2cb57a3d1d3697706fab6aee900b9708115c2903cca72e7d59ae675a8ad"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "20752e62e4632df5b12c8c75bf0a491650457a5e3bca4ebab1fe1038ad1e5c08a4486521bf9697ac91bb5e763d7be947"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "761a90be2c9199e06a6241f6d54fc5a9973fe5d81c735ddcf05bc5d990e43dbe8950e0061928546a83fc23ab89f3e6d9"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "c448772573aa4f6f34d11fbb42acbe8967c43dc4db83437b27b0ebab3242612a"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "760d5f1cb002ae57861d2ddf189b64aa795e6d4adc7b1774267e18f3a8a4c6088d0ee996388e5465d591c16191ee93110d18b770505435d427593c30d66f6dfe"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "LGPL-2.1-only"
+          }
+        },
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.github.jsqlparser/jsqlparser@4.4?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/JSQLParser/JSqlParser"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/JSQLParser/JSqlParser/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/JSQLParser/JSqlParser.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.github.jsqlparser/jsqlparser@4.4?type=jar"
+    },
+    {
+      "publisher" : "FasterXML",
+      "group" : "com.fasterxml.jackson.core",
+      "name" : "jackson-core",
+      "version" : "2.13.2",
+      "description" : "Core Jackson processing abstractions (aka Streaming API), implementation for JSON",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "c56433d75479665998ccbd50678480fa"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "0a6a0e0620d51833feffc67bccb51937b2345763"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "9bfa278ad05179fb68087851caf607652702ca25424bec8358a3716e751405c8"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "c5451f5c22d09f892ff22b840e46929f4d1f5dcd4022b4170f3262d8d85d0819d87432c8eca86215fdce7b5cd10eb99ef4b2cd498af5ff5cf2b48a2701181abc"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "b0782e4b1f4486d7ff10cea5dc3e67a4bcc557af770698d41783c91fd023ad00e63ea5af6c1565dee48cfc15d2cfaf06"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1474a077534ee52eb75c53618bb504ff43d9c1c29e83c036f62edd2a85a98e425ffbc5576b607b9a4f14bde0cbfbad11"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "4d05dff4543b8ee7c21c6847dd715c2ca479ea3165c9a8d785204334e224d564"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "961b99eae0b246e505965f43f2826588bfa27a48dad3472d167054491952ee75b6981051ac7208ba4d7518687973f4d288f84da218d6ac0f2bebf1e52d082768"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.13.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/FasterXML/jackson-core"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/FasterXML/jackson-core/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://github.com/FasterXML/jackson-core"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.13.2?type=jar"
+    },
+    {
+      "publisher" : "FasterXML",
+      "group" : "com.fasterxml.jackson.core",
+      "name" : "jackson-annotations",
+      "version" : "2.13.2",
+      "description" : "Core annotations used for value types, used by Jackson data binding package.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "2352a291fc39d23cfe5c100728de1ea7"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "ec18851f1976d5b810ae1a5fcc32520d2d38f77a"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "7d3df5aafa2dc61ad1dbad30f411548c0184ed92d94628c63168721f08237cd4"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "8da374687872fe37a0948e6f1b506ae7ad05c75006105c944182b3db8ce676f32794517953eb28beeba100e1ad8a059fd00164b43a19b026d3bf1b9743b5968b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "10a9917d2331845b923f43e723ccd8ad75dd54b03afad1225b06fb04f0670b65857d49f4fef5ff58b5b74eea224f3ae5"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "811a4d45d3ed98e9d0186c7c1b8fc5d47b35ff7b4276ed35816dbd8ed0bec8bbba6614b72e99157f1ace4b89478e1644"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "88086fb723bdd8630b0798c1068c192da2f3edd470240e2cb7a81fa42c9e4c82"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b1367a2b6a297fec04eff93808ddb34bc375d044c30c5165c3d55f28660e3b3086c0467ff4160343f62ce6f6bbaf4c90e4656ca72f14df72d03a8bd116931894"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.13.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://github.com/FasterXML/jackson"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/FasterXML/jackson-annotations/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://github.com/FasterXML/jackson-annotations"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.13.2?type=jar"
+    },
+    {
+      "publisher" : "FasterXML",
+      "group" : "com.fasterxml.jackson.core",
+      "name" : "jackson-databind",
+      "version" : "2.13.4.2",
+      "description" : "General data-binding functionality for Jackson: works on core streaming API",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f26eab82fa1da09f8e8bc7e52fc82088"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "325c06bdfeb628cfb80ebaaf1a26cc1eb558a585"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ba1a368137f9b92f48dd07f299ff7a782a69487b853ef5578215426fcde8f08b"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "89b5f58414d541d79f63ddedbcf4d5fafabc68d9bf9cad09f354c151e9685512e1433f2e22f6a7ffc8100c3c5fddbbb99fd64d7c6d4974b2915edb523f99ca16"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "87d3468179690f73868e8e2cad7b5107d4cea86ba7d6481ed288101f9d59b6b9ad27c7cfd1c466bdccc89effeb8291cd"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "16c34d4930500ab5749a3ff95ef5a0672c94b618dea5f88af37e61dbb19e366632f4d06c1a95d5132d451b329a4c32cb"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "222d42b2719c7ae81bc298570d4e37b745909a075e80cdc4beccd72be6a784c6"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "c2024c52d89b423a2049eba07badcb556b12ea953582002d47be7236d23cac7ca3cc4a099fd9f241dfeee8dbb8809a230721a2d7e6a63cdebebaf25f93bcdacd"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.13.4.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://github.com/FasterXML/jackson"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/FasterXML/jackson-databind/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://github.com/FasterXML/jackson-databind"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.13.4.2?type=jar"
+    },
+    {
+      "group" : "com.google.guava",
+      "name" : "guava",
+      "version" : "32.0.1-jre",
+      "description" : "Guava is a suite of core and expanded libraries that include utility classes, Google's collections, I/O classes, and much more.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "6951895e804b36322214c95917e598d4"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "6e5d51a72d142f2d40a57dfb897188b36a95b489"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "bd7fa227591fb8509677d0d1122cf95158f3b8a9f45653f58281d879f6dc48c5"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "5dbe7a697511cfbe44f3ffb954e32e997677ecc61f03bb7bb374f1b8fa4a931a95cd9d1f5288eb5d42e2aa380e3241b35059786c07edc48e5aa67c30cddad8a5"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "abad4556e073fb38062c636b6599ceed992302c7d98150e3842d32ce92f6aac7d630633c56efa581523d591361fcf898"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "c7b02d77e04c567e8870674f71a60141e83ca9e5e9180138450ede78ad7f2be8b6636c514096e15ba2921c2889427852"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "17f18d8631c9bff9234c214522ce89eb1feef27a4dfe990760d4943ad3de710d"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "7cf7847812b47cc232ef3c27719457dd19610b3e3bb25c1be640821a3a2be67781047f41e34491b5c8ed68010bbb1d53c5f7706633f3a3f44f3f3133bb7635ec"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/google/guava"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/google/guava/actions"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/google/guava/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/guava/guava"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar"
+    },
+    {
+      "group" : "com.google.guava",
+      "name" : "failureaccess",
+      "version" : "1.0.1",
+      "description" : "Contains com.google.common.util.concurrent.internal.InternalFutureFailureAccess and InternalFutures. Most users will never need to use this artifact. Its classes is conceptually a part of Guava, but they're in this separate artifact so that Android libraries can use them without pulling in all of Guava (just as they can use ListenableFuture by depending on the listenablefuture artifact).",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "091883993ef5bfa91da01dcc8fc52236"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "1dcf1de382a0bf95a3d8b0849546c88bac1292c9"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "a171ee4c734dd2da837e4b16be9df4661afab72a41adaf31eb84dfdaf936ca26"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "f8d59b808d6ba617252305b66d5590937da9b2b843d492d06b8d0b1b1f397e39f360d5817707797b979a5bf20bf21987b35333e7a15c44ed7401fea2d2119cae"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "67659dbd9647ec303d7f15128dc9dba19b98fd8d74758ee3b602451e32c855e236ccaafe08edf4bbfa245f981268440f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1460875f0331c5fa3791772a6a322a7db180261bc2adacf7271df1fbf3b088a587a755a604c039982cb593c5cfc1f101"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "ea86406e75fcd93eafe3cde1b3135ba485f1bb9b75fed98894a0bf1f0aee04f0"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "52ac0f487ab5dd27c9f2e54fd1d84c7a620cae9d49be4072aa2b11501787bf4391ddaa13d02eccdf19e8eea46aecbea5f6064b26777c1b836108a280652e04ac"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.guava/failureaccess@1.0.1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/google/guava/failureaccess"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://travis-ci.org/google/guava"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/google/guava/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/guava/failureaccess"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.guava/failureaccess@1.0.1?type=jar"
+    },
+    {
+      "group" : "com.google.guava",
+      "name" : "listenablefuture",
+      "version" : "9999.0-empty-to-avoid-conflict-with-guava",
+      "description" : "An empty artifact that Guava depends on to signal that it is providing ListenableFuture -- but is also available in a second \"version\" that contains com.google.common.util.concurrent.ListenableFuture class, without any other Guava classes. The idea is: - If users want only ListenableFuture, they depend on listenablefuture-1.0. - If users want all of Guava, they depend on guava, which, as of Guava 27.0, depends on listenablefuture-9999.0-empty-to-avoid-conflict-with-guava. The 9999.0-... version number is enough for some build systems (notably, Gradle) to select that empty artifact over the \"real\" listenablefuture-1.0 -- avoiding a conflict with the copy of ListenableFuture in guava itself. If users are using an older version of Guava or a build system other than Gradle, they may see class conflicts. If so, they can solve them by manually excluding the listenablefuture artifact or manually forcing their build systems to use 9999.0-....",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "d094c22570d65e132c19cea5d352e381"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "b421526c5f297295adef1c886e5246c39d4ac629"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "b372a037d4230aa57fbeffdef30fd6123f9c0c2db85d0aced00c91b974f33f99"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "c5987a979174cbacae2e78b319f080420cc71bcdbcf7893745731eeb93c23ed13bff8d4599441f373f3a246023d33df03e882de3015ee932a74a774afdd0782f"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "caff9b74079f95832ca7f6029346b34b606051cc8c5a4389fac263511d277ada0c55f28b0d43011055b268c6eb7184d5"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "e939f08df0545847ea0d3e4b04a114b08499ad069ba8ec9461d1779f87a56e0c37273630a0f4c14e78c348d3ac7eb97f"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "1f0a8b1177773b3a8ace839df5eed63cbf56b24a38714898a6e4ed065c42559f"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "6b495ecc2a18b17365cb08d124a0da47f04bcdde81927b5245edf3edd8e498c3c3fb92ce6a4127f660bac851bb1d3e4510e5c20d03be47ce99dc296d360db285"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/google/guava/listenablefuture"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://travis-ci.org/google/guava"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/google/guava/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/guava/listenablefuture"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava?type=jar"
+    },
+    {
+      "group" : "org.checkerframework",
+      "name" : "checker-qual",
+      "version" : "3.33.0",
+      "description" : "checker-qual contains annotations (type qualifiers) that a programmer writes to specify Java code for type-checking by the Checker Framework.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "fc9418b779d9d57dcd52197006cbdb9b"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "de2b60b62da487644fc11f734e73c8b0b431238f"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "e316255bbfcd9fe50d165314b85abb2b33cb2a66a93c491db648e498a82c2de1"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "049c446677b7b386f3fb501bf65e032bdf2b1b29a3f545848035fff2b683cd275380cf302e30eea641af7f0801f779bcda3d82a71d928e4176f564f796640a64"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "ddf7a0f70421d1ed75e93c0a30434a4862c3905e433223e19861323cf0994e843392b746003040f10a7db6fc960b8aa6"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "edf079834fdd23317851318504b2fcc10b055cdb5cc4ada9c773d1b6c815ed6dd193c433d2b83103f070fd521021ff33"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "56244f45b03fc2a472b35489324e392e6001fac088d19f33629a87adb74a0575"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e0516c11fe613f258bf9ad39358a8d9fb7c8df57ff9aaca5d6d16055c196fac4ed3b4185f2501a3bdf7aeb1fe142693b1d788bdaa73366be1af15762bb3591a4"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.checkerframework/checker-qual@3.33.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://checkerframework.org/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/typetools/checker-framework.git"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.checkerframework/checker-qual@3.33.0?type=jar"
+    },
+    {
+      "publisher" : "Google LLC",
+      "group" : "com.google.errorprone",
+      "name" : "error_prone_annotations",
+      "version" : "2.18.0",
+      "description" : "Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "64145d0e7fee5a69ed7b84cf402de998"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "89b684257096f548fa39a7df9fdaa409d4d4df91"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "9e6814cb71816988a4fd1b07a993a8f21bb7058d522c162b1de849e19bea54ae"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "3cea86be94bb8ae40d21ad4bf7d7f6b2233e89593b7b741ad84c78840cd3837bb5136f52e62fe9ae0953d7b190c46ad3edc102dfa97b4c7ea472a80206bf5db7"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "7622eb33f83f03ab32b710b36c2fe836e24c5318f65fb8c0631a99507ca3ae65c2df8e33b63a5ce853b9cab6d9cb32e5"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1ea52a5ce2a9ee1a960dc2a1bbe4b009d4d6a4448498e4cd76401605fa877662911e8c93b2b8bfda57bedc56c83f10a0"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "ed53f4295da75753267f241315352c4a39e60796f04e1c0c12d29c3a38be48ed"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "8266b313bd4e1170daf60642e838841370d99bc24b2a1f91825ca22037a6a30ff15cc76069f8e8770f1dc12772c277ee1320de67e815041697d93d6d7ba884fb"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.18.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://errorprone.info/error_prone_annotations"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/error-prone/error_prone_annotations"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.18.0?type=jar"
+    },
+    {
+      "group" : "com.google.j2objc",
+      "name" : "j2objc-annotations",
+      "version" : "2.8",
+      "description" : "A set of annotations that provide additional information to the J2ObjC translator to modify the result of translation.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "c50af69b704dc91050efb98e0dff66d1"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "c85270e307e7b822f1086b93689124b89768e273"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "f02a95fa1a5e95edb3ed859fd0fb7df709d121a35290eff8b74dce2ab7f4d6ed"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "f8263868a792b41707c9e7fe6fa5650a14cd93fbeafad20efe3772a3058fc933eb59782ec59e6eb9b9c569aa96da80134ae9fdf7547b69c44a97087efddceeff"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "e6087ec31fec8289158496ad2ed6ce8472d5d513808a312e0782cedac3b86c37a62a63c0b5ea3839491d109fe9e148a1"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "10add34bfeb8612283eef89ac96747a3c9b755acd80ad526e1addaeb7efd6323c52b9bfa1a3d34adb40e1ccb963ee65d"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "b3336f8abd6b1f73b9f06d306974557000a000073bfbae6b54fda26d17dbb072"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "d376c184a6df071c4e93b913d175b5c2e63deac37105dc20342c19bdda62e4e9598ca1e8bfb4f4fd5cdee6dd5ac3b8af49e2c5193e324d59a59ce1f7adeab627"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.j2objc/j2objc-annotations@2.8?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/google/j2objc/"
+        },
+        {
+          "type" : "distribution",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://svn.sonatype.org/spice/trunk/oss/oss-parent-9/j2objc-annotations"
+        }
+      ],
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.j2objc/j2objc-annotations@2.8?type=jar"
+    }
+  ],
+  "dependencies" : [
+    {
+      "ref" : "pkg:maven/org.eclipse.tractusx.agents/provisioning-agent@1.10.2-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/it.unibz.inf.ontop/ontop-rdb@5.0.2?type=jar",
+        "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/it.unibz.inf.ontop/ontop-rdb@5.0.2?type=jar",
+      "dependsOn" : [
+        "pkg:maven/it.unibz.inf.ontop/ontop-model@5.0.2?type=jar",
+        "pkg:maven/it.unibz.inf.ontop/ontop-obda-core@5.0.2?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+        "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar",
+        "pkg:maven/org.apache.commons/commons-rdf-api@0.5.0?type=jar",
+        "pkg:maven/javax.inject/javax.inject@1?type=jar",
+        "pkg:maven/com.google.inject/guice@5.0.1?type=jar",
+        "pkg:maven/com.google.inject.extensions/guice-assistedinject@5.0.1?type=jar",
+        "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-guava@2.13.2?type=jar",
+        "pkg:maven/com.github.jsqlparser/jsqlparser@4.4?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.13.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.13.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.13.4.2?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/it.unibz.inf.ontop/ontop-model@5.0.2?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.apache.commons/commons-rdf-api@0.5.0?type=jar",
+        "pkg:maven/org.apache.commons/commons-rdf-simple@0.5.0?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+        "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar",
+        "pkg:maven/com.google.inject/guice@5.0.1?type=jar",
+        "pkg:maven/com.google.inject.extensions/guice-assistedinject@5.0.1?type=jar",
+        "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+        "pkg:maven/io.mikael/urlbuilder@2.0.9?type=jar",
+        "pkg:maven/org.locationtech.proj4j/proj4j@1.1.1?type=jar",
+        "pkg:maven/commons-codec/commons-codec@1.14?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.13.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.13.4.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.13.2?type=jar",
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model@4.1.3?type=jar",
+        "pkg:maven/javax.inject/javax.inject@1?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.apache.commons/commons-rdf-api@0.5.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.apache.commons/commons-rdf-simple@0.5.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.apache.commons/commons-rdf-api@0.5.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.google.guava/failureaccess@1.0.1?type=jar",
+        "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava?type=jar",
+        "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+        "pkg:maven/org.checkerframework/checker-qual@3.33.0?type=jar",
+        "pkg:maven/com.google.errorprone/error_prone_annotations@2.18.0?type=jar",
+        "pkg:maven/com.google.j2objc/j2objc-annotations@2.8?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.guava/failureaccess@1.0.1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.checkerframework/checker-qual@3.33.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.18.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.j2objc/j2objc-annotations@2.8?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.inject/guice@5.0.1?type=jar",
+      "dependsOn" : [
+        "pkg:maven/javax.inject/javax.inject@1?type=jar",
+        "pkg:maven/aopalliance/aopalliance@1.0?type=jar",
+        "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/javax.inject/javax.inject@1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/aopalliance/aopalliance@1.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.inject.extensions/guice-assistedinject@5.0.1?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.google.inject/guice@5.0.1?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/io.mikael/urlbuilder@2.0.9?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.locationtech.proj4j/proj4j@1.1.1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/commons-codec/commons-codec@1.14?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.13.2?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.13.4.2?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.13.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.13.2?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.13.2?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model@4.1.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar",
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model-vocabulary@4.1.3?type=jar",
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-common-exception@4.1.3?type=jar",
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-common-text@4.1.3?type=jar",
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-common-io@4.1.3?type=jar",
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-common-iterator@4.1.3?type=jar",
+        "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-common-annotation@4.1.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-annotation@4.1.3?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-model-vocabulary@4.1.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-exception@4.1.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-common-annotation@4.1.3?type=jar",
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-text@4.1.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-io@4.1.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar",
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-common-util@4.1.3?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-util@4.1.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.rdf4j/rdf4j-common-iterator@4.1.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.rdf4j/rdf4j-model-api@4.1.3?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@1.7.36?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/it.unibz.inf.ontop/ontop-obda-core@5.0.2?type=jar",
+      "dependsOn" : [
+        "pkg:maven/it.unibz.inf.ontop/ontop-model@5.0.2?type=jar",
+        "pkg:maven/org.apache.commons/commons-rdf-api@0.5.0?type=jar",
+        "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar",
+        "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+        "pkg:maven/com.google.inject.extensions/guice-assistedinject@5.0.1?type=jar",
+        "pkg:maven/com.google.inject/guice@5.0.1?type=jar",
+        "pkg:maven/org.javabits.jgrapht/jgrapht-core@0.9.3?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.javabits.jgrapht/jgrapht-core@0.9.3?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-guava@2.13.2?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.google.guava/guava@32.0.1-jre?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.13.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.13.4.2?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.github.jsqlparser/jsqlparser@4.4?type=jar",
+      "dependsOn" : [ ]
+    }
+  ]
+}
