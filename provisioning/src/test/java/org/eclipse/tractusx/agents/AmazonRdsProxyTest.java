@@ -25,6 +25,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 /**
  * Amazon RDS behaves sometimes a little bit different than the native DBs
  * This test class is to find out and mitigate the peculiarities.
@@ -32,7 +34,7 @@ import java.util.Properties;
 @Tag("online")
 public class AmazonRdsProxyTest {
 
-    String rdsInstance="jdbc:postgresql://%s.rds.amazonaws.com:5432/postgres?user=%s&password=%s";
+    String rdsInstance="jdbc:postgresql://%s.rds.amazonaws.com:%d/postgres?user=%s&password=%s";
 
     /**
      * tests connection to amazon
@@ -40,8 +42,9 @@ public class AmazonRdsProxyTest {
      */
     @Test
     public void testConnection() throws SQLException {
-        String connectionUrl=String.format(rdsInstance,"database-test.c5yvud9moyda","admin","hello");
+        String connectionUrl=String.format(rdsInstance,"database-x.region",8080,"who","what");
         Properties connectionProperties=new Properties();
         Connection connection=DriverManager.getConnection(connectionUrl, connectionProperties);
+        assertNotNull(connection.getSchema(),"Current schema should be non-empty");
     }
 }

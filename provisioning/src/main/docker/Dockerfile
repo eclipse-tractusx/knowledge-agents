@@ -55,7 +55,7 @@ RUN rm /opt/ontop/lib/guava-*.jar && \
     for jdbcDriver in "$jdbcDrivers"; do wget --no-check-certificate -q -P /opt/ontop/jdbc ${jdbcDriver} ; done && \
     mkdir -p /opt/ontop/input && \
     mkdir -p /opt/ontop/database && \
-    chmod 755 /opt/ontop/entrypoint.sh && \
+    chmod 700 /opt/ontop/entrypoint.sh && \
     chown -R ontop:ontop /opt/ontop
 
 COPY --from=build /opt/ontop/lib/*.jar /opt/ontop/lib/
