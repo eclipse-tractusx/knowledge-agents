@@ -230,7 +230,7 @@ ingresses:
       clusterIssuer: ""
 
 # -- [Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) applied to the deployed pod
-# We recommend using 50% of CPU and 0.5Gi of memory per exported endpoint
+# We recommend using 50% of CPU and 0.7Gi of memory per exported endpoint
 resources:
   requests:
     cpu: 500m

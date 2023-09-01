@@ -20,7 +20,7 @@
 
 # conforming-agent
 
-![Version: 1.9.6-SNAPSHOT](https://img.shields.io/badge/Version-1.9.6--SNAPSHOT-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.9.5-SNAPSHOT](https://img.shields.io/badge/AppVersion-1.9.5--SNAPSHOT-informational?style=flat-square)
+![Version: 1.9.8](https://img.shields.io/badge/Version-1.9.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.9.8](https://img.shields.io/badge/AppVersion-1.9.8-informational?style=flat-square)
 
 A Helm chart for the Tractus-X Conforming Agent which is a container to assess the conformity of all other parts of the Agent-Enabled Dataspace.
 
@@ -31,7 +31,7 @@ This chart has no prerequisites.
 ## TL;DR
 ```shell
 $ helm repo add eclipse-tractusx https://eclipse-tractusx.github.io/charts/dev
-$ helm install my-release eclipse-tractusx/conforming-agent --version 1.9.6-SNAPSHOT
+$ helm install my-release eclipse-tractusx/conforming-agent --version 1.9.8
 ```
 
 ## Maintainers
@@ -63,10 +63,10 @@ $ helm install my-release eclipse-tractusx/conforming-agent --version 1.9.6-SNAP
 | env | object | `{}` | Container environment variables e.g. for configuring [JAVA_TOOL_OPTIONS](https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/envvars002.html) Ex.:   JAVA_TOOL_OPTIONS: >     -Dhttp.proxyHost=proxy -Dhttp.proxyPort=80 -Dhttp.nonProxyHosts="localhost|127.*|[::1]" -Dhttps.proxyHost=proxy -Dhttps.proxyPort=443 |
 | envSecretName | string | `nil` | [Kubernetes Secret Resource](https://kubernetes.io/docs/concepts/configuration/secret/) name to load environment variables from |
 | fullnameOverride | string | `""` | Overrides the releases full name |
-| image.digest | string | `""` | Overrides the image digest  |
+| image.digest | string | `""` | Overrides the image digest |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.pullSecrets | list | `[]` |  |
-| image.registry | string | `"docker.io"` | target regirtry |
+| image.registry | string | `"docker.io/"` | target registry |
 | image.repository | string | `"tractusx/conforming-agent"` | Which derivate of agent to use |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | ingresses[0].annotations | string | `nil` | Additional ingress annotations to add, for example when implementing more complex routings you may set { nginx.ingress.kubernetes.io/rewrite-target: /$1, nginx.ingress.kubernetes.io/use-regex: "true" } |
@@ -82,7 +82,7 @@ $ helm install my-release eclipse-tractusx/conforming-agent --version 1.9.6-SNAP
 | ingresses[0].tls.secretName | string | `""` | If present overwrites the default secret name |
 | livenessProbe.enabled | bool | `true` | Whether to enable kubernetes [liveness-probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) |
 | livenessProbe.failureThreshold | int | `3` | Minimum consecutive failures for the probe to be considered failed after having succeeded |
-| livenessProbe.periodSeconds | int | `60` | Number of seconds each period lasts.   |
+| livenessProbe.periodSeconds | int | `60` | Number of seconds each period lasts. |
 | livenessProbe.timeoutSeconds | int | `5` | number of seconds until a timeout is assumed |
 | nameOverride | string | `""` | Overrides the charts name |
 | nodeSelector | object | `{}` | [Node-Selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) to constrain the Pod to nodes with specific labels. |
@@ -93,10 +93,10 @@ $ helm install my-release eclipse-tractusx/conforming-agent --version 1.9.6-SNAP
 | podSecurityContext.seccompProfile.type | string | `"RuntimeDefault"` | Restrict a Container's Syscalls with seccomp |
 | readinessProbe.enabled | bool | `true` | Whether to enable kubernetes readiness-probes |
 | readinessProbe.failureThreshold | int | `3` | Minimum consecutive failures for the probe to be considered failed after having succeeded |
-| readinessProbe.periodSeconds | int | `300` | Number of seconds each period lasts.   |
+| readinessProbe.periodSeconds | int | `300` | Number of seconds each period lasts. |
 | readinessProbe.timeoutSeconds | int | `5` | number of seconds until a timeout is assumed |
 | replicaCount | int | `1` | Specifies how many replicas of a deployed pod shall be created during the deployment Note: If horizontal pod autoscaling is enabled this setting has no effect |
-| resources | object | `{"limits":{"cpu":"400m","memory":"256Mi"},"requests":{"cpu":"200m","memory":"256Mi"}}` | [Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) applied to the deployed pod We recommend 20% of a cpu and 256MB per endpoint  |
+| resources | object | `{"limits":{"cpu":"200m","memory":"256Mi"},"requests":{"cpu":"200m","memory":"256Mi"}}` | [Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) applied to the deployed pod We recommend 20% of a cpu and 256MB per endpoint |
 | securityContext.allowPrivilegeEscalation | bool | `false` | Controls [Privilege Escalation](https://kubernetes.io/docs/concepts/security/pod-security-policy/#privilege-escalation) enabling setuid binaries changing the effective user ID |
 | securityContext.capabilities.add | list | `["NET_BIND_SERVICE"]` | Specifies which capabilities to add to issue specialized syscalls |
 | securityContext.capabilities.drop | list | `["ALL"]` | Specifies which capabilities to drop to reduce syscall attack surface |
@@ -111,7 +111,7 @@ $ helm install my-release eclipse-tractusx/conforming-agent --version 1.9.6-SNAP
 | startupProbe.enabled | bool | `true` | Whether to enable kubernetes startup-probes |
 | startupProbe.failureThreshold | int | `18` | Minimum consecutive failures for the probe to be considered failed after having succeeded |
 | startupProbe.initialDelaySeconds | int | `60` | Number of seconds after the container has started before liveness probes are initiated. |
-| startupProbe.periodSeconds | int | `30` | Number of seconds each period lasts.   |
+| startupProbe.periodSeconds | int | `30` | Number of seconds each period lasts. |
 | startupProbe.timeoutSeconds | int | `5` | number of seconds until a timeout is assumed |
 | tolerations | list | `[]` | [Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) are applied to Pods to schedule onto nodes with matching taints. |
 
