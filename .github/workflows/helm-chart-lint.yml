@@ -81,7 +81,7 @@ jobs:
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          changed=$(ct list-changed --target-branch ${{ github.base_ref || github.ref_name }}
+          changed=$(ct list-changed --target-branch ${{ github.base_ref || github.ref_name }})
           if [[ -n "$changed" ]]; then
             echo "CHART_CHANGED=true" >> $GITHUB_ENV
           fi
