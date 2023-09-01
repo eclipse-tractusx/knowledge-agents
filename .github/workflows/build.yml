@@ -25,7 +25,7 @@ on:
   push:
     branches:
       - main
-      - 'releases/**'
+      - 'release/*'
     # Can be scheduled on all branches and version tags
     tags:
       - 'v*.*.*'
@@ -34,7 +34,7 @@ on:
   pull_request:
     branches:
       - main
-      - 'releases/**'
+      - 'release/*'
     paths-ignore:
       - 'charts/**'
       - 'docs/**'
