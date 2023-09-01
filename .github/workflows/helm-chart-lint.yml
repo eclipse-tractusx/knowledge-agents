@@ -53,6 +53,17 @@ on:
         type: string
 
 jobs:
+  git-branch:
+    name: Determine target branch
+    runs-on: ubuntu-latest
+    outputs:
+      value: ${{ steps.git-branch.outputs.BRANCH }}
+    steps:
+      - name: Resolve git branch
+        id: git-branch
+        run: |
+          echo "BRANCH=$(echo $GITHUB_REF | sed -e "s#refs/(heads|tags)/##g")" >> $GITHUB_OUTPUT
+
   lint-test:
     runs-on: ubuntu-latest
     steps:
