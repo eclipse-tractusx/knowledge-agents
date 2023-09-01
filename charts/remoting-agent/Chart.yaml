@@ -28,7 +28,7 @@ home: https://github.com/eclipse-tractusx/knowledge-agents/
 sources:
   - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/remoting
 type: application
-appVersion: "1.9.5-SNAPSHOT"
-version: 1.9.7-SNAPSHOT
+appVersion: "1.10.2-SNAPSHOT"
+version: 1.10.2-SNAPSHOT
 maintainers:
   - name: 'Tractus-X Knowledge Agents Team'
