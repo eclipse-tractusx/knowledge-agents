@@ -119,7 +119,7 @@ jobs:
 
       # build in any case, but push only main and version tag settings
       - name: Conforming Container Build and Push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: conforming/.
           file: conforming/src/main/docker/Dockerfile
@@ -158,7 +158,7 @@ jobs:
 
       # build in any case, but push only main and version tag settings
       - name: Remoting Container Build and Push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: remoting/.
           file: remoting/src/main/docker/Dockerfile
@@ -197,7 +197,7 @@ jobs:
 
       # build in any case, but push only main and version tag settings
       - name: Provisioning Container Build and Push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: provisioning/.
           file: provisioning/src/main/docker/Dockerfile
