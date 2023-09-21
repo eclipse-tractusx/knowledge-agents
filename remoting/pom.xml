@@ -295,6 +295,13 @@
                 </includes>
                 <targetPath>META-INF</targetPath>
             </resource>
+            <resource>
+                <directory>src/main/resources/META-INF/services</directory>
+                <includes>
+                    <include>org.eclipse.rdf4j.sail.config.SailFactory</include>
+                </includes>
+                <targetPath>META-INF/services</targetPath>
+            </resource>
         </resources>
         <plugins>
             <plugin>
