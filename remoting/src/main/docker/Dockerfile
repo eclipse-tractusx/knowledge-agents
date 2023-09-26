@@ -21,7 +21,7 @@
 
 FROM openjdk:22-jdk-slim AS build
 
-COPY target/original-remoting-agent-*-SNAPSHOT.jar /opt/lib/
+COPY target/original-remoting-agent-*.jar /opt/lib/
 COPY target/lib/guava-*.jar /opt/lib/
 COPY target/lib/netty-*.jar /opt/lib/
 COPY target/lib/jetty-*.jar /opt/lib/
