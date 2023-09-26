@@ -1,3 +1,4 @@
+---
 #
 #  Copyright (c) 2022, 2023 Contributors to the Eclipse Foundation
 #
@@ -98,7 +99,7 @@ jobs:
 
       - name: Build Java/Docker via Maven
         run: |
-          ./mvnw -s settings.xml deploy -Drepo=kind-registry:5000/tractusx/ -Dmaven.deploy.skip -DskipTests -Pwith-docker-image 
+          ./mvnw -s settings.xml deploy -Drepo=kind-registry:5000/tractusx/ -Dmaven.deploy.skip -DskipTests -Pwith-docker-image
         if: github.event_name != 'pull_request' || env.CHART_CHANGED == 'true'
 
       # install the chart to the kind cluster and run helm test
@@ -119,7 +120,7 @@ jobs:
 
       # Upgrade the released chart version with the locally available chart
       # default value for event_name != workflow_dispatch
-      - name: Run helm upgrade on provisioning agent 
+      - name: Run helm upgrade on provisioning agent
         run: |
           helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
           helm install provisioning tractusx-dev/provisioning-agent --version ${{ github.event.inputs.upgrade_from }} --set=image.registry=kind-registry:5000/
