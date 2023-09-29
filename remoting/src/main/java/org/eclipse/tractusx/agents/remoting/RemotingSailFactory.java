@@ -17,9 +17,9 @@
 package org.eclipse.tractusx.agents.remoting;
 
 import org.eclipse.rdf4j.sail.Sail;
+import org.eclipse.rdf4j.sail.config.SailConfigException;
 import org.eclipse.rdf4j.sail.config.SailFactory;
 import org.eclipse.rdf4j.sail.config.SailImplConfig;
-import org.eclipse.rdf4j.sail.config.SailConfigException;
 import org.eclipse.tractusx.agents.remoting.config.RemotingSailConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,19 +39,19 @@ public class RemotingSailFactory implements SailFactory {
      * hardcoded sail type
      */
     public static final String SAIL_TYPE = "org.eclipse.tractusx.agents:Remoting";
-    
+
     /**
      * createst the factory
      */
     public RemotingSailFactory() {
-        if(logger.isDebugEnabled()) {
-            logger.debug(String.format("Creating a Remoting SAIL factory for SAIL type %s. Usually OSGI configuration has been successful at this point.",SAIL_TYPE));
+        if (logger.isDebugEnabled()) {
+            logger.debug(String.format("Creating a Remoting SAIL factory for SAIL type %s. Usually OSGI configuration has been successful at this point.", SAIL_TYPE));
         }
     }
 
     @Override
     public String toString() {
-        return super.toString()+"/factory";
+        return super.toString() + "/factory";
     }
 
     /**
@@ -67,7 +67,7 @@ public class RemotingSailFactory implements SailFactory {
      */
     @Override
     public SailImplConfig getConfig() {
-        if(logger.isTraceEnabled()) {
+        if (logger.isTraceEnabled()) {
             logger.trace("Creating a Remoting SAIL configuration.");
         }
         return new RemotingSailConfig();
@@ -78,17 +78,16 @@ public class RemotingSailFactory implements SailFactory {
      */
     @Override
     public Sail getSail(SailImplConfig originalConfig) throws SailConfigException {
-        if(logger.isDebugEnabled()) {
-            logger.debug("About to creating a Remoting SAIL from configuration "+originalConfig);
+        if (logger.isDebugEnabled()) {
+            logger.debug("About to creating a Remoting SAIL from configuration " + originalConfig);
         }
         if (!(originalConfig instanceof RemotingSailConfig)) {
             throw new SailConfigException(
-                    "Wrong config type: " 
-                            + originalConfig.getClass().getCanonicalName() + ". ");
+                    "Wrong config type: " + originalConfig.getClass().getCanonicalName() + ". ");
         }
-        RemotingSailConfig config = (RemotingSailConfig)originalConfig;
+        RemotingSailConfig config = (RemotingSailConfig) originalConfig;
         RemotingSail sail = new RemotingSail(config);
         return sail;
-       
+
     }
 }

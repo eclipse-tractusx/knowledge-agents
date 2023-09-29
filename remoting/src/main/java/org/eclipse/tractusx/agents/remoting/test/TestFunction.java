@@ -24,13 +24,13 @@ public class TestFunction {
 
     @Override
     public String toString() {
-        return super.toString()+"/test";
+        return super.toString() + "/test";
     }
 
     /**
      * test method to expose
      */
-    public int test(int operator1,int operator2) {
-        return operator1+operator2;
-    }    
+    public int test(int operator1, int operator2) {
+        return operator1 + operator2;
+    }
 }

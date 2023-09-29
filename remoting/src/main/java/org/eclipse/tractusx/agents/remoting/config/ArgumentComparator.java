@@ -26,11 +26,12 @@ public class ArgumentComparator implements Comparator<Map.Entry<String, Argument
 
     /**
      * use the configs priority
+     *
      * @param o1 the first object to be compared.
      * @param o2 the second object to be compared.
      * @return comparison according to priority
      */
     public int compare(Map.Entry<String, ArgumentConfig> o1, Map.Entry<String, ArgumentConfig> o2) {
-        return Integer.compare(o1.getValue().getPriority(),o2.getValue().getPriority());
+        return Integer.compare(o1.getValue().getPriority(), o2.getValue().getPriority());
     }
 }
