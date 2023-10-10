@@ -1,3 +1,4 @@
+---
 #
 #  Copyright (c) 2023 T-Systems International GmbH
 #  Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
@@ -41,10 +42,17 @@ on:
       - '**/*.md'
   # Manual workflow trigger
   workflow_dispatch:
-
-# the docker registry and namespace
-env:
-  IMAGE_NAMESPACE: "tractusx"
+    inputs:
+      deploy_maven:
+        description: 'whether maven packages should be deployed (default: false)'
+        default: 'false'
+        required: false
+        type: string
+      deploy_docker:
+        description: 'whether docker images should be deployed (default: true)'
+        default: 'true'
+        required: false
+        type: string
 
 # If build is triggered several times, e.g., through subsequent pushes
 # into the same PR, cancel the previous runs, see below
@@ -63,6 +71,20 @@ jobs:
     strategy:
       fail-fast: false
     steps:
+
+      # Determine the right target docker repo
+      - name: Check github repository and set docker repo
+        id: set-docker-repo
+        run: |
+          echo "REGISTRY=docker.io" >> $GITHUB_OUTPUT;
+          echo "REPO=tractusx" >> $GITHUB_OUTPUT;
+          if [ "${{ github.repository }}" != "eclipse-tractusx/knowledge-agents-edc" ];
+          then
+            echo "REGISTRY=ghcr.io" >> $GITHUB_OUTPUT
+            echo "REPO=ghcr.io/${{ github.repository }}" >> $GITHUB_OUTPUT
+          fi
+          exit 0
+
       # Get the Code
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -72,27 +94,28 @@ jobs:
       # Setup build environment
       - uses: ./.github/actions/setup-java
 
-      # Enabled deployment access (if either running on main or a version tag on eclipse-tractusx)
+      # Enable deployment access (on demand or main branch and version tags only)
       - name: Login to GitHub Container Registry
-        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
         uses: docker/login-action@v2
         with:
+          registry: ${{ steps.set-docker-repo.outputs.REGISTRY }}
           # Use existing DockerHub credentials present as secrets
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
 
-      # Run Maven Deploy (if either running on main or a version tag on eclipse-tractusx)
+      # Run Maven Deploy (on demand or if either running on main or a version tag)
       - name: Deploy Java via Maven
-        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ ( github.event.inputs.deploy_maven == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
         run: |
-          ./mvnw -s settings.xml deploy
+          ./mvnw -s settings.xml deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Run Maven Install (otherwise)
       - name: Build Java via Maven
-        if: ${{ github.repository != 'eclipse-tractusx/knowledge-agents' || (github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ ( github.event.inputs.deploy_maven != 'true' && github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/v') ) }}
         run: |
           ./mvnw -s settings.xml install
         env:
@@ -105,7 +128,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.IMAGE_NAMESPACE }}/conforming-agent
+            ${{ steps.set-docker-repo.outputs.REPO }}/conforming-agent
           # Automatically prepare image tags; See action docs for more examples.
           # semver patter will generate tags like these for example :1 :1.2 :1.2.3
           tags: |
@@ -114,7 +137,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.9.8,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.9.8,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
@@ -124,19 +147,19 @@ jobs:
           context: conforming/.
           file: conforming/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
-          push: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
+          push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
           tags: ${{ steps.meta-conf.outputs.tags }}
           labels: ${{ steps.meta-conf.outputs.labels }}
 
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Conforming Agent
-        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && github.ref == 'refs/heads/main' }}
+        if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
         uses: peter-evans/dockerhub-description@v3
         with:
           readme-filepath: conforming/README.md
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: ${{ env.IMAGE_NAMESPACE }}/conforming-agent
+          username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
+          repository: ${{ steps.set-docker-repo.outputs.REPO }}/conforming-agent
 
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Remoting
@@ -144,7 +167,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.IMAGE_NAMESPACE }}/remoting-agent
+            ${{ steps.set-docker-repo.outputs.REPO }}/remoting-agent
           # Automatically prepare image tags; See action docs for more examples.
           # semver patter will generate tags like these for example :1 :1.2 :1.2.3
           tags: |
@@ -153,7 +176,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.9.8,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.9.8,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
@@ -163,19 +186,19 @@ jobs:
           context: remoting/.
           file: remoting/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
-          push: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
+          push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
           tags: ${{ steps.meta-remote.outputs.tags }}
           labels: ${{ steps.meta-remote.outputs.labels }}
 
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Remoting Agent
-        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && github.ref == 'refs/heads/main' }}
+        if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
         uses: peter-evans/dockerhub-description@v3
         with:
           readme-filepath: remoting/README.md
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: ${{ env.IMAGE_NAMESPACE }}/remoting-agent
+          username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
+          repository: ${{ steps.set-docker-repo.outputs.REPO }}/remoting-agent
 
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Provisioning
@@ -183,7 +206,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.IMAGE_NAMESPACE }}/provisioning-agent
+            ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
           # Automatically prepare image tags; See action docs for more examples.
           # semver patter will generate tags like these for example :1 :1.2 :1.2.3
           tags: |
@@ -192,7 +215,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.9.8,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.9.8,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
@@ -202,17 +225,16 @@ jobs:
           context: provisioning/.
           file: provisioning/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
-          push: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && (github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v')) }}
+          push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
           tags: ${{ steps.meta-prov.outputs.tags }}
           labels: ${{ steps.meta-prov.outputs.labels }}
 
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Provisioning Agent
-        if: ${{ github.repository == 'eclipse-tractusx/knowledge-agents'  && github.ref == 'refs/heads/main' }}
+        if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
         uses: peter-evans/dockerhub-description@v3
         with:
           readme-filepath: provisioning/README.md
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: ${{ env.IMAGE_NAMESPACE }}/provisioning-agent
-
+          username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
+          repository: ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
