@@ -22,7 +22,7 @@ maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-joda/2.15.2, 
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.13.4, Apache-2.0, approved, clearlydefined
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.13.5, Apache-2.0, approved, clearlydefined
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.15.1, Apache-2.0, approved, #7930
-maven/mavencentral/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.15.2, Apache-2.0, approved, clearlydefined
+maven/mavencentral/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.15.2, Apache-2.0, approved, #11061
 maven/mavencentral/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.15.2, Apache-2.0, approved, #9101
 maven/mavencentral/com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.15.2, Apache-2.0, approved, #9100
 maven/mavencentral/com.fasterxml.jackson.module/jackson-module-parameter-names/2.13.4, Apache-2.0, approved, clearlydefined
@@ -63,16 +63,16 @@ maven/mavencentral/io.netty/netty-transport/4.1.94.Final, Apache-2.0 AND BSD-3-C
 maven/mavencentral/io.sgr/s2-geometry-library-java/1.0.0, Apache-2.0, approved, CQ22121
 maven/mavencentral/io.swagger.core.v3/swagger-annotations/2.2.12, Apache-2.0, approved, clearlydefined
 maven/mavencentral/io.swagger.core.v3/swagger-core/2.2.12, Apache-2.0, approved, #9265
-maven/mavencentral/io.swagger.core.v3/swagger-integration/2.2.12, Apache-2.0, approved, clearlydefined
+maven/mavencentral/io.swagger.core.v3/swagger-integration/2.2.12, Apache-2.0, approved, #10352
 maven/mavencentral/io.swagger.core.v3/swagger-jaxrs2/2.2.12, Apache-2.0, approved, #9814
-maven/mavencentral/io.swagger.core.v3/swagger-models/2.2.12, Apache-2.0, approved, clearlydefined
+maven/mavencentral/io.swagger.core.v3/swagger-models/2.2.12, Apache-2.0, approved, #10353
 maven/mavencentral/it.unibz.inf.ontop/ontop-model/5.0.2, Apache-2.0, approved, #9817
 maven/mavencentral/it.unibz.inf.ontop/ontop-obda-core/5.0.2, Apache-2.0, approved, #9812
 maven/mavencentral/it.unibz.inf.ontop/ontop-rdb/5.0.2, Apache-2.0, approved, #9813
 maven/mavencentral/jakarta.activation/jakarta.activation-api/1.2.2, EPL-2.0 OR BSD-3-Clause OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jaf
 maven/mavencentral/jakarta.annotation/jakarta.annotation-api/1.3.5, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.ca
 maven/mavencentral/jakarta.servlet/jakarta.servlet-api/4.0.4, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.servlet
-maven/mavencentral/jakarta.validation/jakarta.validation-api/2.0.2, Apache-2.0, approved, clearlydefined
+maven/mavencentral/jakarta.validation/jakarta.validation-api/2.0.2, Apache-2.0, approved, ee4j.validation
 maven/mavencentral/jakarta.ws.rs/jakarta.ws.rs-api/2.1.6, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.rest
 maven/mavencentral/jakarta.xml.bind/jakarta.xml.bind-api/2.3.3, BSD-3-Clause, approved, ee4j.jaxb
 maven/mavencentral/javax.inject/javax.inject/1, Apache-2.0, approved, CQ3555
@@ -272,7 +272,7 @@ maven/mavencentral/org.slf4j/jcl-over-slf4j/1.7.36, Apache-2.0, approved, CQ1284
 maven/mavencentral/org.slf4j/jul-to-slf4j/1.7.36, MIT, approved, CQ12842
 maven/mavencentral/org.slf4j/slf4j-api/1.7.36, MIT, approved, CQ13368
 maven/mavencentral/org.slf4j/slf4j-api/2.0.7, MIT, approved, #5915
-maven/mavencentral/org.slf4j/slf4j-simple/2.0.7, MIT, approved, clearlydefined
+maven/mavencentral/org.slf4j/slf4j-simple/2.0.7, MIT, approved, #10372
 maven/mavencentral/org.springframework.boot/spring-boot-actuator-autoconfigure/2.7.13, Apache-2.0, approved, #3273
 maven/mavencentral/org.springframework.boot/spring-boot-actuator/2.7.13, Apache-2.0, approved, #4316
 maven/mavencentral/org.springframework.boot/spring-boot-autoconfigure/2.7.13, Apache-2.0, approved, #4314
