@@ -58,22 +58,6 @@ You may recreate an up-to-date DEPENDENCIES file by invoking
 ./mvnw org.eclipse.dash:license-tool-plugin:license-check -Ddash.summary=DEPENDENCIES
 ```
 
-We provide Software-Bill-Of-Material (SBOM) documents for each KA-RI module for each release:
-* [Conforming Agent](conforming/conforming-agent-1.10.2-SNAPSHOT-sbom.json)
-* [Provisioning Agent](provisioning/provisioning-agent-1.10.2-SNAPSHOT-sbom.json)
-* [Remoting Agent](remoting/remoting-agent-1.10.2-SNAPSHOT-sbom.json)
-
-You may recreate up-to-date SBOMs by invoking
-
-```shell
-./mvnw org.cyclonedx:cyclonedx-maven-plugin:makeBom -DoutputName=\${project.artifactId}-\${project.version}-sbom
-```
-
-Afterwards, you find the current documents under:
-* [Conforming Agent](conforming/target/conforming-agent-1.10.2-SNAPSHOT-sbom.json)
-* [Provisioning Agent](provisioning/target/provisioning-agent-1.10.2-SNAPSHOT-sbom.json)
-* [Remoting Agent](remoting/target/remoting-agent-1.10.2-SNAPSHOT-sbom.json)
-
 The KA-RI build and runtime platform is relying on:
 * [Java Runtime Environment (JRE >=11 - license depends on chosen provider)](https://de.wikipedia.org/wiki/Java-Laufzeitumgebung)
 * [Java Development Kit (JDK >=11 - license depends on chosen provider)](https://de.wikipedia.org/wiki/Java_Development_Kit) 
