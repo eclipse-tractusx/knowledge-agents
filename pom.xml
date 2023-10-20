@@ -57,7 +57,7 @@
         <guava.version>32.0.1-jre</guava.version>
         <tomcat.version>9.0.78</tomcat.version>
         <netty.version>4.1.94.Final</netty.version>
-        <jetty.version>9.4.51.v20230217</jetty.version>
+        <jetty.version>12.0.0</jetty.version>
         <org.yaml.snakeyaml.version>2.0</org.yaml.snakeyaml.version>
         <snappy.version>1.1.10.2</snappy.version>
         <postgres.version>42.6.0</postgres.version>
