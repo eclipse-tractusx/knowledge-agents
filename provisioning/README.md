@@ -64,7 +64,7 @@ Tractus-X focusses on not only accessing traditional SQL databases, such as [Pos
 * The ability to add additional schema meta-data via properties. Typically, data virtualization platforms do not define/expose any primary or foreign keys. But Ontop builds its optimization techniques on these definitions. Therefore, you might "simulate" the existance of such keys by entering additional properties. For that purpose, you should configure an instance of the  [KeyAwareDremioDBMetadataProvider](src/main/java/it/unibz/inf/ontop/dbschema/impl/KeyAwareDremioDBMetadataProvider.java)
 
 ```console
-com.dremio.jdbc.Driver-metadataProvider = it.unibz.inf.ontop.dbschema.impl.KeyAwareDremioDBMetadataProvider
+com.dremio.jdbc.Driver-metadataProvider = it.unibz.inf.ontop.dbschema.impl.KeyAwareDremioDbMetadataProvider
 com.dremio.jdbc.Driver-schemas = HI_TEST_OEM, TRACE_TEST_OEM
 com.dremio.jdbc.Driver-tables.HI_TEST_OEM = CX_RUL_SerialPartTypization_Vehicle,CX_RUL_SerialPartTypization_Component,CX_RUL_AssemblyPartRelationship,CX_RUL_LoadCollective
 com.dremio.jdbc.Driver-unique.HI_TEST_OEM.CX_RUL_SerialPartTypization_Vehicle = UC_VEHICLE

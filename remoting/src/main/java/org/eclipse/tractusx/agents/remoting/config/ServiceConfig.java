@@ -27,29 +27,45 @@ import java.util.regex.Pattern;
  * from the config graph of the remoting SAIL repo.
  */
 public class ServiceConfig {
-    /** regexp to check invocation */
+    /**
+     * regexp to check invocation
+     */
     public static Pattern classPattern = Pattern.compile(
             "(?<classType>class):(?<class>[a-zA-Z0-9\\.]+)#(?<method>[a-zA-Z0-9]+)|(?<restType>https?)://(?<url>[a-zA-Z0-9\\.:/%#\\-]+)");
 
-    /** url of the target service */
+    /**
+     * url of the target service
+     */
     protected String targetUri = null;
 
-    /** method for the invocation, maybe POST or POST-MF, GET or INVOKE */
+    /**
+     * method for the invocation, maybe POST or POST-MF, GET or INVOKE
+     */
     protected String method = null;
 
-    /** a matcher for the targetUri containing regex groups/bindings */
+    /**
+     * a matcher for the targetUri containing regex groups/bindings
+     */
     protected Matcher matcher = null;
 
-    /** the maximal batch size */
+    /**
+     * the maximal batch size
+     */
     protected long batch = 1;
 
-    /** whether it is an asynchronous call */
+    /**
+     * whether it is an asynchronous call
+     */
     protected String callbackProperty;
 
-    /** prefix to attach to all properties */
+    /**
+     * prefix to attach to all properties
+     */
     protected String inputProperty;
 
-    /** whether and where to put a unique invocation id */
+    /**
+     * whether and where to put a unique invocation id
+     */
     protected String invocationIdProperty;
 
     /**
@@ -62,12 +78,15 @@ public class ServiceConfig {
      */
     protected Map<String, ArgumentConfig> arguments = new java.util.HashMap<String, ArgumentConfig>();
 
-    /** the result */
-    String resultName=null;
-    ResultConfig result=null;
+    /**
+     * the result
+     */
+    String resultName = null;
+    ResultConfig result = null;
 
     /**
      * sets
+     *
      * @param targetUri reference
      */
     public void setTargetUri(String targetUri) {
@@ -76,6 +95,7 @@ public class ServiceConfig {
 
     /**
      * sets
+     *
      * @param resultName reference
      */
     public void setResultName(String resultName) {
@@ -84,6 +104,7 @@ public class ServiceConfig {
 
     /**
      * sets
+     *
      * @param result config
      */
     public void setResult(ResultConfig result) {
@@ -91,6 +112,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return invocation method (POST-JSON, POST-JSON-MF, GET, ...)
      */
     public String getMethod() {
@@ -98,6 +121,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return the matcher that parsed the target uri and provides parsing components
      */
     public Matcher getMatcher() {
@@ -105,6 +130,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return maximal batch size
      */
     public long getBatch() {
@@ -112,6 +139,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return callback property to set callback address to
      */
     public String getCallbackProperty() {
@@ -119,6 +148,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return property which contains the actual request data
      */
     public String getInputProperty() {
@@ -126,6 +157,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return property which should host the invocation id
      */
     public String getInvocationIdProperty() {
@@ -133,6 +166,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return authentication info
      */
     public AuthenticationConfig getAuthentication() {
@@ -140,6 +175,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return map of iri to argument configurations
      */
     public Map<String, ArgumentConfig> getArguments() {
@@ -147,6 +184,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return result reference
      */
     public String getResultName() {
@@ -154,6 +193,8 @@ public class ServiceConfig {
     }
 
     /**
+     * access
+     *
      * @return result config
      */
     public ResultConfig getResult() {
@@ -162,16 +203,17 @@ public class ServiceConfig {
 
     @Override
     public String toString() {
-        return super.toString()+"/service";
-    }   
+        return super.toString() + "/service";
+    }
 
     /**
      * Validates the invocation config
+     *
      * @throws SailConfigException if validation is unsuccessful
      */
     public void validate(String context) throws SailConfigException {
         if (targetUri == null || targetUri.length() == 0) {
-            throw new SailConfigException(String.format("Service URL in invocation %s is not provided",context));
+            throw new SailConfigException(String.format("Service URL in invocation %s is not provided", context));
         }
         matcher = classPattern.matcher(targetUri);
         if (!matcher.matches()) {
@@ -190,7 +232,7 @@ public class ServiceConfig {
                 case "INVOKE":
                     if (matcher.group("classType") == null) {
                         throw new SailConfigException(String.format(
-                                "INVOKE Method can onl be used with class-type service URLs but was %s.", targetUri));
+                                "INVOKE Method can only be used with class-type service URLs but was %s.", targetUri));
                     }
                     break;
                 case "POST-JSON":
@@ -200,25 +242,27 @@ public class ServiceConfig {
                         throw new SailConfigException(String.format(
                                 "%s Method can only be used with REST service URLs but was %s.", method, targetUri));
                     }
-
+                    break;
+                default:
+                    break;
             }
         }
-        if(callbackProperty!=null) {
-            if(result.callbackProperty==null) {
+        if (callbackProperty != null) {
+            if (result.callbackProperty == null) {
                 throw new SailConfigException("There should be a result callbackProperty configured when the invocation callbackProperty is set.");
             }
         }
         for (Map.Entry<String, ArgumentConfig> arg : arguments.entrySet()) {
             arg.getValue().validate(arg.getKey());
         }
-        if(resultName==null || result==null) {
+        if (resultName == null || result == null) {
             throw new SailConfigException(String.format(
-                "There was no result configured for the invocation."));
+                    "There was no result configured for the invocation."));
 
         } else {
             result.validate(resultName);
         }
-        if(authentication!=null) {
+        if (authentication != null) {
             authentication.validate(context);
         }
     }

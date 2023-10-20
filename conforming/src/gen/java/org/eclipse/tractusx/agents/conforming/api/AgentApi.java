@@ -16,51 +16,67 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.eclipse.tractusx.agents.conforming.api;
 
-import org.eclipse.tractusx.agents.conforming.model.CxWarning;
-import org.eclipse.tractusx.agents.conforming.model.XmlResultset;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.headers.Header;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.eclipse.tractusx.agents.conforming.model.CxWarning;
 import org.eclipse.tractusx.agents.conforming.model.JsonResultset;
+import org.eclipse.tractusx.agents.conforming.model.XmlResultset;
 
 import java.util.List;
-
-import javax.ws.rs.core.*;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.core.UriInfo;
 
 @Path("/")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-03-23T11:28:11.277776230Z[GMT]")public abstract class AgentApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-03-23T11:28:11.277776230Z[GMT]")
+public abstract class AgentApi {
 
-    @Context public SecurityContext securityContext;
-    @Context public Application application;
-    @Context public HttpHeaders headers;
-    @Context public Request request;
-    @Context public Response response;
-    @Context public UriInfo uri;
+    @Context
+    public SecurityContext securityContext;
+    @Context
+    public Application application;
+    @Context
+    public HttpHeaders headers;
+    @Context
+    public Request request;
+    @Context
+    public Response response;
+    @Context
+    public UriInfo uri;
 
     @GET
     @Produces({ "application/sparql-results+json",
-                "application/sparql-results+xml"
+            "application/sparql-results+xml"
     })
-    @Operation(summary = "Invoke a Skill or Query (Simple)", description = "", tags={ "agent" })
+    @Operation(summary = "Invoke a Skill or Query (Simple)", description = "", tags = { "agent" })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The SparQL query has been processed successfully.",
                     content = {
                             @Content(mediaType = "application/sparql-results+json", schema = @Schema(implementation = JsonResultset.class)),
                             @Content(mediaType = "application/sparql-results+xml", schema = @Schema(implementation = XmlResultset.class))
-            }),
+                    }),
             @ApiResponse(responseCode = "203", description = "The SparQL query has been processed successfully but warnings did occur.",
-                    headers = { @Header(name="cx_warnings",schema=@Schema(type="array",implementation=CxWarning.class))},
-                     content = {
-                        @Content(mediaType = "application/sparql-results+json", schema = @Schema(implementation = JsonResultset.class)),
-                        @Content(mediaType = "application/sparql-results+xml", schema = @Schema(implementation = XmlResultset.class))
-            }),
+                    headers = { @Header(name = "cx_warnings", schema = @Schema(type = "array", implementation = CxWarning.class)) },
+                    content = {
+                            @Content(mediaType = "application/sparql-results+json", schema = @Schema(implementation = JsonResultset.class)),
+                            @Content(mediaType = "application/sparql-results+xml", schema = @Schema(implementation = XmlResultset.class))
+                    }),
             @ApiResponse(responseCode = "400", description = "Bad request or malformed SPARQL"),
             @ApiResponse(responseCode = "500", description = "Fatal error")
     })
@@ -72,15 +88,15 @@ import javax.ws.rs.*;
             @Parameter(in = ParameterIn.QUERY, description = "The SPARQL query")
             @QueryParam("query") String query,
             @Parameter(in = ParameterIn.QUERY, description = "A sample bound parameter 'vin' which opens a new input tuple")
-            @QueryParam("(vin") String _vin,
+            @QueryParam("(vin") String vin,
             @Parameter(in = ParameterIn.QUERY, description = "A sample multi-bound parameter 'troubleCode' which closes the tuple")
             @QueryParam("troubleCode") List<String> troubleCode)
-    throws org.eclipse.tractusx.agents.conforming.api.NotFoundException;
+            throws org.eclipse.tractusx.agents.conforming.api.NotFoundException;
 
     @POST
     @Consumes({ "application/sparql-results+json", "application/sparql-results+xml", "application/sparql-query" })
     @Produces({ "application/sparql-results+json", "application/sparql-results+xml" })
-    @Operation(summary = "Invoke a Skill or Query (Flexible)", description = "", tags={ "agent" })
+    @Operation(summary = "Invoke a Skill or Query (Flexible)", description = "", tags = { "agent" })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The SparQL query has been processed successfully.",
                     content = {
@@ -88,7 +104,7 @@ import javax.ws.rs.*;
                             @Content(mediaType = "application/sparql-results+xml", schema = @Schema(implementation = XmlResultset.class))
                     }),
             @ApiResponse(responseCode = "203", description = "The SparQL query has been processed successfully but warnings did occur.",
-                    headers = { @Header(name="cx_warnings",schema=@Schema(type="array",implementation=CxWarning.class))},
+                    headers = { @Header(name = "cx_warnings", schema = @Schema(type = "array", implementation = CxWarning.class)) },
                     content = {
                             @Content(mediaType = "application/sparql-results+json", schema = @Schema(implementation = JsonResultset.class)),
                             @Content(mediaType = "application/sparql-results+xml", schema = @Schema(implementation = XmlResultset.class))
@@ -97,7 +113,7 @@ import javax.ws.rs.*;
             @ApiResponse(responseCode = "500", description = "Fatal error")
     })
     public abstract Response postAgent(
-            @Parameter(in = ParameterIn.DEFAULT, description = "The body either contains the query or a binding data set when a skill is invoked" ,required=true)
+            @Parameter(in = ParameterIn.DEFAULT, description = "The body either contains the query or a binding data set when a skill is invoked", required = true)
             Object body,
             @Parameter(in = ParameterIn.QUERY, description = "The Target Asset of the Query (targets the complete dataspace if empty)")
             @QueryParam("asset") String asset,
@@ -106,25 +122,25 @@ import javax.ws.rs.*;
             @Parameter(in = ParameterIn.QUERY, description = "The SPARQL query")
             @QueryParam("query") String query,
             @Parameter(in = ParameterIn.QUERY, description = "A sample bound parameter 'vin' which opens a new input tuple")
-            @QueryParam("(vin") String _vin,
+            @QueryParam("(vin") String vin,
             @Parameter(in = ParameterIn.QUERY, description = "A sample multi-bound parameter 'troubleCode' which closes the tuple")
             @QueryParam("troubleCode") List<String> troubleCode)
-    throws org.eclipse.tractusx.agents.conforming.api.NotFoundException;
+            throws org.eclipse.tractusx.agents.conforming.api.NotFoundException;
 
     @POST
     @Path("/skill")
     @Consumes({ "application/sparql-query" })
-    @Operation(summary = "Register a Skill", description = "", tags={ "agent" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Skill has been registered"),
-        @ApiResponse(responseCode = "204", description = "Skill has been updated"),
-        @ApiResponse(responseCode = "400", description = "Bad request or malformed SPARQL"),
-        @ApiResponse(responseCode = "500", description = "Fatal error") })
+    @Operation(summary = "Register a Skill", description = "", tags = { "agent" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Skill has been registered"),
+            @ApiResponse(responseCode = "204", description = "Skill has been updated"),
+            @ApiResponse(responseCode = "400", description = "Bad request or malformed SPARQL"),
+            @ApiResponse(responseCode = "500", description = "Fatal error") })
     public abstract Response postSkill(
-            @Parameter(in = ParameterIn.DEFAULT, description = "The body either contains the parameterized query" ,required=true)
+            @Parameter(in = ParameterIn.DEFAULT, description = "The body either contains the parameterized query", required = true)
             String body,
-            @Parameter(in = ParameterIn.QUERY, description = "The Target Asset of the Query (targets the complete dataspace if empty)",required=true)
+            @Parameter(in = ParameterIn.QUERY, description = "The Target Asset of the Query (targets the complete dataspace if empty)", required = true)
             @QueryParam("asset") String asset)
-    throws NotFoundException;
+            throws org.eclipse.tractusx.agents.conforming.api.NotFoundException;
 
 }

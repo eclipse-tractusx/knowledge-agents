@@ -18,11 +18,13 @@ package it.unibz.inf.ontop.dbschema.impl;
 
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
-import java.sql.*;
-import it.unibz.inf.ontop.injection.CoreSingletons;
+import it.unibz.inf.ontop.dbschema.RelationID;
 import it.unibz.inf.ontop.exception.MetadataExtractionException;
+import it.unibz.inf.ontop.injection.CoreSingletons;
 
-import it.unibz.inf.ontop.dbschema.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Ontop MetadataProvider which adapts the
@@ -42,6 +44,7 @@ public class DruidMetadataProvider extends DefaultDBMetadataProvider {
 
     /**
      * we do not use schema and catalogue names in the OBDA defitions
+     *
      * @param rs resultset
      * @param catalogNameColumn catalog - will be named "druid"
      * @param schemaNameColumn schema - will be named "druid"

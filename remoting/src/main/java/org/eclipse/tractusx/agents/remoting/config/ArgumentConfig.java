@@ -22,22 +22,24 @@ import org.eclipse.rdf4j.sail.config.SailConfigException;
  * represents the config of an argument
  */
 public class ArgumentConfig {
-     /** name of the argument */
-     protected String argumentName;
+    /**
+     * name of the argument
+     */
+    protected String argumentName;
     /**
      * whether it is mandatory
      */
-    protected boolean mandatory=true;
+    protected boolean mandatory = true;
 
     /**
      * an optional default value
      */
-     protected Object defaultValue;
+    protected Object defaultValue;
 
     /**
      * whether the argument forms a batch group
      */
-    protected boolean formsBatchGroup=false;
+    protected boolean formsBatchGroup = false;
 
     /**
      * the priority with which the argument is processed
@@ -45,6 +47,8 @@ public class ArgumentConfig {
     protected int priority = 100;
 
     /**
+     * access
+     *
      * @return argument reference
      */
     public String getArgumentName() {
@@ -53,6 +57,7 @@ public class ArgumentConfig {
 
     /**
      * sets
+     *
      * @param argumentName reference
      */
     public void setArgumentName(String argumentName) {
@@ -60,6 +65,8 @@ public class ArgumentConfig {
     }
 
     /**
+     * access
+     *
      * @return whether this argument is mandatory
      */
     public boolean isMandatory() {
@@ -67,6 +74,8 @@ public class ArgumentConfig {
     }
 
     /**
+     * access
+     *
      * @return the default value of the argument if not bound
      */
     public Object getDefaultValue() {
@@ -74,6 +83,8 @@ public class ArgumentConfig {
     }
 
     /**
+     * access
+     *
      * @return whether this argument should form a batch group
      */
     public boolean isFormsBatchGroup() {
@@ -81,6 +92,8 @@ public class ArgumentConfig {
     }
 
     /**
+     * access
+     *
      * @return the processing priority of the argument
      */
     public int getPriority() {
@@ -89,18 +102,19 @@ public class ArgumentConfig {
 
     /**
      * validate the argument
+     *
      * @param context validation context
      * @throws SailConfigException if validation was unsuccessful
      */
     public void validate(String context) throws SailConfigException {
-         if (argumentName==null || argumentName.length()==0) {
-            throw new SailConfigException(String.format("Only support named arguments %s.",context));
-         }    
-     }
+        if (argumentName == null || argumentName.length() == 0) {
+            throw new SailConfigException(String.format("Only support named arguments %s.", context));
+        }
+    }
 
-     @Override
-     public String toString() {
-         return super.toString()+"/argument("+String.valueOf(mandatory)+")";
-     }
- 
+    @Override
+    public String toString() {
+        return super.toString() + "/argument(" + String.valueOf(mandatory) + ")";
+    }
+
 }

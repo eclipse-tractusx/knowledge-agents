@@ -16,9 +16,11 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.eclipse.tractusx.agents.conforming.api;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-03-23T11:28:11.277776230Z[GMT]")public class NotFoundException extends ApiException {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-03-23T11:28:11.277776230Z[GMT]")
+public class NotFoundException extends ApiException {
     private int code;
-    public NotFoundException (int code, String msg) {
+
+    public NotFoundException(int code, String msg) {
         super(code, msg);
         this.code = code;
     }

@@ -23,7 +23,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests the standard binding agent. this is not a test for conformance! +
@@ -34,8 +34,8 @@ public class BindingAgentTest extends ConformingAgentTest {
 
     @Test
     public void testSkillGet() {
-        final Response response = target(getPath()).queryParam("asset","urn:cx:SkillAsset#Test").request().get();
-        assertTrue(response.getStatus()>=400 && response.getStatus()<500,"KA-BIND: Should not be possible to get information without query");
+        final Response response = target(getPath()).queryParam("asset", "urn:cx:SkillAsset#Test").request().get();
+        assertTrue(response.getStatus() >= 400 && response.getStatus() < 500, "KA-BIND: Should not be possible to get information without query");
     }
 
     /**
@@ -43,8 +43,8 @@ public class BindingAgentTest extends ConformingAgentTest {
      */
     @Test
     public void testGetUnboundPredicate() {
-        final Response response = target(getPath()).queryParam("query","SELECT%20%3Fsubject%20%3Fpredicate%20%3Fobject%20WHERE%20%7B%20%3Fsubject%20%3Fpredicate%20%3Fobject.%7D").request().get();
-        assertTrue(response.getStatus()>=400 && response.getStatus()<500,"KA-BIND: Should not be possible to query unbound predicates.");
+        final Response response = target(getPath()).queryParam("query", "SELECT%20%3Fsubject%20%3Fpredicate%20%3Fobject%20WHERE%20%7B%20%3Fsubject%20%3Fpredicate%20%3Fobject.%7D").request().get();
+        assertTrue(response.getStatus() >= 400 && response.getStatus() < 500, "KA-BIND: Should not be possible to query unbound predicates.");
     }
 
     /**
@@ -52,8 +52,8 @@ public class BindingAgentTest extends ConformingAgentTest {
      */
     @Test
     public void testGetUnboundRdfTypeObject() {
-        final Response response = target(getPath()).queryParam("query","SELECT%20%3Fsubject%20%3Fpredicate%20%3Fobject%20WHERE%20%7B%20%3Fsubject%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E%20%3Fobject.%7D").request().get();
-        assertTrue(response.getStatus()>=400 && response.getStatus()<500,"KA-BIND: Should not be possible to query unbound rdf:type objects.");
+        final Response response = target(getPath()).queryParam("query", "SELECT%20%3Fsubject%20%3Fpredicate%20%3Fobject%20WHERE%20%7B%20%3Fsubject%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E%20%3Fobject.%7D").request().get();
+        assertTrue(response.getStatus() >= 400 && response.getStatus() < 500, "KA-BIND: Should not be possible to query unbound rdf:type objects.");
     }
 
     /**
@@ -61,11 +61,11 @@ public class BindingAgentTest extends ConformingAgentTest {
      */
     @Test
     public void testPostSkill() {
-        final Response response = target(getPath()+"/skill")
-                .queryParam("asset","urn:cx:SkillAsset#Test")
+        final Response response = target(getPath() + "/skill")
+                .queryParam("asset", "urn:cx:SkillAsset#Test")
                 .request()
-                .post(Entity.entity("SELECT%20%3Fsubject%20%3Fpredicate%20%3Fobject%20WHERE%20%7B%20%3Fsubject%20%3Fpredicate%20%3Fobject.%7D","application/sparql-query"));
-        assertTrue(response.getStatus()>=400 && response.getStatus()<500,"KA-BIND: Should not be possible to set skills.");
+                .post(Entity.entity("SELECT%20%3Fsubject%20%3Fpredicate%20%3Fobject%20WHERE%20%7B%20%3Fsubject%20%3Fpredicate%20%3Fobject.%7D", "application/sparql-query"));
+        assertTrue(response.getStatus() >= 400 && response.getStatus() < 500, "KA-BIND: Should not be possible to set skills.");
     }
 
     @Override
