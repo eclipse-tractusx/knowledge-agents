@@ -21,6 +21,11 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -35,11 +40,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
 
 /**
  * This class provides a MessageBodyReader and MessageBodyWriter for XML content type.
@@ -49,37 +49,37 @@ import java.lang.reflect.Type;
 public class XmlProvider implements MessageBodyReader, MessageBodyWriter {
 
     @Override
-    public boolean isReadable(Class aClass, Type type, Annotation[] annotations, MediaType mediaType) {
+    public boolean isReadable(Class aclass, Type type, Annotation[] annotations, MediaType mediaType) {
         return mediaType.isCompatible(ConformingAgent.srx);
     }
 
     @Override
-    public Object readFrom(Class aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, InputStream inputStream) throws IOException, WebApplicationException {
+    public Object readFrom(Class aclass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, InputStream inputStream) throws IOException, WebApplicationException {
         try {
-            DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            DocumentBuilder parser= factory.newDocumentBuilder();
+            DocumentBuilder parser = factory.newDocumentBuilder();
             return parser.parse(new InputSource(inputStream));
         } catch (ParserConfigurationException | SAXException e) {
-            throw new IOException("Could not xml parse message body",e);
+            throw new IOException("Could not xml parse message body", e);
         }
     }
 
     @Override
-    public boolean isWriteable(Class aClass, Type type, Annotation[] annotations, MediaType mediaType) {
+    public boolean isWriteable(Class aclass, Type type, Annotation[] annotations, MediaType mediaType) {
         return mediaType.isCompatible(ConformingAgent.srx);
     }
 
     @Override
-    public void writeTo(Object o, Class aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
+    public void writeTo(Object o, Class aclass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
         try {
             TransformerFactory factory = TransformerFactory.newInstance();
-            factory.setAttribute("http://javax.xml.XMLConstants/property/accessExternalDTD","");
-            factory.setAttribute("http://javax.xml.XMLConstants/property/accessExternalStylesheet","");
+            factory.setAttribute("http://javax.xml.XMLConstants/property/accessExternalDTD", "");
+            factory.setAttribute("http://javax.xml.XMLConstants/property/accessExternalStylesheet", "");
             Transformer transformer = factory.newTransformer();
-            transformer.transform(new DOMSource((Document) o),new StreamResult(outputStream));
+            transformer.transform(new DOMSource((Document) o), new StreamResult(outputStream));
         } catch (TransformerException e) {
-            throw new IOException("Cannot render xml body",e);
+            throw new IOException("Cannot render xml body", e);
         }
     }
 }

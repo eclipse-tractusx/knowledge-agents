@@ -97,7 +97,7 @@
                 <plugin>
                     <groupId>org.eclipse.dash</groupId>
                     <artifactId>license-tool-plugin</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
+                    <version>1.0.3-SNAPSHOT</version>
                     <configuration>
                         <projectId>automotive.tractusx</projectId>
                         <summary>DEPENDENCIES</summary>
@@ -198,16 +198,24 @@
                     <version>2.4</version>
                 </plugin>
                 <plugin>
-                    <groupId>com.diffplug.spotless</groupId>
-                    <artifactId>spotless-maven-plugin</artifactId>
-                    <version>2.36.0</version>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <configuration>
+                        <configLocation>${session.executionRootDirectory}/resources/tx-checkstyle-config.xml</configLocation>
+                        <propertyExpansion>
+                            config_loc=${session.executionRootDirectory}/resources
+                        </propertyExpansion>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <linkXRef>false</linkXRef>
+                    </configuration>
                     <executions>
                         <execution>
-                            <id>format</id>
-                            <phase>process-sources</phase>
+                            <id>validate</id>
+                            <phase>validate</phase>
                             <goals>
                                 <goal>check</goal>
-                                <goal>apply</goal>
                             </goals>
                         </execution>
                     </executions>

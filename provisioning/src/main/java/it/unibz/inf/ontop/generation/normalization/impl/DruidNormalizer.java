@@ -35,17 +35,17 @@ public class DruidNormalizer implements DialectExtraNormalizer {
     public DruidNormalizer(TypingNullsInUnionDialectExtraNormalizer typingNullInUnionNormalizer,
                            TypingNullsInConstructionNodeDialectExtraNormalizer typingNullInConstructionNormalizer,
                            SubQueryFromComplexJoinExtraNormalizer complexJoinNormalizer) {
-       this.typingNullInUnionNormalizer = typingNullInUnionNormalizer;
-       this.typingNullInConstructionNormalizer = typingNullInConstructionNormalizer;
-       this.complexJoinNormalizer = complexJoinNormalizer;
+        this.typingNullInUnionNormalizer = typingNullInUnionNormalizer;
+        this.typingNullInConstructionNormalizer = typingNullInConstructionNormalizer;
+        this.complexJoinNormalizer = complexJoinNormalizer;
     }
 
     @Override
     public IQTree transform(IQTree tree, VariableGenerator variableGenerator) {
         return complexJoinNormalizer.transform(
-            typingNullInConstructionNormalizer.transform(
-            typingNullInUnionNormalizer.transform(tree, variableGenerator),
-            variableGenerator),
-            variableGenerator);
+                typingNullInConstructionNormalizer.transform(
+                        typingNullInUnionNormalizer.transform(tree, variableGenerator),
+                        variableGenerator),
+                variableGenerator);
     }
 }

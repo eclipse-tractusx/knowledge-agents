@@ -14,22 +14,22 @@
 // under the License.
 //
 // SPDX-License-Identifier: Apache-2.0
-package org.eclipse.tractusx.agents.conforming.api;
+package org.eclipse.tractusx.agents.remoting;
 
-import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
-import com.fasterxml.jackson.databind.util.ISO8601Utils;
+import org.eclipse.rdf4j.query.MutableBindingSet;
 
-import java.text.FieldPosition;
-import java.util.Date;
+import java.util.Collection;
+import java.util.Set;
 
-public class RFC3339DateFormat extends ISO8601DateFormat {
+/**
+ * Interface to any intermediate stpre
+ * which holds information about the bound
+ * variables and the incoming/outgoing tuples
+ */
+public interface BindingHost {
 
-    // Same as ISO8601DateFormat but serializing milliseconds.
-    @Override
-    public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition fieldPosition) {
-        String value = ISO8601Utils.format(date, true);
-        toAppendTo.append(value);
-        return toAppendTo;
-    }
+    Set<String> getVariables();
+
+    Collection<MutableBindingSet> getBindings();
 
 }
