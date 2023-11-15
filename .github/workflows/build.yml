@@ -87,7 +87,7 @@ jobs:
 
       # Get the Code
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           submodules: recursive
 
@@ -97,7 +97,7 @@ jobs:
       # Enable deployment access (on demand or main branch and version tags only)
       - name: Login to GitHub Container Registry
         if: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
-        uses: docker/login-action@v2
+        uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ steps.set-docker-repo.outputs.REGISTRY }}
           # Use existing DockerHub credentials present as secrets
@@ -125,7 +125,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Conforming
         id: meta-conf
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/conforming-agent
@@ -142,7 +142,7 @@ jobs:
 
       # build in any case, but push only main and version tag settings
       - name: Conforming Container Build and Push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: conforming/.
           file: conforming/src/main/docker/Dockerfile
@@ -154,7 +154,7 @@ jobs:
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Conforming Agent
         if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
-        uses: peter-evans/dockerhub-description@v3
+        uses: peter-evans/dockerhub-description@dc67fad7001ef9e8e3c124cb7a64e16d0a63d864 # v3.4.2
         with:
           readme-filepath: conforming/README.md
           username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
@@ -164,7 +164,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Remoting
         id: meta-remote
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/remoting-agent
@@ -181,7 +181,7 @@ jobs:
 
       # build in any case, but push only main and version tag settings
       - name: Remoting Container Build and Push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: remoting/.
           file: remoting/src/main/docker/Dockerfile
@@ -193,7 +193,7 @@ jobs:
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Remoting Agent
         if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
-        uses: peter-evans/dockerhub-description@v3
+        uses: peter-evans/dockerhub-description@dc67fad7001ef9e8e3c124cb7a64e16d0a63d864 # v3.4.2
         with:
           readme-filepath: remoting/README.md
           username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
@@ -203,7 +203,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Provisioning
         id: meta-prov
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
@@ -220,7 +220,7 @@ jobs:
 
       # build in any case, but push only main and version tag settings
       - name: Provisioning Container Build and Push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: provisioning/.
           file: provisioning/src/main/docker/Dockerfile
@@ -232,7 +232,7 @@ jobs:
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Provisioning Agent
         if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
-        uses: peter-evans/dockerhub-description@v3
+        uses: peter-evans/dockerhub-description@dc67fad7001ef9e8e3c124cb7a64e16d0a63d864 # v3.4.2
         with:
           readme-filepath: provisioning/README.md
           username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
