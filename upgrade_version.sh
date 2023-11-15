@@ -1,5 +1,6 @@
+#!/bin/sh
+
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-#
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
 #
@@ -15,36 +16,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM eclipse-temurin:17-jre-alpine
-ARG JAR
-ARG LIB
-
-ARG APP_USER=agent
-ARG APP_UID=10100
-ARG APP_GID=30000
-
-RUN apk update && apk upgrade libssl3 libcrypto3 --no-cache
-
-RUN addgroup --gid "$APP_GID" --system "$APP_USER"
-
-RUN adduser \
-     --shell /sbin/nologin \
-     --disabled-password \
-     --gecos "" \
-     --ingroup "$APP_USER" \
-     --no-create-home \
-     --uid "$APP_UID" \
-     "$APP_USER"
-
-USER "$APP_USER"
-WORKDIR /app
-VOLUME /tmp
-
-COPY target/conforming-agent-*.jar /app/lib/
-
-# TODO implement wget or curl-based health check
-HEALTHCHECK NONE
-
-EXPOSE 8080
-
-ENTRYPOINT ["java","-cp","/app/lib/*", "org.eclipse.tractusx.agents.conforming.Bootstrap"]
+OLD_VERSION=1.10.15-SNAPSHOT
+echo Upgrading from $OLD_VERSION to $1
+PATTERN=s/$OLD_VERSION/$1/g
+LC_ALL=C
+find ./ -type f \( -iname "*.xml" -o -iname "*.sh"  -o -iname "*.yml"  -o -iname "*.yaml"  -o -iname "*.md"  -o -iname "*.java" -o -iname "*.properties" \) -exec sed -i.bak $PATTERN {} \;

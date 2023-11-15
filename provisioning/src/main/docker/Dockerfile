@@ -35,7 +35,7 @@ RUN  mv /opt/ontop/lib/spring-web-5.3.28.jar . && \
      rm -rf org/springframework/remoting/httpinvoker && \
      jar cf /opt/ontop/lib/spring-web.jar *
 
-FROM ontop/ontop:5.0.2
+FROM ontop/ontop:5.1.0
 
 # Switch to root
 USER root
@@ -48,12 +48,26 @@ COPY resources/entrypoint.sh /opt/ontop/.
 # run with docker --build-arg jdbcDrivers=path_to_my_driver to establish a different driver
 ARG jdbcDrivers="https://repo1.maven.org/maven2/com/h2database/h2/2.2.220/h2-2.2.220.jar https://download.dremio.com/jdbc-driver/dremio-jdbc-driver-LATEST.jar https://repo1.maven.org/maven2/org/apache/calcite/avatica/avatica/1.22.0/avatica-1.22.0.jar"
 
+# set proxy if building behind corporate firewall
+ARG HTTP_PROXY=""
+
 # unfortunately, ontop does not use explicit group ids and user ids (which are needed by tractusx chart security contraints), so we need to relax executable rights
-RUN rm /opt/ontop/lib/guava-*.jar && \
+RUN if [ "${HTTP_PROXY}" != ""  ]; then \
+        echo "Acquire::http::Proxy \"${HTTP_PROXY}\"" >> /etc/apt/apt.conf.d/proxy.conf; \
+        echo "Acquire::https::Proxy \"${HTTP_PROXY}\"" >> /etc/apt/apt.conf.d/proxy.conf; \
+    fi && \
+    apt-get -y upgrade && \
+    apt-get -y update && \
+    apt-get -y --no-install-recommends install unzip=6.0-26ubuntu3.1 && \
+    apt-get -y --no-install-recommends upgrade procps && \
+    rm /opt/ontop/lib/guava-*.jar && \
     rm /opt/ontop/lib/tomcat-embed-*.jar && \
     rm /opt/ontop/lib/spring-*.jar && \
     mkdir -p /opt/ontop/jdbc && \
     for jdbcDriver in "$jdbcDrivers"; do wget --no-check-certificate -q -P /opt/ontop/jdbc ${jdbcDriver} ; done && \
+    apt-get -y remove --auto-remove wget && \
+    apt-get -y --no-install-recommends install curl=7.81.0-1ubuntu1.14 && \
+    if [ "${HTTP_PROXY}" != ""  ]; then rm -f /etc/apt/apt.conf.d/proxy.conf; fi && \
     mkdir -p /opt/ontop/input && \
     mkdir -p /opt/ontop/database && \
     chmod 755 /opt/ontop/entrypoint.sh && \

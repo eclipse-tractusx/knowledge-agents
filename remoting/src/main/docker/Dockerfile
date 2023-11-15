@@ -24,11 +24,13 @@ FROM openjdk:22-jdk-slim AS build
 COPY target/original-remoting-agent-*.jar /opt/lib/
 COPY target/lib/guava-*.jar /opt/lib/
 COPY target/lib/netty-*.jar /opt/lib/
+COPY target/lib/http2-hpack-*.jar /opt/lib/
 COPY target/lib/jetty-*.jar /opt/lib/
 COPY target/lib/spring-*.jar /opt/lib/
 COPY target/lib/httpmime-*.jar /opt/lib/
 COPY target/lib/commons-logging-*.jar /opt/lib/
 COPY target/lib/snappy-java-*.jar /opt/lib/
+COPY target/lib/zookeeper-*.jar /opt/lib/
 
 COPY resources/web/logging.properties /opt/conf/
 COPY resources/web/server.xml /opt/conf/
@@ -64,12 +66,15 @@ RUN if [ "${HTTP_PROXY}" != ""  ]; then \
     fi && \
     apt-get -y upgrade && \
     apt-get -y update && \
-    apt-get -y --no-install-recommends install unzip=6.0-26ubuntu3 && \
+    apt-get -y --no-install-recommends install unzip=6.0-26ubuntu3.1 && \
+    apt-get -y --no-install-recommends upgrade procps && \
     addgroup --system --gid 30000 tomcat && \
     adduser --disabled-password --gecos "" --ingroup tomcat --uid 10001 tomcat && \
     rm -rf /usr/local/tomcat/webapps/* && \
-    if [ "${HTTP_PROXY}" != ""  ]; then rm -f /etc/apt/apt.conf.d/proxy.conf; fi && \
     wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclipse/rdf4j/eclipse-rdf4j-4.3.2-sdk.zip" && \
+    apt-get -y remove --auto-remove wget && \
+    apt-get -y --no-install-recommends install curl=7.81.0-1ubuntu1.14 && \
+    if [ "${HTTP_PROXY}" != ""  ]; then rm -f /etc/apt/apt.conf.d/proxy.conf; fi && \
     unzip -d /tmp /tmp/rdf4j.zip eclipse-rdf4j-4.3.2/war/rdf4j-server.war  eclipse-rdf4j-4.3.2/war/rdf4j-workbench.war && \
     rm /tmp/rdf4j.zip
 
@@ -79,9 +84,11 @@ RUN	mkdir -p /var/rdf4j/server/conf && \
 	rm -rf /tmp/eclipse-rdf4j-4.3.2 && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/guava-*.jar && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/netty-*.jar && \
+    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/http2-hpack-*.jar && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/jetty-*.jar && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/spring-*.jar && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/snappy-*.jar && \
+    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/zookeeper-*.jar && \
     rm /usr/local/tomcat/conf/logging.properties && \
     rm /usr/local/tomcat/conf/server.xml && \
     rm /usr/local/tomcat/conf/tomcat-users.xml && \
