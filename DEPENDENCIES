@@ -18,7 +18,7 @@ maven/mavencentral/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/2.15
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-guava/2.13.2, Apache-2.0, approved, clearlydefined
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/2.13.4, Apache-2.0, approved, clearlydefined
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/2.13.5, Apache-2.0, approved, clearlydefined
-maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-joda/2.15.2, Apache-2.0, approved, clearlydefined
+maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-joda/2.15.2, Apache-2.0, approved, #11369
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.13.4, Apache-2.0, approved, clearlydefined
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.13.5, Apache-2.0, approved, clearlydefined
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.15.1, Apache-2.0, approved, #7930
@@ -61,7 +61,7 @@ maven/mavencentral/io.netty/netty-transport-native-epoll/4.1.94.Final, Apache-2.
 maven/mavencentral/io.netty/netty-transport-native-unix-common/4.1.94.Final, Apache-2.0 AND BSD-3-Clause AND MIT, approved, CQ20926
 maven/mavencentral/io.netty/netty-transport/4.1.94.Final, Apache-2.0 AND BSD-3-Clause AND MIT, approved, CQ20926
 maven/mavencentral/io.sgr/s2-geometry-library-java/1.0.0, Apache-2.0, approved, CQ22121
-maven/mavencentral/io.swagger.core.v3/swagger-annotations/2.2.12, Apache-2.0, approved, clearlydefined
+maven/mavencentral/io.swagger.core.v3/swagger-annotations/2.2.12, Apache-2.0, approved, #11362
 maven/mavencentral/io.swagger.core.v3/swagger-core/2.2.12, Apache-2.0, approved, #9265
 maven/mavencentral/io.swagger.core.v3/swagger-integration/2.2.12, Apache-2.0, approved, #10352
 maven/mavencentral/io.swagger.core.v3/swagger-jaxrs2/2.2.12, Apache-2.0, approved, #9814
