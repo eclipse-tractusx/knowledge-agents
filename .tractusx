@@ -17,6 +17,15 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-product: "Tractus-X Knowledge Agents Reference Implementations (KA-RI)"
+product: "knowledge-agents"
 leadingRepository: "https://github.com/eclipse-tractusx/knowledge-agents"
-repositories: []
+repositories:
+  - name: "knowledge-agents"
+    usage: "Tractus-X Reference Implementations of Knowledge Agents (KA-RI)"
+    url: "https://github.com/eclipse-tractusx/knowledge-agents"
+  - name: "knowledge-agents-edc"
+    usage: "Tractus-X Knowledge Agents EDC Extensions (KA-EDC)"
+    url: "https://github.com/eclipse-tractusx/knowledge-agents-edc"
+  - name: "knowledge-agents-aas-bridge"
+    usage: "Tractus-X Knowledge Agents AAS Bridges (KA-AAS)"
+    url: "https://github.com/eclipse-tractusx/knowledge-agents-aas-bridge"
