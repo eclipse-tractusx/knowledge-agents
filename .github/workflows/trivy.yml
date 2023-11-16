@@ -119,7 +119,7 @@ jobs:
           docker manifest inspect ${{ steps.set-docker-repo.outputs.REPO }}/${{ matrix.image }}:${{ needs.git-sha7.outputs.value }}
         continue-on-error: true
 
-        ## the next two steps will only execute if the image exists check was successful
+      # the next two steps will only execute if the image exists check was successful
       - name: Run Trivy vulnerability scanner
         if: success() && steps.imageCheck.outcome != 'failure'
         uses: aquasecurity/trivy-action@2b6a709cf9c4025c5438138008beaddbb02086f0 # v0.14.0
