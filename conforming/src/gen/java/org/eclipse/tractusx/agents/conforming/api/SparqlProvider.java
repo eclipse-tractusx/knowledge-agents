@@ -19,40 +19,46 @@ package org.eclipse.tractusx.agents.conforming.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.tractusx.agents.conforming.ConformingAgent;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+import java.util.stream.Collectors;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-import java.io.*;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
-import java.util.stream.Collectors;
 
 @Provider
 public class SparqlProvider implements MessageBodyReader, MessageBodyWriter {
 
-    ObjectMapper objectMapper=new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public boolean isReadable(Class aClass, Type type, Annotation[] annotations, MediaType mediaType) {
+    public boolean isReadable(Class aclass, Type type, Annotation[] annotations, MediaType mediaType) {
         return mediaType.isCompatible(ConformingAgent.sq);
     }
 
     @Override
-    public Object readFrom(Class aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, InputStream inputStream) throws IOException, WebApplicationException {
-        return new BufferedReader(new InputStreamReader(inputStream))
-                .lines().collect(Collectors.joining("\n"));
+    public Object readFrom(Class aclass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, InputStream inputStream) throws IOException, WebApplicationException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            return reader.lines().collect(Collectors.joining("\n"));
+        }
     }
 
     @Override
-    public boolean isWriteable(Class aClass, Type type, Annotation[] annotations, MediaType mediaType) {
+    public boolean isWriteable(Class aclass, Type type, Annotation[] annotations, MediaType mediaType) {
         return mediaType.isCompatible(ConformingAgent.sq);
     }
 
     @Override
-    public void writeTo(Object o, Class aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
+    public void writeTo(Object o, Class aclass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
         new OutputStreamWriter(outputStream).append(String.valueOf(o));
     }
 }

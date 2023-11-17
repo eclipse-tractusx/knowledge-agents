@@ -1,3 +1,4 @@
+---
 #
 #  Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
 #
@@ -17,7 +18,6 @@
 #  SPDX-License-Identifier: Apache-2.0
 #
 
----
 name: "Trivy"
 
 on:
@@ -25,14 +25,12 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
   workflow_run:
-    workflows: [ "Build" ]
+    workflows: ["Build"]
     branches:
       - main
-      - releases
-      - release/*
-      - hotfix/*
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
+      - 'v*.*.*'
+      - 'v*.*.*-*'
     types:
       - completed
 
@@ -46,8 +44,7 @@ jobs:
       - name: Resolve git 7-chars sha
         id: git-sha7
         run: |
-          echo "SHA7=1.9.5-SNAPSHOT" >> $GITHUB_OUTPUT
-#          echo "SHA7=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+          echo "SHA7=sha-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
 
   trivy-analyze-config:
     runs-on: ubuntu-latest
@@ -74,27 +71,52 @@ jobs:
           sarif_file: "trivy-results-config.sarif"
 
   trivy:
-    needs: [ git-sha7 ]
+    needs: [git-sha7]
     permissions:
       actions: read
       contents: read
       security-events: write
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false # continue scanning other images although if the other has been vulnerable
+      # continue scanning other images although if the other has been vulnerable
+      fail-fast: false
       matrix:
         image:
           - provisioning-agent
           - remoting-agent
           - conforming-agent
     steps:
+
+      # Determine the right target docker repo
+      - name: Check github repository and set docker repo
+        id: set-docker-repo
+        run: |
+          echo "REGISTRY=docker.io" >> $GITHUB_OUTPUT;
+          echo "REPO=tractusx" >> $GITHUB_OUTPUT;
+          if [ "${{ github.repository }}" != "eclipse-tractusx/knowledge-agents" ];
+          then
+            echo "REGISTRY=ghcr.io" >> $GITHUB_OUTPUT
+            echo "REPO=ghcr.io/${{ github.repository }}" >> $GITHUB_OUTPUT
+          fi
+          exit 0
+
       - uses: actions/checkout@v3.5.2
 
-        ## This step will fail if the docker images is not found
+      # Enable repository access (on main branch and version tags only)
+      - name: Login to GitHub Container Registry
+        if: ${{ ( github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ steps.set-docker-repo.outputs.REGISTRY }}
+          # Use existing DockerHub credentials present as secrets
+          username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
+
+      # This step will fail if the docker images is not found
       - name: "Check if image exists"
         id: imageCheck
         run: |
-          docker manifest inspect tractusx/knowledge-agents/${{ matrix.image }}:${{ needs.git-sha7.outputs.value }}
+          docker manifest inspect ${{ steps.set-docker-repo.outputs.REPO }}/${{ matrix.image }}:${{ needs.git-sha7.outputs.value }}
         continue-on-error: true
 
         ## the next two steps will only execute if the image exists check was successful
@@ -102,7 +124,7 @@ jobs:
         if: success() && steps.imageCheck.outcome != 'failure'
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: "tractusx/knowledge-agents/${{ matrix.image }}:${{ needs.git-sha7.outputs.value }}"
+          image-ref: "${{ steps.set-docker-repo.outputs.REPO }}/${{ matrix.image }}:${{ needs.git-sha7.outputs.value }}"
           format: "sarif"
           output: "trivy-results-${{ matrix.image }}.sarif"
           exit-code: "1"

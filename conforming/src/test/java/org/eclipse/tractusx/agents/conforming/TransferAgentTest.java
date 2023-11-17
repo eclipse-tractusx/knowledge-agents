@@ -22,8 +22,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
  * Tests the standard transfer agent. this is not a test for conformance! +
  * It is rather a test for "exactness" such that the implementation tested can serve
@@ -32,7 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TransferAgentTest extends MatchmakingAgentTest {
 
-    @Override protected String getEntity(Response response) {
+    @Override
+    protected String getEntity(Response response) {
         return response.readEntity(FormDataMultiPart.class).getBodyParts().get(0).getEntityAs(String.class);
     }
 

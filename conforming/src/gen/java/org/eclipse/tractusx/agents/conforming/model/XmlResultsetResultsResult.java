@@ -16,68 +16,69 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.eclipse.tractusx.agents.conforming.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * XmlResultsetResultsResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-03-23T11:28:11.277776230Z[GMT]")public class XmlResultsetResultsResult   {
-  @JsonProperty("binding")
-  private List<XmlResultsetResultsResultBinding> bindings = new ArrayList<>();
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-03-23T11:28:11.277776230Z[GMT]")
+public class XmlResultsetResultsResult {
+    @JsonProperty("binding")
+    private List<XmlResultsetResultsResultBinding> bindings = new ArrayList<>();
 
-  public XmlResultsetResultsResult addBinding(XmlResultsetResultsResultBinding binding) {
-    this.bindings.add(binding);
-    return this;
-  }
-
-  /**
-   * Get binding
-   * @return binding
-   **/
-  public List<XmlResultsetResultsResultBinding> getBindings() {
-    return bindings;
-  }
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public XmlResultsetResultsResult addBinding(XmlResultsetResultsResultBinding binding) {
+        this.bindings.add(binding);
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get binding
+     *
+     * @return binding
+     **/
+    public List<XmlResultsetResultsResultBinding> getBindings() {
+        return bindings;
     }
-    XmlResultsetResultsResult xmlResultsetResultsResult = (XmlResultsetResultsResult) o;
-    return Objects.equals(this.bindings, xmlResultsetResultsResult.bindings);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(bindings);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class XmlResultsetResultsResult {\n");
-    
-    sb.append("    binding: ").append(toIndentedString(bindings)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    @Override
+    public int hashCode() {
+        return Objects.hash(bindings);
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        XmlResultsetResultsResult xmlResultsetResultsResult = (XmlResultsetResultsResult) o;
+        return Objects.equals(this.bindings, xmlResultsetResultsResult.bindings);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class XmlResultsetResultsResult {\n");
+
+        sb.append("    binding: ").append(toIndentedString(bindings)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 }

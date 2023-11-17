@@ -28,15 +28,18 @@ public class CallbackToken {
 
     /**
      * create a new token
+     *
      * @param responsePath the path where we expect call id in the response
-     * @param callId the callid to look for
+     * @param callId       the callid to look for
      */
     public CallbackToken(String responsePath, String callId) {
-        this.responsePath=responsePath;
-        this.callId=callId;
+        this.responsePath = responsePath;
+        this.callId = callId;
     }
 
     /**
+     * access
+     *
      * @return associated call id
      */
     public String getCallId() {
@@ -44,6 +47,8 @@ public class CallbackToken {
     }
 
     /**
+     * access
+     *
      * @return associated response path
      */
     public String getResponsePath() {
@@ -53,11 +58,11 @@ public class CallbackToken {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj) || (obj instanceof CallbackToken &&
-            responsePath.equals(((CallbackToken) obj).responsePath) && callId.equals(((CallbackToken) obj).callId));
+                responsePath.equals(((CallbackToken) obj).responsePath) && callId.equals(((CallbackToken) obj).callId));
     }
 
     @Override
     public int hashCode() {
-        return responsePath.hashCode()*callId.hashCode();
+        return responsePath.hashCode() * callId.hashCode();
     }
 }

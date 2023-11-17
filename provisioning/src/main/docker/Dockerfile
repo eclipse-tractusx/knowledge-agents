@@ -21,14 +21,11 @@
 
 FROM openjdk:22-jdk-slim AS build
 
-
 COPY target/provisioning-agent-*.jar /opt/ontop/lib/
 COPY target/lib/guava-*.jar /opt/ontop/lib/
 COPY target/lib/tomcat-embed-*.jar /opt/ontop/lib/
 COPY target/lib/spring-*.jar /opt/ontop/lib/
-COPY target/lib/guava-*.jar /opt/ontop/lib/
-COPY target/lib/tomcat-embed-*.jar /opt/ontop/lib/
-COPY target/lib/spring-*.jar /opt/ontop/lib/
+COPY target/lib/postgresql-*.jar /opt/ontop/jdbc/
 
 WORKDIR /tmp
 
@@ -49,8 +46,9 @@ USER root
 COPY resources/entrypoint.sh /opt/ontop/.
 
 # run with docker --build-arg jdbcDrivers=path_to_my_driver to establish a different driver
-ARG jdbcDrivers="https://repo1.maven.org/maven2/org/postgresql/postgresql/42.5.2/postgresql-42.5.2.jar https://repo1.maven.org/maven2/com/h2database/h2/2.2.220/h2-2.2.220.jar https://download.dremio.com/jdbc-driver/dremio-jdbc-driver-LATEST.jar https://repo1.maven.org/maven2/org/apache/calcite/avatica/avatica/1.22.0/avatica-1.22.0.jar"
+ARG jdbcDrivers="https://repo1.maven.org/maven2/com/h2database/h2/2.2.220/h2-2.2.220.jar https://download.dremio.com/jdbc-driver/dremio-jdbc-driver-LATEST.jar https://repo1.maven.org/maven2/org/apache/calcite/avatica/avatica/1.22.0/avatica-1.22.0.jar"
 
+# unfortunately, ontop does not use explicit group ids and user ids (which are needed by tractusx chart security contraints), so we need to relax executable rights
 RUN rm /opt/ontop/lib/guava-*.jar && \
     rm /opt/ontop/lib/tomcat-embed-*.jar && \
     rm /opt/ontop/lib/spring-*.jar && \
@@ -62,6 +60,7 @@ RUN rm /opt/ontop/lib/guava-*.jar && \
     chown -R ontop:ontop /opt/ontop
 
 COPY --from=build /opt/ontop/lib/*.jar /opt/ontop/lib/
+COPY --from=build /opt/ontop/jdbc/*.jar /opt/ontop/jdbc/
 
 # Switch back
 USER ontop

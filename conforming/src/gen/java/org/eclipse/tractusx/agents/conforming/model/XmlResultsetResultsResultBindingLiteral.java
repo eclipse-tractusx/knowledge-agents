@@ -16,15 +16,17 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.eclipse.tractusx.agents.conforming.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.Objects;
+
 /**
  * XmlResultsetResultsResultBindingLiteral
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-03-24T17:09:51.803733265Z[GMT]")public class XmlResultsetResultsResultBindingLiteral   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-03-24T17:09:51.803733265Z[GMT]")
+public class XmlResultsetResultsResultBindingLiteral {
     @JsonProperty("xml:lang")
     private String xmllang = null;
 
@@ -42,6 +44,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
     /**
      * Get xmllang
+     *
      * @return xmllang
      **/
     @JsonProperty("xml:lang")
@@ -61,6 +64,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
     /**
      * Get datatype
+     *
      * @return datatype
      **/
     @JsonProperty("datatype")
@@ -80,6 +84,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
     /**
      * Get value
+     *
      * @return value
      **/
     @JsonProperty("value")
@@ -93,6 +98,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
         this.value = value;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(xmllang, datatype, value);
+    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -107,12 +116,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
                 Objects.equals(this.datatype, xmlResultsetResultsResultBindingLiteral.datatype) &&
                 Objects.equals(this.value, xmlResultsetResultsResultBindingLiteral.value);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(xmllang, datatype, value);
-    }
-
 
     @Override
     public String toString() {

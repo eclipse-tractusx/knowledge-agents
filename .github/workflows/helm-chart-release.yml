@@ -1,3 +1,4 @@
+---
 #
 #  Copyright (c) 2022, 2023 Contributors to the Eclipse Foundation
 #
@@ -20,13 +21,16 @@
 name: Release Charts
 
 on:
+  # May be invoked manually
   workflow_dispatch:
+  # Or by pushing to the chart dir of some dev/ release branch
   push:
     # prevent unnecessary GH action runs for files outside of charts folder
     paths:
       - 'charts/**'
     branches:
       - main
+      - 'release/*'
 
 jobs:
   release:

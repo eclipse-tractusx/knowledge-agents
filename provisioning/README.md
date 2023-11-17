@@ -64,7 +64,7 @@ Tractus-X focusses on not only accessing traditional SQL databases, such as [Pos
 * The ability to add additional schema meta-data via properties. Typically, data virtualization platforms do not define/expose any primary or foreign keys. But Ontop builds its optimization techniques on these definitions. Therefore, you might "simulate" the existance of such keys by entering additional properties. For that purpose, you should configure an instance of the  [KeyAwareDremioDBMetadataProvider](src/main/java/it/unibz/inf/ontop/dbschema/impl/KeyAwareDremioDBMetadataProvider.java)
 
 ```console
-com.dremio.jdbc.Driver-metadataProvider = it.unibz.inf.ontop.dbschema.impl.KeyAwareDremioDBMetadataProvider
+com.dremio.jdbc.Driver-metadataProvider = it.unibz.inf.ontop.dbschema.impl.KeyAwareDremioDbMetadataProvider
 com.dremio.jdbc.Driver-schemas = HI_TEST_OEM, TRACE_TEST_OEM
 com.dremio.jdbc.Driver-tables.HI_TEST_OEM = CX_RUL_SerialPartTypization_Vehicle,CX_RUL_SerialPartTypization_Component,CX_RUL_AssemblyPartRelationship,CX_RUL_LoadCollective
 com.dremio.jdbc.Driver-unique.HI_TEST_OEM.CX_RUL_SerialPartTypization_Vehicle = UC_VEHICLE
@@ -111,7 +111,7 @@ mvn package
 ```
 
 This will generate
-- a [pluging jar](target/provisioning-agent-1.9.5-SNAPSHOT.jar) which maybe dropped into an Ontop server (into the lib folder)
+- a [pluging jar](target/provisioning-agent-1.10.2-SNAPSHOT.jar) which maybe dropped into an Ontop server (into the lib folder)
 
 ### Containerizing (Provisioning Agent)
 
@@ -124,7 +124,7 @@ mvn install -Pwith-docker-image
 or invoke the following docker command after a successful package run
 
 ```console
-docker build -t tractusx/provisioning-agent:1.9.5-SNAPSHOT -f src/main/docker/Dockerfile .
+docker build -t tractusx/provisioning-agent:1.10.2-SNAPSHOT -f src/main/docker/Dockerfile .
 ```
 
 The image contains
@@ -144,7 +144,7 @@ docker run -p 8080:8080 \
   -v $(pwd)/resources/university-role1.obda:/input/mapping.obda \
   -v $(pwd)/resources/university-role1.properties:/input/settings.properties \
   -v $(pwd)/resources/university.sql:/tmp/university.sql \
-  tractusx/provisioning-agent:1.9.5-SNAPSHOT
+  tractusx/provisioning-agent:1.10.2-SNAPSHOT
 ````
 
 Afterwards, you should be able to access the [local SparQL endpoint](http://localhost:8080/) via
@@ -192,7 +192,7 @@ docker run -p 8080:8080 -p 8082:8082 \
   -e ONTOP_MAPPING_FILE="/input/role1.obda /input/role2.obda" \
   -e ONTOP_PROPERTIES_FILE="/input/role1.properties /input/role2.properties" \
   -e ONTOP_DEV_MODE="false false" \
-  tractusx/provisioning-agent:1.9.5-SNAPSHOT
+  tractusx/provisioning-agent:1.10.2-SNAPSHOT
 ````
 
 Accessing entities spanning two schemas using the first role/endpoint delivers a greater count
@@ -265,6 +265,27 @@ WHERE {
 }
 ```
 
+### Notice for Docker Image
+
+DockerHub: https://hub.docker.com/r/tractusx/provisioning-agent
+
+Eclipse Tractus-X product(s) installed within the image:
+GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
+Project home: https://projects.eclipse.org/projects/automotive.tractusx
+Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/provisioning/src/main/docker/Dockerfile
+Project license: Apache License, Version 2.0
+
+**Used base image**
+
+- [ontop/ontop:5.0.2](https://github.com/ontop/ontop/tree/version5/client/docker)
+- Official Ontop DockerHub page: https://hub.docker.com/u/ontop
+- Ontop Project: https://ontop-vkg.org
+- Additional information about the Ontop image: https://hub.docker.com/r/ontop/ontop
+
+As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
+
 ### Helm
 
 A helm chart for deploying the remoting agent can be found under [this folder](../charts/provisioning-agent).
@@ -275,7 +296,7 @@ It can be added to your umbrella chart.yaml by the following snippet
 dependencies:
   - name: provisioning-agent
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.9.5-SNAPSHOT
+    version: 1.10.2-SNAPSHOT
     alias: my-provider-agent
 ```
 

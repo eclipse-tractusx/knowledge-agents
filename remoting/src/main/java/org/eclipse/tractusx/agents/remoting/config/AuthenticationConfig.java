@@ -23,29 +23,36 @@ import org.eclipse.rdf4j.sail.config.SailConfigException;
  * from the config graph of the remoting SAIL repo.
  */
 public class AuthenticationConfig {
- 
-    /** auth key (defaults to Authorization) */
+
+    /**
+     * auth key (defaults to Authorization)
+     */
     protected String authKey = "Authorization";
 
-    /** actual auth code */
+    /**
+     * actual auth code
+     */
     protected String authCode = null;
-   
+
     @Override
     public String toString() {
-        return super.toString()+"/authentication";
-    }   
+        return super.toString() + "/authentication";
+    }
 
     /**
      * Validates the authentication config
+     *
      * @throws SailConfigException in case validation is unsuccessful
      */
     public void validate(String context) throws SailConfigException {
-        if (authCode==null || authCode.length() == 0) {
-            throw new SailConfigException(String.format("Authentication code in %s is not provided",context));
+        if (authCode == null || authCode.length() == 0) {
+            throw new SailConfigException(String.format("Authentication code in %s is not provided", context));
         }
     }
 
     /**
+     * access
+     *
      * @return configured auth key
      */
     public String getAuthKey() {
@@ -53,6 +60,8 @@ public class AuthenticationConfig {
     }
 
     /**
+     * access
+     *
      * @return configured auth code
      */
     public String getAuthCode() {

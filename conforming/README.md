@@ -53,15 +53,15 @@ mvn package
 ```
 
 This will generate 
-- a [plugin jar](target/original-conforming-agent-1.9.5-SNAPSHOT.jar) containing all necessary components to be dropped into a Jakarta-Compatible Web Server.
-- a [standalone jar](target/conforming-agent-1.9.5-SNAPSHOT.jar) including the Jakarta-Reference Implementation (Glassfish).
+- a [plugin jar](target/original-conforming-agent-1.10.2-SNAPSHOT.jar) containing all necessary components to be dropped into a Jakarta-Compatible Web Server.
+- a [standalone jar](target/conforming-agent-1.10.2-SNAPSHOT.jar) including the Jakarta-Reference Implementation (Glassfish).
 
 ### Run Locally
 
-The [standalone jar](target/conforming-agent-1.9.5-SNAPSHOT.jar) may be started as follows
+The [standalone jar](target/conforming-agent-1.10.2-SNAPSHOT.jar) may be started as follows
 
 ```console
-java -cp target/conforming-agent-1.9.5-SNAPSHOT.jar org.eclipse.tractusx.agents.conforming.Bootstrap"
+java -cp target/conforming-agent-1.10.2-SNAPSHOT.jar org.eclipse.tractusx.agents.conforming.Bootstrap"
 ```
 
 ### Containerizing
@@ -75,7 +75,7 @@ mvn install -Pwith-docker-image
 or invoke the following docker command after a successful package run
 
 ```console
-docker build -t tractusx/conforming-agent:1.9.5-SNAPSHOT -f src/main/docker/Dockerfile .
+docker build -t tractusx/conforming-agent:1.10.2-SNAPSHOT -f src/main/docker/Dockerfile .
 ```
 
 This will create a docker image based on a minimal java environment for running the Glassfish-based standalone jar.
@@ -84,7 +84,7 @@ To run the docker image, you could invoke this command
 
 ```console
 docker run -p 8080:8080 \
-  tractusx/conforming-agent:1.9.5-SNAPSHOT
+  tractusx/conforming-agent:1.10.2-SNAPSHOT
 ````
 
 Afterwards, you should be able to access the [local SparQL endpoint](http://localhost:8080/) via
@@ -110,6 +110,27 @@ This must be provided by hiding them in an appropriate service network layer.
 |---	                        |---	      |---	                                                                   |---                                   | ---  |
 | JAVA_TOOL_OPTIONS           |           | -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8090   | JMV (Debugging option)               | X    | 
 
+### Notice for Docker Image
+
+DockerHub: https://hub.docker.com/r/tractusx/conforming-agent
+
+Eclipse Tractus-X product(s) installed within the image:
+GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/conforming
+Project home: https://projects.eclipse.org/projects/automotive.tractusx
+Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/conforming/src/main/docker/Dockerfile
+Project license: Apache License, Version 2.0
+
+**Used base image**
+
+- [eclipse-temurin:17-jre-alpine](https://github.com/adoptium/containers)
+- Official Eclipse Temurin DockerHub page: https://hub.docker.com/_/eclipse-temurin
+- Eclipse Temurin Project: https://projects.eclipse.org/projects/adoptium.temurin
+- Additional information about the Eclipse Temurin images: https://github.com/docker-library/repo-info/tree/master/repos/eclipse-temurin
+
+As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
+
 ### Helm Chart
 
 A helm chart for deploying the remoting agent can be found under [this folder](../charts/remoting-agent).
@@ -120,7 +141,7 @@ It can be added to your umbrella chart.yaml by the following snippet
 dependencies:
   - name: conforming-agent
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.9.5-SNAPSHOT
+    version: 1.10.2-SNAPSHOT
     alias: my-conforming-agent
 ```
 

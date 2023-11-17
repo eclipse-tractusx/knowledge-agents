@@ -24,7 +24,11 @@ import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.sail.SailRepository;
-import org.eclipse.tractusx.agents.remoting.config.*;
+import org.eclipse.tractusx.agents.remoting.config.ArgumentConfig;
+import org.eclipse.tractusx.agents.remoting.config.RemotingSailConfig;
+import org.eclipse.tractusx.agents.remoting.config.ResultConfig;
+import org.eclipse.tractusx.agents.remoting.config.ReturnValueConfig;
+import org.eclipse.tractusx.agents.remoting.config.ServiceConfig;
 
 import java.util.Arrays;
 
@@ -41,28 +45,29 @@ public class Application {
 
     @Override
     public String toString() {
-        return super.toString()+"/application";
+        return super.toString() + "/application";
     }
 
     /**
      * main logic sets up the rdf4j server programatically.
+     *
      * @param args command line args
      */
 
-    public static void main(String[] args) {        
-        RemotingSailConfig rsc=new RemotingSailConfig(RemotingSailFactory.SAIL_TYPE);
-        ServiceConfig ic=new ServiceConfig();
-        rsc.putService("https://www.w3id.org/catenax/ontology/prognosis#Invocation",ic);
+    public static void main(String[] args) {
+        RemotingSailConfig rsc = new RemotingSailConfig(RemotingSailFactory.SAIL_TYPE);
+        ServiceConfig ic = new ServiceConfig();
+        rsc.putService("https://www.w3id.org/catenax/ontology/prognosis#Invocation", ic);
         ic.setTargetUri("class:io.catenax.knowledge.agents.remoting.TestFunction#test");
-        ArgumentConfig ac=new ArgumentConfig();
+        ArgumentConfig ac = new ArgumentConfig();
         ac.setArgumentName("arg0");
-        ic.getArguments().put("https://www.w3id.org/catenax/ontology/prognosis#input-1",ac);
-        ac=new ArgumentConfig();
+        ic.getArguments().put("https://www.w3id.org/catenax/ontology/prognosis#input-1", ac);
+        ac = new ArgumentConfig();
         ac.setArgumentName("arg1");
-        ic.getArguments().put("https://www.w3id.org/catenax/ontology/prognosis#input-2",ac);
-        ReturnValueConfig rvc=new ReturnValueConfig();
-        ResultConfig rc=new ResultConfig();
-        rc.getOutputs().put("https://www.w3id.org/catenax/ontology/prognosis#output",rvc);
+        ic.getArguments().put("https://www.w3id.org/catenax/ontology/prognosis#input-2", ac);
+        ReturnValueConfig rvc = new ReturnValueConfig();
+        ResultConfig rc = new ResultConfig();
+        rc.getOutputs().put("https://www.w3id.org/catenax/ontology/prognosis#output", rvc);
         ic.setResult(rc);
         ic.setResultName("https://www.w3id.org/catenax/ontology/prognosis#Result");
 
@@ -70,22 +75,22 @@ public class Application {
 
         Repository rep = new SailRepository(new RemotingSail(rsc));
         try (RepositoryConnection conn = rep.getConnection()) {
-            TupleQuery query=(TupleQuery) conn.prepareQuery(QueryLanguage.SPARQL,
-            "PREFIX cx: <https://w3id.org/catenax/ontology#> "+
-            "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "+
-            "PREFIX prognosis: <https://www.w3id.org/catenax/ontology/prognosis#> "+
-            "SELECT ?output "+
-            "WHERE { "+
-            "?invocation a prognosis:Invocation; "+
-            "            prognosis:input-1 \"1\"^^xsd:string; "+
-            "            prognosis:input-2 \"2\"^^xsd:string; "+
-            "            prognosis:output ?output. "+
-            "}");
+            TupleQuery query = (TupleQuery) conn.prepareQuery(QueryLanguage.SPARQL,
+                    "PREFIX cx: <https://w3id.org/catenax/ontology#> " +
+                            "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> " +
+                            "PREFIX prognosis: <https://www.w3id.org/catenax/ontology/prognosis#> " +
+                            "SELECT ?output " +
+                            "WHERE { " +
+                            "?invocation a prognosis:Invocation; " +
+                            "            prognosis:input-1 \"1\"^^xsd:string; " +
+                            "            prognosis:input-2 \"2\"^^xsd:string; " +
+                            "            prognosis:output ?output. " +
+                            "}");
             final TupleQueryResult result = query.evaluate();
-		    final String[] names = result.getBindingNames().toArray(new String[0]);
-            System.out.println("Got variables "+Arrays.toString(names));
-		    java.util.List<BindingSet> bindings = Iterations.asList(result);
-		    System.out.println("Got bindings "+Arrays.toString(bindings.toArray(new BindingSet[0])));
+            final String[] names = result.getBindingNames().toArray(new String[0]);
+            System.out.println("Got variables " + Arrays.toString(names));
+            java.util.List<BindingSet> bindings = Iterations.asList(result);
+            System.out.println("Got bindings " + Arrays.toString(bindings.toArray(new BindingSet[0])));
         }
     }
 }

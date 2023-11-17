@@ -21,12 +21,14 @@
 
 FROM openjdk:22-jdk-slim AS build
 
-COPY target/original-remoting-agent-*-SNAPSHOT.jar /opt/lib/
+COPY target/original-remoting-agent-*.jar /opt/lib/
 COPY target/lib/guava-*.jar /opt/lib/
 COPY target/lib/netty-*.jar /opt/lib/
 COPY target/lib/jetty-*.jar /opt/lib/
 COPY target/lib/spring-*.jar /opt/lib/
 COPY target/lib/httpmime-*.jar /opt/lib/
+COPY target/lib/commons-logging-*.jar /opt/lib/
+COPY target/lib/snappy-java-*.jar /opt/lib/
 
 COPY resources/web/logging.properties /opt/conf/
 COPY resources/web/server.xml /opt/conf/
@@ -74,29 +76,20 @@ RUN if [ "${HTTP_PROXY}" != ""  ]; then \
 RUN	mkdir -p /var/rdf4j/server/conf && \
     mkdir -p /var/rdf4j/server/repositories && \
     unzip /tmp/eclipse-rdf4j-4.3.2/war/rdf4j-server.war -d /usr/local/tomcat/webapps/rdf4j-server && \
-	unzip /tmp/eclipse-rdf4j-4.3.2/war/rdf4j-workbench.war -d /usr/local/tomcat/webapps/rdf4j-workbench && \
-    rm -rf /tmp/eclipse-rdf4j-4.3.2 && \
+	rm -rf /tmp/eclipse-rdf4j-4.3.2 && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/guava-*.jar && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/netty-*.jar && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/jetty-*.jar && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/spring-*.jar && \
     rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/snappy-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-workbench/WEB-INF/lib/guava-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-workbench/WEB-INF/lib/netty-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-workbench/WEB-INF/lib/jetty-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-workbench/WEB-INF/lib/snappy-*.jar && \
     rm /usr/local/tomcat/conf/logging.properties && \
     rm /usr/local/tomcat/conf/server.xml && \
     rm /usr/local/tomcat/conf/tomcat-users.xml && \
     rm /usr/local/tomcat/conf/web.xml && \
-    wget -q "https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" -O /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/commons-logging-1.2.jar && \
-    wget -q "https://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.10.2/snappy-java-1.1.10.2.jar" -O /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/snappy-java-1.1.10.2.jar && \
-    cp /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/snappy-java-1.1.10.2.jar /usr/local/tomcat/webapps/rdf4j-workbench/WEB-INF/lib/. && \
     chown -R tomcat:tomcat /var/rdf4j /usr/local/tomcat && \
 	chmod 775 /usr/local/tomcat /usr/local/tomcat/bin /usr/local/tomcat/bin/catalina.sh /var/rdf4j/server 
 
 COPY --from=build /opt/lib/*.jar /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/
-COPY --from=build /opt/lib/*.jar /usr/local/tomcat/webapps/rdf4j-workbench/WEB-INF/lib/
 COPY --from=build /opt/conf/*.xml /opt/conf/*.properties /usr/local/tomcat/conf/
 COPY resources/web/rdf4j.xml /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/web.xml
 COPY resources/web/callback.xml /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/callback.xml

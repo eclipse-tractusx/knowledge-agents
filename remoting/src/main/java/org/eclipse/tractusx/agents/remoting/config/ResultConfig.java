@@ -31,10 +31,14 @@ public class ResultConfig {
      */
     protected Map<String, ReturnValueConfig> outputs = new java.util.HashMap<>();
 
-    /** prefix for all the output paths */
-    String outputProperty=null;
-    /** where the id of the result can be found */
-    String resultIdProperty=null;
+    /**
+     * prefix for all the output paths
+     */
+    String outputProperty = null;
+    /**
+     * where the id of the result can be found
+     */
+    String resultIdProperty = null;
 
     public Map<String, ReturnValueConfig> getOutputs() {
         return outputs;
@@ -56,21 +60,22 @@ public class ResultConfig {
         return callbackProperty;
     }
 
-    String correlationInput=null;
-    String callbackProperty=null;
+    String correlationInput = null;
+    String callbackProperty = null;
 
-    
+
     @Override
     public String toString() {
-        return super.toString()+"/service";
-    }   
+        return super.toString() + "/service";
+    }
 
     /**
      * Validates the invocation config
+     *
      * @throws SailConfigException if validation is not successful
      */
     public void validate(String context) throws SailConfigException {
-        if(context==null) {
+        if (context == null) {
             throw new SailConfigException("Result Config must have a context");
         }
         for (Map.Entry<String, ReturnValueConfig> arg : outputs.entrySet()) {

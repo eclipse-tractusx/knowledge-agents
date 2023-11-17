@@ -21,27 +21,28 @@ import java.util.Arrays;
 /**
  * implements a compound key based on individual hash codes
  */
-public class BatchKey<TargetClass> {
+public class BatchKey<TARGET> {
 
-    TargetClass[] components;
+    TARGET[] components;
 
-    public TargetClass[] getComponents() {
+    public TARGET[] getComponents() {
         return components;
     }
 
     /**
      * create a new batch key
+     *
      * @param theComponents of the batch key
      */
-    public BatchKey(TargetClass... theComponents) {
-        this.components=theComponents;
+    public BatchKey(TARGET... theComponents) {
+        this.components = theComponents;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BatchKey<TargetClass> batchKey = (BatchKey<TargetClass>) o;
+        BatchKey<TARGET> batchKey = (BatchKey<TARGET>) o;
         return Arrays.equals(components, batchKey.components);
     }
 
