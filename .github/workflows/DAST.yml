@@ -24,6 +24,11 @@ jobs:
       
       - name: Copy OpenAPI JSON
         run: cp .github/workflows/openapi_Knowledge_Agents.json $GITHUB_WORKSPACE
+
+      # Extract the API key from the OpenAPI JSON file
+      - name: Extract API Key
+        id: extract-api-key
+        run: echo "::set-output name=api-key::$(jq -r .security[0].apiKey -e $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json)"
         
       - name: ZAP Scan 1
         id: scan1
@@ -33,8 +38,7 @@ jobs:
           docker_name: 'owasp/zap2docker-stable'
           format: openapi
           target: 'https://knowledge.dev.demo.catena-x.net'
-          username: GH_TOKEN
-          password: GH_PW
+          apikey: ${{ steps.extract-api-key.outputs.api-key }}
         env:
           DEBUG: 'true'
           OPENAPI_FILE: $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json  # Pass the path to the OpenAPI JSON file as an environment variable
