@@ -23,7 +23,7 @@ jobs:
           ref: main
       
       - name: Copy OpenAPI JSON
-        run: cp openapi_Knowledge_Agents.json $GITHUB_WORKSPACE
+        run: cp .github/workflows/openapi_Knowledge_Agents.json $GITHUB_WORKSPACE
         
       - name: ZAP Scan 1
         id: scan1
@@ -32,7 +32,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           docker_name: 'owasp/zap2docker-stable'
           format: openapi
-          target: 'https://managed-identity-wallets.dev.demo.catena-x.net/'
+          target: 'https://knowledge.dev.demo.catena-x.net'
         env:
           DEBUG: 'true'
           OPENAPI_FILE: $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json  # Pass the path to the OpenAPI JSON file as an environment variable
