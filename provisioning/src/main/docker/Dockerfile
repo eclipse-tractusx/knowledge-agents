@@ -56,17 +56,11 @@ RUN if [ "${HTTP_PROXY}" != ""  ]; then \
         echo "Acquire::http::Proxy \"${HTTP_PROXY}\"" >> /etc/apt/apt.conf.d/proxy.conf; \
         echo "Acquire::https::Proxy \"${HTTP_PROXY}\"" >> /etc/apt/apt.conf.d/proxy.conf; \
     fi && \
-    apt-get -y upgrade && \
-    apt-get -y update && \
-    apt-get -y --no-install-recommends install unzip=6.0-26ubuntu3.1 && \
-    apt-get -y --no-install-recommends upgrade procps && \
     rm /opt/ontop/lib/guava-*.jar && \
     rm /opt/ontop/lib/tomcat-embed-*.jar && \
     rm /opt/ontop/lib/spring-*.jar && \
     mkdir -p /opt/ontop/jdbc && \
     for jdbcDriver in "$jdbcDrivers"; do wget --no-check-certificate -q -P /opt/ontop/jdbc ${jdbcDriver} ; done && \
-    apt-get -y remove --auto-remove wget && \
-    apt-get -y --no-install-recommends install curl=7.81.0-1ubuntu1.14 && \
     if [ "${HTTP_PROXY}" != ""  ]; then rm -f /etc/apt/apt.conf.d/proxy.conf; fi && \
     mkdir -p /opt/ontop/input && \
     mkdir -p /opt/ontop/database && \

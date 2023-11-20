@@ -67,13 +67,10 @@ RUN if [ "${HTTP_PROXY}" != ""  ]; then \
     apt-get -y upgrade && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install unzip=6.0-26ubuntu3.1 && \
-    apt-get -y --no-install-recommends upgrade procps && \
     addgroup --system --gid 30000 tomcat && \
     adduser --disabled-password --gecos "" --ingroup tomcat --uid 10001 tomcat && \
     rm -rf /usr/local/tomcat/webapps/* && \
     wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclipse/rdf4j/eclipse-rdf4j-4.3.2-sdk.zip" && \
-    apt-get -y remove --auto-remove wget && \
-    apt-get -y --no-install-recommends install curl=7.81.0-1ubuntu1.14 && \
     if [ "${HTTP_PROXY}" != ""  ]; then rm -f /etc/apt/apt.conf.d/proxy.conf; fi && \
     unzip -d /tmp /tmp/rdf4j.zip eclipse-rdf4j-4.3.2/war/rdf4j-server.war  eclipse-rdf4j-4.3.2/war/rdf4j-workbench.war && \
     rm /tmp/rdf4j.zip
@@ -94,6 +91,7 @@ RUN	mkdir -p /var/rdf4j/server/conf && \
     rm /usr/local/tomcat/conf/tomcat-users.xml && \
     rm /usr/local/tomcat/conf/web.xml && \
     chown -R tomcat:tomcat /var/rdf4j /usr/local/tomcat && \
+    apt-get -y --auto-remove remove unzip && \
 	chmod 775 /usr/local/tomcat /usr/local/tomcat/bin /usr/local/tomcat/bin/catalina.sh /var/rdf4j/server 
 
 COPY --from=build /opt/lib/*.jar /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/

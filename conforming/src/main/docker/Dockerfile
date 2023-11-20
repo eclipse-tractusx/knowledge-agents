@@ -23,8 +23,6 @@ ARG APP_USER=agent
 ARG APP_UID=10100
 ARG APP_GID=30000
 
-RUN apk update && apk upgrade libssl3 libcrypto3 --no-cache
-
 RUN addgroup --gid "$APP_GID" --system "$APP_USER"
 
 RUN adduser \
