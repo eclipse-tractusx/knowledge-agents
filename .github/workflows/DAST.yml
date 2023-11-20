@@ -34,11 +34,10 @@ jobs:
         id: scan1
         uses: zaproxy/action-api-scan@v0.5.0
         with:
-          token: ${{ secrets.GH_TOKEN }}
           docker_name: 'owasp/zap2docker-stable'
           format: openapi
           target: 'https://knowledge.dev.demo.catena-x.net'
           apikey: ${{ steps.extract-api-key.outputs.api-key }}
         env:
           DEBUG: 'true'
-          OPENAPI_FILE: $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json  # Pass the path to the OpenAPI JSON file as an environment variable
+          OPENAPI_FILE: $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json
