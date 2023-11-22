@@ -27,7 +27,7 @@
     <parent>
         <groupId>org.eclipse.tractusx</groupId>
         <artifactId>agents</artifactId>
-        <version>1.10.2-SNAPSHOT</version>
+        <version>1.10.15-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -132,6 +132,24 @@
             <version>${postgres.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.annotation.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.annotation.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.annotation.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -174,10 +192,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
-            <!--<plugin>
-                <groupId>org.cyclonedx</groupId>
-                <artifactId>cyclonedx-maven-plugin</artifactId>
-            </plugin>-->
         </plugins>
     </build>
 
