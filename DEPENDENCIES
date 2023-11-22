@@ -49,7 +49,7 @@ maven/mavencentral/commons-io/commons-io/2.11.0, Apache-2.0, approved, CQ23745
 maven/mavencentral/commons-lang/commons-lang/2.6, Apache-2.0, approved, CQ6183
 maven/mavencentral/commons-logging/commons-logging/1.2, Apache-2.0, approved, CQ10162
 maven/mavencentral/io.github.classgraph/classgraph/4.8.154, MIT, approved, CQ22530
-maven/mavencentral/io.github.solf/nullanno/3.0.0, NOASSERTION, restricted, clearlydefined
+maven/mavencentral/io.github.solf/nullanno/3.0.0, EPL-1.0, approved, #11625
 maven/mavencentral/io.micrometer/micrometer-core/1.9.12, Apache-2.0 AND (Apache-2.0 AND MIT), approved, #7711
 maven/mavencentral/io.mikael/urlbuilder/2.0.9, Apache-2.0, approved, #9815
 maven/mavencentral/io.netty/netty-buffer/4.1.94.Final, Apache-2.0, approved, CQ21842
@@ -67,9 +67,9 @@ maven/mavencentral/io.swagger.core.v3/swagger-core/2.2.12, Apache-2.0, approved,
 maven/mavencentral/io.swagger.core.v3/swagger-integration/2.2.12, Apache-2.0, approved, #10352
 maven/mavencentral/io.swagger.core.v3/swagger-jaxrs2/2.2.12, Apache-2.0, approved, #9814
 maven/mavencentral/io.swagger.core.v3/swagger-models/2.2.12, Apache-2.0, approved, #10353
-maven/mavencentral/it.unibz.inf.ontop/ontop-model/5.1.0, , restricted, clearlydefined
-maven/mavencentral/it.unibz.inf.ontop/ontop-obda-core/5.1.0, , restricted, clearlydefined
-maven/mavencentral/it.unibz.inf.ontop/ontop-rdb/5.1.0, , restricted, clearlydefined
+maven/mavencentral/it.unibz.inf.ontop/ontop-model/5.1.0, Apache-2.0 AND OGC-1.0, restricted, #11624
+maven/mavencentral/it.unibz.inf.ontop/ontop-obda-core/5.1.0, Apache-2.0, approved, #11623
+maven/mavencentral/it.unibz.inf.ontop/ontop-rdb/5.1.0, Apache-2.0, approved, #11626
 maven/mavencentral/jakarta.activation/jakarta.activation-api/1.2.2, EPL-2.0 OR BSD-3-Clause OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jaf
 maven/mavencentral/jakarta.annotation/jakarta.annotation-api/1.3.5, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.ca
 maven/mavencentral/jakarta.servlet/jakarta.servlet-api/4.0.4, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.servlet
@@ -123,7 +123,7 @@ maven/mavencentral/org.apache.tomcat.embed/tomcat-embed-el/9.0.76, Apache-2.0, a
 maven/mavencentral/org.apache.tomcat.embed/tomcat-embed-el/9.0.81, Apache-2.0, approved, CQ20193
 maven/mavencentral/org.apache.tomcat.embed/tomcat-embed-websocket/9.0.76, Apache-2.0, approved, CQ20194
 maven/mavencentral/org.apache.tomcat.embed/tomcat-embed-websocket/9.0.81, Apache-2.0, approved, CQ20194
-maven/mavencentral/org.apache.tomcat/tomcat-annotations-api/9.0.81, , restricted, clearlydefined
+maven/mavencentral/org.apache.tomcat/tomcat-annotations-api/9.0.81, Apache-2.0, approved, clearlydefined
 maven/mavencentral/org.apache.yetus/audience-annotations/0.12.0, Apache-2.0, approved, clearlydefined
 maven/mavencentral/org.apache.zookeeper/zookeeper-jute/3.7.2, Apache-2.0, approved, clearlydefined
 maven/mavencentral/org.apache.zookeeper/zookeeper/3.7.2, Apache-2.0, approved, clearlydefined
