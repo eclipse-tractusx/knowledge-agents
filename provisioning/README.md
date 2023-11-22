@@ -70,7 +70,7 @@ com.dremio.jdbc.Driver-tables.HI_TEST_OEM = CX_RUL_SerialPartTypization_Vehicle,
 com.dremio.jdbc.Driver-unique.HI_TEST_OEM.CX_RUL_SerialPartTypization_Vehicle = UC_VEHICLE
 com.dremio.jdbc.Driver-unique.HI_TEST_OEM.CX_RUL_SerialPartTypization_Component = UC_COMPONENT
 com.dremio.jdbc.Driver-unique.HI_TEST_OEM.CX_RUL_AssemblyPartRelationship = UC_ASSEMBLY
-... 
+...
 ```
 * the ability to optimize to a specific virtualization engine although using a generic REST-based JDBC driver from Apache Calcite
 
@@ -80,12 +80,12 @@ jdbc.url=jdbc\:avatica\:remote\:url=http://data-backend:8888/druid/v2/sql/avatic
 jdbc.driver=org.apache.calcite.avatica.remote.Driver
 org.apache.calcite.avatica.remote.Driver-metadataProvider = it.unibz.inf.ontop.dbschema.impl.DruidMetadataProvider
 org.apache.calcite.avatica.remote.Driver-typeFactory = it.unibz.inf.ontop.model.type.impl.DefaultSQLDBTypeFactory
-org.apache.calcite.avatica.remote.Driver-symbolFactory = it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DefaultSQLDBFunctionSymbolFactory 
+org.apache.calcite.avatica.remote.Driver-symbolFactory = it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DefaultSQLDBFunctionSymbolFactory
 ```
 
 ### Security
 
-Besides the authentication of the Ontop engine at the relational database via jdbc (one url/user per endpoint), there are no 
+Besides the authentication of the Ontop engine at the relational database via jdbc (one url/user per endpoint), there are no
 additional (row-level) security mechanism.
 
 Hence we recommend to apply a role-based approach.
@@ -98,7 +98,7 @@ For any accessing role:
 
 For the sample deployments, we use single agent container with an embedded database (H2) and/or a second database virtualization container (Dremio Community Edition) using preloaded files.
 
-Practical deployments will 
+Practical deployments will
 * scale and balance the agent containers (for which the lifecycle hooks are already provided).
 * use an enterprise-level database (Postgres Service) or database virtualization infrastructure (Dremio Enterprise, Denodo, Teii) that are backed by an appropriate storage system (ADSL, S3, Netapp).
 
@@ -166,16 +166,16 @@ You may manipulate any of the following environment variables to configure the i
 Note that there is no builtin security (ssl/auth) for the exposed endpoints.
 This must be provided by hiding them in an appropriate service network layer.
 
-| ENVIRONMENT VARIABLE        | Required  | Example                                                                | Description                          | List |
-|---	                        |---	      |---	                                                                   |---                                   | ---  |
-| JAVA_TOOL_OPTIONS           |           | -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8090   | JMV (Debugging option)               | X    | 
-| ONTOP_PORT                  |           | 8080 (default)                                                         | A port number                        | X    |
-| ONTOP_ONTOLOGY_FILE         |           | /input/ontology.ttl (default)                                          | Path to ontology file (ttl or xml)   | X    |
-| ONTOP_MAPPING_FILE          |           | /input/mapping.obda (default)                                          | Path to mapping file (obda)          | X    |
-| ONTOP_PROPERTIES_FILE       |           | /input/settings.properties (default)                                   | Path to settings file (properties)   | X    |
-| ONTOP_PORTAL_FILE           |           | /input/portal.toml                                                     | Path to portal config (toml)         | X    |
-| ONTOP_CORS_ALLOWED_ORIGINS  |           | * (default)                                                            | CORS domain name                     |      |
-| ONTOP_DEV_MODE              |           | true (default)                                                         | Redeploy endpoint on file changes    | X    |
+| ENVIRONMENT VARIABLE       | Required | Example                                                              | Description                        | List |
+|----------------------------|----------|----------------------------------------------------------------------|------------------------------------|------|
+| JAVA_TOOL_OPTIONS          |          | -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8090 | JMV (Debugging option)             | X    |
+| ONTOP_PORT                 |          | 8080 (default)                                                       | A port number                      | X    |
+| ONTOP_ONTOLOGY_FILE        |          | /input/ontology.ttl (default)                                        | Path to ontology file (ttl or xml) | X    |
+| ONTOP_MAPPING_FILE         |          | /input/mapping.obda (default)                                        | Path to mapping file (obda)        | X    |
+| ONTOP_PROPERTIES_FILE      |          | /input/settings.properties (default)                                 | Path to settings file (properties) | X    |
+| ONTOP_PORTAL_FILE          |          | /input/portal.toml                                                   | Path to portal config (toml)       | X    |
+| ONTOP_CORS_ALLOWED_ORIGINS |          | * (default)                                                          | CORS domain name                   |      |
+| ONTOP_DEV_MODE             |          | true (default)                                                       | Redeploy endpoint on file changes  | X    |
 
 Here is an example which exposes two endpoints for two different roles (database users, restricted mappings but same ontology)
 
@@ -270,10 +270,11 @@ WHERE {
 DockerHub: https://hub.docker.com/r/tractusx/provisioning-agent
 
 Eclipse Tractus-X product(s) installed within the image:
-GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
-Project home: https://projects.eclipse.org/projects/automotive.tractusx
-Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/provisioning/src/main/docker/Dockerfile
-Project license: Apache License, Version 2.0
+
+- GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
+- Project home: https://projects.eclipse.org/projects/automotive.tractusx
+- Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/provisioning/src/main/docker/Dockerfile
+- Project license: Apache License, Version 2.0
 
 **Used base image**
 
@@ -313,7 +314,7 @@ In your values.yml, you configure your specific instance of the remoting agent l
 # Data Binding Agent
 #######################################################################################
 
-my-provider-agent: 
+my-provider-agent:
   securityContext: *securityContext
   nameOverride: my-provider-agent
   fullnameOverride: my-provider-agent
@@ -326,14 +327,14 @@ my-provider-agent:
       cpu: 500m
       # you should employ 512Mi per endpoint
       memory: 1Gi
-  bindings: 
+  bindings:
     # disables the default sample binding
     dtc: null
     # real production mapping
-    telematics2: 
+    telematics2:
       port: 8081
       path: /t2/(.*)
-      settings: 
+      settings:
         jdbc.url: 'jdbc:postgresql://intradb:5432/schema'
         jdbc.user: <path:vaultpath#username>
         jdbc.password: <path:vaultpath#password>
@@ -369,7 +370,7 @@ my-provider-agent:
         target		<{vehicle_id}> cx-vehicle:hasPart <{gearbox_id}> .
         source		SELECT vehicle_id, gearbox_id FROM vehicles
 
-        ]]  
+        ]]
   ingresses:
     - enabled: true
       # -- The hostname to be used to precisely map incoming traffic onto the underlying network service
@@ -384,8 +385,3 @@ my-provider-agent:
         enabled: true
         secretName: my-provider-tls
 ```
-
-
-
-
-
