@@ -96,25 +96,25 @@ When a concrete query is sent to the RDF4J controller, a [Remoting SAIL Connecti
 is setup which evaluates the query with the help of the stateful [Query Executor](src/main/java/org/eclipse/tractusx/agents/remoting/QueryExecutor.java). With the help of the Remoting Sail Configuraiton, The Query Executor instantiates all function nodes as [Invocations](src/main/java/org/eclipse/tractusx/agents/remoting/Invocation.java). During processing, input and output variables are accessed and stored in a BindingSet Collection for which the Query Executor implements the [IBindingHost](src/main/java/org/eclipse/tractusx/agents/remoting/IBindingHost.java).
 
 ```sparql
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
-PREFIX prognosis: <https://w3id.org/catenax/ontology/prognosis#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX prognosis: <https://w3id.org/catenax/ontology/prognosis#>
 
-SELECT ?name ?invocation ?prediction ?support 
-WHERE { 
+SELECT ?name ?invocation ?prediction ?support
+WHERE {
   VALUES (?name) { "Schorsch"^^xsd:string }
-  ?invocation a prognosis:Prognosis; 
-                prognosis:name ?name; 
+  ?invocation a prognosis:Prognosis;
+                prognosis:name ?name;
                 prognosis:prediction ?prediction;
                 prognosis:support ?support.
 }
 ```
 
 Currently, there are two principle methods of function bindings available
-* Class Binding ([Service Config](src/main/java/org/eclipse/tractusx/agents/remoting/config/ServiceConfig.java).targetUri follows the pattern "class:<className/>#<methodName/>") 
+* Class Binding ([Service Config](src/main/java/org/eclipse/tractusx/agents/remoting/config/ServiceConfig.java).targetUri follows the pattern "class:<className/>#<methodName/>")
 * REST Binding ([Service Config](src/main/java/org/eclipse/tractusx/agents/remoting/config/ServiceConfig.java)targetUri follows the pattern "https?://<url>")
 
 For REST Binding, we support the following outgoing request formats/content types (being configured via [Service Config](src/main/java/org/eclipse/tractusx/agents/remoting/config/ServiceConfig.java).method). Note that responses are always interpreted as XML or JSON depending on the response content type.
-* GET: Input arguments are mapped to URL query parameters. 
+* GET: Input arguments are mapped to URL query parameters.
 * POST-XML: Input Arguments are mapped into an XML document body with content-type "application/xml" T
 * POST-JSON: Input Arguments are mapped into an JSON document body with content-type "application/json"
 * POST-JSON-MF: Input Arguments are mapped into JSON-based files send in a multi-part  request with content-type multipart/form-data (and XXX as boundary and "application/json" as Content-Disposition)
@@ -124,7 +124,7 @@ Invocations can be batched. Normally ([Service Config](src/main/java/org/eclipse
 there is some [Argument Config](src/main/java/org/eclipse/tractusx/agents/remoting/config/ArgumentConfig.java).formsBatchGroup set to true, several tuples/bindings can be sent in a single invocation (usually in an array or by using flexible argument paths using '{<iriofinput>}' path elements). In that case, we also expect the responses to contain several individual results which are mapped/joined with the original input bindings using the ResultConfig.correlationInput reference.
 
 Invocation can be asynchronous. That means that the called backend will not return a proper response, just a successful notification code. Instead we send the public URL of the builtin [CallbackController](src/main/java/org/eclipse/tractusx/agents/remoting/callback/CallbackController.java) which is configured in the callbackAddress property of the remoting repository (and is transmitted in the callbackAddressProperty of the ServiceConfig). In order to correlate outgoing (batch) requests with asynchronous responses sent to the CallbackController, we rely on setting a unique request identifier specified in ServiceConfig.invocationIdProperty and comparing it with the content of the ResultConfig.callbackProperty
- 
+
 ## Deployment
 
 ### Compile, Test & Package
@@ -133,16 +133,16 @@ Invocation can be asynchronous. That means that the called backend will not retu
 mvn package
 ```
 
-This will generate 
-- a [standalone jar](target/remoting-agent-1.10.2-SNAPSHOT.jar) containing all necessary rdf4j components to build your own repository server.
-- a [pluging jar](target/original-remoting-agent-1.10.2-SNAPSHOT.jar) which maybe dropped into an rdf4j server for remoting support.
+This will generate
+- a [standalone jar](target/remoting-agent-1.10.15-SNAPSHOT.jar) containing all necessary rdf4j components to build your own repository server.
+- a [pluging jar](target/original-remoting-agent-1.10.15-SNAPSHOT.jar) which maybe dropped into an rdf4j server for remoting support.
 
 ### Run Locally
 
-The standalone jar](target/remoting-agent-1.10.2-SNAPSHOT.jar) contains an example application that runs a sample repository against a sample source
+The standalone jar](target/remoting-agent-1.10.15-SNAPSHOT.jar) contains an example application that runs a sample repository against a sample source
 
 ```console
-java -jar target/remoting-agent-1.10.2-SNAPSHOT.jar -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG
+java -jar target/remoting-agent-1.10.15-SNAPSHOT.jar -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG
 ```
 
 ### Containerizing
@@ -156,7 +156,7 @@ mvn install -Pwith-docker-image
 or invoke the following docker command after a successful package run
 
 ```console
-docker build -t tractusx/remoting-agent:1.10.2-SNAPSHOT -f src/main/docker/Dockerfile .
+docker build -t tractusx/remoting-agent:1.10.15-SNAPSHOT -f src/main/docker/Dockerfile .
 ```
 
 This will create a docker image including an extended rdf4j-server as well as an interactive rdf4j-workbench.
@@ -166,7 +166,7 @@ To run the docker image, you could invoke this command
 ```console
 docker run -p 8081:8081 \
   -v $(pwd)/src/test:/var/rdf4j/config \
-  tractusx/remoting-agent:1.10.2-SNAPSHOT
+  tractusx/remoting-agent:1.10.15-SNAPSHOT
 ````
 
 Afterwards, you should be able to access the [local SparQL endpoint](http://localhost:8081/) via
@@ -188,19 +188,20 @@ You may manipulate any of the following environment variables to configure the i
 Note that there is no builtin security (ssl/auth) for the exposed endpoints.
 This must be provided by hiding them in an appropriate service network layer.
 
-| ENVIRONMENT VARIABLE        | Required  | Example                                                                | Description                          | List |
-|---	                        |---	      |---	                                                                   |---                                   | ---  |
-| JAVA_TOOL_OPTIONS           |           | -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8090   | JMV (Debugging option)               | X    | 
+| ENVIRONMENT VARIABLE | Required | Example                                                              | Description            | List |
+|----------------------|----------|----------------------------------------------------------------------|------------------------|------|
+| JAVA_TOOL_OPTIONS    |          | -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8090 | JMV (Debugging option) | X    |
 
 ### Notice for Docker Image
 
 DockerHub: https://hub.docker.com/r/tractusx/remoting-agent
 
 Eclipse Tractus-X product(s) installed within the image:
-GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/remoting
-Project home: https://projects.eclipse.org/projects/automotive.tractusx
-Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/remoting/src/main/docker/Dockerfile
-Project license: Apache License, Version 2.0
+
+- GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/remoting
+- Project home: https://projects.eclipse.org/projects/automotive.tractusx
+- Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/remoting/src/main/docker/Dockerfile
+- Project license: Apache License, Version 2.0
 
 **Used base image**
 
@@ -223,7 +224,7 @@ It can be added to your umbrella chart.yaml by the following snippet
 dependencies:
   - name: remoting-agent
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.10.2-SNAPSHOT
+    version: 1.10.15-SNAPSHOT
     alias: my-remoting-agent
 ```
 
@@ -240,7 +241,7 @@ In your values.yml, you configure your specific instance of the remoting agent l
 # API Binding Agent
 ##############################################################################################
 
-my-remoting-agent: 
+my-remoting-agent:
   securityContext: *securityContext
   nameOverride: my-remoting-agent
   fullnameOverride: my-remoting-agent
@@ -285,9 +286,9 @@ my-remoting-agent:
              cx-fx:supportsInvocation prognosis:Prognosis;
           ]
        ].
-    
+
     # Function declaration
-    
+
     prognosis:Prognosis rdf:type cx-fx:Function;
       dcterms:description "Prognosis is a sample simulation function with input and output bindings."@en ;
       dcterms:title "Prognosis" ;
@@ -296,31 +297,26 @@ my-remoting-agent:
       cx-common:authenticationKey "Dummy-Key";
       cx-fx:input prognosis:name;
       cx-fx:result prognosis:hasResult.
-    
+
     prognosis:name rdf:type cx-fx:Argument;
       dcterms:description "Name is an argument to the Prognosis function."@en ;
       dcterms:title "Name";
       cx-fx:argumentName "name".
-    
+
     prognosis:hasResult rdf:type cx-fx:Result;
       cx-fx:output prognosis:prediction;
       cx-fx:output prognosis:support.
-    
+
     prognosis:prediction rdf:type cx-fx:ReturnValue;
        dcterms:description "Prediction (Value) is an integer-based output of the Prognosis function."@en ;
        dcterms:title "Prediction" ;
        cx-fx:valuePath "age";
        cx-fx:dataType xsd:int.
-    
+
     prognosis:support rdf:type cx-fx:ReturnValue;
        dcterms:description "Support (Value) is another integer-based output of the Prognosis function."@en ;
        dcterms:title "Support" ;
        cx-fx:valuePath "count";
        cx-fx:dataType xsd:int.
-        
+
 ```
-
-
-
-
-

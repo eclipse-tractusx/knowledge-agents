@@ -1,6 +1,6 @@
----
+#!/bin/sh
+
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-#
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
 #
@@ -15,20 +15,9 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-#
-# Provisioning Agent Chart Header
-# This is a YAML-formatted file.
-apiVersion: v2
-name: provisioning-agent
-description: |
-  A Helm chart for the Tractus-X Provisioning Agent which is a container to Bridge Agent-Enabled Connector and Relational Data Sources.
 
-  This chart has no prerequisites.
-home: https://github.com/eclipse-tractusx/knowledge-agents/
-sources:
-  - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
-type: application
-appVersion: "1.10.15-SNAPSHOT"
-version: 1.10.15-SNAPSHOT
-maintainers:
-  - name: 'Tractus-X Knowledge Agents Team'
+OLD_VERSION=1.10.15-SNAPSHOT
+echo Upgrading from $OLD_VERSION to $1
+PATTERN=s/$OLD_VERSION/$1/g
+LC_ALL=C
+find ./ -type f \( -iname "*.xml" -o -iname "*.sh"  -o -iname "*.yml"  -o -iname "*.yaml"  -o -iname "*.md"  -o -iname "*.java" -o -iname "*.properties" \) -exec sed -i.bak $PATTERN {} \;

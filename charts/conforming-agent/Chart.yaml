@@ -28,7 +28,7 @@ home: https://github.com/eclipse-tractusx/knowledge-agents/
 sources:
   - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/conforming
 type: application
-appVersion: "1.10.2-SNAPSHOT"
-version: 1.10.2-SNAPSHOT
+appVersion: "1.10.15-SNAPSHOT"
+version: 1.10.15-SNAPSHOT
 maintainers:
   - name: 'Tractus-X Knowledge Agents Team'

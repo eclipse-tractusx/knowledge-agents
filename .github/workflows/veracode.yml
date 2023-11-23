@@ -64,7 +64,7 @@ jobs:
                   {dir: conforming, name: conforming-agent}]
     steps:
       # Set-Up
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - uses: ./.github/actions/setup-java
       # Build
       - name: Build ${{ matrix.variant.name }}
@@ -77,7 +77,7 @@ jobs:
         run: |-
           tar -czvf ${{ matrix.variant.dir }}/target/${{ matrix.variant.name }}.tar.gz ${{ matrix.variant.dir }}/target/${{ matrix.variant.name }}-*.jar
       - name: Veracode Upload And Scan
-        uses: veracode/veracode-uploadandscan-action@v1.0
+        uses: veracode/veracode-uploadandscan-action@c3c0b78bddb42d5f6b10d70562f692215a410d7b #v1.0
         if: |
           needs.secret-presence.outputs.ORG_VERACODE_API_ID && needs.secret-presence.outputs.ORG_VERACODE_API_KEY
         continue-on-error: true
@@ -107,7 +107,7 @@ jobs:
         variant: [{dir: provisioning, name: provisioning-agent}]
     steps:
       # Set-Up
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - uses: ./.github/actions/setup-java
       # Build
       - name: Build ${{ matrix.variant.name }}
@@ -120,7 +120,7 @@ jobs:
         run: |-
           tar --exclude='spring-web-5.3.28.jar' -czvf ${{ matrix.variant.dir }}/target/${{ matrix.variant.name }}.tar.gz ${{ matrix.variant.dir }}/target/lib/*.jar ${{ matrix.variant.dir }}/target/${{ matrix.variant.name }}-*.jar
       - name: Veracode Upload And Scan
-        uses: veracode/veracode-uploadandscan-action@v1.0
+        uses: veracode/veracode-uploadandscan-action@c3c0b78bddb42d5f6b10d70562f692215a410d7b #v1.0
         if: |
           needs.secret-presence.outputs.ORG_VERACODE_API_ID && needs.secret-presence.outputs.ORG_VERACODE_API_KEY
         continue-on-error: true

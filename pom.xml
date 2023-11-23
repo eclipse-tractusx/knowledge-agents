@@ -26,7 +26,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.eclipse.tractusx</groupId>
     <artifactId>agents</artifactId>
-    <version>1.10.2-SNAPSHOT</version>
+    <version>1.10.15-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Tractus-X Knowledge Agents Reference Implementations</name>
     <description>Provides Reference Implementations and Artifacts to Realize Semantic Dataspace Backends</description>
@@ -47,20 +47,22 @@
         <commons.logging.version>1.2</commons.logging.version>
         <jackson.version>2.15.2</jackson.version>
         <jackson.databind.version>2.15.2</jackson.databind.version>
+        <jackson.annotation.version>2.13.5</jackson.annotation.version>
         <jaxb.version>2.3.0</jaxb.version>
-        <ontop.version>5.0.2</ontop.version>
+        <ontop.version>5.1.0</ontop.version>
         <!-- Source characteristics -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <servlet.version>3.1.0</servlet.version>
         <spring.version>5.3.28</spring.version>
         <spring.boot.version>2.7.13</spring.boot.version>
         <guava.version>32.0.1-jre</guava.version>
-        <tomcat.version>9.0.78</tomcat.version>
+        <tomcat.version>9.0.81</tomcat.version>
         <netty.version>4.1.94.Final</netty.version>
-        <jetty.version>9.4.51.v20230217</jetty.version>
+        <jetty.version>9.4.53.v20231009</jetty.version>
         <org.yaml.snakeyaml.version>2.0</org.yaml.snakeyaml.version>
-        <snappy.version>1.1.10.2</snappy.version>
+        <snappy.version>1.1.10.5</snappy.version>
         <postgres.version>42.6.0</postgres.version>
+        <zookeeper.version>3.7.2</zookeeper.version>
         <!-- REPO -->
         <repo>tractusx/</repo>
         <platform>linux/amd64</platform>
@@ -198,6 +200,21 @@
                     <version>2.4</version>
                 </plugin>
                 <plugin>
+                    <groupId>com.diffplug.spotless</groupId>
+                    <artifactId>spotless-maven-plugin</artifactId>
+                    <version>2.37.0</version>
+                    <executions>
+                        <execution>
+                            <id>format</id>
+                            <phase>process-sources</phase>
+                            <goals>
+                                <goal>check</goal>
+                                <goal>apply</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>3.3.0</version>
@@ -220,33 +237,6 @@
                         </execution>
                     </executions>
                 </plugin>
-                <!--<plugin>
-                    <groupId>org.cyclonedx</groupId>
-                    <artifactId>cyclonedx-maven-plugin</artifactId>
-                    <version>2.7.1</version>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>makeAggregateBom</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <projectType>library</projectType>
-                        <schemaVersion>1.4</schemaVersion>
-                        <includeBomSerialNumber>true</includeBomSerialNumber>
-                        <includeCompileScope>true</includeCompileScope>
-                        <includeProvidedScope>true</includeProvidedScope>
-                        <includeRuntimeScope>true</includeRuntimeScope>
-                        <includeSystemScope>true</includeSystemScope>
-                        <includeTestScope>false</includeTestScope>
-                        <includeLicenseText>true</includeLicenseText>
-                        <outputReactorProjects>true</outputReactorProjects>
-                        <outputFormat>all</outputFormat>
-                        <outputName>${project.artifactId}-${project.version}-sbom</outputName>
-                    </configuration>
-                </plugin>-->
             </plugins>
         </pluginManagement>
     </build>

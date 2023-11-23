@@ -52,16 +52,17 @@ The conforming agent will be configurable to support the following http/s based 
 mvn package
 ```
 
-This will generate 
-- a [plugin jar](target/original-conforming-agent-1.10.2-SNAPSHOT.jar) containing all necessary components to be dropped into a Jakarta-Compatible Web Server.
-- a [standalone jar](target/conforming-agent-1.10.2-SNAPSHOT.jar) including the Jakarta-Reference Implementation (Glassfish).
+This will generate
+
+- a [plugin jar](target/original-conforming-agent-1.10.15-SNAPSHOT.jar) containing all necessary components to be dropped into a Jakarta-Compatible Web Server.
+- a [standalone jar](target/conforming-agent-1.10.15-SNAPSHOT.jar) including the Jakarta-Reference Implementation (Glassfish).
 
 ### Run Locally
 
-The [standalone jar](target/conforming-agent-1.10.2-SNAPSHOT.jar) may be started as follows
+The [standalone jar](target/conforming-agent-1.10.15-SNAPSHOT.jar) may be started as follows
 
 ```console
-java -cp target/conforming-agent-1.10.2-SNAPSHOT.jar org.eclipse.tractusx.agents.conforming.Bootstrap"
+java -cp target/conforming-agent-1.10.15-SNAPSHOT.jar org.eclipse.tractusx.agents.conforming.Bootstrap"
 ```
 
 ### Containerizing
@@ -75,7 +76,7 @@ mvn install -Pwith-docker-image
 or invoke the following docker command after a successful package run
 
 ```console
-docker build -t tractusx/conforming-agent:1.10.2-SNAPSHOT -f src/main/docker/Dockerfile .
+docker build -t tractusx/conforming-agent:1.10.15-SNAPSHOT -f src/main/docker/Dockerfile .
 ```
 
 This will create a docker image based on a minimal java environment for running the Glassfish-based standalone jar.
@@ -84,7 +85,7 @@ To run the docker image, you could invoke this command
 
 ```console
 docker run -p 8080:8080 \
-  tractusx/conforming-agent:1.10.2-SNAPSHOT
+  tractusx/conforming-agent:1.10.15-SNAPSHOT
 ````
 
 Afterwards, you should be able to access the [local SparQL endpoint](http://localhost:8080/) via
@@ -106,19 +107,20 @@ You may manipulate any of the following environment variables to configure the i
 Note that there is no builtin security (ssl/auth) for the exposed endpoints.
 This must be provided by hiding them in an appropriate service network layer.
 
-| ENVIRONMENT VARIABLE        | Required  | Example                                                                | Description                          | List |
-|---	                        |---	      |---	                                                                   |---                                   | ---  |
-| JAVA_TOOL_OPTIONS           |           | -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8090   | JMV (Debugging option)               | X    | 
+| ENVIRONMENT VARIABLE | Required | Example                                                              | Description            | List |
+|----------------------|----------|----------------------------------------------------------------------|------------------------|------|
+| JAVA_TOOL_OPTIONS    |          | -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8090 | JMV (Debugging option) | X    |
 
 ### Notice for Docker Image
 
 DockerHub: https://hub.docker.com/r/tractusx/conforming-agent
 
 Eclipse Tractus-X product(s) installed within the image:
-GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/conforming
-Project home: https://projects.eclipse.org/projects/automotive.tractusx
-Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/conforming/src/main/docker/Dockerfile
-Project license: Apache License, Version 2.0
+
+- GitHub: https://github.com/eclipse-tractusx/knowledge-agents/tree/main/conforming
+- Project home: https://projects.eclipse.org/projects/automotive.tractusx
+- Dockerfile: https://github.com/eclipse-tractusx/knowledge-agents/blob/main/conforming/src/main/docker/Dockerfile
+- Project license: Apache License, Version 2.0
 
 **Used base image**
 
@@ -141,7 +143,7 @@ It can be added to your umbrella chart.yaml by the following snippet
 dependencies:
   - name: conforming-agent
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.10.2-SNAPSHOT
+    version: 1.10.15-SNAPSHOT
     alias: my-conforming-agent
 ```
 
@@ -158,7 +160,7 @@ In your values.yml, you configure your specific instance of the conforming agent
 # Conforming Agent
 ##############################################################################################
 
-my-conforming-agent: 
+my-conforming-agent:
   securityContext: *securityContext
   nameOverride: my-conforming-agent
   fullnameOverride: my-conforming-agent
@@ -174,11 +176,5 @@ my-conforming-agent:
         - default
       tls:
         enabled: true
-        secretName: my-conforming-tls        
+        secretName: my-conforming-tls
 ```
-
-
-
-
-
-
