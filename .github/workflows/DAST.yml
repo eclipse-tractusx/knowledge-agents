@@ -48,11 +48,12 @@ jobs:
 
       - name: Check for API Key
         id: api-key
+        run: |
           API_KEY=$(jq -r .security[0].apiKey -e $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json)
           echo "API_KEY=$API_KEY" >> $GITHUB_ENV
-        
+
       - name: ZAP Scan 2
-        id: step2         
+        id: step2
         uses: zaproxy/action-api-scan@v0.5.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -61,7 +62,7 @@ jobs:
         env:
           OUTPUT2: ${{ toJson(steps.step2.outputs) }}
           OPENAPI_FILE: $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json
-          apikey: ${{ steps.api-key.outputs.api-key }}
+          apikey: ${{ steps.api-key.outputs.API_KEY }}
 
       - name: Debug ZAP Scan Output
         run: echo "ZAP Scan 2 Output:$OUTPUT2"
@@ -81,4 +82,3 @@ jobs:
 
           # Use the combined output as needed
           echo "Combined Output: $COMBINED_OUTPUT"
-
