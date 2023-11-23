@@ -1,4 +1,4 @@
-name: Your Workflow
+name: ZAP_ALL
 
 on:
   push:
