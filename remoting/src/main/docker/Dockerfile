@@ -92,6 +92,7 @@ RUN	mkdir -p /var/rdf4j/server/conf && \
     rm /usr/local/tomcat/conf/web.xml && \
     chown -R tomcat:tomcat /var/rdf4j /usr/local/tomcat && \
     apt-get -y --auto-remove remove unzip && \
+    apt-get -y --auto-remove remove wget && \
 	chmod 775 /usr/local/tomcat /usr/local/tomcat/bin /usr/local/tomcat/bin/catalina.sh /var/rdf4j/server 
 
 COPY --from=build /opt/lib/*.jar /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/
