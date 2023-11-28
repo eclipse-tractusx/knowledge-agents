@@ -44,7 +44,7 @@ jobs:
           ref: main
           fetch-depth: 0
       - name: Copy OpenAPI JSON
-        run: cp .github/workflows/openapi_Knowledge_Agents.json $GITHUB_WORKSPACE
+        run: cp .github/openapi_Knowledge_Agents.json $GITHUB_WORKSPACE
 
       - name: Check for API Key
         id: api-key
