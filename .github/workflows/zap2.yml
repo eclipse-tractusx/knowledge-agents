@@ -24,9 +24,6 @@ jobs:
         run: |
           API_KEY=$(jq -r '.security[0].apiKey' $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json)
           echo "API_KEY=$API_KEY" >> $GITHUB_ENV
-          
-      - name: Create ZAP Config File
-        run: echo "api.port=9090" > $GITHUB_WORKSPACE/zap.conf
 
       - name: ZAP Scan 2
         id: step2
