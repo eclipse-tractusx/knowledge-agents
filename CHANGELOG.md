@@ -24,6 +24,22 @@ All notable changes to this product will be documented in this file.
 
 # Released
 
+## [1.10.15] - 2023-11-28
+
+### Added
+
+- Provisioning Agent (chart): Enable Integrated H2 Database Sample by correct user und group ids
+
+### Changed
+
+- Provisioning Agent: Upgrade to Ontop 5.1.0
+- Codestyle consistent with Tractus-X using checkstyle
+- Remoting Agent: Debug the test/sample repository descriptions
+
+### Removed
+
+- Cyclone DX Boms (we have dash)
+
 ## [1.9.8] - 2023-09-04
 
 ### Added
