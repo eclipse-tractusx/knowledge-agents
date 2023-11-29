@@ -878,8 +878,8 @@ public class Invocation {
 
         for (int i = 0; i < sourceLength; i++) {
             // target shorter than source?
-            if (targetLength < i) {
-                target.add(source);
+            if (targetLength < i + 1) {
+                target.add(source.get(i));
                 return;
             }
             JsonNode targetElement = target.get(i);
@@ -891,7 +891,7 @@ public class Invocation {
                 // Recursively merge arrays
                 mergeArrays((ArrayNode) targetElement, (ArrayNode) sourceElement);
             } else {
-                target.add(source);
+                target.set(i, source.get(i));
             }
         }
     }

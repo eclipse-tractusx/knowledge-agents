@@ -1,0 +1,31 @@
+{
+   "Koepfchen in das Wasser":"Schwänzchen in die Höh",
+   "content":{
+      "endurancePredictorInputs":[
+         {
+            "alle":"meine Entchen",
+            "classifiedLoadSpectrumGearSet":{
+               "schwimmen":"auf dem See",
+               "body":{
+                  "counts":{
+                     "countsName":"Time",
+                     "countsList": [
+                        4711.0815,
+                        739782.51,
+                        4013185.15,
+                        4.675505556E7,
+                        2.526895835E7,
+                        8649735.95,
+                        9383635.35,
+                        1.918926077E7,
+                        1353867.54,
+                        123.456
+                        ]
+                  }
+               }
+            }
+
+         }
+      ]
+   }
+}
