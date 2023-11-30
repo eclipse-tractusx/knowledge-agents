@@ -24,6 +24,9 @@
 
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
     <display-name>RDF4J Server</display-name>
+    <absolute-ordering>
+        <name>spring_web</name>
+    </absolute-ordering>
     <description>RDF4J Server</description>
     <!-- Uncomment this and the associated filter-mapping to enable cross-origin requests.
     See https://github.com/eBay/cors-filter to change default configuration settings.
