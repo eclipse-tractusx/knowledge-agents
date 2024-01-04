@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
           
       - name: Copy OpenAPI JSON
-        run: cp .github/openapi_Knowledge_Agents.json $GITHUB_WORKSPACE
+        run: cp .github/t-systems6-catena-x_knowledge_agents_sparql_endpoint_specification-1.10.15-resolved.json $GITHUB_WORKSPACE
         
       #- name: Check for API Key
       #  id: api-key
@@ -28,7 +28,7 @@ jobs:
       - name: Check for API Key
         id: api-key
         run: |
-          API_KEY=$(jq -r '.security[0].apiKey' $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json)
+          API_KEY=$(jq -r '.security[0].apiKey' $GITHUB_WORKSPACE/t-systems6-catena-x_knowledge_agents_sparql_endpoint_specification-1.10.15-resolved.json)
           echo "API_KEY=$API_KEY" >> $GITHUB_ENV
           
       - name: ZAP Scan 2
@@ -40,6 +40,6 @@ jobs:
           target: https://managed-identity-wallets.dev.demo.catena-x.net/
 
         env:
-          OPENAPI_FILE: $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json
+          OPENAPI_FILE: $GITHUB_WORKSPACE/t-systems6-catena-x_knowledge_agents_sparql_endpoint_specification-1.10.15-resolved.json
           apikey: ${{ steps.api-key.outputs.API_KEY }}
 
