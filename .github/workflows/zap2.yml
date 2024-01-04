@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
           
       - name: Copy OpenAPI JSON
-        run: cp .github/t-systems6-catena-x_knowledge_agents_sparql_endpoint_specification-1.10.15-resolved.json $GITHUB_WORKSPACE
+        run: cp .github/workflows/t-systems6-catena-x_knowledge_agents_sparql_endpoint_specification-1.10.15-resolved.json $GITHUB_WORKSPACE
         
       #- name: Check for API Key
       #  id: api-key
