@@ -22,7 +22,7 @@ jobs:
       - name: Create ZAP Config File
         run: |
           echo "api.key=${{ secrets.API_KEY }}" > zap-config.properties
-          echo "target=https://knowledge.dev.demo.catena-x.net/conforming-agent/bind" >> zap-config.properties
+          echo "target=https://knowledge.dev.demo.catena-x.net:8080/conforming-agent/bind" >> zap-config.properties
 
       - name: List files in workspace
         run: ls -R $GITHUB_WORKSPACE
