@@ -15,14 +15,17 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-          
+
       - name: Copy OpenAPI JSON
         run: cp .github/workflows/t-systems6-catena-x_knowledge_agents_sparql_endpoint_specification-1.10.15-resolved.json $GITHUB_WORKSPACE
-  
+
       - name: Create ZAP Config File
         run: |
           echo "api.key=${{ secrets.API_KEY }}" > zap-config.properties
           echo "target=https://knowledge.dev.demo.catena-x.net/conforming-agent/bind" >> zap-config.properties
+
+      - name: List files in workspace
+        run: ls -R $GITHUB_WORKSPACE
 
       - name: ZAP Scan 2
         id: step2
