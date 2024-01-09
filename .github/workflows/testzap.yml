@@ -16,7 +16,7 @@ jobs:
 
       - name: API Test 1
         run: |
-          response=$(curl -w "%{http_code}" -v -X GET https://knowledge.dev.demo.catena-x.net --user "foo:bar")
+          response=$(curl -w "%{http_code}" -v -X GET https://knowledge.dev.demo.catena-x.net --user "foo:tar")
           echo "Response: $response"
 
           # Extract the HTTP status code
