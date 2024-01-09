@@ -1,12 +1,12 @@
-name: Nuclei - Vulnerability Scan
+name: Nuclei - Vulnerability Scan and API Authentication Test
 
 on:
-    schedule:
-      - cron: '0 0 * * *'
-    workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
-  nuclei-scan:
+  nuclei-scan-and-auth-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,6 +15,13 @@ jobs:
         uses: projectdiscovery/nuclei-action@main
         with:
           target: https://knowledge.dev.demo.catena-x.net/conforming-agent/bind
+
+      - name: API Authentication Test
+        run: |
+          # Perform API authentication testing using curl
+          # Replace the placeholder URLs with the actual API endpoints
+          curl -X GET https://api.example.com/endpoint1 --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}"
+          curl -X GET https://api.example.com/endpoint2 --header "X-Api-Key: ${{ secrets.API_KEY }}"
 
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
