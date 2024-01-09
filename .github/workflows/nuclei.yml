@@ -9,7 +9,13 @@ jobs:
   nuclei-scan-and-auth-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: Nuclei - Vulnerability Scan
         uses: projectdiscovery/nuclei-action@main
