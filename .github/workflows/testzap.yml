@@ -16,7 +16,7 @@ jobs:
 
       - name: API Test 1
         run: |
-          response=$(curl -w "%{http_code}" -v -X GET https://knowledge.dev.demo.catena-x.net --user "foo:tar")
+          response=$(curl -w "%{http_code}" -v -X GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
           echo "Response: $response"
 
           # Extract the HTTP status code
@@ -38,6 +38,11 @@ jobs:
         run: |
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
           echo "Response: $response"
+          
+           # Extract the HTTP status code
+          http_status_code=$(echo "$response" | tail -c 4)
+          echo "HTTP Status Code: $http_status_code"
+          
           if [[ $response == *"authentication failure"* ]]; then
             echo "Authentication failure: Incorrect Basic Auth token."
             exit 1
@@ -47,6 +52,11 @@ jobs:
         run: |
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "X-Api-Key: ${{ secrets.API_KEY }}")
           echo "Response: $response"
+
+           # Extract the HTTP status code
+          http_status_code=$(echo "$response" | tail -c 4)
+          echo "HTTP Status Code: $http_status_code"
+          
           if [[ $response == *"authentication failure"* ]]; then
             echo "Authentication failure: Incorrect API key."
             exit 1
@@ -56,6 +66,11 @@ jobs:
         run: |
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
           echo "Response: $response"
+
+           # Extract the HTTP status code
+          http_status_code=$(echo "$response" | tail -c 4)
+          echo "HTTP Status Code: $http_status_code"
+          
           if [[ $response == *"authentication failure"* ]]; then
             echo "Authentication failure: Incorrect OAuth2 token."
             exit 1
