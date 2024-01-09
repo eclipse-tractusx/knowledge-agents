@@ -17,7 +17,10 @@ jobs:
       - name: API Test 1
         run: |
           response=$(curl -w "%{http_code}" -v -X GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
-          #echo "Response: $response"
+          echo "Response: $response"
+
+          http_status_code=$(echo "$response" | awk '{print $NF}')
+          echo "HTTP Status Code: $http_status_code"
 
           if [[ $http_status_code -ne 200 ]]; then
             echo "Error: HTTP request failed with status code $http_status_code"
@@ -29,21 +32,24 @@ jobs:
             exit 1
           fi
 
-
       - name: API Test 2
         run: |
-          response=$(curl -w GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
-          #echo "Response: $response"
-          
-           # Extract the HTTP status code
-          http_status_code=$(echo "$response" | tr -d -c '0-9')
+          response=$(curl -w "%{http_code}" -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
+          echo "Response: $response"
+
+          http_status_code=$(echo "$response" | awk '{print $NF}')
           echo "HTTP Status Code: $http_status_code"
-          
+
+          if [[ $http_status_code -ne 200 ]]; then
+            echo "Error: HTTP request failed with status code $http_status_code"
+            exit 1
+          fi
+
           if [[ $response == *"authentication failure"* ]]; then
             echo "Authentication failure: Incorrect Basic Auth token."
             exit 1
           fi
-
+          
       - name: API Test 3
         run: |
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}")
