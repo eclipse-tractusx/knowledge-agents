@@ -1,0 +1,20 @@
+name: Nikto Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  nikto-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Nikto
+        run: sudo apt-get install nikto
+
+      - name: Run Nikto Scan
+        run: nikto -h http://https://knowledge.dev.demo.catena-x.net/conforming-agent/bind -output nikto-report.txt
