@@ -17,4 +17,4 @@ jobs:
         run: sudo apt-get install nikto
 
       - name: Run Nikto Scan
-        run: nikto -h http://https://knowledge.dev.demo.catena-x.net/conforming-agent/bind -output nikto-report.txt
+        run: nikto -h https://knowledge.dev.demo.catena-x.net/conforming-agent/bind -output nikto-report.txt
