@@ -1,5 +1,4 @@
 name: ZAP API test
-
 on:
   push:
     branches:
@@ -17,12 +16,23 @@ jobs:
 
       - name: API Test 1
         run: |
-          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
+          response=$(curl -w "%{http_code}" -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
           echo "Response: $response"
+
+          # Extract the HTTP status code
+          http_status_code=$(echo "$response" | tail -c 4)
+          echo "HTTP Status Code: $http_status_code"
+
+          if [[ $http_status_code -ne 200 ]]; then
+            echo "Error: HTTP request failed with status code $http_status_code"
+            exit 1
+          fi
+
           if [[ $response == *"authentication failure"* ]]; then
             echo "Authentication failure: Incorrect password for the user."
             exit 1
           fi
+
 
       - name: API Test 2
         run: |
