@@ -20,7 +20,7 @@ jobs:
         run: |
           # Perform API authentication testing using curl
           # Replace the placeholder URLs with the actual API endpoints
-          curl -X GET https://api.example.com/endpoint1 --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}"
+          curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}"
           curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}"
           curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "X-Api-Key: ${{ secrets.API_KEY }}"
           curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Bearer ${{ secrets.OUTH2 }}"
