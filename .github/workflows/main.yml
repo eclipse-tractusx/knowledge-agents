@@ -20,8 +20,8 @@ jobs:
         run: |
           # Perform API authentication testing using curl
           # Replace the placeholder URLs with the actual API endpoints
-          curl -X GET https://api.example.com/endpoint1 --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}"
-          curl -X GET https://api.example.com/endpoint2 --header "X-Api-Key: ${{ secrets.API_KEY }}"
+          curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}"
+          curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "X-Api-Key: ${{ secrets.API_KEY }}"
 
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
