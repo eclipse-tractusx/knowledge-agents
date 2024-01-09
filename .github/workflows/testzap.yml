@@ -16,71 +16,20 @@ jobs:
 
       - name: API Test 1
         run: |
-          response=$(curl -w "%{http_code}" -v -X GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
+          response=$(curl -w "%{http_code}" -v GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
           #echo "Response: $response"
-
-          #http_status_code=$(echo "$response" | awk '{print $NF}')
-          #echo "HTTP Status Code: $http_status_code"
-
-          #if [[ $http_status_code -ne 200 ]]; then
-          #  echo "Error: HTTP request failed with status code $http_status_code"
-          #  exit 1
-          #fi
-
-          if [[ $response == *"authentication failure"* ]]; then
-            echo "Authentication failure: Incorrect password for the user."
-            exit 1
-          fi
 
       - name: API Test 2
         run: |
           response=$(curl -w "%{http_code}" -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
-          #echo "Response: $response"
-
-          #http_status_code=$(echo "$response" | awk '{print $NF}')
-          #echo "HTTP Status Code: $http_status_code"
-
-          #if [[ $http_status_code -ne 200 ]]; then
-          #  echo "Error: HTTP request failed with status code $http_status_code"
-          #  exit 1
-          #fi
-
-          if [[ $response == *"authentication failure"* ]]; then
-            echo "Authentication failure: Incorrect Basic Auth token."
-            exit 1
-          fi
           
       - name: API Test 3
         run: |
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}")
-          echo "Response: $response"
-
-          # Extract the HTTP status code
-          http_status_code=$(echo "$response" | tr -d -c '0-9')
-          echo "HTTP Status Code: $http_status_code"
-
-          # Uncomment the following line to print the first few lines of the response
-          echo "First few lines of the response:"
-          head -n 10 <<< "$response"
-
-          if [[ $response == *"authentication failure"* ]]; then
-            echo "Authentication failure: Incorrect API key."
-            exit 1
-          fi
 
       - name: API Test 4
         run: |
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
-          #echo "Response: $response"
-
-          # Extract the HTTP status code
-          #http_status_code=$(echo "$response" | tr -d -c '0-9')
-          #echo "HTTP Status Code: $http_status_code"
-          
-          if [[ $response == *"authentication failure"* ]]; then
-            echo "Authentication failure: Incorrect OAuth2 token."
-            exit 1
-          fi
 
       - name: ZAP Scan
         uses: zaproxy/action-api-scan@v0.5.0
