@@ -36,7 +36,7 @@ jobs:
 
       - name: API Test 2
         run: |
-          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
+          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
           echo "Response: $response"
           
            # Extract the HTTP status code
@@ -50,7 +50,7 @@ jobs:
 
       - name: API Test 3
         run: |
-          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "X-Api-Key: ${{ secrets.API_KEY }}")
+          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}")
           echo "Response: $response"
 
            # Extract the HTTP status code
@@ -64,7 +64,7 @@ jobs:
 
       - name: API Test 4
         run: |
-          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
+          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
           echo "Response: $response"
 
            # Extract the HTTP status code
