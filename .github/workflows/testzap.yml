@@ -1,4 +1,4 @@
-name: ZAP2
+name: ZAP-API Test
 
 on:
   push:
