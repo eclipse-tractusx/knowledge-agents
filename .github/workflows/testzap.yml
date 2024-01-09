@@ -86,4 +86,4 @@ jobs:
           format: openapi
           target: 'https://knowledge.dev.demo.catena-x.net'
 
-          
+
