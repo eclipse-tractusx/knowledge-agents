@@ -53,7 +53,7 @@ jobs:
       - name: API Test 3
         run: |
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}")
-          #echo "Response: $response"
+          echo "Response: $response"
 
           # Extract the HTTP status code 
           #http_status_code=$(echo "$response" | tr -d -c '0-9')
