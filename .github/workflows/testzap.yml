@@ -17,19 +17,20 @@ jobs:
 
       - name: API Test 1
         run: |
-          curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}"
+          curl -X GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}"
 
       - name: API Test 2
         run: |
-          curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}"
+          curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}"
 
       - name: API Test 3
         run: |
-          curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "X-Api-Key: ${{ secrets.API_KEY }}"
+          curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}"
 
       - name: API Test 4
         run: |
-          curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Bearer ${{ secrets.OAUTH2 }}"
+          curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Bearer ${{ secrets.OAUTH2 }}"
+          #curl -X GET https://knowledge.dev.demo.catena-x.net/conforming-agent/bind --header "Authorization: Bearer ${{ secrets.OAUTH2 }}"
 
       - name: ZAP Scan
         uses: zaproxy/action-api-scan@v0.5.0
