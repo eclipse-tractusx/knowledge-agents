@@ -29,7 +29,7 @@ jobs:
           
           curl -X GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}"
           curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}"
-          curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: dPwZC*5J+"
+          curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}"
           curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Bearer ${{ secrets.OUTH2 }}"
 
       - name: GitHub Security Dashboard Alerts update
