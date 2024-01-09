@@ -39,6 +39,11 @@ jobs:
           format: openapi
           target: 'https://knowledge.dev.demo.catena-x.net'
     
+      - name: Install OpenAPI Generator CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openapi-generator-cli
+          
       - name: Convert OpenAPI to SARIF
         run: |
           openapi-generator-cli generate -i openapi.json -g openapi -o generated
