@@ -24,6 +24,10 @@
 ![GitHub](https://img.shields.io/github/license/eclipse-tractusx/knowledge-agents)
 ![GitHub all releases](https://img.shields.io/github/downloads/eclipse-tractusx/knowledge-agents/total)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=eclipse-tractusx_knowledge-agents&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=eclipse-tractusx_knowledge-agents)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/RoKrish14/knowledge-agents/badge)](https://securityscorecards.dev/viewer/?uri=github.com/RoKrish14/knowledge-agents/)
+![build](https://github.com/ossf/scorecard/workflows/build/badge.svg?branch=main)
+![CodeQL](https://github.com/ossf/scorecard/workflows/CodeQL/badge.svg?branch=main)
+
 
 Tractus-X Knowledge Agents Reference Implementations (KA-RI) is a product of the [Catena-X Knowledge Agents Kit (about to move to: Tractus-X Knowledge Agents Kit)](https://bit.ly/tractusx-agents) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
 
