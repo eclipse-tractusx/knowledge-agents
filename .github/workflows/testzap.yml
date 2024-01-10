@@ -8,6 +8,7 @@ jobs:
   zap_full_scan:
     runs-on: ubuntu-latest
     name: OWASP ZAP-Fullscan
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,10 +16,74 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Web Application Scan 
+      - name: ZAP Scan 
+        id: zap_full_scan
         uses: zaproxy/action-full-scan@v0.8.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
           target: 'https://knowledge.dev.demo.catena-x.net'  # Please specify the target URL to be scanned
-        
+        env:
+          ZAP_REPORT_DIR: ${{ github.workspace }}/zap-full-scan-results
+
+  zap_api_scan:
+    runs-on: ubuntu-latest
+    name: Scan the web application
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: API Test 1
+        id: api_test_1
+        run: |
+          response=$(curl -w "%{http_code}" -v GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
+          echo "Response: $response"
+
+      - name: API Test 2
+        id: api_test_2
+        run: |
+          response=$(curl -w "%{http_code}" -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
+          echo "Response: $response"
+          
+      - name: API Test 3
+        id: api_test_3
+        run: |
+          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}")
+          echo "Response: $response"
+          
+      - name: API Test 4
+        id: api_test_4
+        run: |
+          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
+          echo "Response: $response"
+          
+      - name: ZAP Scan
+        id: zap_api_scan
+        uses: zaproxy/action-api-scan@v0.5.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
+          format: openapi
+          target: 'https://knowledge.dev.demo.catena-x.net'
+        env:
+          ZAP_REPORT_DIR: ${{ github.workspace }}/zap-api-scan-results
+
+  analyze_results:
+    needs: [zap_full_scan, zap_api_scan]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Archive ZAP Full Scan Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-full-scan-results
+          path: ${{ github.workspace }}/zap-full-scan-results
+
+      - name: Archive ZAP API Scan Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-api-scan-results
+          path: ${{ github.workspace }}/zap-api-scan-results
