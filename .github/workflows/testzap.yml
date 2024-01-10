@@ -5,7 +5,24 @@ on:
       - main
 
 jobs:
-  zap_scan:
+  zap_full_scan:
+    runs-on: ubuntu-latest
+    name: OWASP ZAP-Fullscan
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: ZAP Scan 
+        uses: zaproxy/action-full-scan@v0.8.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
+          target: 'https://knowledge.dev.demo.catena-x.net'  # Please specify the target URL to be scanned
+          
+  zap_api_scan:
     runs-on: ubuntu-latest
     name: Scan the web application
     steps:
@@ -13,6 +30,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+          fetch-depth: 0
 
       - name: API Test 1
         run: |
@@ -41,8 +59,3 @@ jobs:
           docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
           format: openapi
           target: 'https://knowledge.dev.demo.catena-x.net'
-      
-      - name: GitHub Security Dashboard Alerts update
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: zap.sarif
