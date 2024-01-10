@@ -1,4 +1,4 @@
-name: ZAP test
+name: ZAP API test
 
 on:
   push:
@@ -82,40 +82,40 @@ jobs:
       - name: Save output variables
         run: echo "zap-api-scan-results=$ID" >> $GITHUB_ENV
 
-analyze_results:
-  needs: [zap_full_scan, zap_api_scan]
-  runs-on: ubuntu-latest
-  steps:
-    - name: Debug
-      run: |
-        ls -R ${{ github.workspace }}
+  analyze_results:
+    needs: [zap_full_scan, zap_api_scan]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug
+        run: |
+          ls -R ${{ github.workspace }}
 
-    - name: Check ZAP Full Scan Results
-      run: |
-        if [ -d "${{ github.workspace }}/zap-full-scan-results" ] && [ "$(ls -A ${{ github.workspace }}/zap-full-scan-results)" ]; then
-          echo "ZAP Full Scan Results are present."
-        else
-          echo "ZAP Full Scan Results are missing or empty."
-          exit 1
-        fi
+      - name: Check ZAP Full Scan Results
+        run: |
+          if [ -d "${{ github.workspace }}/zap-full-scan-results" ] && [ "$(ls -A ${{ github.workspace }}/zap-full-scan-results)" ]; then
+            echo "ZAP Full Scan Results are present."
+          else
+            echo "ZAP Full Scan Results are missing or empty."
+            exit 1
+          fi
 
-    - name: Archive ZAP Full Scan Results
-      uses: actions/upload-artifact@v2
-      with:
-        name: zap-full-scan-results
-        path: ${{ github.workspace }}/zap-full-scan-results
+      - name: Archive ZAP Full Scan Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-full-scan-results
+          path: ${{ github.workspace }}/zap-full-scan-results
 
-    - name: Check ZAP API Scan Results
-      run: |
-        if [ -d "${{ github.workspace }}/zap-api-scan-results" ] && [ "$(ls -A ${{ github.workspace }}/zap-api-scan-results)" ]; then
-          echo "ZAP API Scan Results are present."
-        else
-          echo "ZAP API Scan Results are missing or empty."
-          exit 1
-        fi
+      - name: Check ZAP API Scan Results
+        run: |
+          if [ -d "${{ github.workspace }}/zap-api-scan-results" ] && [ "$(ls -A ${{ github.workspace }}/zap-api-scan-results)" ]; then
+            echo "ZAP API Scan Results are present."
+          else
+            echo "ZAP API Scan Results are missing or empty."
+            exit 1
+          fi
 
-    - name: Archive ZAP API Scan Results
-      uses: actions/upload-artifact@v2
-      with:
-        name: zap-api-scan-results
-        path: ${{ github.workspace }}/zap-api-scan-results
+      - name: Archive ZAP API Scan Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-api-scan-results
+          path: ${{ github.workspace }}/zap-api-scan-results
