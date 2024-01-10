@@ -76,6 +76,10 @@ jobs:
     needs: [zap_full_scan, zap_api_scan]
     runs-on: ubuntu-latest
     steps:
+      - name: Debug
+        run: |
+          ls -R ${{ github.workspace }}
+          
       - name: Archive ZAP Full Scan Results
         uses: actions/upload-artifact@v2
         with:
