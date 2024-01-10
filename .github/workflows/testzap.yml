@@ -7,7 +7,7 @@ on:
 jobs:
   zap_full_scan:
     runs-on: ubuntu-latest
-    name: OWASP ZAP-Fullscan
+    name: OWASP ZAP Full Scan
     
     steps:
       - name: Checkout
@@ -16,7 +16,7 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: ZAP Scan 
+      - name: ZAP Full Scan 
         id: zap_full_scan
         uses: zaproxy/action-full-scan@v0.8.0
         with:
@@ -28,7 +28,7 @@ jobs:
 
   zap_api_scan:
     runs-on: ubuntu-latest
-    name: Scan the web application
+    name: OWASP ZAP API Scan
     
     steps:
       - name: Checkout
@@ -40,28 +40,32 @@ jobs:
       - name: API Test 1
         id: api_test_1
         run: |
+          # Perform API Test 1 and capture the response
           response=$(curl -w "%{http_code}" -v GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
           echo "Response: $response"
 
       - name: API Test 2
         id: api_test_2
         run: |
+          # Perform API Test 2 and capture the response
           response=$(curl -w "%{http_code}" -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
           echo "Response: $response"
           
       - name: API Test 3
         id: api_test_3
         run: |
+          # Perform API Test 3 and capture the response
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}")
           echo "Response: $response"
           
       - name: API Test 4
         id: api_test_4
         run: |
+          # Perform API Test 4 and capture the response
           response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
           echo "Response: $response"
           
-      - name: ZAP Scan
+      - name: ZAP API Scan
         id: zap_api_scan
         uses: zaproxy/action-api-scan@v0.5.0
         with:
@@ -79,7 +83,7 @@ jobs:
       - name: Debug
         run: |
           ls -R ${{ github.workspace }}
-          
+
       - name: Archive ZAP Full Scan Results
         uses: actions/upload-artifact@v2
         with:
