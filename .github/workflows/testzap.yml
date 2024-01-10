@@ -17,9 +17,8 @@ jobs:
           target: 'https://knowledge.dev.demo.catena-x.net'  # Specify the target URL for scan 1
         env:
           ZAP_REPORT_DIR: ${{ github.workspace }}/zap-scan1-results
-      - name: Set output variables
-        id: set_output_variables1
-        run: echo "::set-output name=id::zap_scan1_results"
+      - name: Save output variables
+        run: echo "ID=zap_scan1_results" >> $GITHUB_ENV
 
   zap_scan2:
     runs-on: ubuntu-latest
@@ -35,17 +34,15 @@ jobs:
           target: 'https://example.com'  # Specify the target URL for scan 2
         env:
           ZAP_REPORT_DIR: ${{ github.workspace }}/zap-scan2-results
-      - name: Set output variables
-        id: set_output_variables2
-        run: echo "::set-output name=id::zap_scan2_results"
+      - name: Save output variables
+        run: echo "ID=zap_scan2_results" >> $GITHUB_ENV
 
   process_results:
     needs: [zap_scan1, zap_scan2]
     runs-on: ubuntu-latest
     steps:
       - name: Process Results
-        id: process_results
         run: |
-          echo "Results of ZAP Scan 1: ${{ needs.zap_scan1.outputs.id }}"
-          echo "Results of ZAP Scan 2: ${{ needs.zap_scan2.outputs.id }}"
-          echo "Combined Results: ${{ needs.zap_scan1.outputs.id }} ${{ needs.zap_scan2.outputs.id }}" >> "$GITHUB_OUTPUT"
+          echo "Results of ZAP Scan 1: $ID"
+          echo "Results of ZAP Scan 2: $ID"
+          echo "Combined Results: $ID $ID" >> "$GITHUB_OUTPUT"
