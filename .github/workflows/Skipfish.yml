@@ -1,9 +1,6 @@
 name: Skipfish Scan
 
-on:
-  push:
-    branches:
-      - main
+
 
 jobs:
   skipfish-scan:
