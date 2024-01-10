@@ -18,7 +18,7 @@ jobs:
         env:
           ZAP_REPORT_DIR: ${{ github.workspace }}/zap-scan1-results
       - name: Save output variables
-        run: echo "ID=zap_scan1_results" >> $GITHUB_ENV
+        run: echo "zap_scan1_results=$ID" >> $GITHUB_ENV
 
   zap_scan2:
     runs-on: ubuntu-latest
@@ -35,7 +35,7 @@ jobs:
         env:
           ZAP_REPORT_DIR: ${{ github.workspace }}/zap-scan2-results
       - name: Save output variables
-        run: echo "ID=zap_scan2_results" >> $GITHUB_ENV
+        run: echo "zap_scan2_results=$ID" >> $GITHUB_ENV
 
   process_results:
     needs: [zap_scan1, zap_scan2]
@@ -43,6 +43,6 @@ jobs:
     steps:
       - name: Process Results
         run: |
-          echo "Results of ZAP Scan 1: $ID"
-          echo "Results of ZAP Scan 2: $ID"
-          echo "Combined Results: $ID $ID" >> "$GITHUB_OUTPUT"
+          echo "Results of ZAP Scan 1: $zap_scan1_results"
+          echo "Results of ZAP Scan 2: $zap_scan2_results"
+          echo "Combined Results: $zap_scan1_results $zap_scan2_results" >> "$GITHUB_OUTPUT"
