@@ -1,6 +1,8 @@
 name: Skipfish Scan
 
-
+on:
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   skipfish-scan:
