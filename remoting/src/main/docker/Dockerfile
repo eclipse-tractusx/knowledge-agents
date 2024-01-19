@@ -124,6 +124,6 @@ COPY --from=build /tmp/rdf4j-server/ /opt/tomcat/webapps/rdf4j-server/
 USER tomcat
 COPY resources/web/startup.sh /opt/tomcat/bin/startup.sh
 
-ENTRYPOINT /opt/tomcat/bin/startup.sh
+ENTRYPOINT [ "/opt/tomcat/bin/startup.sh" ]
 
 
