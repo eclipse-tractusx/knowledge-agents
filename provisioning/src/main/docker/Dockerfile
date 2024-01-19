@@ -59,7 +59,7 @@ RUN  if [ "${HTTP_PROXY}" != ""  ]; then \
 FROM eclipse-temurin:11-jre-alpine
 
 ARG APP_USER=ontop
-ARG APP_UID=10100
+ARG APP_UID=10001
 ARG APP_GID=30000
 
 RUN addgroup --gid "$APP_GID" --system "$APP_USER"

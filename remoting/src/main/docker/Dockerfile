@@ -69,7 +69,7 @@ COPY resources/web/callback.xml /tmp/rdf4j-server/WEB-INF/callback.xml
 FROM eclipse-temurin:21-jre-alpine
 
 ARG APP_USER=tomcat
-ARG APP_UID=10100
+ARG APP_UID=10001
 ARG APP_GID=30000
 
 RUN addgroup --gid "$APP_GID" --system "$APP_USER"
@@ -117,7 +117,6 @@ ARG JAVA_TOOL_OPTIONS ""
 
 # TODO Should have a healthcheck
 HEALTHCHECK NONE
-
 
 USER tomcat
 
