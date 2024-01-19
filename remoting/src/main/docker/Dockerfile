@@ -118,10 +118,11 @@ ARG JAVA_TOOL_OPTIONS ""
 # TODO Should have a healthcheck
 HEALTHCHECK NONE
 
-COPY --from=build /opt/conf/*.xml /opt/conf/*.properties /opt/tomcat/conf/
-COPY --from=build /tmp/rdf4j-server/ /opt/tomcat/webapps/rdf4j-server/
 
 USER tomcat
+
+COPY --from=build /opt/conf/*.xml /opt/conf/*.properties /opt/tomcat/conf/
+COPY --from=build /tmp/rdf4j-server/ /opt/tomcat/webapps/rdf4j-server/
 COPY resources/web/startup.sh /opt/tomcat/bin/startup.sh
 
 ENTRYPOINT [ "/opt/tomcat/bin/startup.sh" ]
