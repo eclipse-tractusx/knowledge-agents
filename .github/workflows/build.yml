@@ -125,7 +125,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Conforming
         id: meta-conf
-        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
+        uses: docker/metadata-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/conforming-agent
@@ -137,12 +137,12 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.10.15-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.11.16-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
       - name: Conforming Container Build and Push
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: conforming/.
           file: conforming/src/main/docker/Dockerfile
@@ -164,7 +164,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Remoting
         id: meta-remote
-        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
+        uses: docker/metadata-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/remoting-agent
@@ -176,12 +176,12 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.10.15-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.11.16-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
       - name: Remoting Container Build and Push
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: remoting/.
           file: remoting/src/main/docker/Dockerfile
@@ -203,7 +203,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Provisioning
         id: meta-prov
-        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
+        uses: docker/metadata-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
@@ -215,12 +215,12 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.10.15-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.11.16-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
       - name: Provisioning Container Build and Push
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: provisioning/.
           file: provisioning/src/main/docker/Dockerfile

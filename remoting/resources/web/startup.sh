@@ -1,5 +1,6 @@
+#!/bin/sh
+
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-#
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
 #
@@ -15,34 +16,5 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM eclipse-temurin:21-jre-alpine
-ARG JAR
-ARG LIB
-
-ARG APP_USER=agent
-ARG APP_UID=10100
-ARG APP_GID=30000
-
-RUN addgroup --gid "$APP_GID" --system "$APP_USER"
-
-RUN adduser \
-     --shell /sbin/nologin \
-     --disabled-password \
-     --gecos "" \
-     --ingroup "$APP_USER" \
-     --no-create-home \
-     --uid "$APP_UID" \
-     "$APP_USER"
-
-USER "$APP_USER"
-WORKDIR /app
-VOLUME /tmp
-
-COPY target/conforming-agent-*.jar /app/lib/
-
-# TODO implement wget or curl-based health check
-HEALTHCHECK NONE
-
-EXPOSE 8080
-
-ENTRYPOINT ["java","-cp","/app/lib/*", "org.eclipse.tractusx.agents.conforming.Bootstrap"]
+# start the tomcat
+$CATALINA_HOME/bin/catalina.sh run
