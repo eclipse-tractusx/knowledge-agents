@@ -68,6 +68,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -833,6 +834,70 @@ public class Invocation {
     }
 
     /**
+     * merges two given ObjectNodes
+     *
+     * @param source the ObjectNodes to be merged
+     * @param target the ObjectNodes where source needs to be merged into
+     */
+    public static ObjectNode  mergeObjectNodes(ObjectNode target, ObjectNode source) {
+        if (source == null) {
+            return target;
+        }
+
+        Iterator<Entry<String, JsonNode>> fields = source.fields();
+        while (fields.hasNext()) {
+            Entry<String, JsonNode> entry = fields.next();
+            String key = entry.getKey();
+            JsonNode sourceValue = entry.getValue();
+            JsonNode targetValue = target.get(key);
+            
+            if (targetValue != null && targetValue.isObject() && sourceValue.isObject()) {
+                // Recursively merge nested objects
+                mergeObjectNodes((ObjectNode) targetValue, (ObjectNode) sourceValue);
+            } else if (targetValue != null && targetValue.isArray() && sourceValue.isArray()) {
+                // Merge arrays
+                mergeArrays((ArrayNode) targetValue, (ArrayNode) sourceValue);
+            } else {
+                // Add the field to target
+                target.set(key, sourceValue);
+            }
+        }
+        
+        return target;
+    }
+    
+    /**
+     * merges two given ArrayNodes
+     *
+     * @param source the ArrayNode to be merged
+     * @param target the ArrayNode where source needs to be merged into
+     */
+    private static void mergeArrays(ArrayNode target, ArrayNode source) {
+        int sourceLength = source.size();
+        int targetLength = target.size();
+
+        for (int i = 0; i < sourceLength; i++) {
+            // target shorter than source?
+            if (targetLength < i + 1) {
+                target.add(source.get(i));
+                return;
+            }
+            JsonNode targetElement = target.get(i);
+            JsonNode sourceElement = source.get(i);
+            if (targetElement.isObject() && sourceElement.isObject()) {
+                // Recursively merge JSON objects
+                mergeObjectNodes((ObjectNode) targetElement, (ObjectNode) sourceElement);
+            } else if (targetElement.isArray() && sourceElement.isArray()) {
+                // Recursively merge arrays
+                mergeArrays((ArrayNode) targetElement, (ArrayNode) sourceElement);
+            } else {
+                target.set(i, source.get(i));
+            }
+        }
+    }
+    
+    
+    /**
      * sets a given node under a possible recursive path
      *
      * @param objectMapper factory
@@ -847,17 +912,10 @@ public class Invocation {
             JsonNode traverse = finalInput;
             int depth = 0;
             if (argPath.length == depth) {
-                // https://jira.catena-x.net/browse/TEST-1170 make sure top-level updates are also merged and not overwritten
-                ObjectReader updater = objectMapper.readerForUpdating(finalInput);
-                try {
-                    render = updater.readValue(render);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                finalInput.setAll((ObjectNode) render);
+                finalInput = (ObjectNode) mergeObjectNodes(finalInput, (ObjectNode) render);
                 return;
             }
-            for (String argField : argPath) {
+            for (String argField : argPath) { 
                 if (depth != argPath.length - 1) {
                     if (hasField(traverse, argField)) {
                         JsonNode next = getField(traverse, argField);
@@ -876,8 +934,8 @@ public class Invocation {
                     setObject(objectMapper, traverse, argField, render);
                 }
                 depth++;
-            } // set argument in input
-        }
+            } // set argument in input 
+        } 
     }
 
     /**
