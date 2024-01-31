@@ -8,35 +8,40 @@ on:
 jobs:
   zap_scan1:
     runs-on: ubuntu-latest
-    name: OWASP ZAP 1
-    outputs:
-      output1: ${{ toJson(steps.step1.outputs) }}
+    name: Perform Full URL scan
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         with:
           ref: main
-          fetch-depth: 0
 
-      - name: ZAP Scan 1
-        id: step1
-        uses: zaproxy/action-full-scan@v0.8.0
+      - name: Generating report skeletons
+        if: success() || failure()
+        run: |
+          touch fullscan_report.html
+          chmod a+w fullscan_report.html
+          ls -lrt
+      - name: Run ZAP FULL scan
+        run: |
+          set +e
+          
+          echo "Pulling ZAP image..."
+          docker pull ghcr.io/zaproxy/zaproxy:stable -q
+          echo "Starting ZAP Docker container..."
+          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://managed-identity-wallets.dev.demo.catena-x.net -r fullscan_report.html -T 1
+          
+          echo "... done."
+          
+      - name: Upload HTML report
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
-          target: https://managed-identity-wallets.dev.demo.catena-x.net/
-        env:
-          OUTPUT1: ${{ toJson(steps.step1.outputs) }}
-
-      - name: Debug ZAP Scan Output
-        run: echo "ZAP Scan 1 Output:$OUTPUT1"
+          name: ZAP_FULL scan report
+          path: ./fullscan_report.html
+  
 
   zap_scan2:
     runs-on: ubuntu-latest
-    name: OWASP ZAP 2
-    needs: zap_scan1
-    outputs:
-      output2: ${{ toJson(steps.step2.outputs) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -57,35 +62,29 @@ jobs:
       - name: Verify ZAP Config File
         run: cat $GITHUB_WORKSPACE/zap.conf
 
-
-      - name: ZAP Scan 2
-        id: step2
-        uses: zaproxy/action-api-scan@v0.5.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
-          target: https://managed-identity-wallets.dev.demo.catena-x.net/
-          cmd_options: -config $GITHUB_WORKSPACE/zap.conf
-        env:
-          OUTPUT2: ${{ toJson(steps.step2.outputs) }}
-          OPENAPI_FILE: $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json
-          apikey: ${{ steps.api-key.outputs.API_KEY }}
-
-      - name: Debug ZAP Scan Output
-        run: echo "ZAP Scan 2 Output:$OUTPUT2"
-
-  aggregate_results:
-    runs-on: ubuntu-latest
-    needs: [zap_scan1, zap_scan2]
-    steps:
-      - name: Combine Outputs
+      - name: Generating report skeletons
+        if: success() || failure()
         run: |
-          # Extract the outputs from the jobs
-          OUTPUT1=$(echo "${{ toJson(needs.zap_scan1.outputs) }}" | jq -r '.output1' || echo "")
-          OUTPUT2=$(echo "${{ toJson(needs.zap_scan2.outputs) }}" | jq -r '.output2' || echo "")
-
-          # Combine the outputs as needed
-          COMBINED_OUTPUT="$OUTPUT1 $OUTPUT2"
-
+          touch API_report.html
+          chmod a+w API_report.html
+          ls -lrt
+          
+      - name: Run ZAP API scan
+        run: |
+          set +e
+          
+          echo "Pulling ZAP image..."
+          docker pull ghcr.io/zaproxy/zaproxy:stable -q
+          echo "Starting ZAP Docker container..."
+          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t https://managed-identity-wallets.dev.demo.catena-x.net -f openapi -r API_report.html -T 1
+          
+          echo "... done."
           # Use the combined output as needed
           echo "Combined Output: $COMBINED_OUTPUT"
+          
+      - name: Upload HTML report
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ZAP_API scan report
+          path: ./API_report.html
