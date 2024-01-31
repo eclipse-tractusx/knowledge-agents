@@ -8,39 +8,6 @@ on:
 jobs:
   zap_scan1:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: main
-
-      - name: Generating report skeletons
-        if: success() || failure()
-        run: |
-          touch fullscan_report.html
-          chmod a+w fullscan_report.html
-          ls -lrt
-          
-      - name: Perform ZAP FULL scan
-        run: |
-          set +e
-          
-          echo "Pulling ZAP image..."
-          docker pull ghcr.io/zaproxy/zaproxy:stable -q
-          echo "Starting ZAP Docker container..."
-          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://knowledge.dev.demo.catena-x.net -r fullscan_report.html -T 1
-          
-          echo "... done."
-          
-      - name: Upload HTML report
-        if: success() || failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: ZAP_FULL scan report
-          path: ./fullscan_report.html
-  
-  zap_scan2:
-    runs-on: ubuntu-latest
     name: OWASP ZAP API Scan
     
     steps:
@@ -102,6 +69,39 @@ jobs:
         with:
           name: ZAP_API scan report
           path: ./API_report.html
+          
+  zap_scan2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Generating report skeletons
+        if: success() || failure()
+        run: |
+          touch fullscan_report.html
+          chmod a+w fullscan_report.html
+          ls -lrt
+          
+      - name: Perform ZAP FULL scan
+        run: |
+          set +e
+          
+          echo "Pulling ZAP image..."
+          docker pull ghcr.io/zaproxy/zaproxy:stable -q
+          echo "Starting ZAP Docker container..."
+          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://knowledge.dev.demo.catena-x.net -r fullscan_report.html -T 1
+          
+          echo "... done."
+          
+      - name: Upload HTML report
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ZAP_FULL scan report
+          path: ./fullscan_report.html
       
       - name: Generating report skeletons
         if: success() || failure()
