@@ -8,7 +8,6 @@ on:
 jobs:
   zap_scan1:
     runs-on: ubuntu-latest
-    name: Perform Full URL scan
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -21,14 +20,15 @@ jobs:
           touch fullscan_report.html
           chmod a+w fullscan_report.html
           ls -lrt
-      - name: Run ZAP FULL scan
+          
+      - name: Perform ZAP FULL scan
         run: |
           set +e
           
           echo "Pulling ZAP image..."
           docker pull ghcr.io/zaproxy/zaproxy:stable -q
           echo "Starting ZAP Docker container..."
-          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://managed-identity-wallets.dev.demo.catena-x.net -r fullscan_report.html -T 1
+          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://knowledge.dev.demo.catena-x.net -r fullscan_report.html -T 1
           
           echo "... done."
           
@@ -39,7 +39,6 @@ jobs:
           name: ZAP_FULL scan report
           path: ./fullscan_report.html
   
-
   zap_scan2:
     runs-on: ubuntu-latest
     steps:
@@ -48,6 +47,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          
       - name: Copy OpenAPI JSON
         run: cp .github/openapi_Knowledge_Agents.json $GITHUB_WORKSPACE
 
@@ -59,6 +59,7 @@ jobs:
           
       - name: Create ZAP Config File
         run: echo "api.port=9090" > $GITHUB_WORKSPACE/zap.conf
+        
       - name: Verify ZAP Config File
         run: cat $GITHUB_WORKSPACE/zap.conf
 
@@ -76,11 +77,9 @@ jobs:
           echo "Pulling ZAP image..."
           docker pull ghcr.io/zaproxy/zaproxy:stable -q
           echo "Starting ZAP Docker container..."
-          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t https://managed-identity-wallets.dev.demo.catena-x.net -f openapi -r API_report.html -T 1
+          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t https://knowledge.dev.demo.catena-x.net -f openapi -r API_report.html -T 1
           
           echo "... done."
-          # Use the combined output as needed
-          echo "Combined Output: $COMBINED_OUTPUT"
           
       - name: Upload HTML report
         if: success() || failure()
