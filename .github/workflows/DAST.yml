@@ -102,3 +102,21 @@ jobs:
         with:
           name: ZAP_API scan report
           path: ./API_report.html
+      
+      - name: Generating report skeletons
+        if: success() || failure()
+        run: |
+          touch unified_report.html
+          chmod a+w unified_report.html
+          ls -lrt
+          
+      - name: Combine HTML reports
+        run: |
+          cat ./API_report.html ./fullscan_report.html > unified_report.html
+          
+      - name: Unified HTML report
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Unified scan report
+          path: ./unified_report.html
