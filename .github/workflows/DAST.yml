@@ -41,28 +41,43 @@ jobs:
   
   zap_scan2:
     runs-on: ubuntu-latest
+    name: OWASP ZAP API Scan
+    
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         with:
           ref: main
           fetch-depth: 0
-          
-      - name: Copy OpenAPI JSON
-        run: cp .github/openapi_Knowledge_Agents.json $GITHUB_WORKSPACE
 
-      - name: Check for API Key
-        id: api-key
+      - name: API Test 1
+        id: api_test_1
         run: |
-          API_KEY=$(jq -r '.security[0].apiKey' $GITHUB_WORKSPACE/openapi_Knowledge_Agents.json)
-          echo "API_KEY=$API_KEY" >> $GITHUB_ENV
+          # Perform API Test 1 and capture the response
+          response=$(curl -w "%{http_code}" -v GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
+          echo "Response: $response"
           
-      - name: Create ZAP Config File
-        run: echo "api.port=9090" > $GITHUB_WORKSPACE/zap.conf
-        
-      - name: Verify ZAP Config File
-        run: cat $GITHUB_WORKSPACE/zap.conf
-
+      - name: API Test 2
+        id: api_test_2
+        run: |
+          # Perform API Test 2 and capture the response
+          response=$(curl -w "%{http_code}" -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
+          echo "Response: $response"
+          
+      - name: API Test 3
+        id: api_test_3
+        run: |
+          # Perform API Test 3 and capture the response
+          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}")
+          echo "Response: $response"
+          
+      - name: API Test 4
+        id: api_test_4
+        run: |
+          # Perform API Test 4 and capture the response
+          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
+          echo "Response: $response"
+          
       - name: Generating report skeletons
         if: success() || failure()
         run: |
