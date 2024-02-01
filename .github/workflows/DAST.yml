@@ -72,7 +72,6 @@ jobs:
           
   zap_scan2:
     runs-on: ubuntu-latest
-    needs: zap_scan1
     name: OWASP ZAP FULL Scan
     steps:
       - name: Checkout
