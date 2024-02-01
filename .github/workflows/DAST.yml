@@ -104,3 +104,18 @@ jobs:
         with:
           name: ZAP_FULL scan report
           path: ./fullscan_report.html
+
+  analyze_results:
+    needs: [zap_scan1, zap_scan2]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Aggregate results
+        run: |
+          cat ./API_report.html ./fullscan_report.html > unified_report.html
+
+      - name: Unified HTML report
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Unified scan report
+          path: ./unified_report.html
