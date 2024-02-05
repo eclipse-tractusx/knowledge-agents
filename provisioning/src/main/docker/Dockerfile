@@ -94,8 +94,11 @@ COPY --from=build /opt/ontop/lib/*.jar /opt/ontop/lib/
 COPY --from=build /opt/ontop/jdbc/*.jar /opt/ontop/jdbc/
 
 # run with docker --build-arg sqlFiles=initial_sql to establish a different sql file
-ARG sqlFiles=resources/dtc.sql
+ARG sqlFiles="resources/dtc.sql"
 COPY ${sqlFiles} /opt/ontop/data/.
+
+COPY resources/cx-ontology.ttl resources/cx-ontology.xml resources/settings.properties /opt/ontop/input/
+COPY resources/portal.toml /opt/ontop/
 
 # Additional Java debugging options
 ARG JAVA_TOOL_OPTIONS ""
