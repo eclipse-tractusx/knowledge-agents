@@ -25,9 +25,10 @@ CORS=""
 LAZY="--lazy"
 ENDPOINT_LENGTH=0
 ONTOP_TOOL_OPTIONS=$JAVA_TOOL_OPTIONS
+JAVA_TOOL_OPTIONS=""
 
 for ENDPOINT in $ONTOP_PORT ; do  # NOTE: do not double-quote $services here.
-  ENDPOINT_LENGTH=$((ENDPOINT_INDEX+1))
+  ENDPOINT_LENGTH=$((ENDPOINT_LENGTH+1))
 done
 
 if [ "$ONTOP_CORS_ALLOWED_ORIGINS" != "" ]; then
@@ -80,13 +81,13 @@ for ENDPOINT in $ONTOP_PORT ; do  # NOTE: do not double-quote $services here.
     fi
   done
 
-  JAVA_TOOL_OPTIONS=""
+  TOOL=""
   TOOL_INDEX=0
   for TOOL_OPTIONS in $ONTOP_TOOL_OPTIONS ; do
     TOOL_INDEX=$((TOOL_INDEX+1))
 
     if [ $ENDPOINT_INDEX -ge $TOOL_INDEX ]; then
-      JAVA_TOOL_OPTIONS=$TOOL_OPTIONS
+      TOOL=$TOOL_OPTIONS
     fi
   done
 
@@ -100,7 +101,7 @@ for ENDPOINT in $ONTOP_PORT ; do  # NOTE: do not double-quote $services here.
     fi
   done
 
-  echo "Providing endpoint $ENDPOINT_INDEX on port $ENDPOINT with ontology $ONTOLOGY mapping $MAPPING properties $PROPERTIES portal $PORTAL dev mode $DEV and tool options $JAVA_TOOL_OPTIONS"
+  echo "Providing endpoint $ENDPOINT_INDEX on port $ENDPOINT with ontology $ONTOLOGY mapping $MAPPING properties $PROPERTIES portal $PORTAL dev mode $DEV and tool options $TOOL"
 
   ENDPOINT="--port=$ENDPOINT"
   ONTOLOGY="--ontology=$ONTOLOGY"
@@ -115,13 +116,12 @@ for ENDPOINT in $ONTOP_PORT ; do  # NOTE: do not double-quote $services here.
 
   if [ $ENDPOINT_INDEX -eq $ENDPOINT_LENGTH ]; then
     echo "Invoking last process";
-    java -cp ./lib/*:./jdbc/* -Dlogback.configurationFile="/opt/ontop/log/logback.xml" -Dlogging.config="/opt/ontop/log/logback.xml" \
+    java $TOOL -cp ./lib/*:./jdbc/* -Dlogback.configurationFile="/opt/ontop/log/logback.xml" -Dlogging.config="/opt/ontop/log/logback.xml" \
       it.unibz.inf.ontop.cli.Ontop endpoint ${ONTOLOGY} ${MAPPING} \
       ${PROPERTIES} ${PORTAL} ${DEV} ${ENDPOINT} ${CORS} ${LAZY};
   else 
     echo "Invoking intermediate process";
-    JAVA_TOOL_OPTIONS=TOOL
-    java -cp ./lib/*:./jdbc/* -Dlogback.configurationFile="/opt/ontop/log/logback.xml" -Dlogging.config="/opt/ontop/log/logback.xml" \
+    java $TOOL -cp ./lib/*:./jdbc/* -Dlogback.configurationFile="/opt/ontop/log/logback.xml" -Dlogging.config="/opt/ontop/log/logback.xml" \
       it.unibz.inf.ontop.cli.Ontop endpoint ${ONTOLOGY_FILE} ${MAPPING_FILE} \
       ${PROPERTIES} ${PORTAL} ${DEV} ${ENDPOINT} ${CORS} ${LAZY}&
   fi
