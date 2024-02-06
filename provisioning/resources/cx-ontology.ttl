@@ -1,4 +1,4 @@
-# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -31,3 +31,4 @@ cx:CxOntology a owl:Ontology ;
     dc:date "2022-11-29"^^xsd:date ;
     dc:description "Catena-X Ontology for the Autmotive Industry." ;
     dc:title "Catena-X Ontology" .
+    
