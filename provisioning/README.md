@@ -1,5 +1,5 @@
 <!--
- * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -278,7 +278,7 @@ Eclipse Tractus-X product(s) installed within the image:
 
 **Used base image**
 
-- [eclipse-temurin:11-jre-alpine](https://github.com/adoptium/containers)
+- [eclipse-temurin:21-jre-alpine](https://github.com/adoptium/containers)
 - Official Eclipse Temurin DockerHub page: https://hub.docker.com/_/eclipse-temurin
 - Eclipse Temurin Project: https://projects.eclipse.org/projects/adoptium.temurin
 - Additional information about the Eclipse Temurin images: https://github.com/docker-library/repo-info/tree/master/repos/eclipse-temurin
