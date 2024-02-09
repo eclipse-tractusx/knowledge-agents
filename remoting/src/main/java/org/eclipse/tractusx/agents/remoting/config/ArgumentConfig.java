@@ -32,6 +32,11 @@ public class ArgumentConfig {
     protected boolean mandatory = true;
 
     /**
+     * strip everything before the last appearance of that string
+     */
+    protected String strip = null;
+
+    /**
      * an optional default value
      */
     protected Object defaultValue;
@@ -101,6 +106,25 @@ public class ArgumentConfig {
     }
 
     /**
+     * strip string
+     *
+     * @return current strip string
+     */
+    public String getStrip() {
+        return strip;
+    }
+
+    /**
+     * sets the strip string
+     *
+     * @param strip a string to strip after
+     */
+    public void setStrip(String strip) {
+        this.strip = strip;
+    }
+
+
+    /**
      * validate the argument
      *
      * @param context validation context
@@ -114,7 +138,7 @@ public class ArgumentConfig {
 
     @Override
     public String toString() {
-        return super.toString() + "/argument(" + String.valueOf(mandatory) + ")";
+        return super.toString() + "/argument(" + mandatory + ")";
     }
 
 }

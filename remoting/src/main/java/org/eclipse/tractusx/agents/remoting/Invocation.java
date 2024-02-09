@@ -152,30 +152,37 @@ public class Invocation {
      * @param target  class to convert to
      * @return converted value
      */
-    public static <TARGET> TARGET convertToObject(Value binding, Class<TARGET> target) throws SailException {
+    public static <TARGET> TARGET convertToObject(Value binding, Class<TARGET> target, String strip) throws SailException {
+        String renderString = binding.stringValue();
+        if (strip != null) {
+            int lastIndex = renderString.lastIndexOf(strip);
+            if (lastIndex >= 0) {
+                renderString = renderString.substring(lastIndex + strip.length());
+            }
+        }
         if (target.isAssignableFrom(String.class)) {
-            return (TARGET) binding.stringValue();
+            return (TARGET) renderString;
         } else if (target.isAssignableFrom(int.class)) {
             try {
-                return (TARGET) Integer.valueOf(Integer.parseInt(binding.stringValue()));
+                return (TARGET) Integer.valueOf(Integer.parseInt(renderString));
             } catch (NumberFormatException nfe) {
                 throw new SailException(String.format("Conversion from %s to %s failed.", binding, target), nfe);
             }
         } else if (target.isAssignableFrom(long.class)) {
             try {
-                return (TARGET) Long.valueOf(Long.parseLong(binding.stringValue()));
+                return (TARGET) Long.valueOf(Long.parseLong(renderString));
             } catch (NumberFormatException nfe) {
                 throw new SailException(String.format("Conversion from %s to %s failed.", binding, target), nfe);
             }
         } else if (target.isAssignableFrom(double.class)) {
             try {
-                return (TARGET) Double.valueOf(Double.parseDouble(binding.stringValue()));
+                return (TARGET) Double.valueOf(Double.parseDouble(renderString));
             } catch (NumberFormatException nfe) {
                 throw new SailException(String.format("Conversion from %s to %s failed.", binding, target), nfe);
             }
         } else if (target.isAssignableFrom(float.class)) {
             try {
-                return (TARGET) Float.valueOf(Float.parseFloat(binding.stringValue()));
+                return (TARGET) Float.valueOf(Float.parseFloat(renderString));
             } catch (NumberFormatException nfe) {
                 throw new SailException(String.format("Conversion from %s to %s failed.", binding, target), nfe);
             }
@@ -185,62 +192,62 @@ public class Invocation {
                 String dataTypeName = dataType.stringValue();
                 switch (dataTypeName) {
                     case "http://www.w3.org/2001/XMLSchema#string":
-                        return (TARGET) objectMapper.getNodeFactory().textNode(binding.stringValue());
+                        return (TARGET) objectMapper.getNodeFactory().textNode(renderString);
                     case "http://www.w3.org/2001/XMLSchema#int":
                         try {
-                            return (TARGET) objectMapper.getNodeFactory().numberNode(Integer.valueOf(binding.stringValue()));
+                            return (TARGET) objectMapper.getNodeFactory().numberNode(Integer.valueOf(renderString));
                         } catch (NumberFormatException nfe) {
-                            throw new SailException(String.format("Could not convert %s to datatype %s.", binding.stringValue(), dataTypeName), nfe);
+                            throw new SailException(String.format("Could not convert %s to datatype %s.", renderString, dataTypeName), nfe);
                         }
                     case "http://www.w3.org/2001/XMLSchema#long":
                         try {
-                            return (TARGET) objectMapper.getNodeFactory().numberNode(Long.valueOf(binding.stringValue()));
+                            return (TARGET) objectMapper.getNodeFactory().numberNode(Long.valueOf(renderString));
                         } catch (NumberFormatException nfe) {
-                            throw new SailException(String.format("Could not convert %s to datatype %s.", binding.stringValue(), dataTypeName), nfe);
+                            throw new SailException(String.format("Could not convert %s to datatype %s.", renderString, dataTypeName), nfe);
                         }
                     case "http://www.w3.org/2001/XMLSchema#double":
                         try {
-                            return (TARGET) objectMapper.getNodeFactory().numberNode(Double.valueOf(binding.stringValue()));
+                            return (TARGET) objectMapper.getNodeFactory().numberNode(Double.valueOf(renderString));
                         } catch (NumberFormatException nfe) {
-                            throw new SailException(String.format("Could not convert %s to datatype %s.", binding.stringValue(), dataTypeName), nfe);
+                            throw new SailException(String.format("Could not convert %s to datatype %s.", renderString, dataTypeName), nfe);
                         }
                     case "http://www.w3.org/2001/XMLSchema#float":
                         try {
-                            return (TARGET) objectMapper.getNodeFactory().numberNode(Float.valueOf(binding.stringValue()));
+                            return (TARGET) objectMapper.getNodeFactory().numberNode(Float.valueOf(renderString));
                         } catch (NumberFormatException nfe) {
-                            throw new SailException(String.format("Could not convert %s to datatype %s.", binding.stringValue(), dataTypeName), nfe);
+                            throw new SailException(String.format("Could not convert %s to datatype %s.", renderString, dataTypeName), nfe);
                         }
                     case "http://www.w3.org/2001/XMLSchema#dateTime":
                         try {
-                            return (TARGET) objectMapper.getNodeFactory().textNode(objectMapper.getDateFormat().format(objectMapper.getDateFormat().parse(binding.stringValue())));
+                            return (TARGET) objectMapper.getNodeFactory().textNode(objectMapper.getDateFormat().format(objectMapper.getDateFormat().parse(renderString)));
                         } catch (ParseException pe) {
-                            throw new SailException(String.format("Could not convert %s to json date.", binding), pe);
+                            throw new SailException(String.format("Could not convert %s to json date.", renderString), pe);
                         }
                     case "http://www.w3.org/2001/XMLSchema#date":
                         try {
-                            return (TARGET) objectMapper.getNodeFactory().textNode(dateFormat.format(dateFormat.parse(binding.stringValue())));
+                            return (TARGET) objectMapper.getNodeFactory().textNode(dateFormat.format(dateFormat.parse(renderString)));
                         } catch (ParseException pe) {
-                            throw new SailException(String.format("Could not convert %s to json date.", binding), pe);
+                            throw new SailException(String.format("Could not convert %s to json date.", renderString), pe);
                         }
                     case "https://json-schema.org/draft/2020-12/schema#Object":
                         try {
-                            String representation = binding.stringValue();
+                            String representation = renderString;
                             // remove UTF8 linefeeds.
                             representation = representation.replace("\\x0A", "");
                             return (TARGET) objectMapper.readTree(representation);
                         } catch (JsonProcessingException jpe) {
-                            throw new SailException(String.format("Could not convert %s to json object.", binding), jpe);
+                            throw new SailException(String.format("Could not convert %s to json object.", renderString), jpe);
                         }
                     default:
-                        throw new SailException(String.format("Could not convert %s of data type %s.", binding, dataTypeName));
+                        throw new SailException(String.format("Could not convert %s of data type %s.", renderString, dataTypeName));
                 }
             } else if (binding.isIRI()) {
-                return (TARGET) objectMapper.getNodeFactory().textNode(binding.stringValue());
+                return (TARGET) objectMapper.getNodeFactory().textNode(renderString);
             } else {
-                throw new SailException(String.format("Could not convert %s.", binding));
+                throw new SailException(String.format("Could not convert %s.", renderString));
             }
         }
-        throw new SailException(String.format("No conversion from %s to %s possible.", binding, target));
+        throw new SailException(String.format("No conversion from %s to %s possible.", renderString, target));
     }
 
     @Override
@@ -550,7 +557,7 @@ public class Invocation {
                                 } else {
                                     value = binding.getValue(mapping.getName());
                                 }
-                                Object render = convertToObject(value, String.class);
+                                Object render = convertToObject(value, String.class, argument.getValue().getStrip());
                                 if (isFirstArg[0]) {
                                     url[0] = url[0] + argument.getValue().getArgumentName();
                                 } else {
@@ -707,7 +714,7 @@ public class Invocation {
                             for (MutableBindingSet binding : batch) {
                                 String key = null;
                                 if (service.getResult().getCorrelationInput() != null) {
-                                    key = resolve(binding, service.getResult().getCorrelationInput(), null, String.class);
+                                    key = resolve(binding, service.getResult().getCorrelationInput(), null, String.class, null);
                                 } else if (service.getBatch() > 1) {
                                     key = "0";
                                 }
@@ -742,7 +749,7 @@ public class Invocation {
      * @param argumentConfig config of the argument
      */
     protected void processArgument(ObjectMapper objectMapper, ObjectNode finalinput, MutableBindingSet binding, AtomicBoolean isCorrect, String argumentKey, ArgumentConfig argumentConfig) {
-        JsonNode render = resolve(binding, argumentKey, (JsonNode) argumentConfig.getDefaultValue(), JsonNode.class);
+        JsonNode render = resolve(binding, argumentKey, (JsonNode) argumentConfig.getDefaultValue(), JsonNode.class, argumentConfig.getStrip());
         if (render != null) {
             String paths = argumentConfig.getArgumentName();
             Matcher matcher = ARGUMENT_PATTERN.matcher(paths);
@@ -750,7 +757,9 @@ public class Invocation {
             int end = 0;
             while (matcher.find()) {
                 resultPaths.append(paths.substring(end, matcher.start()));
-                String result = resolve(binding, matcher.group("arg"), "", String.class);
+                String toResolve = matcher.group("arg");
+                ArgumentConfig targetArg = service.getArguments().get(toResolve);
+                String result = resolve(binding, toResolve, (String) targetArg.getDefaultValue(), String.class, targetArg.getStrip());
                 resultPaths.append(result);
                 end = matcher.end();
             }
@@ -775,7 +784,7 @@ public class Invocation {
      * @param <TARGET>     template type
      * @return found binding of predicate, null if not bound
      */
-    private <TARGET> TARGET resolve(MutableBindingSet binding, String input, TARGET defaultValue, Class<TARGET> forClass) {
+    private <TARGET> TARGET resolve(MutableBindingSet binding, String input, TARGET defaultValue, Class<TARGET> forClass, String strip) {
         String key;
         Var variable = inputs.get(input);
         Value value = null;
@@ -788,7 +797,7 @@ public class Invocation {
         }
 
         if (value != null) {
-            return convertToObject(value, forClass);
+            return convertToObject(value, forClass, strip);
         }
 
         if (defaultValue != null) {
@@ -827,7 +836,7 @@ public class Invocation {
                 }
             } else {
                 key = new BatchKey(batchGroup.stream().map(
-                        batch -> resolve(binding, batch.getKey(), null, String.class)
+                        batch -> resolve(binding, batch.getKey(), null, String.class, null)
                 ).toArray(size -> new String[size]));
             }
             Collection<MutableBindingSet> targetCollection;
@@ -1069,7 +1078,7 @@ public class Invocation {
                                     } else {
                                         value = arg.getValue();
                                     }
-                                    targetParams[argIndex++] = convertToObject(value, param.getType());
+                                    targetParams[argIndex++] = convertToObject(value, param.getType(), aconfig.getStrip());
                                     break;
                                 }
                             }
