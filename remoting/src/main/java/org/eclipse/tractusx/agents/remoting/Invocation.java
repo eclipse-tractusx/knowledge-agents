@@ -337,10 +337,6 @@ public class Invocation {
             String[] resultPath = service.getResult().getOutputProperty().split("\\.");
             target = traversePath(target, resultPath);
         }
-        ReturnValueConfig cf = service.getResult().getOutputs().get(output.stringValue());
-        if (cf == null) {
-            throw new SailException(String.format("No output specification for %s", output));
-        }
         if (resultKey != null) {
             if (target.getClass().isArray()) {
                 if (service.getResult().getResultIdProperty() != null) {
@@ -400,7 +396,20 @@ public class Invocation {
                 }
             }
         }
-        return convertOutputToValue(target, connection.remotingSail.getValueFactory(), cf.getPath(), cf.getDataType());
+        String outputString = output.stringValue();
+        String path = null;
+        String dataType = "https://json-schema.org/draft/2020-12/schema#Object";
+        boolean isCollectiveResult = service.getResultName().equals(output.stringValue());
+        if (!isCollectiveResult) {
+            ReturnValueConfig cf = null;
+            cf = service.getResult().getOutputs().get(output.stringValue());
+            if (cf == null) {
+                throw new SailException(String.format("No output specification for %s", output));
+            }
+            path = cf.getPath();
+            dataType = cf.getDataType();
+        }
+        return convertOutputToValue(target, connection.remotingSail.getValueFactory(), path, dataType);
     }
 
     /**
@@ -759,11 +768,11 @@ public class Invocation {
     /**
      * resolves a given input predicate against a  binding
      *
-     * @param binding       the binding
-     * @param input         predicate as uri string
-     * @param defaultValue  a possible default value
-     * @param forClass      target class to convert binding into
-     * @param <TARGET> template type
+     * @param binding      the binding
+     * @param input        predicate as uri string
+     * @param defaultValue a possible default value
+     * @param forClass     target class to convert binding into
+     * @param <TARGET>     template type
      * @return found binding of predicate, null if not bound
      */
     private <TARGET> TARGET resolve(MutableBindingSet binding, String input, TARGET defaultValue, Class<TARGET> forClass) {
@@ -839,7 +848,7 @@ public class Invocation {
      * @param source the ObjectNodes to be merged
      * @param target the ObjectNodes where source needs to be merged into
      */
-    public static ObjectNode  mergeObjectNodes(ObjectNode target, ObjectNode source) {
+    public static ObjectNode mergeObjectNodes(ObjectNode target, ObjectNode source) {
         if (source == null) {
             return target;
         }
@@ -850,7 +859,7 @@ public class Invocation {
             String key = entry.getKey();
             JsonNode sourceValue = entry.getValue();
             JsonNode targetValue = target.get(key);
-            
+
             if (targetValue != null && targetValue.isObject() && sourceValue.isObject()) {
                 // Recursively merge nested objects
                 mergeObjectNodes((ObjectNode) targetValue, (ObjectNode) sourceValue);
@@ -862,10 +871,10 @@ public class Invocation {
                 target.set(key, sourceValue);
             }
         }
-        
+
         return target;
     }
-    
+
     /**
      * merges two given ArrayNodes
      *
@@ -895,8 +904,8 @@ public class Invocation {
             }
         }
     }
-    
-    
+
+
     /**
      * sets a given node under a possible recursive path
      *
@@ -915,7 +924,7 @@ public class Invocation {
                 finalInput = (ObjectNode) mergeObjectNodes(finalInput, (ObjectNode) render);
                 return;
             }
-            for (String argField : argPath) { 
+            for (String argField : argPath) {
                 if (depth != argPath.length - 1) {
                     if (hasField(traverse, argField)) {
                         JsonNode next = getField(traverse, argField);
@@ -935,7 +944,7 @@ public class Invocation {
                 }
                 depth++;
             } // set argument in input 
-        } 
+        }
     }
 
     /**

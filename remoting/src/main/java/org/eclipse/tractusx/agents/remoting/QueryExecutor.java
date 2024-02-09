@@ -606,7 +606,7 @@ public class QueryExecutor implements QueryModelVisitor<SailException>, BindingH
             }
             Invocation invocation = invocations.get(subject.getValue());
             IRI argument = (IRI) predicate.getValue();
-            if (invocation.service.getResult().getOutputs().containsKey(argument.stringValue())) {
+            if (invocation.service.getResultName().equals(argument.stringValue()) || invocation.service.getResult().getOutputs().containsKey(argument.stringValue())) {
                 invocation.outputs.put(object, argument);
             } else if (invocation.service.getArguments().containsKey(argument.stringValue())) {
                 invocation.inputs.put(argument.stringValue(), object);
