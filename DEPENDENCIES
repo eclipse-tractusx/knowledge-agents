@@ -1,8 +1,6 @@
 maven/mavencentral/aopalliance/aopalliance/1.0, LicenseRef-Public-Domain, approved, CQ2918
-maven/mavencentral/ch.qos.logback/logback-classic/1.2.12, EPL-1.0, approved, CQ13636
 maven/mavencentral/ch.qos.logback/logback-classic/1.2.13, EPL-1.0, approved, CQ13636
 maven/mavencentral/ch.qos.logback/logback-classic/1.4.12, EPL-1.0 OR LGPL-2.1-only, approved, #3435
-maven/mavencentral/ch.qos.logback/logback-core/1.2.12, EPL-1.0, approved, CQ13635
 maven/mavencentral/ch.qos.logback/logback-core/1.2.13, EPL-1.0, approved, CQ13635
 maven/mavencentral/ch.qos.logback/logback-core/1.4.12, EPL-1.0 OR LGPL-2.1-only, approved, #3373
 maven/mavencentral/com.fasterxml.jackson.core/jackson-annotations/2.13.5, Apache-2.0, approved, clearlydefined
