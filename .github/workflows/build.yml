@@ -125,7 +125,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Conforming
         id: meta-conf
-        uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5.1.5
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.1.5
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/conforming-agent
@@ -164,7 +164,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Remoting
         id: meta-remote
-        uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5.1.5
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.1.5
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/remoting-agent
@@ -203,7 +203,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Provisioning
         id: meta-prov
-        uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5.1.5
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.1.5
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
