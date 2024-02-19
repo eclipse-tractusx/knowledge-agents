@@ -21,14 +21,14 @@ jobs:
         id: api_test_1
         run: |
           # Perform API Test 1 and capture the response
-          response=$(curl -w "%{http_code}" -v GET https://knowledge.int.demo.catena-x.net/oem-provider-agent3/sparql?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%3Fs%20%3Fp%20%3Fo.%20LIMIT%2010 --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
+          response=$(curl -w "%{http_code}" -v GET https://knowledge.int.demo.catena-x.net/oem-provider-agent3/sparql?query=SELECT%20%3Fs%20WHERE%20%7B%20%3Fs%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E%20%3Chttps%3A%2F%2Fw3id.org%2Fcatenax%2Fontology%2Fvehicle%23Part%3E.%20%7D%20LIMIT%2010 --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
           echo "Response: $response"
           
       - name: API Test 2
         id: api_test_2
         run: |
           # Perform API Test 2 and capture the response
-          response=$(curl -w "%{http_code}" -X GET https://knowledge.int.demo.catena-x.net/oem-provider-agent3/sparql?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%3Fs%20%3Fp%20%3Fo.%20LIMIT%2010 --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
+          response=$(curl -w "%{http_code}" -X GET https://knowledge.int.demo.catena-x.net/oem-provider-agent3/sparql?query=SELECT%20%3Fs%20WHERE%20%7B%20%3Fs%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E%20%3Chttps%3A%2F%2Fw3id.org%2Fcatenax%2Fontology%2Fvehicle%23Part%3E.%20%7D%20LIMIT%2010 --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
           echo "Response: $response"
           
       - name: API Test 3
