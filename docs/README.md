@@ -1,5 +1,5 @@
 <!--
- * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -20,7 +20,7 @@
 
 # Tractus-X Knowledge Agents Reference Implementation (KA-RI) Documentation 
 
-In the Knowledge Agent Architecture, an Agent is any component which speaks and/or enacts a Semantic Web protocol, such as SPARQL.
+In the Knowledge Agent Architecture, an Agent is any component which speaks and/or enacts a Semantic Web protocol, such as SPARQL. So agents share a common [Open Api Specifaction](openapi.json) of which they implement a particular profile, i.e., a sub-protocol.
 
 Binding Agents are the intermediate layer between the dataspace (represented by the Matchmaking Agent that is connected to any Agent-Enabled Application and/or the Agent-Enabled Connector) and your business data & functions.
 
