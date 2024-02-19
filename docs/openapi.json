@@ -207,6 +207,7 @@
             "style": "form",
             "explode": true,
             "schema": {
+              "maxItems": 128,
               "type": "array",
               "items": {
                 "type": "string"
@@ -322,6 +323,7 @@
                 "style": "simple",
                 "explode": false,
                 "schema": {
+                  "maxItems": 64,
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/CxWarning"
@@ -539,6 +541,7 @@
             "style": "form",
             "explode": true,
             "schema": {
+              "maxItems": 128,
               "type": "array",
               "items": {
                 "type": "string"
@@ -733,6 +736,7 @@
                 "style": "simple",
                 "explode": false,
                 "schema": {
+                  "maxItems": 64,
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/CxWarning"
@@ -1171,6 +1175,7 @@
             "style": "simple",
             "explode": false,
             "schema": {
+              "maxItems": 64,
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/CxWarning"
