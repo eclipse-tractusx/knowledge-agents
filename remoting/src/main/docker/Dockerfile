@@ -19,14 +19,15 @@
 # Build Container: Fixes diverse vulnerabilities in guava <32, netty, jetty, spring-framework <5.3.28 and spring-web (all 5 versions - need to exclude a deprecated package from the jar)
 ##
 
-FROM openjdk:22-jdk-slim AS build
+FROM eclipse-temurin:21-jdk-alpine AS build
 
 COPY target/original-remoting-agent-*.jar /opt/lib/
-COPY target/lib/guava-*.jar /opt/lib/
+#COPY target/lib/guava-*.jar /opt/lib/
 COPY target/lib/netty-*.jar /opt/lib/
 COPY target/lib/http2-hpack-*.jar /opt/lib/
 COPY target/lib/jetty-*.jar /opt/lib/
 COPY target/lib/spring-*.jar /opt/lib/
+COPY target/lib/logback-*.jar /opt/lib/
 COPY target/lib/httpmime-*.jar /opt/lib/
 COPY target/lib/commons-logging-*.jar /opt/lib/
 COPY target/lib/snappy-java-*.jar /opt/lib/
@@ -39,17 +40,75 @@ COPY resources/web/tomcat-users.xml /opt/conf/
 
 WORKDIR /tmp
 
-RUN  mv /opt/lib/spring-web-5.3.28.jar . && \
-     jar xvf spring-web-5.3.28.jar && \
-     rm -f spring-web-5.3.28.jar && \
+RUN  mv /opt/lib/spring-web-5.3.31.jar . && \
+     jar xvf spring-web-5.3.31.jar && \
+     rm -f spring-web-5.3.31.jar && \
      rm -rf org/springframework/remoting/httpinvoker && \
      jar cf /opt/lib/spring-web.jar *
 
+RUN wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclipse/rdf4j/eclipse-rdf4j-4.3.8-sdk.zip" && \
+    unzip -d /tmp /tmp/rdf4j.zip eclipse-rdf4j-4.3.8/war/rdf4j-server.war  eclipse-rdf4j-4.3.8/war/rdf4j-workbench.war && \
+    unzip /tmp/eclipse-rdf4j-4.3.8/war/rdf4j-server.war -d /tmp/rdf4j-server && \
+#    rm /tmp/rdf4j-server/WEB-INF/lib/guava-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/netty-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/http2-hpack-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/jetty-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/spring-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/logback-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/snappy-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/zookeeper-*.jar && \
+    cp /opt/lib/*.jar /tmp/rdf4j-server/WEB-INF/lib/ 
+
+COPY resources/web/rdf4j.xml /tmp/rdf4j-server/WEB-INF/web.xml
+COPY resources/web/callback.xml /tmp/rdf4j-server/WEB-INF/callback.xml
+
 ##
-# Runtime Container: Currently based on Tomcat 9 (and the "old" Java Servlet API until RDF4J upgrades)
+# Target Container: Use a valid base image
 ##
 
-FROM tomcat:9-jre11-temurin
+FROM eclipse-temurin:21-jre-alpine
+
+ARG APP_USER=tomcat
+ARG APP_UID=10001
+ARG APP_GID=30000
+
+RUN addgroup --gid "$APP_GID" --system "$APP_USER"
+
+RUN adduser \
+     --shell /sbin/nologin \
+     --disabled-password \
+     --gecos "" \
+     --ingroup "$APP_USER" \
+     --no-create-home \
+     --uid "$APP_UID" \
+     "$APP_USER"
+
+# Environment variables
+ENV TOMCAT_MAJOR=9 \
+    TOMCAT_VERSION=9.0.83 \
+    CATALINA_HOME=/opt/tomcat
+
+RUN mkdir -p /opt
+
+# install tomcat
+RUN wget -q -O /tmp/apache-tomcat.tar.gz https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
+    gunzip /tmp/apache-tomcat.tar.gz && \
+    tar -C /opt -xf /tmp/apache-tomcat.tar && \
+    ln -s /opt/apache-tomcat-$TOMCAT_VERSION $CATALINA_HOME && \
+    rm -rf /tmp/* /var/cache/apk/* /opt/apache-tomcat-$TOMCAT_VERSION/webapps/* && \
+    rm $CATALINA_HOME/conf/logging.properties && \
+    rm $CATALINA_HOME/conf/server.xml && \
+    rm $CATALINA_HOME/conf/tomcat-users.xml && \
+    rm $CATALINA_HOME/conf/web.xml && \
+    mkdir -p /var/rdf4j/server/conf && \
+    mkdir -p /var/rdf4j/server/repositories && \
+    mkdir -p /opt/tomcat/webapps/rdf4j-server && \
+    chown -R tomcat:tomcat /var/rdf4j /opt/apache-tomcat-$TOMCAT_VERSION && \
+	chmod 775 /opt/apache-tomcat-$TOMCAT_VERSION $CATALINA_HOME/bin $CATALINA_HOME/bin/catalina.sh /var/rdf4j/server 
+
+EXPOSE 8080
+
+WORKDIR $CATALINA_HOME
 
 ENV JAVA_OPTS="-Xmx2g"
 ENV CATALINA_OPTS="-Dorg.eclipse.rdf4j.appdata.basedir=/var/rdf4j"
@@ -59,49 +118,12 @@ ARG JAVA_TOOL_OPTIONS ""
 # TODO Should have a healthcheck
 HEALTHCHECK NONE
 
-ARG HTTP_PROXY=""
-RUN if [ "${HTTP_PROXY}" != ""  ]; then \
-        echo "Acquire::http::Proxy \"${HTTP_PROXY}\"" >> /etc/apt/apt.conf.d/proxy.conf; \
-        echo "Acquire::https::Proxy \"${HTTP_PROXY}\"" >> /etc/apt/apt.conf.d/proxy.conf; \
-    fi && \
-    apt-get -y upgrade && \
-    apt-get -y update && \
-    apt-get -y --no-install-recommends install unzip=6.0-26ubuntu3.1 && \
-    addgroup --system --gid 30000 tomcat && \
-    adduser --disabled-password --gecos "" --ingroup tomcat --uid 10001 tomcat && \
-    rm -rf /usr/local/tomcat/webapps/* && \
-    wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclipse/rdf4j/eclipse-rdf4j-4.3.2-sdk.zip" && \
-    if [ "${HTTP_PROXY}" != ""  ]; then rm -f /etc/apt/apt.conf.d/proxy.conf; fi && \
-    unzip -d /tmp /tmp/rdf4j.zip eclipse-rdf4j-4.3.2/war/rdf4j-server.war  eclipse-rdf4j-4.3.2/war/rdf4j-workbench.war && \
-    rm /tmp/rdf4j.zip
-
-RUN	mkdir -p /var/rdf4j/server/conf && \
-    mkdir -p /var/rdf4j/server/repositories && \
-    unzip /tmp/eclipse-rdf4j-4.3.2/war/rdf4j-server.war -d /usr/local/tomcat/webapps/rdf4j-server && \
-	rm -rf /tmp/eclipse-rdf4j-4.3.2 && \
-    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/guava-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/netty-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/http2-hpack-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/jetty-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/spring-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/snappy-*.jar && \
-    rm /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/zookeeper-*.jar && \
-    rm /usr/local/tomcat/conf/logging.properties && \
-    rm /usr/local/tomcat/conf/server.xml && \
-    rm /usr/local/tomcat/conf/tomcat-users.xml && \
-    rm /usr/local/tomcat/conf/web.xml && \
-    chown -R tomcat:tomcat /var/rdf4j /usr/local/tomcat && \
-    apt-get -y --auto-remove remove unzip && \
-	chmod 775 /usr/local/tomcat /usr/local/tomcat/bin /usr/local/tomcat/bin/catalina.sh /var/rdf4j/server 
-
-COPY --from=build /opt/lib/*.jar /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/lib/
-COPY --from=build /opt/conf/*.xml /opt/conf/*.properties /usr/local/tomcat/conf/
-COPY resources/web/rdf4j.xml /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/web.xml
-COPY resources/web/callback.xml /usr/local/tomcat/webapps/rdf4j-server/WEB-INF/callback.xml
-
 USER tomcat
 
-WORKDIR /usr/local/tomcat/
+COPY --from=build /opt/conf/*.xml /opt/conf/*.properties /opt/tomcat/conf/
+COPY --from=build /tmp/rdf4j-server/ /opt/tomcat/webapps/rdf4j-server/
+COPY resources/web/startup.sh /opt/tomcat/bin/startup.sh
 
-EXPOSE 8081
+ENTRYPOINT [ "/opt/tomcat/bin/startup.sh" ]
+
 
