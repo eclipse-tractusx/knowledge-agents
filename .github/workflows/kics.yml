@@ -32,9 +32,7 @@ on:
 
   workflow_dispatch:
 
-  # Since rules may change should run regularily
-  schedule:
-    - cron: "0 0 * * *"
+
 
 jobs:
   analyze:
