@@ -21,28 +21,28 @@ jobs:
         id: api_test_1
         run: |
           # Perform API Test 1 and capture the response
-          response=$(curl -w "%{http_code}" -v GET https://knowledge.dev.demo.catena-x.net --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
+          response=$(curl -w "%{http_code}" -v GET https://knowledge.int.demo.catena-x.net/oem-provider-agent3/sparql?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%3Fs%20%3Fp%20%3Fo.%20LIMIT%2010 --user "${{ secrets.BASIC_AUTH_USER }}:${{ secrets.BASIC_AUTH_PASSWORD }}")
           echo "Response: $response"
           
       - name: API Test 2
         id: api_test_2
         run: |
           # Perform API Test 2 and capture the response
-          response=$(curl -w "%{http_code}" -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
+          response=$(curl -w "%{http_code}" -X GET https://knowledge.int.demo.catena-x.net/oem-provider-agent3/sparql?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%3Fs%20%3Fp%20%3Fo.%20LIMIT%2010 --header "Authorization: Basic ${{ secrets.BASIC_AUTH_TOKEN }}")
           echo "Response: $response"
           
       - name: API Test 3
         id: api_test_3
         run: |
           # Perform API Test 3 and capture the response
-          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "X-Api-Key: ${{ secrets.API_KEY }}")
+          response=$(curl -X POST https://knowledge.int.demo.catena-x.net/oem-edc-control/BPNL00000003COJN/management/v2/assets/request --header "X-Api-Key: ${{ secrets.API_KEY }}")
           echo "Response: $response"
           
       - name: API Test 4
         id: api_test_4
         run: |
           # Perform API Test 4 and capture the response
-          response=$(curl -X GET https://knowledge.dev.demo.catena-x.net --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
+          response=$(curl -X GET https://knowledge.int.demo.catena-x.net/tiera-edc-data/BPNL00000003CPIY/api/agent?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20%3Fs%20%3Fp%20%3Fo.%7D%20LIMIT%2010 --header "Authorization: Bearer ${{ secrets.OAUTH2 }}")
           echo "Response: $response"
           
       - name: Generating report skeletons
@@ -59,7 +59,7 @@ jobs:
           echo "Pulling ZAP image..."
           docker pull ghcr.io/zaproxy/zaproxy:stable -q
           echo "Starting ZAP Docker container..."
-          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t https://knowledge.dev.demo.catena-x.net -f openapi -r API_report.html -T 1
+          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t docs/openapi.json -f openapi -r API_report.html -T 1
           
           echo "... done."
           
@@ -94,7 +94,7 @@ jobs:
           echo "Pulling ZAP image..."
           docker pull ghcr.io/zaproxy/zaproxy:stable -q
           echo "Starting ZAP Docker container..."
-          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://knowledge.dev.demo.catena-x.net -r fullscan_report.html -T 1
+          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://knowledge.int.demo.catena-x.net -r fullscan_report.html -T 1
           
           echo "... done."
           
