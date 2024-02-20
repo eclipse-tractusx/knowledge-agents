@@ -24,6 +24,17 @@ All notable changes to this product will be documented in this file.
 
 # Released
 
+## [1.11.16] - 2024-02-20
+
+### Added
+
+### Changed
+
+- Provisioning Agent: Upgrade to Ontop 5.2.0, Use Eclipse Temurin as Base Image
+- Remoting Agent: Upgrade to RDF4J 4.3.8, Use Eclipse Temurin as Base Image
+
+### Removed
+
 ## [1.10.15] - 2023-11-28
 
 ### Added
