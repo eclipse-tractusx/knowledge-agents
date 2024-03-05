@@ -55,6 +55,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      
+      - name: Clear existing CodeQL databases directory
+        run: rm -rf /home/runner/work/_temp/codeql_databases
 
     # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
