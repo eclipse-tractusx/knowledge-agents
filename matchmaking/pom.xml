@@ -54,10 +54,16 @@
         <okio.version>3.4.0</okio.version>
         <servlet-api-version>2.5</servlet-api-version>
         <beanvalidation-version>2.0.1.Final</beanvalidation-version>
+        <jetbrain-annotation>24.1.0</jetbrain-annotation>
     </properties>
 
     <dependencies>
 
+        <dependency>
+	        <groupId>org.jetbrains</groupId>
+	        <artifactId>annotations</artifactId>
+	        <version>${jetbrain-annotation}</version>
+	    </dependency>
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>
 		    <artifactId>gson</artifactId>
@@ -213,41 +219,7 @@
                 </exclusion>
             </exclusions> -->
         </dependency>
-        
-        <dependency>
-		    <groupId>org.eclipse.edc</groupId>
-		    <artifactId>boot</artifactId>
-		    <version>0.4.1</version>
-		</dependency>
-                <!-- Http Transfer -->
-        <dependency>
-            <groupId>org.eclipse.edc</groupId>
-            <artifactId>web-spi</artifactId>
-            <version>${edc.version}</version>
-        </dependency>
-                <!-- Http Transfer -->
-        <dependency>
-            <groupId>org.eclipse.edc</groupId>
-            <artifactId>data-plane-http</artifactId>
-            <version>${edc.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>dev.failsafe</groupId>
-                    <artifactId>failsafe-okhttp</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.edc</groupId>
-            <artifactId>http-spi</artifactId>
-            <version>${edc.version}</version>
-        </dependency>
-        
-       <dependency>
-		    <groupId>org.eclipse.edc</groupId>
-		    <artifactId>core-spi</artifactId>
-		    <version>0.2.1</version>
-		</dependency>
+
         
         <!-- IO library that okhttp is dependent on -->
         <dependency>
@@ -292,15 +264,7 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
-        
-                <!-- Jersey Test -->
-        <dependency>
-            <groupId>org.eclipse.edc</groupId>
-            <artifactId>jersey-core</artifactId>
-            <version>${edc.version}</version>
-            <classifier>test-fixtures</classifier>
-            <scope>test</scope>
-        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.eclipse.rdf4j/rdf4j-query -->
         <dependency>

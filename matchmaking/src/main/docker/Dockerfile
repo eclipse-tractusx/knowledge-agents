@@ -20,7 +20,7 @@ ARG JAR
 ARG LIB
 
 ARG APP_USER=agent
-ARG APP_UID=10100
+ARG APP_UID=10001
 ARG APP_GID=30000
 
 RUN addgroup --gid "$APP_GID" --system "$APP_USER"
@@ -41,7 +41,7 @@ WORKDIR /app
 VOLUME /tmp
 
 COPY target/matchmaking-agent-*.jar /app/lib/
-COPY resources/dataplane.properties /app/configuration.properties
+COPY resources/matchmaking.properties /app/configuration.properties
 COPY resources/dataspace.ttl /app/dataspace.ttl
 
 # TODO implement wget or curl-based health check
@@ -49,4 +49,4 @@ HEALTHCHECK NONE
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-cp","/app/lib/*", "org.eclipse.tractusx.agents.conforming.Bootstrap"]
+ENTRYPOINT ["java","-cp","/app/lib/*", "org.eclipse.tractusx.agents.matchmaking.Bootstrap"]
