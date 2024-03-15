@@ -61,7 +61,8 @@ jobs:
       fail-fast: false
       matrix:
         variant: [{dir: remoting, name: remoting-agent},
-                  {dir: conforming, name: conforming-agent}]
+                  {dir: conforming, name: conforming-agent},
+                  {dir: matchmaking, name: matchmaking-agent}]
     steps:
       # Set-Up
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1

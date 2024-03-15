@@ -32,3 +32,11 @@ logs/
 .vscode
 .env
 __pycache__
+.classpath
+.project
+.settings/
+*.bak
+*cs-cleanup.xml
+*cs-formatter.xml
+.checkstyle
+
