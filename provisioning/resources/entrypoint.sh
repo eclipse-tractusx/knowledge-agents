@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -21,106 +21,108 @@
 # Entry script for provisioning agent/ontop with the ability to start multiple endpoints in lazy mode and disable CORS
 #
 
-# Reinterpret the environment vars as arrays
-ONTOP_PORT=( ${ONTOP_PORT[*]} )
-ONTOP_ONTOLOGY_FILE=( ${ONTOP_ONTOLOGY_FILE[*]} )
-ONTOP_MAPPING_FILE=( ${ONTOP_MAPPING_FILE[*]} )
-ONTOP_PROPERTIES_FILE=( ${ONTOP_PROPERTIES_FILE[*]} )
-ONTOP_PORTAL_FILE=( ${ONTOP_PORTAL_FILE[*]} )
-ONTOP_DEV_MODE=( ${ONTOP_DEV_MODE[*]} )
-JAVA_TOOL_OPTIONS_ARRAY=( ${JAVA_TOOL_OPTIONS[*]} )
-
-ENDPOINT_LENGTH=${#ONTOP_PORT[@]}
-if [[ ${ENDPOINT_LENGTH} -gt 0 ]]; then
-  echo "Found ${ENDPOINT_LENGTH} endpoints to provision.";
-else
-  echo "Incorrect port specification: ${ONTOP_PORT[*]}";
-  exit 1;
-fi
-
-((ENDPOINT_LENGTH--))
-
-# for matching the definitions
-NUMBER='^[0-9]+$'
-TOML='^.*toml$'
-ONTOLOGY='^.*(ttl|xml)$'
-MAPPING='^.*(obda)$'
-PROPERTIES='^.*(properties)$'
-CORS="--cors-allowed-origins=${ONTOP_CORS_ALLOWED_ORIGINS}"
+CORS=""
 LAZY="--lazy"
+ENDPOINT_LENGTH=0
+ONTOP_TOOL_OPTIONS=$JAVA_TOOL_OPTIONS
+JAVA_TOOL_OPTIONS=""
 
-# Loop over the endpoints driven by the ports
-for ENDPOINT_NUMBER in "${!ONTOP_PORT[@]}"
-do
-  # check port number
-  if [[ "${ONTOP_PORT[${ENDPOINT_NUMBER}]}" =~ ${NUMBER} ]]; then    
-    echo "Providing endpoint ${ENDPOINT_NUMBER} on port ${ONTOP_PORT[${ENDPOINT_NUMBER}]}";
-    PORT="--port=${ONTOP_PORT[${ENDPOINT_NUMBER}]}";
-    
-    # check ontology
-    if [[ "${ONTOP_ONTOLOGY_FILE[${ENDPOINT_NUMBER}]}" =~ ${ONTOLOGY} ]]; then
-      echo "Providing endpoint ${ENDPOINT_NUMBER} on ontology ${ONTOP_ONTOLOGY_FILE[${ENDPOINT_NUMBER}]}";
-      ONTOLOGY_FILE="--ontology=${ONTOP_ONTOLOGY_FILE[${ENDPOINT_NUMBER}]}";
-
-      # check mapping
-      if [[ "${ONTOP_MAPPING_FILE[${ENDPOINT_NUMBER}]}" =~ ${MAPPING} ]]; then
-
-        echo "Providing endpoint ${ENDPOINT_NUMBER} on mapping ${ONTOP_MAPPING_FILE[${ENDPOINT_NUMBER}]}";
-        MAPPING_FILE="--mapping=${ONTOP_MAPPING_FILE[${ENDPOINT_NUMBER}]}";
-
-        # check properties
-        if [[ "${ONTOP_PROPERTIES_FILE[${ENDPOINT_NUMBER}]}" =~ ${PROPERTIES} ]]; then
-
-          echo "Providing endpoint ${ENDPOINT_NUMBER} on properties ${ONTOP_PROPERTIES_FILE[${ENDPOINT_NUMBER}]}";
-          PROPERTIES_FILE="--properties=${ONTOP_PROPERTIES_FILE[${ENDPOINT_NUMBER}]}";
-
-          # check developer mode
-          if [ "${ONTOP_DEV_MODE[${ENDPOINT_NUMBER}]}" == "true" ]; then
-            echo "Providing endpoint ${ENDPOINT_NUMBER} in developer mode";
-            DEV_MODE="--dev"
-          else
-            DEV_MODE=""
-          fi
-
-          # check portal activation
-          if [[ "${ONTOP_PORTAL_FILE[${ENDPOINT_NUMBER}]}" =~ ${TOML} ]]; then
-            echo "Providing endpoint ${ENDPOINT_NUMBER} on portal ${ONTOP_PORTAL_FILE[${ENDPOINT_NUMBER}]}";
-            PORTAL_FILE="--portal=${ONTOP_PORTAL_FILE[${ENDPOINT_NUMBER}]}"
-          else
-            PORTAL_FILE=""
-          fi
-
-          JAVA_TOOL_OPTIONS=${JAVA_TOOL_OPTIONS_ARRAY[${ENDPOINT_NUMBER}]};
-
-          echo "Arguments: ${ONTOLOGY_FILE} ${MAPPING_FILE} ${PROPERTIES_FILE} ${PORTAL_FILE} ${DEV_MODE} ${PORT} ${CORS} ${JAVA_TOOL_OPTIONS}";
-
-          if [[ "${ENDPOINT_NUMBER}" == "${ENDPOINT_LENGTH}" ]]; then
-            echo "Invoking last process";
-            java -cp ./lib/*:./jdbc/* -Dlogback.configurationFile="/opt/ontop/log/logback.xml" -Dlogging.config="/opt/ontop/log/logback.xml" \
-              it.unibz.inf.ontop.cli.Ontop endpoint ${ONTOLOGY_FILE} ${MAPPING_FILE} \
-              ${PROPERTIES_FILE} ${PORTAL_FILE} ${DEV_MODE} ${PORT} ${CORS} ${LAZY};
-          else 
-            echo "Invoking intermediate process";
-            java -cp ./lib/*:./jdbc/* -Dlogback.configurationFile="/opt/ontop/log/logback.xml" -Dlogging.config="/opt/ontop/log/logback.xml" \
-              it.unibz.inf.ontop.cli.Ontop endpoint ${ONTOLOGY_FILE} ${MAPPING_FILE} \
-              ${PROPERTIES_FILE} ${PORTAL_FILE} ${DEV_MODE} ${PORT} ${CORS} ${LAZY}&
-          fi
-
-        else
-          # Incorrect properties
-          echo "Cannot provide endpoint ${ENDPOINT_NUMBER} as incorrect properties given: ${ONTOP_PROPERTIES_FILE[${ENDPOINT_NUMBER}]}";
-        fi            
-      else
-        # Incorrect mapping 
-        echo "Cannot provide endpoint ${ENDPOINT_NUMBER} as incorrect mapping given: ${ONTOP_MAPPING_FILE[${ENDPOINT_NUMBER}]}";
-      fi            
-    else
-      # Incorrect ontology 
-      echo "Cannot provide endpoint ${ENDPOINT_NUMBER} as incorrect ontology given: ${ONTOP_ONTOLOGY_FILE[${ENDPOINT_NUMBER}]}";
-    fi            
-  else
-    # Incorrect port number
-    echo "Cannot provide endpoint ${ENDPOINT_NUMBER} as incorrect port number given: ${ONTOP_PORT[${ENDPOINT_NUMBER}]}";
-  fi
+for ENDPOINT in $ONTOP_PORT ; do  # NOTE: do not double-quote $services here.
+  ENDPOINT_LENGTH=$((ENDPOINT_LENGTH+1))
 done
 
+if [ "$ONTOP_CORS_ALLOWED_ORIGINS" != "" ]; then
+  CORS="--cors-allowed-origins=${ONTOP_CORS_ALLOWED_ORIGINS}"
+fi
+
+echo "Found $ENDPOINT_LENGTH endpoints to provide under $CORS $LAZY."
+
+ENDPOINT_INDEX=0
+for ENDPOINT in $ONTOP_PORT ; do  # NOTE: do not double-quote $services here.
+  ENDPOINT_INDEX=$((ENDPOINT_INDEX+1))
+  
+  ONTOLOGY="/opt/ontop/ontology.ttl"
+  ONTOLOGY_INDEX=0
+  for ONTOLOGY_FILE in $ONTOP_ONTOLOGY_FILE ; do
+    ONTOLOGY_INDEX=$((ONTOLOGY_INDEX+1))
+
+    if [ $ENDPOINT_INDEX -ge $ONTOLOGY_INDEX ]; then
+      ONTOLOGY=$ONTOLOGY_FILE
+    fi
+  done
+
+  MAPPING="/opt/ontop/input/mapping.obda"
+  MAPPING_INDEX=0
+  for MAPPING_FILE in $ONTOP_MAPPING_FILE ; do
+    MAPPING_INDEX=$((MAPPING_INDEX+1))
+
+    if [ $ENDPOINT_INDEX -ge $MAPPING_INDEX ]; then
+      MAPPING=$MAPPING_FILE
+    fi
+  done
+
+  PROPERTIES="/opt/ontop/input/settings.properties"
+  PROPERTIES_INDEX=0
+  for PROPERTIES_FILE in $ONTOP_PROPERTIES_FILE ; do
+    PROPERTIES_INDEX=$((PROPERTIES_INDEX+1))
+
+    if [ $ENDPOINT_INDEX -ge $PROPERTIES_INDEX ]; then
+      PROPERTIES=$PROPERTIES_FILE
+    fi
+  done
+
+  DEV="false"
+  DEV_INDEX=0
+  for DEV_MODE in $ONTOP_DEV_MODE ; do
+    DEV_INDEX=$((DEV_INDEX+1))
+
+    if [ $ENDPOINT_INDEX -ge $DEV_INDEX ]; then
+      DEV=$DEV_MODE
+    fi
+  done
+
+  TOOL=""
+  TOOL_INDEX=0
+  for TOOL_OPTIONS in $ONTOP_TOOL_OPTIONS ; do
+    TOOL_INDEX=$((TOOL_INDEX+1))
+
+    if [ $ENDPOINT_INDEX -ge $TOOL_INDEX ]; then
+      TOOL=$TOOL_OPTIONS
+    fi
+  done
+
+  PORTAL="/opt/ontop/portal.toml"
+  PORTAL_INDEX=0
+  for PORTAL_FILE in $ONTOP_PORTAL_FILES ; do
+    PORTAL_INDEX=$((PORTAL_INDEX+1))
+
+    if [ $ENDPOINT_INDEX -ge $PORTAL_INDEX ]; then
+      PORTAL=$PORTAL_FILE
+    fi
+  done
+
+  echo "Providing endpoint $ENDPOINT_INDEX on port $ENDPOINT with ontology $ONTOLOGY mapping $MAPPING properties $PROPERTIES portal $PORTAL dev mode $DEV and tool options $TOOL"
+
+  ENDPOINT="--port=$ENDPOINT"
+  ONTOLOGY="--ontology=$ONTOLOGY"
+  MAPPING="--mapping=$MAPPING"
+  PROPERTIES="--properties=$PROPERTIES"
+  if [ "$DEV" == "true" ]; then
+    DEV="--dev"
+  else 
+    DEV=""
+  fi
+  PORTAL="--portal=$PORTAL"
+
+  if [ $ENDPOINT_INDEX -eq $ENDPOINT_LENGTH ]; then
+    echo "Invoking last process";
+    java $TOOL -cp ./lib/*:./jdbc/* -Dlogback.configurationFile="/opt/ontop/log/logback.xml" -Dlogging.config="/opt/ontop/log/logback.xml" \
+      it.unibz.inf.ontop.cli.Ontop endpoint ${ONTOLOGY} ${MAPPING} \
+      ${PROPERTIES} ${PORTAL} ${DEV} ${ENDPOINT} ${CORS} ${LAZY};
+  else 
+    echo "Invoking intermediate process";
+    java $TOOL -cp ./lib/*:./jdbc/* -Dlogback.configurationFile="/opt/ontop/log/logback.xml" -Dlogging.config="/opt/ontop/log/logback.xml" \
+      it.unibz.inf.ontop.cli.Ontop endpoint ${ONTOLOGY} ${MAPPING} \
+      ${PROPERTIES} ${PORTAL} ${DEV} ${ENDPOINT} ${CORS} ${LAZY}&
+  fi
+done

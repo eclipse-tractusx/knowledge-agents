@@ -1,5 +1,5 @@
 ---
-# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -101,16 +101,16 @@ spec:
               subPath: logback.xml
               readOnly: true
             - name: logs
-              mountPath: /usr/local/tomcat/logs
+              mountPath: /opt/tomcat/logs
               readOnly: false
             - name: work
-              mountPath: /usr/local/tomcat/work/Catalina/localhost
+              mountPath: /opt/tomcat/work/Catalina/localhost
               readOnly: false
             - name: conf
-              mountPath: /usr/local/tomcat/conf/Catalina/localhost
+              mountPath: /opt/tomcat/conf/Catalina/localhost
               readOnly: false
             - name: tmp
-              mountPath: /usr/local/tomcat/temp
+              mountPath: /opt/tomcat/temp
               readOnly: false
             - name: rdf4jlogs
               mountPath: /var/rdf4j/server/logs

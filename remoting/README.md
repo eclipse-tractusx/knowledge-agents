@@ -1,5 +1,5 @@
 <!--
- * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -134,15 +134,15 @@ mvn package
 ```
 
 This will generate
-- a [standalone jar](target/remoting-agent-1.10.15-SNAPSHOT.jar) containing all necessary rdf4j components to build your own repository server.
-- a [pluging jar](target/original-remoting-agent-1.10.15-SNAPSHOT.jar) which maybe dropped into an rdf4j server for remoting support.
+- a [standalone jar](target/remoting-agent-1.12.17-SNAPSHOT.jar) containing all necessary rdf4j components to build your own repository server.
+- a [pluging jar](target/original-remoting-agent-1.12.17-SNAPSHOT.jar) which maybe dropped into an rdf4j server for remoting support.
 
 ### Run Locally
 
-The standalone jar](target/remoting-agent-1.10.15-SNAPSHOT.jar) contains an example application that runs a sample repository against a sample source
+The standalone jar](target/remoting-agent-1.12.17-SNAPSHOT.jar) contains an example application that runs a sample repository against a sample source
 
 ```console
-java -jar target/remoting-agent-1.10.15-SNAPSHOT.jar -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG
+java -jar target/remoting-agent-1.12.17-SNAPSHOT.jar -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG
 ```
 
 ### Containerizing
@@ -156,7 +156,7 @@ mvn install -Pwith-docker-image
 or invoke the following docker command after a successful package run
 
 ```console
-docker build -t tractusx/remoting-agent:1.10.15-SNAPSHOT -f src/main/docker/Dockerfile .
+docker build -t tractusx/remoting-agent:1.12.17-SNAPSHOT -f src/main/docker/Dockerfile .
 ```
 
 This will create a docker image including an extended rdf4j-server as well as an interactive rdf4j-workbench.
@@ -166,7 +166,7 @@ To run the docker image, you could invoke this command
 ```console
 docker run -p 8081:8081 \
   -v $(pwd)/src/test:/var/rdf4j/config \
-  tractusx/remoting-agent:1.10.15-SNAPSHOT
+  tractusx/remoting-agent:1.12.17-SNAPSHOT
 ````
 
 Afterwards, you should be able to access the [local SparQL endpoint](http://localhost:8081/) via
@@ -205,10 +205,10 @@ Eclipse Tractus-X product(s) installed within the image:
 
 **Used base image**
 
-- [tomcat:9-jre11-temurin](https://github.com/docker-library/tomcat/tree/master/9.0/jre11/temurin-jammy)
-- Official Tomcat Dockerhub page: https://hub.docker.com/_/tomcat
-- Apache Tomcat Project: https://tomcat.apache.org/
-- Additional information about the Tomcat image: https://github.com/docker-library/repo-info/tree/master/repos/tomcat
+- [eclipse-temurin:21-jre-alpine](https://github.com/adoptium/containers)
+- Official Eclipse Temurin DockerHub page: https://hub.docker.com/_/eclipse-temurin
+- Eclipse Temurin Project: https://projects.eclipse.org/projects/adoptium.temurin
+- Additional information about the Eclipse Temurin images: https://github.com/docker-library/repo-info/tree/master/repos/eclipse-temurin
 
 As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 
@@ -224,7 +224,7 @@ It can be added to your umbrella chart.yaml by the following snippet
 dependencies:
   - name: remoting-agent
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.10.15-SNAPSHOT
+    version: 1.12.17-SNAPSHOT
     alias: my-remoting-agent
 ```
 

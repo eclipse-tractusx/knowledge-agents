@@ -1,5 +1,5 @@
 ---
-# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -80,11 +80,11 @@ podSecurityContext:
     # -- Restrict a Container's Syscalls with seccomp
     type: RuntimeDefault
   # -- Runs all processes within a pod with a special uid
-  runAsUser: 999
+  runAsUser: 10001
   # -- Processes within a pod will belong to this guid
-  runAsGroup: 999
+  runAsGroup: 30000
   # -- The owner for volumes and any files created within volumes will belong to this guid
-  fsGroup: 999
+  fsGroup: 30000
 
 # The [container security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container) defines privilege and access control settings for a Container within a pod
 securityContext:

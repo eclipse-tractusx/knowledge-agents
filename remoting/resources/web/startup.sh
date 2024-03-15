@@ -1,6 +1,6 @@
----
+#!/bin/sh
+
 # Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
-#
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
 #
@@ -15,20 +15,6 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-#
-# Provisioning Agent Chart Header
-# This is a YAML-formatted file.
-apiVersion: v2
-name: provisioning-agent
-description: |
-  A Helm chart for the Tractus-X Provisioning Agent which is a container to Bridge Agent-Enabled Connector and Relational Data Sources.
 
-  This chart has no prerequisites.
-home: https://github.com/eclipse-tractusx/knowledge-agents/
-sources:
-  - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
-type: application
-appVersion: "1.12.17-SNAPSHOT"
-version: 1.12.17-SNAPSHOT
-maintainers:
-  - name: 'Tractus-X Knowledge Agents Team'
+# start the tomcat
+$CATALINA_HOME/bin/catalina.sh run

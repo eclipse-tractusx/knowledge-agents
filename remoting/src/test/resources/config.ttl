@@ -1,4 +1,4 @@
-# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -80,10 +80,10 @@ cx-prognosis:Prognosis rdf:type cx-fx:Function;
   dcterms:title "Prognosis" ;
   cx-fx:targetUri "https://api.agify.io";
   cx-fx:input cx-prognosis:name;
-  cx-fx:output cx-prognosis:prediction;
   cx-fx:result cx-prognosis:hasResult.
 
 cx-prognosis:hasResult rdf:type cx-fx:Result;
+  cx-fx:output cx-prognosis:prediction;
   cx-fx:output cx-prognosis:support.
 
 cx-prognosis:name rdf:type cx-fx:Argument;
