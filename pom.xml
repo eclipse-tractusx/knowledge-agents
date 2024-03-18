@@ -63,7 +63,7 @@
         <org.yaml.snakeyaml.version>2.0</org.yaml.snakeyaml.version>
         <snappy.version>1.1.10.5</snappy.version>
         <postgres.version>42.6.0</postgres.version>
-        <zookeeper.version>3.7.2</zookeeper.version>
+        <zookeeper.version>3.8.3</zookeeper.version>
         <!-- REPO -->
         <repo>tractusx/</repo>
         <platform>linux/amd64</platform>
