@@ -50,12 +50,6 @@
         <finalName>${symbolic.name}-${project.version}</finalName>
         <filter.main.resources>true</filter.main.resources>
         <skipTests>false</skipTests>
-        <swagger-core-version>2.2.12</swagger-core-version>
-        <jersey2-version>2.40</jersey2-version>
-        <junit-version>4.13.1</junit-version>
-        <logback-version>1.4.12</logback-version>
-        <servlet-api-version>2.5</servlet-api-version>
-        <beanvalidation-version>2.0.1.Final</beanvalidation-version>
     </properties>
 
     <dependencies>
@@ -69,14 +63,19 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback-version}</version>
+            <version>${logback.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>${logback-version}</version>
+            <version>${logback.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
