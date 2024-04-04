@@ -114,7 +114,7 @@ jobs:
       # install the chart to the kind cluster and run helm test
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
-        run: ct install --charts charts/conforming-agent,charts/provisioning-agent,charts/remoting-agent,charts/matchmakin-agent --config charts/config/chart-testing-config.yaml --helm-extra-set-args="--set=image.registry=kind-registry:5000/"
+        run: ct install --charts charts/conforming-agent,charts/provisioning-agent,charts/remoting-agent,charts/matchmaking-agent --config charts/config/chart-testing-config.yaml --helm-extra-set-args="--set=image.registry=kind-registry:5000/"
         if: github.event_name != 'pull_request' || env.CHART_CHANGED == 'true'
 
       # Upgrade the released chart version with the locally available chart
