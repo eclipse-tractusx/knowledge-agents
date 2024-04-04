@@ -144,11 +144,31 @@ agent:
     ## Default api exposing health checks etc
     default:
       # -- The network port, which the "default" api is going to be exposed by the container, pod and service
-      port: "8280"
+      port: "8082"
       # -- An auth object for default security
       auth: {}
       # -- The path mapping the "default" api is going to be exposed by
-      path: ""
+      path: "api"
+      # -- An optional regex path match (whose match groups could be used in an nginx-annotation of the ingress)
+      regex: /(.*)
+    ## Source api exposing EDC inject
+    source:
+      # -- The network port, which the "source" api is going to be exposed by the container, pod and service
+      port: "8080"
+      # -- An auth object for default security
+      auth: {}
+      # -- The path mapping the "source" api is going to be exposed by
+      path: "agentsource"
+      # -- An optional regex path match (whose match groups could be used in an nginx-annotation of the ingress)
+      regex: /(.*)
+    ## Source api exposing EDC callback
+    callback:
+      # -- The network port, which the "callback" api is going to be exposed by the container, pod and service
+      port: "8087"
+      # -- An auth object for default security
+      auth: {}
+      # -- The path mapping the "callback" api is going to be exposed by
+      path: "callback"
       # -- An optional regex path match (whose match groups could be used in an nginx-annotation of the ingress)
       regex: /(.*)
 
@@ -172,6 +192,8 @@ ingresses:
     # -- Agent endpoints exposed by this ingress resource
     endpoints:
       - default
+      - source
+      - callback
     # -- Defines the [ingress class](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)  to use
     className: ""
     # -- TLS [tls class](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) applied to the ingress resource
@@ -243,5 +265,3 @@ logging:
       </root>
     </configuration>
 
-# -- A map of repository names to configuration ttl files
-repositories: {}

@@ -61,7 +61,7 @@ spec:
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
-              path: {{ .Values.agent.endpoints.default.path }}/rdf4j-server/protocol
+              path: {{ .Values.agent.endpoints.default.path }}/agent/protocol
               port: default
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
@@ -70,7 +70,7 @@ spec:
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.agent.endpoints.default.path }}/rdf4j-server/protocol
+              path: {{ .Values.agent.endpoints.default.path }}/agent/protocol
               port: default
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
@@ -79,7 +79,7 @@ spec:
           {{- if .Values.startupProbe.enabled }}
           startupProbe:
             httpGet:
-              path: {{ .Values.agent.endpoints.default.path }}/rdf4j-server/protocol
+              path: {{ .Values.agent.endpoints.default.path }}/agent/protocol
               port: default
             failureThreshold: {{ .Values.startupProbe.failureThreshold }}
             periodSeconds: {{ .Values.startupProbe.periodSeconds }}
@@ -100,33 +100,6 @@ spec:
               mountPath: /var/rdf4j/server/conf/logback.xml
               subPath: logback.xml
               readOnly: true
-            - name: logs
-              mountPath: /usr/local/tomcat/logs
-              readOnly: false
-            - name: work
-              mountPath: /usr/local/tomcat/work/Catalina/localhost
-              readOnly: false
-            - name: conf
-              mountPath: /usr/local/tomcat/conf/Catalina/localhost
-              readOnly: false
-            - name: tmp
-              mountPath: /usr/local/tomcat/temp
-              readOnly: false
-            - name: rdf4jlogs
-              mountPath: /var/rdf4j/server/logs
-              readOnly: false
-            - name: rdf4jconf
-              mountPath: /var/rdf4j/server/conf
-              readOnly: false
-            - name: rdf4jrepositories
-              mountPath: /var/rdf4j/server/repositories
-              readOnly: false
-            {{- range $asset, $_ := .Values.repositories }}
-            - name: configuration
-              mountPath: /var/rdf4j/server/repositories/{{ $asset }}/config.ttl
-              subPath: {{ $asset }}.ttl
-              readOnly: true
-            {{- end }}
       volumes:
         - name: configuration
           configMap:
@@ -134,10 +107,6 @@ spec:
             items:
               - key: logback.xml
                 path: logback.xml
-              {{- range $asset, $_ := .Values.repositories }}
-              - key: {{ $asset }}.ttl
-                path: {{ $asset }}.ttl
-              {{- end }}
         - name: tmp
           emptyDir: {}
         - name: logs
