@@ -1,4 +1,4 @@
-# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -15,7 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:21-jre-alpine
 ARG JAR
 ARG LIB
 
@@ -24,8 +24,6 @@ ARG APP_UID=10001
 ARG APP_GID=30000
 
 RUN addgroup --gid "$APP_GID" --system "$APP_USER"
-
-RUN apk add --update curl 
 
 RUN adduser \
      --shell /sbin/nologin \

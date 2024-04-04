@@ -1,4 +1,5 @@
 /*
+ *  Copyright (c) 2024 T-Systems International GmbH
  *  Copyright (c) 2020, 2021 Fraunhofer Institute for Software and Systems Engineering
  *
  *  This program and the accompanying materials are made available under the

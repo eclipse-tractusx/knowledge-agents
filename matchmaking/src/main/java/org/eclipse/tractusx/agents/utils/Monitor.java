@@ -1,4 +1,5 @@
 /*
+ *  Copyright (c) 2024 T-Systems International GmbH
  *  Copyright (c) 2020, 2021 Microsoft Corporation
  *
  *  This program and the accompanying materials are made available under the
@@ -13,8 +14,6 @@
  */
 package org.eclipse.tractusx.agents.utils;
 
-import org.eclipse.tractusx.agents.annotation.ExtensionPoint;
-
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -22,7 +21,6 @@ import java.util.function.Supplier;
 /**
  * System monitoring and logging interface.
  */
-@ExtensionPoint
 public interface Monitor {
 
     default void severe(Supplier<String> supplier, Throwable... errors) {

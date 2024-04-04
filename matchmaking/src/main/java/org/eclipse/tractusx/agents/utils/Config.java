@@ -1,4 +1,5 @@
 /*
+ *  Copyright (c) 2024 T-Systems International GmbH
  *  Copyright (c) 2021 Bayerische Motoren Werke Aktiengesellschaft (BMW AG)
  *
  *  This program and the accompanying materials are made available under the
@@ -32,7 +33,7 @@ public interface Config {
      *
      * @param key of the setting
      * @return a String representation of the setting
-     * @throws EdcException if no setting is found
+     * @throws Exception if no setting is found
      */
     String getString(String key);
 
@@ -49,7 +50,7 @@ public interface Config {
      *
      * @param key of the setting
      * @return an Integer representation of the setting
-     * @throws EdcException if no setting is found, or if it's not parsable
+     * @throws Exception if no setting is found, or if it's not parsable
      */
     Integer getInteger(String key);
 
@@ -58,7 +59,7 @@ public interface Config {
      *
      * @param key of the setting
      * @return an Integer representation of the setting
-     * @throws EdcException if the value it's not parsable
+     * @throws Exception if the value it's not parsable
      */
     Integer getInteger(String key, Integer defaultValue);
 
@@ -67,7 +68,7 @@ public interface Config {
      *
      * @param key of the setting
      * @return a Long representation of the setting
-     * @throws EdcException if no setting is found, or if it's not parsable
+     * @throws Exception if no setting is found, or if it's not parsable
      */
     Long getLong(String key);
 
@@ -76,7 +77,7 @@ public interface Config {
      *
      * @param key of the setting
      * @return a Long representation of the setting
-     * @throws EdcException if the value it's not parsable
+     * @throws Exception if the value it's not parsable
      */
     Long getLong(String key, Long defaultValue);
 
@@ -85,7 +86,7 @@ public interface Config {
      *
      * @param key of the setting
      * @return a Boolean representation of the setting
-     * @throws EdcException if no setting is found, or if it's not parsable
+     * @throws Exception if no setting is found, or if it's not parsable
      */
     Boolean getBoolean(String key);
 
@@ -94,7 +95,7 @@ public interface Config {
      *
      * @param key of the setting
      * @return a Boolean representation of the setting
-     * @throws EdcException if the value it's not parsable
+     * @throws Exception if the value it's not parsable
      */
     Boolean getBoolean(String key, Boolean defaultValue);
 

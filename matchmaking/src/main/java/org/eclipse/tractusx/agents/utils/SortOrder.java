@@ -1,4 +1,5 @@
 /*
+ *  Copyright (c) 2024 T-Systems International GmbH
  *  Copyright (c) 2020 - 2022 Microsoft Corporation
  *
  *  This program and the accompanying materials are made available under the
@@ -11,6 +12,7 @@
  *       Microsoft Corporation - initial API and implementation
  *
  */
+
 package org.eclipse.tractusx.agents.utils;
 
 /**

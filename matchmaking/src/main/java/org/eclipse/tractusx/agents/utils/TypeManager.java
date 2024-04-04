@@ -1,5 +1,5 @@
-package org.eclipse.tractusx.agents.utils;
 /*
+ *  Copyright (c) 2024 T-Systems International GmbH
  *  Copyright (c) 2020 - 2022 Microsoft Corporation
  *
  *  This program and the accompanying materials are made available under the
@@ -13,6 +13,7 @@ package org.eclipse.tractusx.agents.utils;
  *
  */
 
+package org.eclipse.tractusx.agents.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
