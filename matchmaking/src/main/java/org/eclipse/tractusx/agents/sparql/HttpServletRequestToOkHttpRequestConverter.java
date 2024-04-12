@@ -13,7 +13,7 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 //
-// SPDX-License-Identifier: Apache-2.0package org.eclipse.tractusx.agents.edc.sparql;
+// SPDX-License-Identifier: Apache-2.0
 package org.eclipse.tractusx.agents.sparql;
 
 import com.google.gson.Gson;
