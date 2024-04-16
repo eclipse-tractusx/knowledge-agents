@@ -154,6 +154,24 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/conforming-agent-1.9.7-SNAPSHOT/conforming-agent-1.9.7-SNAPSHOT.tgz
     version: 1.9.7-SNAPSHOT
+  matchmaking-agent:
+  - apiVersion: v2
+    appVersion: 1.12.17-SNAPSHOT
+    created: "2024-04-16T07:47:45.734238587Z"
+    description: 'A Helm chart for the Tractus-X Matchmaking Agent which is a container
+      encompassing data storage capabilities accessible from the dataplane by a REST
+      API  This chart has no prerequisites. '
+    digest: d5ffe87f96cd2d3f704742021ceb7f2e123a12edf302b93314f8a4f3b49c1fd3
+    home: https://github.com/eclipse-tractusx/knowledge-agents/
+    maintainers:
+    - name: Tractus-X Knowledge Agents Team
+    name: matchmaking-agent
+    sources:
+    - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/matchmaking
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/matchmaking-agent-1.12.17-SNAPSHOT/matchmaking-agent-1.12.17-SNAPSHOT.tgz
+    version: 1.12.17-SNAPSHOT
   provisioning-agent:
   - apiVersion: v2
     appVersion: 1.12.17-SNAPSHOT
@@ -453,4 +471,4 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/remoting-agent-1.9.7-SNAPSHOT/remoting-agent-1.9.7-SNAPSHOT.tgz
     version: 1.9.7-SNAPSHOT
-generated: "2024-02-23T10:03:07.44464918Z"
+generated: "2024-04-16T07:47:45.734301735Z"
