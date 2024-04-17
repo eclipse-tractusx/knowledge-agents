@@ -1,5 +1,5 @@
 <!--
- * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -114,10 +114,10 @@ kubectl wait --namespace ingress-nginx \
   --selector=app.kubernetes.io/component=controller \
   --timeout=90s
 # transfer images
-kind load docker-image docker.io/tractusx/conforming-agent:1.12.17-SNAPSHOT --name ka
-kind load docker-image docker.io/tractusx/matchmaking-agent:1.12.17-SNAPSHOT --name ka
-kind load docker-image docker.io/tractusx/provisioning-agent:1.12.17-SNAPSHOT --name ka
-kind load docker-image docker.io/tractusx/remoting-agent:1.12.17-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/conforming-agent:1.12.18-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/matchmaking-agent:1.12.18-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/provisioning-agent:1.12.18-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/remoting-agent:1.12.18-SNAPSHOT --name ka
 # run container test
 ct install --charts charts/conforming-agent 
 ct install --charts charts/matchmaking-agent  
