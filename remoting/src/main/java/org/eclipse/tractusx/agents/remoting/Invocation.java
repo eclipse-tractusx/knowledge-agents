@@ -1,4 +1,4 @@
-// Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+// Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
 //
 // See the NOTICE file(s) distributed with this work for additional
 // information regarding copyright ownership.
@@ -150,6 +150,7 @@ public class Invocation {
      *
      * @param binding value to convert
      * @param target  class to convert to
+     * @param strip an optional suffix to strip from the result
      * @return converted value
      */
     public static <TARGET> TARGET convertToObject(Value binding, Class<TARGET> target, String strip) throws SailException {
@@ -403,6 +404,7 @@ public class Invocation {
                 }
             }
         }
+        // support nested output as json object for complex result types
         String outputString = output.stringValue();
         String path = null;
         String dataType = "https://json-schema.org/draft/2020-12/schema#Object";

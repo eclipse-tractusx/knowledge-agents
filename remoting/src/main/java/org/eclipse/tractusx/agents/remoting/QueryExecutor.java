@@ -1,4 +1,4 @@
-// Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+// Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
 //
 // See the NOTICE file(s) distributed with this work for additional
 // information regarding copyright ownership.
@@ -545,6 +545,9 @@ public class QueryExecutor implements QueryModelVisitor<SailException>, BindingH
         throw new SailException(String.format("No support for %s", node));
     }
 
+    /**
+     * implements the actual preparation/binding and invocation/execution of triple based API calls
+     */
     @Override
     public void meet(StatementPattern statement) throws SailException {
         if (bindings.isEmpty()) {
