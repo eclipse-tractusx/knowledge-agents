@@ -92,6 +92,39 @@ See the individual agent documentations for more detailed deployment information
 * [Remoting Agent](remoting/README.md)
 * [Conforming Agent](conforming/README.md)
 
+#### Setup using Helm/Kind
+
+In order to run KA-RI applications via helm on your local machine, please make sure the following
+preconditions are met.
+
+- Have a local Kubernetes runtime ready. We've tested this setup with [KinD](https://kind.sigs.k8s.io/), but other
+  runtimes such
+  as [Minikube](https://minikube.sigs.k8s.io/docs/start/) may work as well, we just haven't tested them. All following
+  instructions will assume KinD.
+
+For the most bare-bones installation of the dataspace, execute the following commands in a shell:
+
+```shell
+kind create cluster -n ka --config kind.config.yaml
+# the next step is specific to KinD and will be different for other Kubernetes runtimes!
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+# wait until the ingress controller is ready
+kubectl wait --namespace ingress-nginx \
+  --for=condition=ready pod \
+  --selector=app.kubernetes.io/component=controller \
+  --timeout=90s
+# transfer images
+kind load docker-image docker.io/tractusx/conforming-agent:1.12.17-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/matchmaking-agent:1.12.17-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/provisioning-agent:1.12.17-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/remoting-agent:1.12.17-SNAPSHOT --name ka
+# run container test
+ct install --charts charts/conforming-agent 
+ct install --charts charts/matchmaking-agent  
+ct install --charts charts/provisioning-agent
+ct install --charts charts/remoting-agent 
+``````
+
 ### Notice for Docker Images
 
 * [Notice for Conforming Agent](conforming/README.md#notice-for-docker-images)
