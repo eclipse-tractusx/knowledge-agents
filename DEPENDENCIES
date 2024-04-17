@@ -269,7 +269,7 @@ maven/mavencentral/org.glassfish.hk2/hk2-locator/2.6.1, EPL-2.0 OR GPL-2.0-only 
 maven/mavencentral/org.glassfish.hk2/hk2-locator/3.0.4, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.glassfish
 maven/mavencentral/org.glassfish.hk2/hk2-utils/2.6.1, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.glassfish
 maven/mavencentral/org.glassfish.hk2/hk2-utils/3.0.4, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.glassfish
-maven/mavencentral/org.glassfish.hk2/osgi-resource-locator/1.0.3, CDDL-1.0, approved, CQ10889
+maven/mavencentral/org.glassfish.hk2/osgi-resource-locator/1.0.3, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.glassfish
 maven/mavencentral/org.glassfish.jersey.containers/jersey-container-jetty-http/3.1.3, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jersey
 maven/mavencentral/org.glassfish.jersey.containers/jersey-container-servlet-core/2.40, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jersey
 maven/mavencentral/org.glassfish.jersey.containers/jersey-container-servlet-core/3.1.3, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jersey
@@ -312,9 +312,9 @@ maven/mavencentral/org.junit.platform/junit-platform-commons/1.9.2, EPL-2.0, app
 maven/mavencentral/org.junit.platform/junit-platform-engine/1.9.2, EPL-2.0, approved, #3128
 maven/mavencentral/org.jvnet.mimepull/mimepull/1.9.15, CDDL-1.1 OR GPL-2.0-only WITH Classpath-exception-2.0, approved, CQ21484
 maven/mavencentral/org.latencyutils/LatencyUtils/2.0.3, BSD-2-Clause, approved, CQ17408
-maven/mavencentral/org.locationtech.jts/jts-core/1.18.2, BSD-3-Clause AND EPL-1.0, approved, #13160
-maven/mavencentral/org.locationtech.proj4j/proj4j/1.1.1, Apache-2.0, approved, clearlydefined
-maven/mavencentral/org.locationtech.spatial4j/spatial4j/0.8, Apache-2.0, approved, clearlydefined
+maven/mavencentral/org.locationtech.jts/jts-core/1.18.2, EPL-2.0, approved, locationtech.jts
+maven/mavencentral/org.locationtech.proj4j/proj4j/1.1.1, Apache-2.0, approved, locationtech.proj4j
+maven/mavencentral/org.locationtech.spatial4j/spatial4j/0.8, Apache-2.0, approved, locationtech.spatial4j
 maven/mavencentral/org.lwjgl/lwjgl-lmdb/3.3.3, BSD-3-Clause, approved, #3055
 maven/mavencentral/org.lwjgl/lwjgl/3.3.3, BSD-3-Clause, approved, clearlydefined
 maven/mavencentral/org.mapdb/mapdb/1.0.9, Apache-2.0, approved, CQ8246
