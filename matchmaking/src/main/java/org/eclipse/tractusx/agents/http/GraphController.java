@@ -97,10 +97,12 @@ public class GraphController {
                               @QueryParam("shape") String shape,
                               @QueryParam("isFederated") boolean isFederated,
                               @QueryParam("ontology") String[] ontologies,
+                              @QueryParam("allowServicesPattern") String allow,
+                              @QueryParam("denyServicesPattern") String deny,
                               @Context HttpServletRequest request
     ) {
         ExternalFormat format = ExternalFormat.valueOfFormat(request.getContentType());
-        monitor.debug(String.format("Received a POST asset request %s %s %s %s %s %b in format %s", asset, name, description, version, contract, shape, isFederated, format));
+        monitor.debug(String.format("Received a POST asset request %s %s %s %s %s %b %s %s in format %s", asset, name, description, version, contract, shape, isFederated, allow, deny, format));
         if (format == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -121,7 +123,7 @@ public class GraphController {
             if (shape == null) {
                 shape = String.format("@prefix : <%s#> .\\n", asset);
             }
-            management.createOrUpdateGraph(asset, name, description, version, contract, ontologiesString, shape, isFederated);
+            management.createOrUpdateGraph(asset, name, description, version, contract, ontologiesString, shape, isFederated, allow, deny);
             long reg = store.registerAsset(asset, content, format);
             MediaType med = MediaType.APPLICATION_JSON_TYPE;
             ResponseBuilder resBuild = Response.ok(reg, med);

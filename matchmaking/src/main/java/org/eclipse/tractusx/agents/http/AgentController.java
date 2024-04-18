@@ -454,11 +454,13 @@ public class AgentController {
                               @QueryParam("contract") String contract,
                               @QueryParam("distributionMode") SkillDistribution mode,
                               @QueryParam("isFederated") boolean isFederated,
+                              @QueryParam("allowServicesPattern") String allowServicePattern,
+                              @QueryParam("denyServicesPattern") String denyServicePattern,
                               @QueryParam("ontology") String[] ontologies
     ) {
-        monitor.debug(String.format("Received a POST skill request %s %s %s %s %s %b %s ", asset, name, description, version, contract, mode.getMode(), isFederated, query));
+        monitor.debug(String.format("Received a POST skill request %s %s %s %s %s %b %s %s %s ", asset, name, description, version, contract, mode.getMode(), isFederated, allowServicePattern, denyServicePattern, query));
         Response.ResponseBuilder rb;
-        if (skillStore.put(asset, query, name, description, version, contract, mode, isFederated, ontologies) != null) {
+        if (skillStore.put(asset, query, name, description, version, contract, mode, isFederated, allowServicePattern, denyServicePattern, ontologies) != null) {
             rb = Response.ok();
         } else {
             rb = Response.status(HttpStatus.SC_CREATED);
