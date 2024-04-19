@@ -26,7 +26,6 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.eclipse.tractusx.agents.AgentConfig;
 import org.eclipse.tractusx.agents.jsonld.JsonLd;
-import org.eclipse.tractusx.agents.matchmaking.SharedObjectManager;
 import org.eclipse.tractusx.agents.model.Asset;
 import org.eclipse.tractusx.agents.model.ContractAgreement;
 import org.eclipse.tractusx.agents.model.ContractNegotiation;
@@ -377,7 +376,7 @@ public class DataManagement {
         var assetSpec = String.format(body, assetId, name, description, version, contract, ontologies, distributionMode,
                 isFederated, query, allowServicePattern, denyServicePattern);
 
-       return createOrUpdateAsset(assetId, assetSpec);
+        return createOrUpdateAsset(assetId, assetSpec);
     }
 
     /**
@@ -396,7 +395,9 @@ public class DataManagement {
      * @return idresponse
      * @throws IOException in case interaction with EDC went wrong
      */
-    public IdResponse createOrUpdateGraph(String assetId, String name, String description, String version, String contract, String ontologies, String shape, boolean isFederated, String allowServicePattern, String denyServicePattern) throws IOException {
+    public IdResponse createOrUpdateGraph(String assetId, String name, String description, String version, String contract,
+                                          String ontologies, String shape, boolean isFederated, String allowServicePattern,
+                                          String denyServicePattern) throws IOException {
         if (contract != null) {
             contract = String.format("            \"cx-common:publishedUnderContract\": \"%1$s\",\n", contract);
         } else {
