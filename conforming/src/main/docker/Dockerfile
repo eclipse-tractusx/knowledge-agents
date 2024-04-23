@@ -15,7 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:22_36-jre-alpine
 ARG JAR
 ARG LIB
 
@@ -45,4 +45,7 @@ HEALTHCHECK NONE
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-cp","/app/lib/*", "org.eclipse.tractusx.agents.conforming.Bootstrap"]
+ENTRYPOINT ["java", \
+            "-cp", \
+            "/app/lib/*", \
+            "org.eclipse.tractusx.agents.conforming.Bootstrap"]

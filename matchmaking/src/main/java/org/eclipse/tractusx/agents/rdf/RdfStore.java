@@ -36,7 +36,6 @@ import org.eclipse.tractusx.agents.AgentConfig;
 import org.eclipse.tractusx.agents.MonitorWrapper;
 import org.eclipse.tractusx.agents.utils.Monitor;
 
-//import java.io.*;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
