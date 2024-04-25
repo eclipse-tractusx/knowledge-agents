@@ -331,6 +331,7 @@ cx-rul:component rdf:type cx-fx:Argument;
 cx-rul:observationType rdf:type cx-fx:Argument;
   dcterms:description "The type of observation made."@en ;
   dcterms:title "Observation Type";
+  cx-fx:strip "#";
   cx-fx:argumentName "content.endurancePredictorInputs.0.classifiedLoadSpectrum{https://w3id.org/catenax/ontology/rul#observationType}.metadata.componentDescription";
   cx-fx:dataType xsd:string.
 
