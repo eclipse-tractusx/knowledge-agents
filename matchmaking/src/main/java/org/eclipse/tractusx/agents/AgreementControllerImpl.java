@@ -43,7 +43,9 @@ import org.eclipse.tractusx.agents.service.DataspaceSynchronizer;
 import org.eclipse.tractusx.agents.utils.CallbackAddress;
 import org.eclipse.tractusx.agents.utils.DataAddress;
 import org.eclipse.tractusx.agents.utils.EndpointDataReference;
+import org.eclipse.tractusx.agents.utils.EventEnvelope;
 import org.eclipse.tractusx.agents.utils.Monitor;
+import org.eclipse.tractusx.agents.utils.TransferProcessStarted;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -117,21 +119,20 @@ public class AgreementControllerImpl implements AgreementController {
      * @param dataReference contains the actual call token
      */
     @POST
-    public void receiveEdcCallback(EndpointDataReference dataReference) {
-        var agreementId = dataReference.getId();
-        monitor.debug(String.format("An endpoint data reference for agreement %s has been posted.", agreementId));
-        synchronized (processStore) {
-            for (Map.Entry<String, TransferProcess> process : processStore.entrySet()) {
-                if (process.getValue().getId().equals(agreementId)) {
-                    synchronized (endpointStore) {
-                        monitor.debug(String.format("Agreement %s belongs to asset %s.", agreementId, process.getKey()));
-                        endpointStore.put(process.getKey(), dataReference);
-                        return;
-                    }
-                }
-            }
+    public void receiveEdcCallback(EventEnvelope<TransferProcessStarted> dataReference) {
+        var processId = dataReference.getPayload().getTransferProcessId();
+        var assetId = dataReference.getPayload().getAssetId();
+        monitor.debug(String.format("A transfer process %s for asset %s has been started.", processId, assetId));
+        synchronized (endpointStore) {
+            EndpointDataReference newRef = EndpointDataReference.Builder.newInstance()
+                    .id(dataReference.getId())
+                    .contractId(dataReference.getPayload().getContractId())
+                    .endpoint(dataReference.getPayload().getDataAddress().getStringProperty("https://w3id.org/edc/v0.0.1/ns/endpoint", null))
+                    .authCode("Authorization")
+                    .authKey(dataReference.getPayload().getDataAddress().getStringProperty("https://w3id.org/edc/v0.0.1/ns/authorization", null))
+                    .build();
+            endpointStore.put(assetId, newRef);
         }
-        monitor.debug(String.format("Agreement %s has no active asset. Guess that came for another plane. Ignoring.", agreementId));
     }
 
     /**
