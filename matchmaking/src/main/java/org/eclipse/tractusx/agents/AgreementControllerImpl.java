@@ -61,7 +61,7 @@ import java.util.Set;
  * An endpoint/service that receives information from the control plane
  */
 @Consumes({MediaType.APPLICATION_JSON})
-@Path("/endpoint-data-reference")
+@Path("/transfer-process-started")
 public class AgreementControllerImpl implements AgreementController {
 
     /**
@@ -128,8 +128,8 @@ public class AgreementControllerImpl implements AgreementController {
                     .id(dataReference.getId())
                     .contractId(dataReference.getPayload().getContractId())
                     .endpoint(dataReference.getPayload().getDataAddress().getStringProperty("https://w3id.org/edc/v0.0.1/ns/endpoint", null))
-                    .authCode("Authorization")
-                    .authKey(dataReference.getPayload().getDataAddress().getStringProperty("https://w3id.org/edc/v0.0.1/ns/authorization", null))
+                    .authKey("Authorization")
+                    .authCode(dataReference.getPayload().getDataAddress().getStringProperty("https://w3id.org/edc/v0.0.1/ns/authorization", null))
                     .build();
             endpointStore.put(assetId, newRef);
         }

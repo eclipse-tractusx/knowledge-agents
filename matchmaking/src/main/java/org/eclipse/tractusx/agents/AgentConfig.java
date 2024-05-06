@@ -19,7 +19,9 @@ package org.eclipse.tractusx.agents;
 import org.eclipse.tractusx.agents.utils.Config;
 import org.eclipse.tractusx.agents.utils.Monitor;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 /**
@@ -49,22 +51,22 @@ public class AgentConfig {
 
     public static final String NEGOTIATION_TIMEOUT_PROPERTY = "cx.agent.negotiation.timeout";
     public static final long DEFAULT_NEGOTIATION_TIMEOUT = 30000;
-    
+
     public static final String NEGOTIATION_POLLINTERVAL_PROPERTY = "cx.agent.negotiation.poll";
     public static final long DEFAULT_NEGOTIATION_POLLINTERVAL = 1000;
-    
+
     public static final String DATASPACE_SYNCINTERVAL_PROPERTY = "cx.agent.dataspace.synchronization";
     public static final long DEFAULT_DATASPACE_SYNCINTERVAL = -1;
-    
+
     public static final String DATASPACE_SYNCCONNECTORS_PROPERTY = "cx.agent.dataspace.remotes";
 
     public static final String RDF_STORE = "cx.agent.rdf.store";
     
     public static final String VALIDATION_ENDPOINTS = "edc.dataplane.token.validation.endpoints";
-    
+
     public static final String FEDERATION_SERVICE_BATCH_SIZE = "cx.agent.federation.batch.max";
     public static final long DEFAULT_FEDERATION_SERVICE_BATCH_SIZE = Long.MAX_VALUE;
-    
+
     public static final String THREAD_POOL_SIZE = "cx.agent.threadpool.size";
     public static final int DEFAULT_THREAD_POOL_SIZE = 4;
 
@@ -110,7 +112,7 @@ public class AgentConfig {
     protected final Pattern serviceDenyPattern;
     protected final Pattern serviceAssetAllowPattern;
     protected final Pattern serviceAssetDenyPattern;
-    
+
     /**
      * references to EDC services
      */
@@ -121,7 +123,7 @@ public class AgentConfig {
      * creates the typed config
      *
      * @param monitor logger
-     * @param config untyped config
+     * @param config  untyped config
      */
     public AgentConfig(Monitor monitor, Config config) {
         this.monitor = monitor;
@@ -253,19 +255,42 @@ public class AgentConfig {
         return config.getLong(DATASPACE_SYNCINTERVAL_PROPERTY, DEFAULT_DATASPACE_SYNCINTERVAL);
     }
 
+    protected volatile Map<String, String> knownConnectors;
+
     /**
      * access
      *
-     * @return array of connector urls to synchronize, null if no sync
+     * @return map of business partner ids to connector urls to synchronize with, null if no sync
      */
-    public String[] getDataspaceSynchronizationConnectors() {
-        String[] connectors = config.getString(DATASPACE_SYNCCONNECTORS_PROPERTY, "").split(",");
-        if (connectors.length == 1 && (connectors[0] == null || connectors[0].length() == 0)) {
-            return null;
+    public Map<String, String> getDataspaceSynchronizationConnectors() {
+        if (knownConnectors == null) {
+            synchronized (config) {
+                if (knownConnectors == null) {
+                    knownConnectors = new HashMap<>();
+                    String[] connectors = config.getString(DATASPACE_SYNCCONNECTORS_PROPERTY, "").split(",");
+                    for (String connector : connectors) {
+                        String[] entry = connector.split("=");
+                        if (entry.length > 0) {
+                            String key = UUID.randomUUID().toString();
+                            String value = entry[0];
+                            if (entry.length > 1) {
+                                key = entry[0];
+                                value = entry[1];
+                            }
+                            knownConnectors.put(key, value);
+                        }
+                    }
+                }
+            }
         }
-        return connectors;
+        return knownConnectors;
     }
-    
+
+    /**
+     * access
+     * 
+     * @return the location of the rdf store
+     */
     public String getRdfStore() {
         return config.getString(RDF_STORE, null);
     }

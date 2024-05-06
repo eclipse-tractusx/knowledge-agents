@@ -17,6 +17,7 @@
 package org.eclipse.tractusx.agents.model;
 
 import jakarta.json.JsonObject;
+import org.eclipse.tractusx.agents.jsonld.JsonLd;
 import org.eclipse.tractusx.agents.jsonld.JsonLdObject;
 
 /**
@@ -26,6 +27,18 @@ public class OdrlPolicy extends JsonLdObject {
 
     public OdrlPolicy(JsonObject node) {
         super(node);
+    }
+
+    public String getPermissionAsString() {
+        return JsonLd.asString(object.get("http://www.w3.org/ns/odrl/2/permission"));
+    }
+
+    public String getObligationAsString() {
+        return JsonLd.asString(object.get("http://www.w3.org/ns/odrl/2/obligation"));
+    }
+
+    public String getProhibitionAsString() {
+        return JsonLd.asString(object.get("http://www.w3.org/ns/odrl/2/prohibition"));
     }
 
 }
