@@ -111,7 +111,15 @@ public class SharedObjectManager {
         this.graphController = new GraphController(monitor, rdfStore, catalogService, agentConfig);
         
     }
-    
+
+    public void start() {
+        synchronizer.start();
+    }
+
+    public void shutdown() {
+        synchronizer.shutdown();
+    }
+
     public static String convertToCurl(Request request) {
         StringBuilder curlCommand = new StringBuilder("curl");
 

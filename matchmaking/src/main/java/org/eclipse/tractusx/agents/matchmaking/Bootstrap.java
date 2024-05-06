@@ -51,19 +51,19 @@ import java.io.IOException;
 public class Bootstrap {
 
     private Monitor monitor;
-    Server externalServer;
-    Server internalServer;    
+    Server server;
+    SharedObjectManager sharedObjectManager;
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
      */
     public Bootstrap() {
         handleSignal("TERM");
-        SharedObjectManager sharedObjectManager = SharedObjectManager.getInstance();
+        this.sharedObjectManager = SharedObjectManager.getInstance();
         this.monitor = sharedObjectManager.getMonitor();
 
         // Create Jetty server
-        Server server = new Server();
+        this.server = new Server();
         HandlerCollection handlerList = new HandlerCollection();
         server.setHandler(handlerList);
 
@@ -122,12 +122,12 @@ public class Bootstrap {
         monitor.debug("Trying to start the server");
         try {
             server.start();
+            sharedObjectManager.start();
             server.join();
         } catch (Exception e) {
+            sharedObjectManager.shutdown();
             e.printStackTrace();
         }
-
-
 
     }
 
@@ -151,8 +151,8 @@ public class Bootstrap {
 
     private void shutdown() {
         System.out.println("Shutdown initiated");
-        internalServer.destroy();
-        externalServer.destroy();
+        server.destroy();
+        SharedObjectManager.getInstance().shutdown();
         System.exit(0);
     }
 
