@@ -147,8 +147,8 @@ public class DataManagement {
             "        \"proxyMethod\": \"true\",\n" +
             "        \"proxyQueryParams\": \"true\",\n" +
             "        \"proxyBody\": \"true\",\n" +
-            "        \"cx-common:allowServicePattern\": \"%10$s\",\n" +
-            "        \"cx-common:denyServicePattern\": \"%11$s\"\n" +
+            "        \"cx-common:allowServicePattern\": \"%9$s\",\n" +
+            "        \"cx-common:denyServicePattern\": \"%10$s\"\n" +
             "    }\n" +
             "}\n";
 
