@@ -288,7 +288,7 @@ public class AgentConfig {
 
     /**
      * access
-     * 
+     *
      * @return the location of the rdf store
      */
     public String getRdfStore() {
