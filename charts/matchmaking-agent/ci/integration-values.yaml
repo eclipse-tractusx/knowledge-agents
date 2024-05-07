@@ -22,8 +22,8 @@
 #
 
 image:
-  registry: ghcr.io/catenax-ng/tx-knowledge-agents/
-  tag: 1.12.19-SNAPSHOT
+#  registry: ghcr.io/catenax-ng/tx-knowledge-agents/
+#  tag: 1.12.19-SNAPSHOT
 
 participant:
   id: "BPNL0000000DUMMY"
