@@ -106,7 +106,7 @@ public class Bootstrap {
         int port3 = conf.getCallbackPort();
         monitor.debug(String.format("Configuring server on port %s", port3));
         ServletContextHandler handler3 = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        handler3.setContextPath(conf.getCallbacktPath());
+        handler3.setContextPath(conf.getCallbackPath());
         ResourceConfig resourceConfig3 = new ResourceConfig();
         monitor.debug(String.format("Registering agreement controller %s", sharedObjectManager.getAgreementController()));
         resourceConfig3.register(sharedObjectManager.getAgreementController());

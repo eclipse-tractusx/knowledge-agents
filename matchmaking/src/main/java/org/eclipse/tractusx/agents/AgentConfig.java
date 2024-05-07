@@ -93,9 +93,6 @@ public class AgentConfig {
 
     public static final String SERVICE_DENY_ASSET_PROPERTY = "cx.agent.service.asset.deny";
     public static final String DEFAULT_SERVICE_DENY_ASSET_PATTERN = "^$";
-
-    public static final String TX_EDC_VERSION_PROPERTY = "cx.agent.edc.version";
-    
     public static final String MATCHMAKING_PORT = "web.http.internal.port";
     public static final String MATCHMAKING_PATH = "web.http.internal.path";
     
@@ -415,42 +412,54 @@ public class AgentConfig {
     /**
      * access
      *
-     * @return tx edc version as a string
+     * @return port for exposing the matchmaking agent
      */
-    public String getEdcVersion() {
-        return config.getString(TX_EDC_VERSION_PROPERTY, "0.5.0");
-    }
-
-    /**
-     * check
-     *
-     * @return whether the edc version is less than 23.09
-     */
-    public boolean isPrerelease() {
-        return getEdcVersion().compareTo("0.5.0") <= 0;
-    }
-    
     public int getMatchmakingPort() {
         return config.getInteger(MATCHMAKING_PORT);
     }
 
+    /**
+     * access
+     *
+     * @return path for exposing the matchmaking agent
+     */
     public String getMatchmakingPath() {
         return config.getString(MATCHMAKING_PATH);
     }
-    
+
+    /**
+     * access
+     *
+     * @return port for exposing the standard services
+     */
     public int getDefaultPort() {
         return config.getInteger(DEFAULT_PORT);
     }
-    
+
+    /**
+     * access
+     *
+     * @return path for exposing the standard services
+     */
     public String getDefaultPath() {
         return config.getString(DEFAULT_PATH);
     }
-    
+
+    /**
+     * access
+     *
+     * @return port for exposing the edc transfer callback
+     */
     public int getCallbackPort() {
         return config.getInteger(CALLBACK_PORT);
     }
-    
-    public String getCallbacktPath() {
+
+    /**
+     * access
+     *
+     * @return path for exposing the edc transfer callback
+     */
+    public String getCallbackPath() {
         return config.getString(CALLBACK_PATH);
     }
     
