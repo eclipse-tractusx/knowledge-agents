@@ -97,9 +97,18 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: configuration
-              mountPath: /var/rdf4j/server/conf/logback.xml
+              mountPath: /app/logback.xml
               subPath: logback.xml
               readOnly: true
+            - name: configuration
+              mountPath: /app/configuration.properties
+              subPath: configuration.properties
+              readOnly: true
+            {{- range $config_name, $config_value := .Values.configs }}
+            - name: "configuration"
+              mountPath: {{ printf "/app/%s" $config_name | quote }}
+              subPath: {{ printf "%s" $config_name | quote }}
+            {{- end }}
       volumes:
         - name: configuration
           configMap:
@@ -107,19 +116,13 @@ spec:
             items:
               - key: logback.xml
                 path: logback.xml
+              - key: configuration.properties
+                path: configuration.properties
+            {{- range $config_name, $config_value := .Values.configs }}
+              - key: {{ printf "%s" $config_name | quote }}
+                path: {{ printf "%s" $config_name | quote }}
+            {{- end }}
         - name: tmp
-          emptyDir: {}
-        - name: logs
-          emptyDir: {}
-        - name: work
-          emptyDir: {}
-        - name: conf
-          emptyDir: {}
-        - name: rdf4jconf
-          emptyDir: {}
-        - name: rdf4jlogs
-          emptyDir: {}
-        - name: rdf4jrepositories
           emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:

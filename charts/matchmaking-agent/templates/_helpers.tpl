@@ -86,3 +86,21 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Validation URL
+*/}}
+{{- define "agent.controlplane.url.validation" -}}
+{{- printf "http://%s-controlplane:%v%s/token" ( include "agent.fullname" $ ) $.Values.controlplane.endpoints.control.port $.Values.controlplane.endpoints.control.path -}}
+{{- end }}
+
+{{/*
+join a map
+*/}}
+{{- define "agent.remotes" -}}
+{{- $res := dict "servers" (list) -}}
+{{- range $bpn, $connector := .Values.agent.connectors -}}
+{{- $noop := printf "$s=%s" $bpn $connector | append $res.servers | set $res "servers" -}}
+{{- end -}}
+{{- join "," $res.servers -}}
+{{- end -}}
