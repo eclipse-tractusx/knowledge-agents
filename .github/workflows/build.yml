@@ -244,27 +244,6 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
           repository: ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
 
-      # build in any case, but push only main and version tag settings
-      - name: Matchmaking Container Build and Push
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
-        with:
-          context: matchmaking/.
-          file: matchmaking/src/main/docker/Dockerfile
-          # Build image for verification purposes on every trigger event. Only push if event is not a PR
-          push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
-          tags: ${{ steps.meta-remote.outputs.tags }}
-          labels: ${{ steps.meta-remote.outputs.labels }}
-
-      # Important step to push image description to DockerHub - since this is version independent, we always take it from main
-      - name: Update Docker Hub description for Matchmaking Agent
-        if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
-        uses: peter-evans/dockerhub-description@dc67fad7001ef9e8e3c124cb7a64e16d0a63d864 # v3.4.2
-        with:
-          readme-filepath: matchmaking/README.md
-          username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
-          repository: ${{ steps.set-docker-repo.outputs.REPO }}/matchmaking-agent
-
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Matchmaking
         id: meta-match
@@ -282,4 +261,25 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=raw,value=1.12.19-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+
+      # build in any case, but push only main and version tag settings
+      - name: Matchmaking Container Build and Push
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        with:
+          context: matchmaking/.
+          file: matchmaking/src/main/docker/Dockerfile
+          # Build image for verification purposes on every trigger event. Only push if event is not a PR
+          push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
+          tags: ${{ steps.meta-match.outputs.tags }}
+          labels: ${{ steps.meta-match.outputs.labels }}
+
+      # Important step to push image description to DockerHub - since this is version independent, we always take it from main
+      - name: Update Docker Hub description for Matchmaking Agent
+        if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
+        uses: peter-evans/dockerhub-description@dc67fad7001ef9e8e3c124cb7a64e16d0a63d864 # v3.4.2
+        with:
+          readme-filepath: matchmaking/README.md
+          username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
+          repository: ${{ steps.set-docker-repo.outputs.REPO }}/matchmaking-agent
 
