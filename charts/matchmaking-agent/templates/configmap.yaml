@@ -52,15 +52,15 @@ data:
     cx.agent.matchmaking.external.api={{ .Values.agent.endpoints.internal.port }}
 
     # Single Control Plane setup
-    edc.dataplane.token.validation.endpoint={{ include "agent.controlplane.url.validation" .}}
+    edc.dataplane.token.validation.endpoint={{ include "agent.controlplane.url.control" .}}/token
 
     ###
     # Chapter Dataspace
     ###
 
-    cx.agent.controlplane.protocol={{ printf "http://%s-controlplane:%v" ( include "agent.fullname" . ) .Values.controlplane.endpoints.protocol.port }}
-    cx.agent.controlplane.management={{ printf "http://%s-controlplane:%v%s" ( include "agent.fullname" . ) .Values.controlplane.endpoints.management.port .Values.controlplane.endpoints.management.path }}
-    cx.agent.callback={{ printf "http://%s:%v%s/transfer-process-started" ( include "agent.fullname" . ) .Values.agent.endpoints.callback.port .Values.agent.endpoints.callback.path }}
+    cx.agent.controlplane.protocol={{ include "agent.controlplane.url.protocol" . }}
+    cx.agent.controlplane.management={{ include "agent.controlplane.url.management" . }}
+    cx.agent.callback={{ include "agent.url.callback" . }}/transfer-process-started
     {{- if .Values.agent.skillcontract }}
     cx.agent.skill.contract.default={{ .Values.agent.skillcontract }} 
     {{- end }}
@@ -91,7 +91,7 @@ data:
     ###################
     # AGENT SYNC      #
     ###################
-    cx.agent.dataspace.remotes={{- include "agent.remotes" . }}
+    cx.agent.dataspace.remotes={{ include "agent.remotes" . }}
     cx.agent.dataspace.synchronization={{ .Values.agent.synchronization | required ".Values.agent.synchronization should be set if connectors are specified" }}
     cx.agent.federation.batch.max={{ .Values.agent.maxbatchsize }} 
 
