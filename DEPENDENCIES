@@ -123,22 +123,22 @@ maven/mavencentral/org.apache.httpcomponents/httpcore/4.4.14, Apache-2.0, approv
 maven/mavencentral/org.apache.httpcomponents/httpcore/4.4.16, Apache-2.0, approved, CQ23528
 maven/mavencentral/org.apache.httpcomponents/httpmime/4.5.13, Apache-2.0, approved, CQ11718
 maven/mavencentral/org.apache.httpcomponents/httpmime/4.5.14, Apache-2.0, approved, CQ11718
-maven/mavencentral/org.apache.jena/jena-arq/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-base/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-core/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-dboe-base/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-dboe-index/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-dboe-storage/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-dboe-trans-data/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-dboe-transaction/4.9.0, , restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-arq/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-base/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-core/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-dboe-base/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-dboe-index/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-dboe-storage/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-dboe-trans-data/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-dboe-transaction/4.9.0, Apache-2.0, restricted, clearlydefined
 maven/mavencentral/org.apache.jena/jena-fuseki-core/4.9.0, Apache-2.0, restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-iri/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-rdfconnection/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-rdfpatch/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-shacl/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-shex/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-tdb/4.9.0, , restricted, clearlydefined
-maven/mavencentral/org.apache.jena/jena-tdb2/4.9.0, , restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-iri/4.9.0, Apache-2.0, approved, clearlydefined
+maven/mavencentral/org.apache.jena/jena-rdfconnection/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-rdfpatch/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-shacl/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-shex/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-tdb/4.9.0, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/org.apache.jena/jena-tdb2/4.9.0, Apache-2.0, restricted, clearlydefined
 maven/mavencentral/org.apache.logging.log4j/log4j-api/2.17.2, Apache-2.0, approved, clearlydefined
 maven/mavencentral/org.apache.logging.log4j/log4j-to-slf4j/2.17.2, Apache-2.0, approved, #2163
 maven/mavencentral/org.apache.lucene/lucene-analyzers-common/8.9.0, Apache-2.0 AND BSD-3-Clause AND LicenseRef-scancode-iso-8879, approved, #6152
@@ -300,9 +300,9 @@ maven/mavencentral/org.hdrhistogram/HdrHistogram/2.1.12, BSD-2-Clause OR License
 maven/mavencentral/org.javabits.jgrapht/jgrapht-core/0.9.3, EPL-2.0 OR LGPL-2.1-or-later, approved, #9816
 maven/mavencentral/org.javassist/javassist/3.29.2-GA, Apache-2.0 AND LGPL-2.1-or-later AND MPL-1.1, approved, #6023
 maven/mavencentral/org.jetbrains.kotlin/kotlin-stdlib-common/1.9.10, Apache-2.0, approved, #14186
-maven/mavencentral/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.8.21, Apache-2.0, approved, #8807
-maven/mavencentral/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.8.21, Apache-2.0, approved, #8919
-maven/mavencentral/org.jetbrains.kotlin/kotlin-stdlib/1.8.21, Apache-2.0, approved, #8865
+maven/mavencentral/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.9.10, Apache-2.0, approved, #14193
+maven/mavencentral/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.9.10, Apache-2.0, approved, #14191
+maven/mavencentral/org.jetbrains.kotlin/kotlin-stdlib/1.9.10, Apache-2.0, approved, #11827
 maven/mavencentral/org.jetbrains/annotations/13.0, Apache-2.0, approved, clearlydefined
 maven/mavencentral/org.junit.jupiter/junit-jupiter-api/5.10.2, EPL-2.0, approved, #9714
 maven/mavencentral/org.junit.jupiter/junit-jupiter-api/5.9.2, EPL-2.0, approved, #3133
