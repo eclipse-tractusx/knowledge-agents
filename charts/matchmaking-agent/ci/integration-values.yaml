@@ -21,7 +21,7 @@
 #  SPDX-License-Identifier: Apache-2.0
 #
 
-#image:
+# image:
 #  registry: ghcr.io/catenax-ng/tx-knowledge-agents/
 #  tag: 1.12.19-SNAPSHOT
 
@@ -36,5 +36,3 @@ controlplane:
 agent:
   default:
     - dataspace.ttl
-
-
