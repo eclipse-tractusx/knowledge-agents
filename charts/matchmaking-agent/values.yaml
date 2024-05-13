@@ -26,9 +26,9 @@ replicaCount: 1
 
 image:
   # -- target registry
-  registry: docker.io/tractusx/
+  registry: docker.io/
   # -- Which derivate of agent to use
-  repository: matchmaking-agent
+  repository: tractusx/matchmaking-agent
   # -- Overrides the image tag whose default is the chart appVersion
   tag: ""
   # -- Overrides the image digest

@@ -22,7 +22,8 @@
 #
 
 # image:
-#  registry: ghcr.io/catenax-ng/tx-knowledge-agents/
+#  registry: ghcr.io/catenax-ng/
+#  repository: tx-knowledge-agents/matchmaking-agent
 #  tag: 1.12.19-SNAPSHOT
 
 participant:
