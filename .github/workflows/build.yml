@@ -250,7 +250,7 @@ jobs:
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: |
-            ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
+            ${{ steps.set-docker-repo.outputs.REPO }}/matchmaking-agent
           # Automatically prepare image tags; See action docs for more examples.
           # semver patter will generate tags like these for example :1 :1.2 :1.2.3
           tags: |
