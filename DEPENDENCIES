@@ -340,7 +340,7 @@ maven/mavencentral/org.skyscreamer/jsonassert/1.5.1, Apache-2.0, approved, clear
 maven/mavencentral/org.slf4j/jcl-over-slf4j/1.7.32, Apache-2.0, approved, CQ12843
 maven/mavencentral/org.slf4j/jcl-over-slf4j/1.7.36, Apache-2.0, approved, CQ12843
 maven/mavencentral/org.slf4j/jul-to-slf4j/1.7.36, MIT, approved, CQ12842
-maven/mavencentral/org.slf4j/slf4j-api/2.0.12, MIT, approved, #5915
+maven/mavencentral/org.slf4j/slf4j-api/2.0.7, MIT, approved, #5915
 maven/mavencentral/org.springframework.boot/spring-boot-actuator-autoconfigure/2.7.18, Apache-2.0, approved, #3273
 maven/mavencentral/org.springframework.boot/spring-boot-actuator/2.7.18, Apache-2.0, approved, #4316
 maven/mavencentral/org.springframework.boot/spring-boot-autoconfigure/2.7.18, Apache-2.0, approved, #4314
