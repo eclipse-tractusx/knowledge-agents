@@ -25,6 +25,7 @@ COPY target/original-remoting-agent-*.jar /opt/lib/
 #COPY target/lib/guava-*.jar /opt/lib/
 COPY target/lib/netty-*.jar /opt/lib/
 COPY target/lib/http2-hpack-*.jar /opt/lib/
+COPY target/lib/http2-common-*.jar /opt/lib/
 COPY target/lib/jetty-*.jar /opt/lib/
 COPY target/lib/spring-*.jar /opt/lib/
 COPY target/lib/logback-*.jar /opt/lib/
@@ -52,6 +53,7 @@ RUN wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclips
 #    rm /tmp/rdf4j-server/WEB-INF/lib/guava-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/netty-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/http2-hpack-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/http2-common-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/jetty-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/spring-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/logback-*.jar && \
