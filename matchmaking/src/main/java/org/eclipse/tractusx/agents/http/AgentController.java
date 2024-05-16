@@ -39,7 +39,6 @@ import org.eclipse.tractusx.agents.utils.Monitor;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * The Agent Controller exposes a REST API endpoint
@@ -62,16 +61,15 @@ public class AgentController {
     // the actual Matchmaking Agent is a Fuseki engine
     protected final SparqlQueryProcessor processor;
     protected final DelegationService delegationService;
-    
-    public static final Pattern GRAPH_PATTERN = Pattern.compile("((?<url>[^#]+)#)?(?<graph>.*Graph(Asset)?.*)");
 
-    /** 
+
+    /**
      * creates a new agent controller
      *
-     * @param monitor logging subsystem
+     * @param monitor             logging subsystem
      * @param agreementController agreement controller for remote skill/queries
-     * @param config configuration
-     * @param processor sparql processor
+     * @param config              configuration
+     * @param processor           sparql processor
      */
     public AgentController(Monitor monitor, AgreementController agreementController, AgentConfig config, SparqlQueryProcessor processor, SkillStore skillStore, DelegationService delegationService) {
         this.monitor = monitor;
@@ -98,7 +96,7 @@ public class AgentController {
      * @return response
      */
     @POST
-    @Consumes({"application/sparql-query", "application/sparql-results+json"})
+    @Consumes({ "application/sparql-query", "application/sparql-results+json" })
     public Response postSparqlQuery(@QueryParam("asset") String asset,
                                     @Context HttpHeaders headers,
                                     @Context HttpServletRequest request,
@@ -121,7 +119,7 @@ public class AgentController {
      * @return response compatible with graphdb convention
      */
     @POST
-    @Consumes({"application/x-www-form-urlencoded"})
+    @Consumes({ "application/x-www-form-urlencoded" })
     public Response postFormQuery(@QueryParam("asset") String asset,
                                   @Context HttpHeaders headers,
                                   @Context HttpServletRequest request,
@@ -146,7 +144,7 @@ public class AgentController {
      */
     @POST
     @Path("/repositories/AGENT")
-    @Consumes({"application/x-www-form-urlencoded"})
+    @Consumes({ "application/x-www-form-urlencoded" })
     public Response postFormRepositoryQuery(@QueryParam("asset") String asset,
                                             @Context HttpHeaders headers,
                                             @Context HttpServletRequest request,
@@ -381,17 +379,15 @@ public class AgentController {
         String remoteUrl = null;
 
         if (asset != null) {
-            Matcher matcher = GRAPH_PATTERN.matcher(asset);
+            Matcher matcher = config.getAssetReferencePattern().matcher(asset);
             if (matcher.matches()) {
                 remoteUrl = matcher.group("url");
-                graph = matcher.group("graph");
-            } else {
-                matcher = SkillStore.matchSkill(asset);
-                if (!matcher.matches()) {
-                    return Response.status(Response.Status.BAD_REQUEST).build();
+                asset = matcher.group("asset");
+                if (asset.contains("Graph")) {
+                    graph = asset;
+                } else if (asset.contains("Skill")) {
+                    skill = asset;
                 }
-                remoteUrl = matcher.group("url");
-                skill = matcher.group("skill");
             }
         }
 
@@ -409,15 +405,14 @@ public class AgentController {
         }
 
         try {
-            // exchange skill against text
-            if (asset != null) {
-                if (skillStore.isSkill(asset)) {
-                    Optional<String> skillOption = skillStore.get(asset);
-                    if (skillOption.isPresent()) {
-                        skill = skillOption.get();
-                    } else {
-                        return HttpUtils.respond(monitor, headers, HttpStatus.SC_NOT_FOUND, "The requested skill is not registered.", null);
-                    }
+            // exchange skill against text locally
+            if (asset != null && skill != null) {
+                Optional<String> skillOption = skillStore.get(skill);
+                if (skillOption.isPresent()) {
+                    skill = skillOption.get();
+                } else {
+                    skill = null;
+                    return HttpUtils.respond(monitor, headers, HttpStatus.SC_NOT_FOUND, "The requested skill is not registered.", null);
                 }
             }
 
@@ -432,15 +427,15 @@ public class AgentController {
     /**
      * endpoint for posting a skill
      *
-     * @param query mandatory query
-     * @param asset asset key
-     * @param name asset name
+     * @param query       mandatory query
+     * @param asset       asset key
+     * @param name        asset name
      * @param description asset description
-     * @param version asset version
-     * @param contract asset contract
-     * @param mode asset mode
+     * @param version     asset version
+     * @param contract    asset contract
+     * @param mode        asset mode
      * @param isFederated whether it appears in fed catalogue
-     * @param ontologies list of ontologies
+     * @param ontologies  list of ontologies
      * @return only status
      */
     @POST
@@ -476,7 +471,7 @@ public class AgentController {
      */
     @GET
     @Path("/skill")
-    @Produces({"application/sparql-query"})
+    @Produces({ "application/sparql-query" })
     public Response getSkill(@QueryParam("asset") String asset) {
         monitor.debug(String.format("Received a GET skill request %s", asset));
         Response.ResponseBuilder rb;

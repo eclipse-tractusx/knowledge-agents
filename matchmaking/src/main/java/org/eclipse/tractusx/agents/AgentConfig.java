@@ -61,7 +61,7 @@ public class AgentConfig {
     public static final String DATASPACE_SYNCCONNECTORS_PROPERTY = "cx.agent.dataspace.remotes";
 
     public static final String RDF_STORE = "cx.agent.rdf.store";
-    
+
     public static final String VALIDATION_ENDPOINTS = "edc.dataplane.token.validation.endpoints";
 
     public static final String FEDERATION_SERVICE_BATCH_SIZE = "cx.agent.federation.batch.max";
@@ -95,10 +95,10 @@ public class AgentConfig {
     public static final String DEFAULT_SERVICE_DENY_ASSET_PATTERN = "^$";
     public static final String MATCHMAKING_PORT = "web.http.internal.port";
     public static final String MATCHMAKING_PATH = "web.http.internal.path";
-    
+
     public static final String DEFAULT_PORT = "web.http.default.port";
     public static final String DEFAULT_PATH = "web.http.default.path";
-    
+
     public static final String CALLBACK_PORT = "web.http.callback.port";
     public static final String CALLBACK_PATH = "web.http.callback.path";
 
@@ -109,6 +109,7 @@ public class AgentConfig {
     protected final Pattern serviceDenyPattern;
     protected final Pattern serviceAssetAllowPattern;
     protected final Pattern serviceAssetDenyPattern;
+    protected final Pattern assetReferencePattern;
 
     /**
      * references to EDC services
@@ -129,6 +130,7 @@ public class AgentConfig {
         serviceDenyPattern = Pattern.compile(config.getString(SERVICE_DENY_PROPERTY, DEFAULT_SERVICE_DENY_PATTERN));
         serviceAssetAllowPattern = Pattern.compile(config.getString(SERVICE_ALLOW_ASSET_PROPERTY, DEFAULT_SERVICE_ALLOW_ASSET_PATTERN));
         serviceAssetDenyPattern = Pattern.compile(config.getString(SERVICE_DENY_ASSET_PROPERTY, DEFAULT_SERVICE_DENY_ASSET_PATTERN));
+        assetReferencePattern = Pattern.compile("((?<url>[^#]+)#)?(?<asset>.+)");
     }
 
     /**
@@ -374,7 +376,7 @@ public class AgentConfig {
     }
 
     /**
-     *      * access
+     * * access
      *
      * @return regular expression for allowed service URLs
      */
@@ -407,6 +409,15 @@ public class AgentConfig {
      */
     public Pattern getServiceAssetDenyPattern() {
         return serviceAssetDenyPattern;
+    }
+
+    /**
+     * access
+     *
+     * @return regular expression for asset references
+     */
+    public Pattern getAssetReferencePattern() {
+        return assetReferencePattern;
     }
 
     /**
@@ -462,5 +473,5 @@ public class AgentConfig {
     public String getCallbackPath() {
         return config.getString(CALLBACK_PATH);
     }
-    
+
 }

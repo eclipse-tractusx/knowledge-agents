@@ -36,6 +36,7 @@ import org.eclipse.tractusx.agents.service.DataManagement;
 import org.eclipse.tractusx.agents.utils.Monitor;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
 
 /**
  * The Graph Controller exposes a REST API endpoint
@@ -55,7 +56,7 @@ public class GraphController {
      * creates a new agent controller
      *
      * @param monitor logging subsystem
-     * @param store the rdf store to extend
+     * @param store   the rdf store to extend
      */
     public GraphController(Monitor monitor, RdfStore store, DataManagement management, AgentConfig config) {
         this.monitor = monitor;
@@ -75,19 +76,19 @@ public class GraphController {
     /**
      * endpoint for posting a ttl into a local graph asset
      *
-     * @param content mandatory content
-     * @param asset asset key
-     * @param name asset name
+     * @param content     mandatory content
+     * @param asset       asset key
+     * @param name        asset name
      * @param description asset description
-     * @param version asset version
-     * @param contract asset contract
-     * @param shape asset shape
+     * @param version     asset version
+     * @param contract    asset contract
+     * @param shape       asset shape
      * @param isFederated whether it appears in fed catalogue
-     * @param ontologies list of ontologies
+     * @param ontologies  list of ontologies
      * @return response indicating the number of triples updated
      */
     @POST
-    @Consumes({"text/turtle", "text/csv"})
+    @Consumes({ "text/turtle", "text/csv" })
     public Response postAsset(String content,
                               @QueryParam("asset") String asset,
                               @QueryParam("assetName") String name,
@@ -143,15 +144,20 @@ public class GraphController {
      */
     @DELETE
     public Response deleteAsset(@QueryParam("asset") String asset,
-                              @Context HttpHeaders headers,
-                              @Context HttpServletRequest request,
-                              @Context HttpServletResponse response,
-                              @Context UriInfo uri
+                                @Context HttpHeaders headers,
+                                @Context HttpServletRequest request,
+                                @Context HttpServletResponse response,
+                                @Context UriInfo uri
     ) {
         monitor.debug(String.format("Received a DELETE request %s for asset %s", request, asset));
         try {
-            management.deleteAsset(asset);
-            return Response.ok(store.deleteAsset(asset), MediaType.APPLICATION_JSON_TYPE).build();
+            Matcher assetMatcher = config.getAssetReferencePattern().matcher(asset);
+            if (assetMatcher.matches()) {
+                management.deleteAsset(assetMatcher.group());
+                return Response.ok(store.deleteAsset(asset), MediaType.APPLICATION_JSON_TYPE).build();
+            } else {
+                return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+            }
         } catch (IOException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
