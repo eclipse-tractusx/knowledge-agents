@@ -153,7 +153,7 @@ public class GraphController {
         try {
             Matcher assetMatcher = config.getAssetReferencePattern().matcher(asset);
             if (assetMatcher.matches()) {
-                management.deleteAsset(assetMatcher.group());
+                management.deleteAsset(assetMatcher.group("asset"));
                 return Response.ok(store.deleteAsset(asset), MediaType.APPLICATION_JSON_TYPE).build();
             } else {
                 return Response.status(Response.Status.NOT_ACCEPTABLE).build();

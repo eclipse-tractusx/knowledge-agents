@@ -185,8 +185,8 @@ public class DelegationServiceImpl implements DelegationService {
         return new DelegationResponse(sendRequest(newRequest, response), Response.status(response.getStatus()).build());
     }
 
-    protected static final Pattern PARAMETER_KEY_ALLOW = Pattern.compile("^(?!asset$)[^&?=]+$");
-    protected static final Pattern PARAMETER_VALUE_ALLOW = Pattern.compile("^.+$");
+    protected static final Pattern PARAMETER_KEY_ALLOW = Pattern.compile("^(?<param>(?!asset$)[^&?=]+)$");
+    protected static final Pattern PARAMETER_VALUE_ALLOW = Pattern.compile("^(?<value>[^&]+)$");
 
     /**
      * computes the url to target the given data plane
@@ -213,11 +213,11 @@ public class DelegationServiceImpl implements DelegationService {
             String key = param.getKey();
             Matcher keyMatcher = PARAMETER_KEY_ALLOW.matcher(key);
             if (keyMatcher.matches()) {
+                String recodeKey = HttpUtils.urlEncodeParameter(keyMatcher.group("param"));
                 for (String value : param.getValue()) {
                     Matcher valueMatcher = PARAMETER_VALUE_ALLOW.matcher(value);
                     if (valueMatcher.matches()) {
-                        String recodeKey = HttpUtils.urlEncodeParameter(keyMatcher.group());
-                        String recodeValue = HttpUtils.urlEncodeParameter(valueMatcher.group());
+                        String recodeValue = HttpUtils.urlEncodeParameter(valueMatcher.group("value"));
                         httpBuilder = httpBuilder.addQueryParameter(recodeKey, recodeValue);
                     }
                 }
