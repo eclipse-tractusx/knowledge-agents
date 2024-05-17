@@ -24,6 +24,32 @@ All notable changes to this product will be documented in this file.
 
 # Released
 
+## [1.12.19] - 2024-05-17
+
+### Added
+
+- Matchmaking Agent: Carve-Out of the SPARQL-Processor from [Tractus-X EDC Agent Plane (KA-EDC)](http://github.com/eclipse-tractusx/knowledge-agents-edc) in order to hide graph data in the internal network.
+- Matchmaking Agent: Implements a new API extension to upload/delete graph assets by ttl and csv.
+
+### Changed
+
+- Remoting Agent: Deal with mapping of taxonomical constants to API elements. Support for JSON-serialization of partial results.
+- Upgraded to the latest possible version of dependent libraries
+
+### Removed
+
+## [1.11.16] - 2024-02-20
+
+### Added
+
+### Changed
+
+- Remoting Agent upgraded to latest RDF4J distribution
+- Provisioning Agent upgrade to latest Ontop release
+- Upgraded to the latest possible version of dependent libraries
+
+### Removed
+
 ## [1.10.15] - 2023-11-28
 
 ### Added
