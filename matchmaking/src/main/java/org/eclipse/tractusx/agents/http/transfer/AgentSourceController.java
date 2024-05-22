@@ -38,7 +38,7 @@ import org.eclipse.tractusx.agents.AgentConfig;
 import org.eclipse.tractusx.agents.SkillStore;
 import org.eclipse.tractusx.agents.http.HttpUtils;
 import org.eclipse.tractusx.agents.rdf.RdfStore;
-import org.eclipse.tractusx.agents.service.DataManagementImpl;
+import org.eclipse.tractusx.agents.service.DataManagement;
 import org.eclipse.tractusx.agents.service.EdcSkillStore;
 import org.eclipse.tractusx.agents.sparql.SparqlQueryProcessor;
 import org.eclipse.tractusx.agents.sparql.SparqlQuerySerializerFactory;
@@ -81,7 +81,7 @@ public class AgentSourceController extends HttpServlet  {
         SerializerRegistry.get().addQuerySerializer(Syntax.syntaxSPARQL_11, arqQuerySerializerFactory);
         this.processor = new SparqlQueryProcessor(reg, monitor, config, rdfStore, typeManager);
         OkHttpClient httpClient = new OkHttpClient();
-        DataManagementImpl catalogService = new DataManagementImpl(monitor, typeManager, httpClient, config);
+        DataManagement catalogService = new DataManagement(monitor, typeManager, httpClient, config);
         skillStore = new EdcSkillStore(catalogService, typeManager, config);
     }
     

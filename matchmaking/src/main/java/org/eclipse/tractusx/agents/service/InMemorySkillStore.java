@@ -16,12 +16,14 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.eclipse.tractusx.agents.service;
 
+import org.eclipse.tractusx.agents.AgentConfig;
 import org.eclipse.tractusx.agents.SkillDistribution;
 import org.eclipse.tractusx.agents.SkillStore;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
 
 /**
  * An in-memory store for local skills
@@ -31,19 +33,24 @@ public class InMemorySkillStore implements SkillStore {
     // temporary local skill store
     protected final Map<String, String> skills = new HashMap<>();
 
+    protected AgentConfig config;
+
     /**
      * create the store
      */
-    public InMemorySkillStore() {
+    public InMemorySkillStore(AgentConfig config) {
+        this.config = config;
     }
+
 
     @Override
     public boolean isSkill(String key) {
-        return SkillStore.matchSkill(key).matches();
+        Matcher matcher = config.getAssetReferencePattern().matcher(key);
+        return matcher.matches() && matcher.group("asset").contains("Skill");
     }
 
     @Override
-    public String put(String key, String skill, String name, String description, String version, String contract, SkillDistribution dist, boolean isFederated, String... ontologies) {
+    public String put(String key, String skill, String name, String description, String version, String contract, SkillDistribution dist, boolean isFederated, String allowServicePattern, String denyServicePattern, String... ontologies) {
         skills.put(key, skill);
         return key;
     }

@@ -138,6 +138,49 @@ startupProbe:
   # -- number of seconds until a timeout is assumed
   timeoutSeconds: 5
 
+participant:
+  # -- BPN Number
+  id: ""
+
+# -- Name of the connector deployment
+connector: ""
+
+# -- References to the control plane deployment
+controlplane:
+  endpoints:
+    # -- data management api, used by internal users, can be added to an ingress and must not be internet facing
+    management:
+      # -- port for incoming api calls
+      port: 8081
+      # -- path for incoming api calls
+      path: /management
+      # -- authentication key, must be attached to each 'X-Api-Key' request header
+      authKey: ""
+    # -- control api, used for internal control calls. can be added to the internal ingress, but should probably not
+    control:
+      # -- port for incoming api calls
+      port: 8083
+      # -- path for incoming api calls
+      path: /control
+    # -- dsp api, used for inter connector communication and must be internet facing
+    protocol:
+      # -- port for incoming api calls
+      port: 8084
+      # -- path for incoming api calls
+      path: /api/v1/dsp
+  ingresses:
+    - enabled: false
+
+# -- A set of additional configuration files
+configs:
+  # -- An example of an empty graph in ttl syntax
+  dataspace.ttl: |
+    #################################################################
+    # Catena-X Agent Bootstrap Graph in TTL/RDF/OWL FORMAT
+    #################################################################
+    @prefix : <GraphAsset?local=Dataspace> .
+    @base <GraphAsset?local=Dataspace> .
+
 ## Endpoints exposed by the matchmaking agent
 agent:
   endpoints:
@@ -148,17 +191,17 @@ agent:
       # -- An auth object for default security
       auth: {}
       # -- The path mapping the "default" api is going to be exposed by
-      path: "api"
+      path: "/api"
       # -- An optional regex path match (whose match groups could be used in an nginx-annotation of the ingress)
       regex: /(.*)
     ## Source api exposing EDC inject
-    source:
+    internal:
       # -- The network port, which the "source" api is going to be exposed by the container, pod and service
       port: "8080"
       # -- An auth object for default security
       auth: {}
       # -- The path mapping the "source" api is going to be exposed by
-      path: "agentsource"
+      path: "/agentsource"
       # -- An optional regex path match (whose match groups could be used in an nginx-annotation of the ingress)
       regex: /(.*)
     ## Source api exposing EDC callback
@@ -168,9 +211,35 @@ agent:
       # -- An auth object for default security
       auth: {}
       # -- The path mapping the "callback" api is going to be exposed by
-      path: "callback"
+      path: "/callback"
       # -- An optional regex path match (whose match groups could be used in an nginx-annotation of the ingress)
       regex: /(.*)
+    # -- A list of local or remote graph descriptions to build the default meta-graph/federated data catalogue
+  default:
+    - dataspace.ttl
+    - https://w3id.org/catenax/ontology.ttl
+  # -- The synchronization interval in ms to update the federated data catalogue
+  synchronization: -1
+  # -- A map of partner ids to remote connector IDS URLs to synchronize with
+  connectors: {}
+  # -- Names the visible contract under which new skills are published (if not otherwise specified)
+  skillcontract: Contract?partner=Skill
+  # -- Names the visible contract under which new graphs are published (if not otherwise specified)
+  graphcontract: Contract?partner=Graph
+  # -- Sets the maximal batch size when delegating to agents and services
+  maxbatchsize: '9223372036854775807'
+  # -- A set of configs for regulating outgoing service calls
+  services:
+    # -- A regular expression which outgoing service URLs must match (unless overwritten by a specific asset property)
+    allow: '(edcs?://.*)|(https://query\\.wikidata\\.org/sparql)'
+    # -- A regular expression which outgoing service URLs must not match (unless overwritten by a specific asset property)
+    deny: 'http://.*'
+    # -- A set of configs for regulating outgoing service calls when providing an asset (when no specific asset property is given)
+    asset:
+      # -- A regular expression which outgoing service URLs must match (unless overwritten by a specific asset property)
+      allow: '(edcs?://.*)'
+      # -- A regular expression which outgoing service URLs must not match (unless overwritten by a specific asset property)
+      deny: 'https?://.*'
 
 service:
   # -- [Service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) to expose the running application on a set of Pods as a network service.

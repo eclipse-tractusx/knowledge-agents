@@ -29,6 +29,7 @@ import org.eclipse.tractusx.agents.utils.TypeManager;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
 
 /**
  * Implements a skill store based on EDC assets
@@ -47,11 +48,12 @@ public class EdcSkillStore implements SkillStore {
 
     @Override
     public boolean isSkill(String key) {
-        return SkillStore.matchSkill(key).matches();
+        Matcher matcher = config.getAssetReferencePattern().matcher(key);
+        return matcher.matches() && matcher.group("asset").contains("Skill");
     }
 
     @Override
-    public String put(String key, String skill, String name, String description, String version, String contract, SkillDistribution dist, boolean isFederated, String... ontologies) {
+    public String put(String key, String skill, String name, String description, String version, String contract, SkillDistribution dist, boolean isFederated, String allowServicePatern, String denyServicePattern, String... ontologies) {
         if (name == null) {
             name = "No name given";
         }
@@ -64,6 +66,9 @@ public class EdcSkillStore implements SkillStore {
         if (contract == null) {
             contract = config.getDefaultSkillContract();
         }
+        if (dist == null) {
+            dist = SkillDistribution.ALL;
+        }
         String ontologiesString = String.join(",", ontologies);
         try {
             return management.createOrUpdateSkill(
@@ -75,7 +80,9 @@ public class EdcSkillStore implements SkillStore {
                     ontologiesString,
                     dist.getDistributionMode(),
                     isFederated,
-                    typeManager.getMapper().writeValueAsString(TextNode.valueOf(skill))
+                    typeManager.getMapper().writeValueAsString(TextNode.valueOf(skill)),
+                    allowServicePatern,
+                    denyServicePattern
             ).getId();
         } catch (IOException e) {
             return null;

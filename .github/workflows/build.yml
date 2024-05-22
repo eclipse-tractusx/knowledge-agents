@@ -142,7 +142,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.12.18-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.12.19-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
@@ -181,7 +181,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.12.18-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.12.19-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
@@ -220,7 +220,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.12.18-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=1.12.19-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       # build in any case, but push only main and version tag settings
@@ -244,6 +244,24 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
           repository: ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
 
+      # Create SemVer or ref tags dependent of trigger event
+      - name: Docker Meta Matchmaking
+        id: meta-match
+        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
+        with:
+          images: |
+            ${{ steps.set-docker-repo.outputs.REPO }}/matchmaking-agent
+          # Automatically prepare image tags; See action docs for more examples.
+          # semver patter will generate tags like these for example :1 :1.2 :1.2.3
+          tags: |
+            type=sha,event=branch
+            type=sha,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=1.12.19-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+
       # build in any case, but push only main and version tag settings
       - name: Matchmaking Container Build and Push
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
@@ -252,8 +270,8 @@ jobs:
           file: matchmaking/src/main/docker/Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
-          tags: ${{ steps.meta-remote.outputs.tags }}
-          labels: ${{ steps.meta-remote.outputs.labels }}
+          tags: ${{ steps.meta-match.outputs.tags }}
+          labels: ${{ steps.meta-match.outputs.labels }}
 
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Matchmaking Agent
@@ -264,22 +282,4 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
           password: ${{ secrets.DOCKER_HUB_TOKEN || secrets.GITHUB_TOKEN }}
           repository: ${{ steps.set-docker-repo.outputs.REPO }}/matchmaking-agent
-
-      # Create SemVer or ref tags dependent of trigger event
-      - name: Docker Meta Matchmaking
-        id: meta-match
-        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
-        with:
-          images: |
-            ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
-          # Automatically prepare image tags; See action docs for more examples.
-          # semver patter will generate tags like these for example :1 :1.2 :1.2.3
-          tags: |
-            type=sha,event=branch
-            type=sha,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=1.12.18-SNAPSHOT,enable=${{ github.event.inputs.deploy_docker == 'true' || github.ref == format('refs/heads/{0}', 'main') }}
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 

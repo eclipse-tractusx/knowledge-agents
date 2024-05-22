@@ -25,4 +25,84 @@ metadata:
 data:
   logback.xml: |-
     {{- .Values.logging.configuration | nindent 4 }}
+  configuration.properties: |-
+    ################################################
+    # MATCHMAKING AGENT CONFIG
+    ###############################################
 
+    ###
+    # Chapter General Settings
+    ###
+
+    edc.participant.id={{ .Values.participant.id | required ".Values.participant.id is required"}}
+
+    ###
+    # Chapter Web Server / Ports
+    ###
+
+    edc.api.auth.key={{ .Values.controlplane.endpoints.management.authKey | required ".Values.controlplane.endpoints.mangement.authKey is required" }}
+    web.http.default.port={{ .Values.agent.endpoints.default.port }}
+    web.http.default.path={{ .Values.agent.endpoints.default.path }}
+    web.http.callback.port={{ .Values.agent.endpoints.callback.port }}
+    web.http.callback.path={{ .Values.agent.endpoints.callback.path }}
+    web.http.internal.port={{ .Values.agent.endpoints.internal.port }}
+    web.http.internal.path={{ .Values.agent.endpoints.internal.path }}
+
+    cx.agent.matchmaking.internal.api={{ .Values.agent.endpoints.internal.port }}
+    cx.agent.matchmaking.external.api={{ .Values.agent.endpoints.internal.port }}
+
+    # Single Control Plane setup
+    edc.dataplane.token.validation.endpoint={{ include "agent.controlplane.url.control" .}}/token
+
+    ###
+    # Chapter Dataspace
+    ###
+
+    cx.agent.controlplane.protocol={{ include "agent.controlplane.url.protocol" . }}
+    cx.agent.controlplane.management={{ include "agent.controlplane.url.management" . }}
+    cx.agent.callback={{ include "agent.url.callback" . }}/transfer-process-started
+    {{- if .Values.agent.skillcontract }}
+    cx.agent.skill.contract.default={{ .Values.agent.skillcontract }} 
+    {{- end }}
+    {{- if .Values.agent.graphcontract }}
+    cx.agent.graph.contract.default={{ .Values.agent.graphcontract }}
+    {{- end }}
+
+    {{- if .Values.agent.services }}
+    ###################
+    # AGENT SERVICES #
+    ###################
+    {{- if .Values.agent.services.allow }}
+    cx.agent.service.allow={{ .Values.agent.services.allow }}  
+    {{- end }}
+    {{- if .Values.agent.services.deny }}
+    cx.agent.service.deny={{ .Values.agent.services.deny }} 
+    {{- end }}
+    {{- if .Values.agent.services.asset }}
+    {{- if .Values.agent.services.asset.allow }}
+    cx.agent.service.asset.allow={{ .Values.agent.services.asset.allow }} 
+    {{- end }}
+    {{- if .Values.agent.services.asset.deny }}
+    cx.agent.service.asset.deny={{ .Values.agent.services.asset.deny }} 
+    {{- end }}
+    {{- end }}
+    {{- end }}
+          
+    ###################
+    # AGENT SYNC      #
+    ###################
+    cx.agent.dataspace.remotes={{ include "agent.remotes" . }}
+    cx.agent.dataspace.synchronization={{ .Values.agent.synchronization | required ".Values.agent.synchronization should be set if connectors are specified" }}
+    cx.agent.federation.batch.max={{ .Values.agent.maxbatchsize }} 
+
+    {{- if .Values.agent.default }}
+    ###############
+    # AGENT INIT  #
+    ###############
+    cx.agent.asset.file={{ join "," .Values.agent.default }} 
+    {{- end }}
+  {{- range $config_name, $config_value := .Values.configs }}
+  {{ $config_name }}: |-
+  {{ $config_value | nindent 4 }}
+  {{- end }}
+  

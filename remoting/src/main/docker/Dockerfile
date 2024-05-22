@@ -19,12 +19,13 @@
 # Build Container: Fixes diverse vulnerabilities in guava <32, netty, jetty, spring-framework <5.3.28 and spring-web (all 5 versions - need to exclude a deprecated package from the jar)
 ##
 
-FROM eclipse-temurin:21-jdk-alpine AS build
+FROM eclipse-temurin:22_36-jdk-alpine AS build
 
 COPY target/original-remoting-agent-*.jar /opt/lib/
 #COPY target/lib/guava-*.jar /opt/lib/
 COPY target/lib/netty-*.jar /opt/lib/
 COPY target/lib/http2-hpack-*.jar /opt/lib/
+COPY target/lib/http2-common-*.jar /opt/lib/
 COPY target/lib/jetty-*.jar /opt/lib/
 COPY target/lib/spring-*.jar /opt/lib/
 COPY target/lib/logback-*.jar /opt/lib/
@@ -52,6 +53,7 @@ RUN wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclips
 #    rm /tmp/rdf4j-server/WEB-INF/lib/guava-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/netty-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/http2-hpack-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/http2-common-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/jetty-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/spring-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/logback-*.jar && \
@@ -66,7 +68,7 @@ COPY resources/web/callback.xml /tmp/rdf4j-server/WEB-INF/callback.xml
 # Target Container: Use a valid base image
 ##
 
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:22_36-jre-alpine
 
 ARG APP_USER=tomcat
 ARG APP_UID=10001

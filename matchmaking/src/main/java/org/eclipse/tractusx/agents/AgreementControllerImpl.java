@@ -17,6 +17,7 @@
 package org.eclipse.tractusx.agents;
 
 import com.nimbusds.jose.JWSObject;
+import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.ClientErrorException;
@@ -38,12 +39,13 @@ import org.eclipse.tractusx.agents.model.OdrlPolicy;
 import org.eclipse.tractusx.agents.model.TransferProcess;
 import org.eclipse.tractusx.agents.model.TransferRequest;
 import org.eclipse.tractusx.agents.service.DataManagement;
-import org.eclipse.tractusx.agents.service.DataManagementImpl;
 import org.eclipse.tractusx.agents.service.DataspaceSynchronizer;
 import org.eclipse.tractusx.agents.utils.CallbackAddress;
 import org.eclipse.tractusx.agents.utils.DataAddress;
 import org.eclipse.tractusx.agents.utils.EndpointDataReference;
+import org.eclipse.tractusx.agents.utils.EventEnvelope;
 import org.eclipse.tractusx.agents.utils.Monitor;
+import org.eclipse.tractusx.agents.utils.TransferProcessStarted;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -59,7 +61,7 @@ import java.util.Set;
  * An endpoint/service that receives information from the control plane
  */
 @Consumes({MediaType.APPLICATION_JSON})
-@Path("/endpoint-data-reference")
+@Path("/transfer-process-started")
 public class AgreementControllerImpl implements AgreementController {
 
     /**
@@ -108,7 +110,7 @@ public class AgreementControllerImpl implements AgreementController {
      */
     @Override
     public String toString() {
-        return super.toString() + "/endpoint-data-reference";
+        return super.toString() + "/transfer-process-started";
     }
 
     /**
@@ -117,21 +119,20 @@ public class AgreementControllerImpl implements AgreementController {
      * @param dataReference contains the actual call token
      */
     @POST
-    public void receiveEdcCallback(EndpointDataReference dataReference) {
-        var agreementId = dataReference.getId();
-        monitor.debug(String.format("An endpoint data reference for agreement %s has been posted.", agreementId));
-        synchronized (agreementStore) {
-            for (Map.Entry<String, TransferProcess> process : processStore.entrySet()) {
-                if (process.getValue().getId().equals(agreementId)) {
-                    synchronized (endpointStore) {
-                        monitor.debug(String.format("Agreement %s belongs to asset %s.", agreementId, process.getKey()));
-                        endpointStore.put(process.getKey(), dataReference);
-                        return;
-                    }
-                }
-            }
+    public void receiveEdcCallback(EventEnvelope<TransferProcessStarted> dataReference) {
+        var processId = dataReference.getPayload().getTransferProcessId();
+        var assetId = dataReference.getPayload().getAssetId();
+        monitor.debug(String.format("A transfer process %s for asset %s has been started.", processId, assetId));
+        synchronized (endpointStore) {
+            EndpointDataReference newRef = EndpointDataReference.Builder.newInstance()
+                    .id(dataReference.getId())
+                    .contractId(dataReference.getPayload().getContractId())
+                    .endpoint(dataReference.getPayload().getDataAddress().getStringProperty("https://w3id.org/edc/v0.0.1/ns/endpoint", null))
+                    .authKey("Authorization")
+                    .authCode(dataReference.getPayload().getDataAddress().getStringProperty("https://w3id.org/edc/v0.0.1/ns/authorization", null))
+                    .build();
+            endpointStore.put(assetId, newRef);
         }
-        monitor.debug(String.format("Agreement %s has no active asset. Guess that came for another plane. Ignoring.", agreementId));
     }
 
     /**
@@ -283,7 +284,7 @@ public class AgreementControllerImpl implements AgreementController {
         var contractNegotiationRequest = ContractNegotiationRequest.Builder.newInstance()
                 .offerId(contractOfferDescription)
                 .connectorId("provider")
-                .connectorAddress(String.format(DataManagementImpl.DSP_PATH, remoteUrl))
+                .connectorAddress(String.format(DataManagement.DSP_PATH, remoteUrl))
                 .protocol("dataspace-protocol-http")
                 .localBusinessPartnerNumber(config.getBusinessPartnerNumber())
                 .remoteBusinessPartnerNumber(contractOffers.getParticipantId())
@@ -359,7 +360,7 @@ public class AgreementControllerImpl implements AgreementController {
                 .assetId(asset)
                 .contractId(agreement.getId())
                 .connectorId(config.getBusinessPartnerNumber())
-                .connectorAddress(String.format(DataManagementImpl.DSP_PATH, remoteUrl))
+                .connectorAddress(String.format(DataManagement.DSP_PATH, remoteUrl))
                 .protocol("dataspace-protocol-http")
                 .dataDestination(dataDestination)
                 .managedResources(false)
@@ -369,9 +370,14 @@ public class AgreementControllerImpl implements AgreementController {
         monitor.debug(String.format("About to initiate transfer for agreement %s (for asset %s at connector %s)", negotiation.getContractAgreementId(), asset, remoteUrl));
 
         String transferId;
+        TransferProcess process;
 
         try {
-            transferId = dataManagement.initiateHttpProxyTransferProcess(transferRequest);
+            synchronized (processStore) {
+                transferId = dataManagement.initiateHttpProxyTransferProcess(transferRequest);
+                process = new TransferProcess(Json.createObjectBuilder().add("@id", transferId).add("https://w3id.org/edc/v0.0.1/ns/state", "UNINITIALIZED").build());
+                registerProcess(asset, process);
+            }
         } catch (IOException ioe) {
             deactivate(asset);
             throw new InternalServerErrorException(String.format("HttpProxy transfer for agreement %s could not be initiated.", agreement.getId()), ioe);
@@ -380,12 +386,10 @@ public class AgreementControllerImpl implements AgreementController {
         monitor.debug(String.format("About to check transfer %s (for asset %s at connector %s)", transferId, asset, remoteUrl));
 
         // Check negotiation state
-        TransferProcess process = null;
-
         startTime = System.currentTimeMillis();
 
         // EDC 0.5.1 has a problem with the checker configuration and wont process to COMPLETED
-        String expectedTransferState = config.isPrerelease() ? "COMPLETED" : "STARTED";
+        String expectedTransferState = "STARTED";
 
         try {
             while ((System.currentTimeMillis() - startTime < config.getNegotiationTimeout()) && (process == null || !process.getState().equals(expectedTransferState))) {

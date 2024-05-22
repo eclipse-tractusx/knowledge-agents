@@ -17,25 +17,11 @@
 package org.eclipse.tractusx.agents;
 
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * interface to a skill store
  */
 public interface SkillStore {
-    
-    Pattern SKILL_PATTERN = Pattern.compile("((?<url>[^#]+)#)?(?<skill>.*Skill(Asset)?.*)");
-
-    /**
-     * match a given asset
-     *
-     * @param key asset name
-     * @return matcher
-     */
-    static Matcher matchSkill(String key) {
-        return SKILL_PATTERN.matcher(key);
-    }
 
     /**
      * check a given asset for being a skill
@@ -48,18 +34,20 @@ public interface SkillStore {
     /**
      * register a skill
      *
-     * @param key         asset name required
-     * @param skill       query text required
-     * @param name        of skill optional
-     * @param description of skill optional
-     * @param version     of skill optional
-     * @param contract    of skill optional
-     * @param dist        of skill required
-     * @param isFederated whether skill maybe synchronized in catalogue
-     * @param ontologies  a set of ontologies
+     * @param key                 asset name required
+     * @param skill               query text required
+     * @param name                of skill optional
+     * @param description         of skill optional
+     * @param version             of skill optional
+     * @param contract            of skill optional
+     * @param dist                of skill required
+     * @param isFederated         whether skill maybe synchronized in catalogue
+     * @param allowServicePattern regex for service to call in skill
+     * @param denyServicePattern  regex for services denied in skill
+     * @param ontologies          a set of ontologies
      * @return skill id
      */
-    String put(String key, String skill, String name, String description, String version, String contract, SkillDistribution dist, boolean isFederated, String... ontologies);
+    String put(String key, String skill, String name, String description, String version, String contract, SkillDistribution dist, boolean isFederated, String allowServicePattern, String denyServicePattern, String... ontologies);
 
     /**
      * return the skill distribution

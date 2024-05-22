@@ -30,7 +30,7 @@ import org.eclipse.tractusx.agents.http.AgentController;
 import org.eclipse.tractusx.agents.http.DelegationServiceImpl;
 import org.eclipse.tractusx.agents.http.GraphController;
 import org.eclipse.tractusx.agents.rdf.RdfStore;
-import org.eclipse.tractusx.agents.service.DataManagementImpl;
+import org.eclipse.tractusx.agents.service.DataManagement;
 import org.eclipse.tractusx.agents.service.DataspaceSynchronizer;
 import org.eclipse.tractusx.agents.service.EdcSkillStore;
 import org.eclipse.tractusx.agents.sparql.DataspaceServiceExecutor;
@@ -50,20 +50,20 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class SharedObjectManager {
     private static final SharedObjectManager INSTANCE = new SharedObjectManager();
-    private Monitor monitor;
-    private TypeManager typeManager;
-    private AgentConfig agentConfig;
-    private RdfStore rdfStore;
-    private ServiceExecutorRegistry reg;
-    private SparqlQueryProcessor processor;
-    private DataManagementImpl catalogService;
-    private SkillStore skillStore;
-    private AgreementControllerImpl agreementController;
-    private AgentController agentController;
-    private GraphController graphController;
-    private DelegationServiceImpl delegationService;
-    private DataspaceSynchronizer synchronizer;
-    private OkHttpClient httpClient;
+    private final Monitor monitor;
+    private final TypeManager typeManager;
+    private final AgentConfig agentConfig;
+    private final RdfStore rdfStore;
+    private final ServiceExecutorRegistry reg;
+    private final SparqlQueryProcessor processor;
+    private final DataManagement catalogService;
+    private final SkillStore skillStore;
+    private final AgreementControllerImpl agreementController;
+    private final AgentController agentController;
+    private final GraphController graphController;
+    private final DelegationServiceImpl delegationService;
+    private final DataspaceSynchronizer synchronizer;
+    private final OkHttpClient httpClient;
     
 
     private SharedObjectManager() {
@@ -93,7 +93,7 @@ public class SharedObjectManager {
         Config emptyConfig = ConfigFactory.fromProperties(props);
         this.agentConfig = new AgentConfig(monitor, emptyConfig);
         this.httpClient = new OkHttpClient();
-        this.catalogService = new DataManagementImpl(monitor, typeManager, httpClient, agentConfig);
+        this.catalogService = new DataManagement(monitor, typeManager, httpClient, agentConfig);
         agreementController = new AgreementControllerImpl(monitor, agentConfig, catalogService);
         this.rdfStore = new RdfStore(agentConfig, monitor);
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(agentConfig.getThreadPoolSize());
@@ -111,7 +111,15 @@ public class SharedObjectManager {
         this.graphController = new GraphController(monitor, rdfStore, catalogService, agentConfig);
         
     }
-    
+
+    public void start() {
+        synchronizer.start();
+    }
+
+    public void shutdown() {
+        synchronizer.shutdown();
+    }
+
     public static String convertToCurl(Request request) {
         StringBuilder curlCommand = new StringBuilder("curl");
 
@@ -119,9 +127,7 @@ public class SharedObjectManager {
         curlCommand.append(" -X ").append(request.method());
 
         // Add headers
-        request.headers().toMultimap().forEach((name, values) -> {
-            values.forEach(value -> curlCommand.append(" -H '").append(name).append(": ").append(value).append("'"));
-        });
+        request.headers().toMultimap().forEach((name, values) -> values.forEach(value -> curlCommand.append(" -H '").append(name).append(": ").append(value).append("'")));
 
         // Add request body if present
         if (request.body() != null) {
@@ -164,7 +170,7 @@ public class SharedObjectManager {
         return processor;
     }
 
-    public DataManagementImpl getCatalogService() {
+    public DataManagement getCatalogService() {
         return catalogService;
     }
 

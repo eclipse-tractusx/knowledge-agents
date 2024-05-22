@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -53,7 +54,7 @@ import java.util.stream.Collectors;
  * A service that may delegate an incoming
  * agent http request ot another agent in the
  * dataspace
- * deals with the special case of remote/provided (textual) 
+ * deals with the special case of remote/provided (textual)
  * skills which should be executed locally nevertheless
  */
 public class DelegationServiceImpl implements DelegationService {
@@ -61,7 +62,8 @@ public class DelegationServiceImpl implements DelegationService {
     protected final AgreementController agreementController;
     protected final Monitor monitor;
     protected final OkHttpClient client;
-    public static final TypeReference<List<CatenaxWarning>> WARNING_TYPE_REFERENCE = new TypeReference<>(){};
+    public static final TypeReference<List<CatenaxWarning>> WARNING_TYPE_REFERENCE = new TypeReference<>() {
+    };
     protected final TypeManager typeManager;
     protected final AgentConfig config;
 
@@ -69,8 +71,8 @@ public class DelegationServiceImpl implements DelegationService {
      * creates a new delegation service
      *
      * @param agreementController EDC agreement helper
-     * @param monitor logging facility
-     * @param client outgoing http infrastructure
+     * @param monitor             logging facility
+     * @param client              outgoing http infrastructure
      */
     public DelegationServiceImpl(AgreementController agreementController, Monitor monitor, OkHttpClient client, TypeManager typeManager, AgentConfig config) {
         this.agreementController = agreementController;
@@ -84,11 +86,11 @@ public class DelegationServiceImpl implements DelegationService {
      * the actual execution is done by delegating to the Dataspace
      *
      * @param remoteUrl remote connector
-     * @param skill target skill
-     * @param graph target graph
+     * @param skill     target skill
+     * @param graph     target graph
      * @return a wrapped response which indicates the runMode that the execution should be done
      */
-    public DelegationResponse executeQueryRemote(String remoteUrl, String skill, String graph, HttpHeaders headers, HttpServletRequest request, HttpServletResponse response, UriInfo uri)  {
+    public DelegationResponse executeQueryRemote(String remoteUrl, String skill, String graph, HttpHeaders headers, HttpServletRequest request, HttpServletResponse response, UriInfo uri) {
         Pattern serviceAllowPattern = config.getServiceAllowPattern();
         if (!serviceAllowPattern.matcher(remoteUrl).matches()) {
             return new DelegationResponse(HttpUtils.respond(monitor, headers, HttpStatus.SC_FORBIDDEN, String.format("Service %s does not match the allowed service pattern %s", remoteUrl, serviceAllowPattern.pattern()), null));
@@ -131,7 +133,7 @@ public class DelegationServiceImpl implements DelegationService {
      * route a get request
      *
      * @param dataReference the encoded call embedding
-     * @param subUrl protocol-specific part
+     * @param subUrl        protocol-specific part
      * @return a wrapped response which indicates the runMode that the execution should be done
      * @throws IOException in case something strange happens
      */
@@ -156,7 +158,7 @@ public class DelegationServiceImpl implements DelegationService {
      * route a post request
      *
      * @param dataReference the encoded call embedding
-     * @param subUrl protocol-specific part
+     * @param subUrl        protocol-specific part
      * @return a wrapped response which indicates the runMode that the execution should be done
      * @throws IOException in case something strange happens
      */
@@ -179,22 +181,22 @@ public class DelegationServiceImpl implements DelegationService {
         requestBuilder.post(okhttp3.RequestBody.create(request.getInputStream().readAllBytes(), parsedContentType));
 
         var newRequest = requestBuilder.build();
-        
+
         return new DelegationResponse(sendRequest(newRequest, response), Response.status(response.getStatus()).build());
     }
 
-    protected static final Pattern PARAMETER_KEY_ALLOW = Pattern.compile("^(?!asset$)[^&?=]+$");
-    protected static final Pattern PARAMETER_VALUE_ALLOW = Pattern.compile("^.+$");
+    protected static final Pattern PARAMETER_KEY_ALLOW = Pattern.compile("^(?<param>(?!asset$)[^&?=]+)$");
+    protected static final Pattern PARAMETER_VALUE_ALLOW = Pattern.compile("^(?<value>[^&]+)$");
 
     /**
      * computes the url to target the given data plane
      *
      * @param connectorUrl data plane url
-     * @param subUrl sub-path to use
-     * @param headers containing additional info that we need to wrap into a transfer request
+     * @param subUrl       sub-path to use
+     * @param headers      containing additional info that we need to wrap into a transfer request
      * @return typed url
      */
-    protected HttpUrl getUrl(String connectorUrl, String subUrl, HttpHeaders headers, UriInfo uri)  {
+    protected HttpUrl getUrl(String connectorUrl, String subUrl, HttpHeaders headers, UriInfo uri) {
         var url = connectorUrl;
 
         // EDC public api slash problem
@@ -209,11 +211,13 @@ public class DelegationServiceImpl implements DelegationService {
         HttpUrl.Builder httpBuilder = Objects.requireNonNull(okhttp3.HttpUrl.parse(url)).newBuilder();
         for (Map.Entry<String, List<String>> param : uri.getQueryParameters().entrySet()) {
             String key = param.getKey();
-            if (PARAMETER_KEY_ALLOW.matcher(key).matches()) {
+            Matcher keyMatcher = PARAMETER_KEY_ALLOW.matcher(key);
+            if (keyMatcher.matches()) {
+                String recodeKey = HttpUtils.urlEncodeParameter(keyMatcher.group("param"));
                 for (String value : param.getValue()) {
-                    if (PARAMETER_VALUE_ALLOW.matcher(value).matches()) {
-                        String recodeKey = HttpUtils.urlEncodeParameter(key);
-                        String recodeValue = HttpUtils.urlEncodeParameter(value);
+                    Matcher valueMatcher = PARAMETER_VALUE_ALLOW.matcher(value);
+                    if (valueMatcher.matches()) {
+                        String recodeValue = HttpUtils.urlEncodeParameter(valueMatcher.group("value"));
                         httpBuilder = httpBuilder.addQueryParameter(recodeKey, recodeValue);
                     }
                 }
@@ -234,7 +238,7 @@ public class DelegationServiceImpl implements DelegationService {
     /**
      * generic sendRequest method which extracts the result string of textual responses
      *
-     * @param request predefined request
+     * @param request  predefined request
      * @param response the final response
      * @return the text of a downloaded skill if runMode = consumer, null otherwise
      * @throws IOException in case something goes wrong
@@ -245,7 +249,7 @@ public class DelegationServiceImpl implements DelegationService {
             if (!myResponse.isSuccessful()) {
                 monitor.warning(String.format("Data plane call was not successful: %s", myResponse.code()));
             }
-            
+
             Optional<List<CatenaxWarning>> warnings = Optional.empty();
 
             var body = myResponse.body();

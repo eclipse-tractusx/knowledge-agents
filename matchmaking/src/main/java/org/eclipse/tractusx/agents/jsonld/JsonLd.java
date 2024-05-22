@@ -135,6 +135,10 @@ public class JsonLd {
                             prefix = prefix + ":";
                         }
                         prop = prefix + prop.substring(colonIndex + 1);
+                    } else {
+                        if (!prop.startsWith("@") && namespaces.containsKey("@vocab")) {
+                            prop = namespaces.get("@vocab") + prop;
+                        }
                     }
                     object.add(prop, processJsonLd(value, namespaces));
                 });
