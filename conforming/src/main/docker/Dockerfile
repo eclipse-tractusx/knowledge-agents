@@ -15,7 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM eclipse-temurin:22_36-jre-alpine
+FROM eclipse-temurin:22.0.1_8-jre-alpine
 ARG JAR
 ARG LIB
 
