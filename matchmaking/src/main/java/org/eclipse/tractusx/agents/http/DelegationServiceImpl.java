@@ -173,7 +173,6 @@ public class DelegationServiceImpl implements DelegationService {
 
             return new DelegationResponse(sendRequest(newRequest, response), Response.status(response.getStatus()).build());
         } else {
-            monitor.warning(format("Invalid URL", url.toString()));
             return null;
         }
     }
@@ -211,7 +210,6 @@ public class DelegationServiceImpl implements DelegationService {
             return new DelegationResponse(sendRequest(newRequest, response), Response.status(response.getStatus()).build());
         
         } else {
-            monitor.warning(format("Invalid URL", url.toString()));
             return null;
         }
     }
