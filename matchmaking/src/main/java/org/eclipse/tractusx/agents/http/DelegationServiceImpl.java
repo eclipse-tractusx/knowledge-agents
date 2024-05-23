@@ -131,7 +131,7 @@ public class DelegationServiceImpl implements DelegationService {
 
     }
 
-     /**
+    /**
      * URL Validation
      *
      * @param url URL string for validation
