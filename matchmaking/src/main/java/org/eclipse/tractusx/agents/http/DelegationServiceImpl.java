@@ -131,14 +131,13 @@ public class DelegationServiceImpl implements DelegationService {
 
     }
 
-         /**
+     /**
      * URL Validation
      *
      * @param url URL string for validation
      * @return Returns true if the URL is valid, false otherwise.
      */
-    public static boolean isValid(String url) 
-    { 
+    public static boolean isValid(String url) { 
         // Try creating a valid URL
         try { 
             new URI(url).toURL(); 
