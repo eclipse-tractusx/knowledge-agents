@@ -41,6 +41,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.net.URI;
+
 
 /**
  * A service that may delegate an incoming
@@ -142,10 +143,7 @@ public class DelegationServiceImpl implements DelegationService {
         try { 
             new URI(url).toURL(); 
             return true; 
-        } 
-          
-        // If there was an Exception while creating URL object 
-        catch (Exception e) { 
+        } catch (Exception e) { // If there was an Exception while creating URL object 
             return false; 
         } 
     } 
@@ -163,7 +161,7 @@ public class DelegationServiceImpl implements DelegationService {
 
         monitor.debug(String.format("About to delegate GET %s", url));
 
-        if(isValid(url)){
+        if (isValid(url)) {
 
             var requestBuilder = new okhttp3.Request.Builder()
                     .url(url);
@@ -197,7 +195,7 @@ public class DelegationServiceImpl implements DelegationService {
 
         monitor.debug(String.format("About to delegate POST %s with content type %s", url, contentType));
 
-        if(isValid(url)){
+        if (isValid(url)) {
 
             var requestBuilder = new okhttp3.Request.Builder()
                     .url(url)
