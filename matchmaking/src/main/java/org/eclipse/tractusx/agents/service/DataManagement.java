@@ -41,12 +41,11 @@ import org.eclipse.tractusx.agents.utils.QuerySpec;
 import org.eclipse.tractusx.agents.utils.TypeManager;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import static java.lang.String.format;
 
@@ -437,7 +436,7 @@ public class DataManagement {
         String version = "/v3";
         var url = String.format(ASSET_UPDATE_CALL, config.getControlPlaneManagementProviderUrl(), version, assetId);
 
-        if (Pattern.matches( "(http|edc)s?://.*", url)) {
+        if (Pattern.matches("(http|edc)s?://.*", url)) {
             var request = new Request.Builder().url(url).delete();
             config.getControlPlaneManagementHeaders().forEach(request::addHeader);
             try (var response = httpClient.newCall(request.build()).execute()) {

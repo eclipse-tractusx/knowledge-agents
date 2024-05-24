@@ -144,7 +144,7 @@ public class DelegationServiceImpl implements DelegationService {
 
         monitor.debug(String.format("About to delegate GET %s", url));
 
-        if (Pattern.matches( "(http|edc)s?://.*", url.toString())) {
+        if (Pattern.matches("(http|edc)s?://.*", url.toString())) {
 
             var requestBuilder = new okhttp3.Request.Builder()
                     .url(url);
@@ -177,7 +177,7 @@ public class DelegationServiceImpl implements DelegationService {
 
         monitor.debug(String.format("About to delegate POST %s with content type %s", url, contentType));
 
-        if (Pattern.matches( "(http|edc)s?://.*", url.toString())) {
+        if (Pattern.matches("(http|edc)s?://.*", url.toString())) {
 
             var requestBuilder = new okhttp3.Request.Builder()
                     .url(url)
