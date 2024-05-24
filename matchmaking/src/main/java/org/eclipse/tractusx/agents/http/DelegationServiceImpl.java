@@ -41,6 +41,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
 
 /**
  * A service that may delegate an incoming
@@ -130,6 +132,22 @@ public class DelegationServiceImpl implements DelegationService {
     }
 
     /**
+     * URL Validation
+     *
+     * @param url URL string for validation
+     * @return Returns true if the URL is valid, false otherwise.
+     */
+    public static boolean isValid(String url) { 
+        // Try creating a valid URL
+        try { 
+            new URI(url).toURL(); 
+            return true; 
+        } catch (Exception e) { // If there was an Exception while creating URL object 
+            return false; 
+        } 
+    } 
+
+    /**
      * route a get request
      *
      * @param dataReference the encoded call embedding
@@ -142,16 +160,21 @@ public class DelegationServiceImpl implements DelegationService {
 
         monitor.debug(String.format("About to delegate GET %s", url));
 
-        var requestBuilder = new okhttp3.Request.Builder()
-                .url(url);
+        if (isValid(url.toString())) {
 
-        if (dataReference.getAuthKey() != null) {
-            requestBuilder = requestBuilder.addHeader(dataReference.getAuthKey(), Objects.requireNonNull(dataReference.getAuthCode()));
+            var requestBuilder = new okhttp3.Request.Builder()
+                    .url(url);
+
+            if (dataReference.getAuthKey() != null) {
+                requestBuilder = requestBuilder.addHeader(dataReference.getAuthKey(), Objects.requireNonNull(dataReference.getAuthCode()));
+            }
+
+            var newRequest = requestBuilder.build();
+
+            return new DelegationResponse(sendRequest(newRequest, response), Response.status(response.getStatus()).build());
+        } else {
+            return null;
         }
-
-        var newRequest = requestBuilder.build();
-
-        return new DelegationResponse(sendRequest(newRequest, response), Response.status(response.getStatus()).build());
     }
 
     /**
@@ -170,19 +193,25 @@ public class DelegationServiceImpl implements DelegationService {
 
         monitor.debug(String.format("About to delegate POST %s with content type %s", url, contentType));
 
-        var requestBuilder = new okhttp3.Request.Builder()
-                .url(url)
-                .addHeader("Content-Type", contentType);
+        if (isValid(url.toString())) {
 
-        if (dataReference.getAuthKey() != null) {
-            requestBuilder = requestBuilder.addHeader(dataReference.getAuthKey(), Objects.requireNonNull(dataReference.getAuthCode()));
+            var requestBuilder = new okhttp3.Request.Builder()
+                    .url(url)
+                    .addHeader("Content-Type", contentType);
+
+            if (dataReference.getAuthKey() != null) {
+                requestBuilder = requestBuilder.addHeader(dataReference.getAuthKey(), Objects.requireNonNull(dataReference.getAuthCode()));
+            }
+
+            requestBuilder.post(okhttp3.RequestBody.create(request.getInputStream().readAllBytes(), parsedContentType));
+
+            var newRequest = requestBuilder.build();
+
+            return new DelegationResponse(sendRequest(newRequest, response), Response.status(response.getStatus()).build());
+        
+        } else {
+            return null;
         }
-
-        requestBuilder.post(okhttp3.RequestBody.create(request.getInputStream().readAllBytes(), parsedContentType));
-
-        var newRequest = requestBuilder.build();
-
-        return new DelegationResponse(sendRequest(newRequest, response), Response.status(response.getStatus()).build());
     }
 
     protected static final Pattern PARAMETER_KEY_ALLOW = Pattern.compile("^(?<param>(?!asset$)[^&?=]+)$");
