@@ -41,7 +41,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
@@ -132,22 +131,6 @@ public class DelegationServiceImpl implements DelegationService {
     }
 
     /**
-     * URL Validation
-     *
-     * @param url URL string for validation
-     * @return Returns true if the URL is valid, false otherwise.
-     */
-    public static boolean isValid(String url) { 
-        // Try creating a valid URL
-        try { 
-            new URI(url).toURL(); 
-            return true; 
-        } catch (Exception e) { // If there was an Exception while creating URL object 
-            return false; 
-        } 
-    } 
-
-    /**
      * route a get request
      *
      * @param dataReference the encoded call embedding
@@ -160,7 +143,7 @@ public class DelegationServiceImpl implements DelegationService {
 
         monitor.debug(String.format("About to delegate GET %s", url));
 
-        if (isValid(url.toString())) {
+        if (Pattern.matches("(http|edc)s?://.*", url.toString())) {
 
             var requestBuilder = new okhttp3.Request.Builder()
                     .url(url);
@@ -193,7 +176,7 @@ public class DelegationServiceImpl implements DelegationService {
 
         monitor.debug(String.format("About to delegate POST %s with content type %s", url, contentType));
 
-        if (isValid(url.toString())) {
+        if (Pattern.matches("(http|edc)s?://.*", url.toString())) {
 
             var requestBuilder = new okhttp3.Request.Builder()
                     .url(url)
