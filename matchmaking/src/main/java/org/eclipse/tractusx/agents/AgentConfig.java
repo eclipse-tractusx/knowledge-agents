@@ -93,6 +93,11 @@ public class AgentConfig {
 
     public static final String SERVICE_DENY_ASSET_PROPERTY = "cx.agent.service.asset.deny";
     public static final String DEFAULT_SERVICE_DENY_ASSET_PATTERN = "^$";
+    public static final String SERVICE_ALLOW_CONNECTOR_PROPERTY = "cx.agent.service.connector.allow";
+    public static final String DEFAULT_SERVICE_ALLOW_CONNECTOR_PATTERN = "https://.*";
+    public static final String SERVICE_DENY_CONNECTOR_PROPERTY = "cx.agent.service.connector.deny";
+    public static final String DEFAULT_SERVICE_DENY_CONNECTOR_PATTERN = "^$";
+
     public static final String MATCHMAKING_PORT = "web.http.internal.port";
     public static final String MATCHMAKING_PATH = "web.http.internal.path";
 
@@ -110,6 +115,11 @@ public class AgentConfig {
     protected final Pattern serviceAssetAllowPattern;
     protected final Pattern serviceAssetDenyPattern;
     protected final Pattern assetReferencePattern;
+    protected final Pattern connectorAllowPattern;
+    protected final Pattern connectorDenyPattern;
+
+    public static final Pattern PARAMETER_KEY_ALLOW = Pattern.compile("^(?<param>(?!asset$)[^&?=]+)$");
+    public static final Pattern PARAMETER_VALUE_ALLOW = Pattern.compile("^(?<value>[^&]+)$");
 
     /**
      * references to EDC services
@@ -130,6 +140,8 @@ public class AgentConfig {
         serviceDenyPattern = Pattern.compile(config.getString(SERVICE_DENY_PROPERTY, DEFAULT_SERVICE_DENY_PATTERN));
         serviceAssetAllowPattern = Pattern.compile(config.getString(SERVICE_ALLOW_ASSET_PROPERTY, DEFAULT_SERVICE_ALLOW_ASSET_PATTERN));
         serviceAssetDenyPattern = Pattern.compile(config.getString(SERVICE_DENY_ASSET_PROPERTY, DEFAULT_SERVICE_DENY_ASSET_PATTERN));
+        connectorAllowPattern = Pattern.compile(config.getString(SERVICE_ALLOW_CONNECTOR_PROPERTY, DEFAULT_SERVICE_ALLOW_CONNECTOR_PATTERN));
+        connectorDenyPattern = Pattern.compile(config.getString(SERVICE_DENY_CONNECTOR_PROPERTY, DEFAULT_SERVICE_DENY_CONNECTOR_PATTERN));
         assetReferencePattern = Pattern.compile("((?<url>[^#]+)#)?(?<asset>.+)");
     }
 
@@ -183,7 +195,11 @@ public class AgentConfig {
      * @return uri of the control plane management endpoint (without concrete api)
      */
     public String getControlPlaneManagementUrl() {
-        return config.getString(CONTROL_PLANE_MANAGEMENT, null);
+        String url = config.getString(CONTROL_PLANE_MANAGEMENT, null);
+        if (url != null && connectorAllowPattern.matcher(url).matches() && !connectorDenyPattern.matcher(url).matches()) {
+            return url;
+        }
+        return null;
     }
 
     /**
@@ -192,7 +208,11 @@ public class AgentConfig {
      * @return uri of the control plane management endpoint (without concrete api)
      */
     public String getControlPlaneManagementProviderUrl() {
-        return config.getString(CONTROL_PLANE_MANAGEMENT_PROVIDER, config.getString(CONTROL_PLANE_MANAGEMENT, null));
+        String url = config.getString(CONTROL_PLANE_MANAGEMENT_PROVIDER, config.getString(CONTROL_PLANE_MANAGEMENT, null));
+        if (url != null && connectorAllowPattern.matcher(url).matches() && !connectorDenyPattern.matcher(url).matches()) {
+            return url;
+        }
+        return null;
     }
 
     /**
@@ -201,7 +221,11 @@ public class AgentConfig {
      * @return uri of the control plane ids endpoint (without concrete api)
      */
     public String getControlPlaneIdsUrl() {
-        return config.getString(CONTROL_PLANE_IDS, null);
+        String url = config.getString(CONTROL_PLANE_IDS, null);
+        if (url != null && connectorAllowPattern.matcher(url).matches() && !connectorDenyPattern.matcher(url).matches()) {
+            return url;
+        }
+        return null;
     }
 
     /**
@@ -212,7 +236,7 @@ public class AgentConfig {
     public Map<String, String> getControlPlaneManagementHeaders() {
         String key = config.getString(CONTROL_PLANE_AUTH_HEADER, "X-Api-Key");
         String value = config.getString(CONTROL_PLANE_AUTH_VALUE, null);
-        if (key != null && value != null) {
+        if (key != null && PARAMETER_KEY_ALLOW.matcher(key).matches() && value != null && PARAMETER_VALUE_ALLOW.matcher(value).matches()) {
             return Map.of(key, value);
         }
         return Map.of();
