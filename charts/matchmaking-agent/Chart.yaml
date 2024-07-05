@@ -28,7 +28,7 @@ home: https://github.com/eclipse-tractusx/knowledge-agents/
 sources:
   - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/matchmaking
 type: application
-appVersion: "1.12.19-SNAPSHOT"
-version: 1.12.19-SNAPSHOT
+appVersion: "1.13.21-SNAPSHOT"
+version: 1.13.21-SNAPSHOT
 maintainers:
   - name: 'Tractus-X Knowledge Agents Team'

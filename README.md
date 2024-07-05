@@ -114,10 +114,10 @@ kubectl wait --namespace ingress-nginx \
   --selector=app.kubernetes.io/component=controller \
   --timeout=90s
 # transfer images
-kind load docker-image docker.io/tractusx/conforming-agent:1.12.19-SNAPSHOT --name ka
-kind load docker-image docker.io/tractusx/matchmaking-agent:1.12.19-SNAPSHOT --name ka
-kind load docker-image docker.io/tractusx/provisioning-agent:1.12.19-SNAPSHOT --name ka
-kind load docker-image docker.io/tractusx/remoting-agent:1.12.19-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/conforming-agent:1.13.21-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/matchmaking-agent:1.13.21-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/provisioning-agent:1.13.21-SNAPSHOT --name ka
+kind load docker-image docker.io/tractusx/remoting-agent:1.13.21-SNAPSHOT --name ka
 # run container test
 ct install --charts charts/conforming-agent 
 ct install --charts charts/matchmaking-agent  
