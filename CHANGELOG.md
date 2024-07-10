@@ -24,7 +24,7 @@ All notable changes to this product will be documented in this file.
 
 # Released
 
-## [1.13.21] - 
+## [1.13.21] - 2024-07-15
 
 ### Added
 
