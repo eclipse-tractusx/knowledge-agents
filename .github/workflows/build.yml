@@ -130,7 +130,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Conforming
         id: meta-conf
-        uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5.1.5
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/conforming-agent
@@ -159,7 +159,7 @@ jobs:
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Conforming Agent
         if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
-        uses: peter-evans/dockerhub-description@dc67fad7001ef9e8e3c124cb7a64e16d0a63d864 # v3.4.2
+        uses: peter-evans/dockerhub-description@e98e4d1628a5f3be2be7c231e50981aee98723ae # v4.0.0
         with:
           readme-filepath: conforming/README.md
           username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
@@ -169,7 +169,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Remoting
         id: meta-remote
-        uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5.1.5
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/remoting-agent
@@ -198,7 +198,7 @@ jobs:
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Remoting Agent
         if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
-        uses: peter-evans/dockerhub-description@dc67fad7001ef9e8e3c124cb7a64e16d0a63d864 # v3.4.2
+        uses: peter-evans/dockerhub-description@e98e4d1628a5f3be2be7c231e50981aee98723ae # v4.0.0
         with:
           readme-filepath: remoting/README.md
           username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
@@ -208,7 +208,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Provisioning
         id: meta-prov
-        uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5.1.5
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/provisioning-agent
@@ -237,7 +237,7 @@ jobs:
       # Important step to push image description to DockerHub - since this is version independent, we always take it from main
       - name: Update Docker Hub description for Provisioning Agent
         if: ${{ steps.set-docker-repo.outputs.REPO == 'docker.io' && github.ref == 'refs/heads/main' }}
-        uses: peter-evans/dockerhub-description@dc67fad7001ef9e8e3c124cb7a64e16d0a63d864 # v3.4.2
+        uses: peter-evans/dockerhub-description@e98e4d1628a5f3be2be7c231e50981aee98723ae # v4.0.0
         with:
           readme-filepath: provisioning/README.md
           username: ${{ secrets.DOCKER_HUB_USER || github.actor }}
@@ -247,7 +247,7 @@ jobs:
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker Meta Matchmaking
         id: meta-match
-        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
           images: |
             ${{ steps.set-docker-repo.outputs.REPO }}/matchmaking-agent
