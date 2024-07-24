@@ -27,7 +27,7 @@
     <parent>
         <groupId>org.eclipse.tractusx</groupId>
         <artifactId>agents</artifactId>
-        <version>1.13.21-SNAPSHOT</version>
+        <version>1.13.22-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -121,6 +121,16 @@
 	        <groupId>org.glassfish.jersey.containers</groupId>
 	        <artifactId>jersey-container-jetty-http</artifactId>
 	        <version>${jersey3-version}</version>
+            <exclusions>
+                    <exclusion>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-util</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-server</artifactId>
+                    </exclusion>
+            </exclusions>
   		</dependency>
   		<dependency>
 	        <groupId>org.glassfish.jersey.containers</groupId>
@@ -179,7 +189,7 @@
         </dependency>
         <dependency>
 		    <groupId>org.eclipse.jetty</groupId>
-		    <artifactId>jetty-servlet</artifactId>
+		    <artifactId>jetty-server</artifactId>
 		    <version>${jetty-servlet.version}</version>
 		</dependency>
         <dependency>
@@ -188,10 +198,26 @@
             <version>${jetty-jakarta-servlet-api.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-security</artifactId>
+		    <version>${jetty-servlet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+		    <version>${jetty-servlet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+		    <version>${jetty-servlet.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena-fuseki-core</artifactId>
             <version>${org.apache.jena.version}</version>
-        <!--    <exclusions>
+            <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
@@ -200,35 +226,7 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>jcl-over-slf4j</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-server</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-http</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-io</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-security</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-servlets</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-servlet</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-servlet</artifactId>
-                </exclusion>
-            </exclusions> -->
+            </exclusions>
         </dependency>
 
         

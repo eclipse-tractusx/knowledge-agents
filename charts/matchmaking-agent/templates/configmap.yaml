@@ -86,6 +86,14 @@ data:
     cx.agent.service.asset.deny={{ .Values.agent.services.asset.deny }} 
     {{- end }}
     {{- end }}
+    {{- if .Values.agent.services.connector }}
+    {{- if .Values.agent.services.connector.allow }}
+    cx.agent.service.connector.allow={{ .Values.agent.services.connector.allow }} 
+    {{- end }}
+    {{- if .Values.agent.services.connector.deny }}
+    cx.agent.service.connector.deny={{ .Values.agent.services.connector.deny }} 
+    {{- end }}
+    {{- end }}
     {{- end }}
           
     ###################

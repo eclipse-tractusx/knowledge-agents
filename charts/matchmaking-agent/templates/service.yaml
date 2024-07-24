@@ -29,5 +29,13 @@ spec:
       targetPort: default
       protocol: TCP
       name: default
+    - port: {{ .Values.agent.endpoints.internal.port }}
+      targetPort: internal
+      protocol: TCP
+      name: internal
+    - port: {{ .Values.agent.endpoints.callback.port }}
+      targetPort: callback
+      protocol: TCP
+      name: callback
   selector:
     {{- include "agent.selectorLabels" . | nindent 4 }}

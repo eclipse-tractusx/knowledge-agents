@@ -240,6 +240,11 @@ agent:
       allow: '(edcs?://.*)'
       # -- A regular expression which outgoing service URLs must not match (unless overwritten by a specific asset property)
       deny: 'https?://.*'
+    connector:
+      # -- A regular expression which outgoing connector URLs must match
+      allow: 'https://.*'
+      # -- A regular expression which outgoing connector URLs must not match
+      deny: 'http://.*'
 
 service:
   # -- [Service type](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) to expose the running application on a set of Pods as a network service.
