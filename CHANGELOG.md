@@ -24,13 +24,16 @@ All notable changes to this product will be documented in this file.
 
 # Released
 
-## [1.13.21] - 2024-07-15
+## [1.13.22] - 2024-07-29
 
 ### Added
 
 ### Changed
 
 - Matchmaking Agent: Compliant to the TX EDC 0.7.3 management api
+- Matchmaking Agent: Add connector allowance patterns to chart
+- Matchmaking Agent: Ugrade to jetty 10.0.16
+- Remoting Agent: Upgrade to tomcat 9.0.90 and zookeeper 8.1.4. Remove vulnerable solr support.
 
 ## [1.12.19] - 2024-05-17
 

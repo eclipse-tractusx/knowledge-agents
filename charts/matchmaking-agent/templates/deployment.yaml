@@ -58,6 +58,12 @@ spec:
             - name: default
               containerPort: {{ .Values.agent.endpoints.default.port }}
               protocol: TCP
+            - name: internal
+              containerPort: {{ .Values.agent.endpoints.internal.port }}
+              protocol: TCP
+            - name: callback
+              containerPort: {{ .Values.agent.endpoints.callback.port }}
+              protocol: TCP
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:

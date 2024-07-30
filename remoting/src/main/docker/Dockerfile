@@ -59,7 +59,8 @@ RUN wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclips
     rm /tmp/rdf4j-server/WEB-INF/lib/logback-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/snappy-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/zookeeper-*.jar && \
-    cp /opt/lib/*.jar /tmp/rdf4j-server/WEB-INF/lib/ 
+    rm /tmp/rdf4j-server/WEB-INF/lib/solr-*.jar && \
+    cp /opt/lib/*.jar /tmp/rdf4j-server/WEB-INF/lib/
 
 COPY resources/web/rdf4j.xml /tmp/rdf4j-server/WEB-INF/web.xml
 COPY resources/web/callback.xml /tmp/rdf4j-server/WEB-INF/callback.xml
@@ -87,7 +88,7 @@ RUN adduser \
 
 # Environment variables
 ENV TOMCAT_MAJOR=9 \
-    TOMCAT_VERSION=9.0.83 \
+    TOMCAT_VERSION=9.0.90 \
     CATALINA_HOME=/opt/tomcat
 
 RUN mkdir -p /opt
