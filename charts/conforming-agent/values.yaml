@@ -105,8 +105,6 @@ securityContext:
   runAsUser: 10001
   # -- Processes within a pod will belong to this guid
   runAsGroup: 30000
-  # -- The owner for volumes and any files created within volumes will belong to this guid
-  runAsGroup: 30000
 
 livenessProbe:
   # -- Whether to enable kubernetes [liveness-probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
