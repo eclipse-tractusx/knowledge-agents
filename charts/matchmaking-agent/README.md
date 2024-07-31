@@ -19,7 +19,7 @@
 -->
 # matchmaking-agent
 
-![Version: 1.13.22-SNAPSHOT](https://img.shields.io/badge/Version-1.13.21--SNAPSHOT-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.13.22-SNAPSHOT](https://img.shields.io/badge/AppVersion-1.13.21--SNAPSHOT-informational?style=flat-square)
+![Version: 1.13.22](https://img.shields.io/badge/Version-1.13.21--SNAPSHOT-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.13.22](https://img.shields.io/badge/AppVersion-1.13.21--SNAPSHOT-informational?style=flat-square)
 
 A Helm chart for the Tractus-X Matchmaking Agent which is a container encompassing data storage capabilities accessible from the dataplane by a REST API
 
@@ -30,7 +30,7 @@ This chart has no prerequisites.
 ## TL;DR
 ```shell
 $ helm repo add eclipse-tractusx https://eclipse-tractusx.github.io/charts/dev
-$ helm install my-release eclipse-tractusx/matchmaking-agent --version 1.13.22-SNAPSHOT
+$ helm install my-release eclipse-tractusx/matchmaking-agent --version 1.13.22
 ```
 
 ## Maintainers

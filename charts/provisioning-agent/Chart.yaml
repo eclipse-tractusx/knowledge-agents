@@ -28,7 +28,7 @@ home: https://github.com/eclipse-tractusx/knowledge-agents/
 sources:
   - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
 type: application
-appVersion: "1.13.22-SNAPSHOT"
-version: 1.13.22-SNAPSHOT
+appVersion: "1.13.22"
+version: 1.13.22
 maintainers:
   - name: 'Tractus-X Knowledge Agents Team'
