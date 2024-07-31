@@ -2,6 +2,23 @@ apiVersion: v1
 entries:
   conforming-agent:
   - apiVersion: v2
+    appVersion: 1.14.23-SNAPSHOT
+    created: "2024-07-31T09:02:33.041918084Z"
+    description: 'A Helm chart for the Tractus-X Conforming Agent which is a container
+      to assess the conformity of all other parts of the Agent-Enabled Dataspace.  This
+      chart has no prerequisites. '
+    digest: c2eb8fb5472aef79dd55f975b6105aca60ad869e9e4548378c42e899268c7076
+    home: https://github.com/eclipse-tractusx/knowledge-agents/
+    maintainers:
+    - name: Tractus-X Knowledge Agents Team
+    name: conforming-agent
+    sources:
+    - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/conforming
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/conforming-agent-1.14.23-SNAPSHOT/conforming-agent-1.14.23-SNAPSHOT.tgz
+    version: 1.14.23-SNAPSHOT
+  - apiVersion: v2
     appVersion: 1.13.22
     created: "2024-07-31T08:55:46.554943264Z"
     description: 'A Helm chart for the Tractus-X Conforming Agent which is a container
@@ -258,6 +275,23 @@ entries:
     version: 1.9.7-SNAPSHOT
   matchmaking-agent:
   - apiVersion: v2
+    appVersion: 1.14.23-SNAPSHOT
+    created: "2024-07-31T09:02:33.154309991Z"
+    description: 'A Helm chart for the Tractus-X Matchmaking Agent which is a container
+      encompassing data storage capabilities accessible from the dataplane by a REST
+      API  This chart has no prerequisites. '
+    digest: 0b4f765ddc699cb4639ea5e8d36ffed3ba732e5c2ebf01f6c4a7092c651ef767
+    home: https://github.com/eclipse-tractusx/knowledge-agents/
+    maintainers:
+    - name: Tractus-X Knowledge Agents Team
+    name: matchmaking-agent
+    sources:
+    - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/matchmaking
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/matchmaking-agent-1.14.23-SNAPSHOT/matchmaking-agent-1.14.23-SNAPSHOT.tgz
+    version: 1.14.23-SNAPSHOT
+  - apiVersion: v2
     appVersion: 1.13.22
     created: "2024-07-31T08:55:46.678354206Z"
     description: 'A Helm chart for the Tractus-X Matchmaking Agent which is a container
@@ -377,6 +411,23 @@ entries:
     - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/matchmaking-agent-1.12.17-SNAPSHOT/matchmaking-agent-1.12.17-SNAPSHOT.tgz
     version: 1.12.17-SNAPSHOT
   provisioning-agent:
+  - apiVersion: v2
+    appVersion: 1.14.23-SNAPSHOT
+    created: "2024-07-31T09:02:33.286089725Z"
+    description: 'A Helm chart for the Tractus-X Provisioning Agent which is a container
+      to Bridge Agent-Enabled Connector and Relational Data Sources.  This chart has
+      no prerequisites. '
+    digest: 376c63074121b94b6bd65fa8aa4f1c1c905aa20ad678731d3af4f09394372172
+    home: https://github.com/eclipse-tractusx/knowledge-agents/
+    maintainers:
+    - name: Tractus-X Knowledge Agents Team
+    name: provisioning-agent
+    sources:
+    - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/provisioning
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/provisioning-agent-1.14.23-SNAPSHOT/provisioning-agent-1.14.23-SNAPSHOT.tgz
+    version: 1.14.23-SNAPSHOT
   - apiVersion: v2
     appVersion: 1.13.22
     created: "2024-07-31T08:55:46.818059923Z"
@@ -634,6 +685,22 @@ entries:
     version: 1.9.7-SNAPSHOT
   remoting-agent:
   - apiVersion: v2
+    appVersion: 1.14.23-SNAPSHOT
+    created: "2024-07-31T09:02:33.405440488Z"
+    description: 'A Helm chart for the Tractus-X Remoting Agent which is a container
+      to Bridge Agent-Enabled Connector and REST APIs.  This chart has no prerequisites. '
+    digest: 1d280af427093e1a7540bd5513cc071380087da55daf3ff24daad1069ec35bac
+    home: https://github.com/eclipse-tractusx/knowledge-agents/
+    maintainers:
+    - name: Tractus-X Knowledge Agents Team
+    name: remoting-agent
+    sources:
+    - https://github.com/eclipse-tractusx/knowledge-agents/tree/main/remoting
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/remoting-agent-1.14.23-SNAPSHOT/remoting-agent-1.14.23-SNAPSHOT.tgz
+    version: 1.14.23-SNAPSHOT
+  - apiVersion: v2
     appVersion: 1.13.22
     created: "2024-07-31T08:55:46.936092186Z"
     description: 'A Helm chart for the Tractus-X Remoting Agent which is a container
@@ -873,4 +940,4 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/knowledge-agents/releases/download/remoting-agent-1.9.7-SNAPSHOT/remoting-agent-1.9.7-SNAPSHOT.tgz
     version: 1.9.7-SNAPSHOT
-generated: "2024-07-31T08:55:46.936435894Z"
+generated: "2024-07-31T09:02:33.405877629Z"
