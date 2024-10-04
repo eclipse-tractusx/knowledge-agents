@@ -157,6 +157,11 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
+       <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>${commons.io.version}</version>
+       </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.eclipse.rdf4j/rdf4j-query -->
         <dependency>

@@ -19,7 +19,7 @@
 # Blueprint Container: Prebuilt distribution of ontop which we will repackage
 ##
 
-FROM ontop/ontop:5.1.2 as blueprint
+FROM ontop/ontop:5.2.0 as blueprint
 
 ##
 # Build Container: Fixes diverse vulnerabilities in guava <32, tomcat, spring-boot 2.7<13, spring-framework <5.3.28 and spring-web (all 5 versions - need to exclude a deprecated package from the jar)
@@ -37,6 +37,7 @@ COPY target/provisioning-agent-*.jar /opt/ontop/lib/
 COPY target/lib/guava-*.jar /opt/ontop/lib/
 COPY target/lib/tomcat-embed-*.jar /opt/ontop/lib/
 COPY target/lib/spring-*.jar /opt/ontop/lib/
+COPY target/lib/commons-io-*.jar /opt/ontop/lib/
 COPY target/lib/postgresql-*.jar /opt/ontop/jdbc/
 
 WORKDIR /tmp
@@ -46,11 +47,16 @@ RUN  if [ "${HTTP_PROXY}" != ""  ]; then \
         echo "Acquire::https::Proxy \"${HTTP_PROXY}\"" >> /etc/apt/apt.conf.d/proxy.conf; \
      fi && \
      for jdbcDriver in "$jdbcDrivers"; do wget --no-check-certificate -q -P /opt/ontop/jdbc ${jdbcDriver} ; done && \
-     mv /opt/ontop/lib/spring-web-5.3.31.jar . && \
-     jar xvf spring-web-5.3.31.jar && \
-     rm -f spring-web-5.3.31.jar && \
+     mv /opt/ontop/lib/spring-web-5.3.39.jar . && \
+     jar xvf spring-web-5.3.39.jar && \
+     rm -f spring-web-5.3.39.jar && \
      rm -rf org/springframework/remoting/httpinvoker && \
-     jar cf /opt/ontop/lib/spring-web.jar *
+     jar cf /opt/ontop/lib/spring-web.jar * && \
+     rm -rf * && \
+     mv /opt/ontop/lib/spring-webmvc-5.3.39.jar . && \
+     jar xvf spring-webmvc-5.3.39.jar && \
+     rm -f spring-webmvc-5.3.39.jar && \
+     jar cf /opt/ontop/lib/spring-webmvc.jar *      
 
 ##
 # Target Container: Use a valid base image
@@ -80,6 +86,7 @@ COPY resources/entrypoint.sh /opt/ontop/.
 RUN rm /opt/ontop/lib/guava-*.jar && \
     rm /opt/ontop/lib/tomcat-embed-*.jar && \
     rm /opt/ontop/lib/spring-*.jar && \
+    rm /opt/ontop/lib/commons-io-*.jar && \
     mkdir -p /opt/ontop/input && \
     mkdir -p /opt/ontop/database && \
     mkdir -p /opt/ontop/data && \

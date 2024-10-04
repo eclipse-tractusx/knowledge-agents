@@ -31,6 +31,7 @@ COPY target/lib/spring-*.jar /opt/lib/
 COPY target/lib/logback-*.jar /opt/lib/
 COPY target/lib/httpmime-*.jar /opt/lib/
 COPY target/lib/commons-logging-*.jar /opt/lib/
+COPY target/lib/commons-io-*.jar /opt/lib/
 COPY target/lib/snappy-java-*.jar /opt/lib/
 COPY target/lib/zookeeper-*.jar /opt/lib/
 
@@ -41,15 +42,20 @@ COPY resources/web/tomcat-users.xml /opt/conf/
 
 WORKDIR /tmp
 
-RUN  mv /opt/lib/spring-web-5.3.31.jar . && \
-     jar xvf spring-web-5.3.31.jar && \
-     rm -f spring-web-5.3.31.jar && \
+RUN  mv /opt/lib/spring-web-5.3.39.jar . && \
+     jar xvf spring-web-5.3.39.jar && \
+     rm -f spring-web-5.3.39.jar && \
      rm -rf org/springframework/remoting/httpinvoker && \
-     jar cf /opt/lib/spring-web.jar *
+     jar cf /opt/lib/spring-web.jar * && \
+     rm -rf * && \
+     mv /opt/lib/spring-webmvc-5.3.39.jar . && \
+     jar xvf spring-webmvc-5.3.39.jar && \
+     rm -f spring-webmvc-5.3.39.jar && \
+     jar cf /opt/lib/spring-webmvc.jar *
 
-RUN wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclipse/rdf4j/eclipse-rdf4j-4.3.8-sdk.zip" && \
-    unzip -d /tmp /tmp/rdf4j.zip eclipse-rdf4j-4.3.8/war/rdf4j-server.war  eclipse-rdf4j-4.3.8/war/rdf4j-workbench.war && \
-    unzip /tmp/eclipse-rdf4j-4.3.8/war/rdf4j-server.war -d /tmp/rdf4j-server && \
+RUN wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclipse/rdf4j/eclipse-rdf4j-4.3.14-sdk.zip" && \
+    unzip -d /tmp /tmp/rdf4j.zip eclipse-rdf4j-4.3.14/war/rdf4j-server.war  eclipse-rdf4j-4.3.14/war/rdf4j-workbench.war && \
+    unzip /tmp/eclipse-rdf4j-4.3.14/war/rdf4j-server.war -d /tmp/rdf4j-server && \
 #    rm /tmp/rdf4j-server/WEB-INF/lib/guava-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/netty-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/http2-hpack-*.jar && \
@@ -57,6 +63,7 @@ RUN wget -q -O /tmp/rdf4j.zip "https://rhlx01.hs-esslingen.de/pub/Mirrors/eclips
     rm /tmp/rdf4j-server/WEB-INF/lib/jetty-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/spring-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/logback-*.jar && \
+    rm /tmp/rdf4j-server/WEB-INF/lib/commons-io-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/snappy-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/zookeeper-*.jar && \
     rm /tmp/rdf4j-server/WEB-INF/lib/solr-*.jar && \
