@@ -22,10 +22,10 @@
 #################################################################
 
 @prefix : <urn:cx:Graph:local:Dataspace> .
-@prefix cx: <https://github.com/catenax-ng/product-knowledge/ontology/cx.ttl#> .
+@prefix cx: <https://github.com/big-data-spaces/knowledge-agents-deployment/ontology/cx.ttl#> .
 @prefix cx-common: <https://w3id.org/catenax/ontology/common#> .
-@prefix cx-diag: <https://github.com/catenax-ng/product-knowledge/ontology/diagnosis.ttl#> .
-@prefix cx-telematics: <https://github.com/catenax-ng/product-knowledge/ontology/telematics.ttl#> .
+@prefix cx-diag: <https://github.com/big-data-spaces/knowledge-agents-deployment/ontology/diagnosis.ttl#> .
+@prefix cx-telematics: <https://github.com/big-data-spaces/knowledge-agents-deployment/ontology/telematics.ttl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -181,7 +181,7 @@ bpns:BPNS0000000006V6 cx-common:hasGeoInformation <geo:BPNS0000000006V6>.
                                           cx-telematics:hasHeader "{  \"CountingMethod\": \"ZF_TimeAtLevel\",    \"CountingUnit\": \"s\",    \"Channels\": [      {        \"Name\": \"Temp_Oil\",        \"Type\": \"Load\",        \"Unit\": \"degC\",        \"LowerLimit\": -40,        \"UpperLimit\": 220,        \"NumberOfBins\": 52      }  ]  }"^^json:Object.
 
 cx-common:EngineeringMaterial a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://de.wikipedia.org/wiki/Werkstoff>,
         <https://en.wikipedia.org/wiki/Factors_of_production> ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -212,21 +212,21 @@ cx-common:EngineeringMaterial a owl:Class ;
         "Engineering Material"@en .
 
 cx-common:SemiconductorMaterial a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Semiconductor> ;
     rdfs:subClassOf cx-common:EngineeringMaterial ;
     skos:prefLabel "Halbleiter Material"@de,
         "Semiconductor Material"@en .
 
 cx-common:CeramicMaterial a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:subClassOf cx-common:EngineeringMaterial ;
     skos:altLabel "anorganisch-nichtmetallischer Werkstoff"@de ;
     skos:prefLabel "Keramisches Material"@de,
         "Ceramic Material"@en .
 
 cx-common:CompositeMaterial a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Composite_material> ;
     rdfs:subClassOf cx-common:EngineeringMaterial ;
     skos:definition "mixture of materials"@en ;
@@ -234,7 +234,7 @@ cx-common:CompositeMaterial a owl:Class ;
         "Composite Material"@en .
 
 cx-common:PolymerMaterial a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Plastic>,
         <https://en.wikipedia.org/wiki/Polymer> ;
     rdfs:subClassOf cx-common:EngineeringMaterial ;
@@ -242,14 +242,14 @@ cx-common:PolymerMaterial a owl:Class ;
         "Polymer Material"@en .
 
 cx-common:MetalMaterial a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Metal> ;
     rdfs:subClassOf cx-common:EngineeringMaterial ;
     skos:prefLabel "Metallmaterial"@de,
         "Metal Material"@en .
 
 cx-common:HeavyMetal a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Heavy_metals> ;
     rdfs:subClassOf cx-common:MetalMaterial ;
     skos:definition "density above 5 g/cm³"@en ;
@@ -257,7 +257,7 @@ cx-common:HeavyMetal a owl:Class ;
         "Heavy Metal"@en .
 
 cx-common:LightMetal a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Light_metal> ;
     rdfs:subClassOf cx-common:MetalMaterial ;
     skos:definition "density below 5 g/cm³"@en ;
@@ -265,21 +265,21 @@ cx-common:LightMetal a owl:Class ;
         "Light Metal"@en .
 
 cx-common:NativeMetal a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Native_metal> ;
     rdfs:subClassOf cx-common:MetalMaterial ;
     skos:prefLabel "Reinmetall"@de,
         "Native Metal"@en .
 
 cx-common:Alloy a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Alloy> ;
     rdfs:subClassOf cx-common:MetalMaterial ;
     skos:prefLabel "Legierung"@de,
         "Alloy"@en .
 
 cx-common:CathodeMaterial a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Cathode> ;
     rdfs:subClassOf cx-common:Alloy ;
     skos:prefLabel "Kathodenmaterial"@de,
@@ -312,7 +312,7 @@ cx-common:CompositeMaterial_Carbon a cx-common:CompositeMaterial ;
     skos:prefLabel "Karbon"@de.
 
 cx-common:OrganicMaterial a owl:Class ;
-    rdfs:isDefinedBy <https://raw.githubusercontent.com/catenax-ng/product-knowledge/main/ontology/material_ontology.ttl> ;
+    rdfs:isDefinedBy <https://raw.githubusercontent.com/big-data-spaces/knowledge-agents-deployment/main/ontology/material_ontology.ttl> ;
     rdfs:seeAlso <https://en.wikipedia.org/wiki/Organic_matter> ;
     rdfs:subClassOf cx-common:EngineeringMaterial ;
     skos:altLabel "Organischer Werkstoff"@de ;

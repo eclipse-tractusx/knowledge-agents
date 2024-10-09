@@ -22,7 +22,7 @@
 #
 
 # image:
-#  registry: ghcr.io/catenax-ng/
+#  registry: ghcr.io/big-data-spaces
 #  repository: tx-knowledge-agents/matchmaking-agent
 #  tag: 1.14.24-SNAPSHOT
 
