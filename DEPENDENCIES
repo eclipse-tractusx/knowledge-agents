@@ -31,7 +31,7 @@ maven/mavencentral/com.google.guava/guava/32.1.3-jre, Apache-2.0 AND CC0-1.0 AND
 maven/mavencentral/com.google.guava/guava/33.3.0-jre, Apache-2.0 AND CC0-1.0 AND (Apache-2.0 AND CC-PDDC) AND (Apache-2.0 AND CC0-1.0), approved, #15952
 maven/mavencentral/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava, Apache-2.0, approved, CQ22657
 maven/mavencentral/com.google.inject.extensions/guice-assistedinject/5.0.1, Apache-2.0, approved, clearlydefined
-maven/mavencentral/com.google.inject/guice/5.0.1, Apache-2.0, restricted, clearlydefined
+maven/mavencentral/com.google.inject/guice/5.0.1, Apache-2.0, approved, #16805
 maven/mavencentral/com.google.j2objc/j2objc-annotations/3.0.0, Apache-2.0, approved, #13676
 maven/mavencentral/com.google.protobuf/protobuf-java/3.23.3, BSD-3-Clause, approved, #8634
 maven/mavencentral/com.jayway.jsonpath/json-path/2.7.0, Apache-2.0, approved, clearlydefined
@@ -78,9 +78,9 @@ maven/mavencentral/io.swagger.core.v3/swagger-core/2.2.12, Apache-2.0, approved,
 maven/mavencentral/io.swagger.core.v3/swagger-integration/2.2.12, Apache-2.0, approved, #10352
 maven/mavencentral/io.swagger.core.v3/swagger-jaxrs2/2.2.12, Apache-2.0, approved, #9814
 maven/mavencentral/io.swagger.core.v3/swagger-models/2.2.12, Apache-2.0, approved, #10353
-maven/mavencentral/it.unibz.inf.ontop/ontop-model/5.2.0, , restricted, clearlydefined
+maven/mavencentral/it.unibz.inf.ontop/ontop-model/5.2.0, Apache-2.0, approved, #16806
 maven/mavencentral/it.unibz.inf.ontop/ontop-obda-core/5.2.0, Apache-2.0, approved, clearlydefined
-maven/mavencentral/it.unibz.inf.ontop/ontop-rdb/5.2.0, , restricted, clearlydefined
+maven/mavencentral/it.unibz.inf.ontop/ontop-rdb/5.2.0, Apache-2.0, approved, #16804
 maven/mavencentral/jakarta.activation/jakarta.activation-api/1.2.2, EPL-2.0 OR BSD-3-Clause OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jaf
 maven/mavencentral/jakarta.activation/jakarta.activation-api/2.1.0, EPL-2.0 OR BSD-3-Clause OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.jaf
 maven/mavencentral/jakarta.annotation/jakarta.annotation-api/1.3.5, EPL-2.0 OR GPL-2.0-only with Classpath-exception-2.0, approved, ee4j.ca
