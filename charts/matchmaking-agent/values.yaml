@@ -287,8 +287,8 @@ ingresses:
 # We recommend 25% of a cpu, 512MB per server and 256MB per endpoint
 resources:
   requests:
-    cpu: 250m
-    memory: 768Mi
+    cpu: 100m
+    memory: 256Mi
   limits:
     cpu: 250m
     memory: 768Mi

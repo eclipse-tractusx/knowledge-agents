@@ -27,7 +27,7 @@
     <parent>
         <groupId>org.eclipse.tractusx</groupId>
         <artifactId>agents</artifactId>
-        <version>1.14.23-SNAPSHOT</version>
+        <version>1.14.24-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -157,6 +157,11 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
+       <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>${commons.io.version}</version>
+       </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.eclipse.rdf4j/rdf4j-query -->
         <dependency>

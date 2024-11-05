@@ -26,24 +26,25 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.eclipse.tractusx</groupId>
     <artifactId>agents</artifactId>
-    <version>1.14.23-SNAPSHOT</version>
+    <version>1.14.24-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Tractus-X Knowledge Agents Reference Implementations</name>
     <description>Provides Reference Implementations and Artifacts to Realize Semantic Dataspace Backends</description>
     <dependencies>
     </dependencies>
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <skipTests>false</skipTests>
 
         <junit.version>5.10.2</junit.version>
         <mockito.version>5.2.0</mockito.version>
         <failsafe.version>3.3.2</failsafe.version>
         <okhttp.version>4.12.0</okhttp.version>
-        <rdf4j.version>4.3.8</rdf4j.version>
+        <rdf4j.version>4.3.14</rdf4j.version>
         <httpcomponents.version>4.5.14</httpcomponents.version>
         <commons.logging.version>1.2</commons.logging.version>
+        <commons.io.version>2.14.0</commons.io.version>
         <commons.compress.version>1.26.0</commons.compress.version>
         <jackson.version>2.15.2</jackson.version>
         <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
@@ -51,18 +52,18 @@
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <jetty-jakarta-servlet-api.version>5.0.2</jetty-jakarta-servlet-api.version>
         <jaxb.version>2.3.1</jaxb.version>
-        <ontop.version>5.1.2</ontop.version>
+        <ontop.version>5.2.0</ontop.version>
         <servlet-api-version>2.5</servlet-api-version>
         <servlet.version>3.1.0</servlet.version>
-        <spring.version>5.3.31</spring.version>
+        <spring.version>5.3.39</spring.version>
         <spring.boot.version>2.7.18</spring.boot.version>
-        <guava.version>32.1.2-jre</guava.version>
+        <guava.version>33.3.0-jre</guava.version>
         <tomcat.version>9.0.83</tomcat.version>
         <netty.version>4.1.101.Final</netty.version>
         <jetty.version>9.4.54.v20240208</jetty.version>
         <org.yaml.snakeyaml.version>2.2</org.yaml.snakeyaml.version>
         <snappy.version>1.1.10.5</snappy.version>
-        <postgres.version>42.7.2</postgres.version>
+        <postgres.version>42.7.3</postgres.version>
         <zookeeper.version>3.8.4</zookeeper.version>
         <swagger-core-version>2.2.12</swagger-core-version>
         <jersey2-version>2.40</jersey2-version>
@@ -134,7 +135,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.2.5</version>
+                    <version>3.4.0</version>
                     <!-- unfortunately you have to repeat that in all relevant sub-modules -->
                     <configuration>
                         <groups>!online</groups>
@@ -164,6 +165,7 @@
                                 <workingDirectory>${project.basedir}</workingDirectory>
                                 <arguments>
                                     <argument>build</argument>
+                                    <argument>--load</argument>
                                     <argument>--platform</argument>
                                     <argument>${platform}</argument>
                                     <argument>-f</argument>
