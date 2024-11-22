@@ -237,8 +237,8 @@ jobs:
         with:
           context: provisioning/.
           file: provisioning/src/main/docker/Dockerfile
-          # Needed to create multi-platform image
-          platforms: linux/amd64, linux/arm64
+          # Needed to create multi-platform image, there is no jre 11 on arm yet
+          platforms: linux/amd64
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
           tags: ${{ steps.meta-prov.outputs.tags }}
