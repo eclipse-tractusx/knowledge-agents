@@ -99,6 +99,10 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      # Needed to create multi-platform image
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
       # Enable deployment access (on demand or main branch and version tags only)
       - name: Login to GitHub Container Registry
         if: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
@@ -151,6 +155,8 @@ jobs:
         with:
           context: conforming/.
           file: conforming/src/main/docker/Dockerfile
+          # Needed to create multi-platform image
+          platforms: linux/amd64, linux/arm64
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
           tags: ${{ steps.meta-conf.outputs.tags }}
@@ -190,6 +196,8 @@ jobs:
         with:
           context: remoting/.
           file: remoting/src/main/docker/Dockerfile
+          # Needed to create multi-platform image
+          platforms: linux/amd64, linux/arm64
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
           tags: ${{ steps.meta-remote.outputs.tags }}
@@ -229,6 +237,8 @@ jobs:
         with:
           context: provisioning/.
           file: provisioning/src/main/docker/Dockerfile
+          # Needed to create multi-platform image
+          platforms: linux/amd64, linux/arm64
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
           tags: ${{ steps.meta-prov.outputs.tags }}
@@ -268,6 +278,8 @@ jobs:
         with:
           context: matchmaking/.
           file: matchmaking/src/main/docker/Dockerfile
+          # Needed to create multi-platform image
+          platforms: linux/amd64, linux/arm64
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ ( github.event.inputs.deploy_docker == 'true' || github.ref == 'refs/heads/main' ||  startsWith(github.ref, 'refs/tags/v') ) }}
           tags: ${{ steps.meta-match.outputs.tags }}
