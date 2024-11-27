@@ -19,7 +19,7 @@
 # Blueprint Container: Prebuilt distribution of ontop which we will repackage
 ##
 
-FROM ontop/ontop:5.2.0 as blueprint
+FROM ontop/ontop:5.2.1 as blueprint
 
 ##
 # Build Container: Fixes diverse vulnerabilities in guava <32, tomcat, spring-boot 2.7<13, spring-framework <5.3.28 and spring-web (all 5 versions - need to exclude a deprecated package from the jar)
