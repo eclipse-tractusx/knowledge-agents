@@ -24,7 +24,7 @@
 # image:
 #  registry: ghcr.io/big-data-spaces
 #  repository: tx-knowledge-agents/matchmaking-agent
-#  tag: 1.14.24-SNAPSHOT
+#  tag: 1.14.24
 
 participant:
   id: "BPNL0000000DUMMY"
