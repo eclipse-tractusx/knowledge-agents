@@ -95,7 +95,7 @@ RUN adduser \
 
 # Environment variables
 ENV TOMCAT_MAJOR=9 \
-    TOMCAT_VERSION=9.0.90 \
+    TOMCAT_VERSION=9.0.97 \
     CATALINA_HOME=/opt/tomcat
 
 RUN mkdir -p /opt
