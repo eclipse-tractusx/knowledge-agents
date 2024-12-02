@@ -59,7 +59,7 @@
         <spring.boot.version>2.7.18</spring.boot.version>
         <guava.version>33.3.0-jre</guava.version>
         <tomcat.version>9.0.83</tomcat.version>
-        <netty.version>4.1.101.Final</netty.version>
+        <netty.version>4.1.115.Final</netty.version>
         <jetty.version>9.4.54.v20240208</jetty.version>
         <org.yaml.snakeyaml.version>2.2</org.yaml.snakeyaml.version>
         <snappy.version>1.1.10.5</snappy.version>
