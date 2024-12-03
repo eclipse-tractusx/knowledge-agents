@@ -25,8 +25,12 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/eclipse-tractusx/knowledge-agents/total)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=eclipse-tractusx_knowledge-agents&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=eclipse-tractusx_knowledge-agents)
 
-Tractus-X Knowledge Agents Reference Implementations (KA-RI) is a product of the [Catena-X Knowledge Agents Kit (about to move to: Tractus-X Knowledge Agents Kit)](https://bit.ly/tractusx-agents) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
+Tractus-X Knowledge Agents Reference Implementations (KA-RI) is a product of the [Tractus-X Knowledge Agents Kit](https://eclipse-tractusx.github.io/docs-kits/kits/knowledge-agents/adoption-view/intro) implementing the "binding" modules of the CX-0084 standard (Federated Queries in Dataspaces).
 
+* See the [User Documentation](docs/README.md)
+* See the [Architecture](docs/architecture/Arc42.md)
+* See the [OpenAPI definition](docs/api/openAPI.yaml)
+* See the [Administration Guide](docs/admin/README.md)
 * See the [Authors](AUTHORS.md)
 * See the [Changelog](CHANGELOG.md)
 * See the [Code of Conduct](CODE_OF_CONDUCT.md)
@@ -79,18 +83,6 @@ To update the [DEPENDENCIES](./DEPENDENCIES) declarations
 ```shell
 ./mvnw org.eclipse.dash:license-tool-plugin:license-check 
 ```
-
-### Deployment
-
-Deployment can be done
-* via [JAR libraries](https://github.com/orgs/eclipse-tractusx/packages?repo_name=knowledge-agents&ecosystem=maven) copied into your Java runtime
-* via [Docker images](https://hub.docker.com/r/tractusx) 
-* via [Helm Charts (Stable Versions)](https://eclipse-tractusx.github.io/charts/stable) or [Helm Charts (Dev Versions)](https://eclipse-tractusx.github.io/charts/stable)
-
-See the individual agent documentations for more detailed deployment information
-* [Provisioning Agent](provisioning/README.md)
-* [Remoting Agent](remoting/README.md)
-* [Conforming Agent](conforming/README.md)
 
 #### Setup using Helm/Kind
 

@@ -20,7 +20,9 @@
 
 # Tractus-X Knowledge Agents Reference Implementation (KA-RI) Documentation 
 
-In the Knowledge Agent Architecture, an Agent is any component which speaks and/or enacts a Semantic Web protocol, such as SPARQL.
+In the [Knowledge Agent Architecture](architecture/Arc42.md), an Agent is any component which speaks and/or enacts a Semantic Web protocol, such as SPARQL.
+
+See the [Knowledge Agents OpenAPI](api/openAPI.yaml) for a detailed description of this protocol.
 
 Binding Agents are the intermediate layer between the dataspace (represented by the Matchmaking Agent that is connected to any Agent-Enabled Application and/or the Agent-Enabled Connector) and your business data & functions.
 
@@ -52,6 +54,10 @@ The [Remoting Agent (KA-RMT)](../remoting) which binds typical REST services to 
 
 The [Conforming Agent (KA-CONF)](conforming) is not a real binding agent, but it 
 can play the role of any other Agent in the Knowledge Agent architecture (Matchmaking Agent, Binding Agent, EDC Transfer) by testing the conformity of surrounding components (and the various KA-SPARQL profiles). The conforming agent contains no real business data (only reference sample data) and needs no connection to any backend service.
+
+## Deployment
+
+see the [Administration Guide](admin/README.md)
 
 ## NOTICE
 

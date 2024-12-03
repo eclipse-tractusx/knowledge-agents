@@ -214,9 +214,9 @@ As with all Docker images, these likely also contain other software which may be
 
 As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
 
-### Helm Chart
+## Helm Chart for Remoting Agent
 
-A helm chart for deploying the remoting agent can be found under [this folder](../charts/remoting-agent).
+A helm chart for deploying the remoting agent can be found under [this folder](../../charts/remoting-agent).
 
 It can be added to your umbrella chart.yaml by the following snippet
 
