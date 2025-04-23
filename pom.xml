@@ -46,7 +46,7 @@
         <commons.logging.version>1.2</commons.logging.version>
         <commons.io.version>2.14.0</commons.io.version>
         <commons.compress.version>1.26.0</commons.compress.version>
-        <jackson.version>2.15.2</jackson.version>
+        <jackson.version>2.18.1</jackson.version>
         <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
         <com.nimbusds.version>9.37.3</com.nimbusds.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
